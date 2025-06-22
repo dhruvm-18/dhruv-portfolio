@@ -111,7 +111,8 @@ const Index = () => {
         "Advanced feature engineering and cross-validation"
       ],
       gradient: "from-blue-500 to-cyan-500",
-      icon: "📈"
+      icon: "📈",
+      link: "https://github.com/dhruvm-18/Stock-market-model"
     },
     {
       title: "Product Sentiment Analyzer",
@@ -124,7 +125,8 @@ const Index = () => {
         "Keyphrase extraction for customer feedback themes"
       ],
       gradient: "from-green-500 to-emerald-500",
-      icon: "💭"
+      icon: "💭",
+      link: "https://github.com/dhruvm-18/Product-Sentiment-Analysis"
     },
     {
       title: "Railway Ticketing Chatbot",
@@ -137,7 +139,8 @@ const Index = () => {
         "Applied early NLP techniques for query classification"
       ],
       gradient: "from-orange-500 to-red-500",
-      icon: "🚂"
+      icon: "🚂",
+      link: "https://github.com/dhruvm-18/TicketBookingChatbot"
     }
   ];
 
@@ -596,60 +599,69 @@ const Index = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-12 md:mb-16"
           >
-            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
-              Featured Projects
-            </h2>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Featured Projects</h2>
             <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto`}></div>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            {projects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                whileHover={{ scale: 1.05, rotateY: 5 }}
-                className="group"
-              >
-                <Card className={`h-full border-0 overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300 ${isDarkMode ? 'bg-slate-800/80' : 'bg-white/90'} ${isDarkMode ? 'border-slate-700' : 'border-blue-200'}`}>
-                  <div className={`bg-gradient-to-r ${project.gradient} p-1 rounded-lg`}>
-                    <div className={`${isDarkMode ? 'bg-slate-800' : 'bg-white'} rounded-lg h-full`}>
-                      <CardHeader className="relative">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="text-3xl md:text-4xl">{project.icon}</div>
-                          <ExternalLink className={`w-5 h-5 ${isDarkMode ? 'text-slate-400 group-hover:text-slate-200' : 'text-gray-400 group-hover:text-gray-600'} transition-colors`} />
-                        </div>
-                        <CardTitle className={`text-xl ${isDarkMode ? 'text-white group-hover:text-blue-200' : 'text-gray-900 group-hover:text-blue-600'} transition-colors`}>
-                          {project.title}
-                        </CardTitle>
-                        <CardDescription className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'} mb-4`}>
-                          {project.period}
-                        </CardDescription>
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.map((tech, i) => (
-                            <Badge key={i} variant="secondary" className={`${isDarkMode ? 'bg-indigo-600/20 text-indigo-300 border-indigo-400/30' : 'bg-indigo-100 text-indigo-700 border-indigo-300'}`}>
-                              {tech}
-                            </Badge>
-                          ))}
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <p className={`mb-4 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{project.description}</p>
-                        <ul className="space-y-2">
-                          {project.achievements.map((achievement, i) => (
-                            <li key={i} className="flex items-start text-sm">
-                              <Award className={`w-3 h-3 mr-2 mt-1 flex-shrink-0 ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`} />
-                              <span className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{achievement}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
+            {projects.map((project, index) => {
+              const projectContent = (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  whileHover={{ scale: 1.05, rotateY: project.link ? 5 : 0 }}
+                  className="group h-full"
+                >
+                  <Card className={`h-full border-0 overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300 ${isDarkMode ? 'bg-slate-800/80' : 'bg-white/90'} ${isDarkMode ? 'border-slate-700' : 'border-blue-200'}`}>
+                    <div className={`bg-gradient-to-r ${project.gradient} p-1 rounded-lg h-full`}>
+                      <div className={`${isDarkMode ? 'bg-slate-800' : 'bg-white'} rounded-lg h-full flex flex-col`}>
+                        <CardHeader className="relative p-4 md:p-6">
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="text-3xl md:text-4xl">{project.icon}</div>
+                            {project.link && <ExternalLink className={`w-5 h-5 ${isDarkMode ? 'text-slate-400 group-hover:text-slate-200' : 'text-gray-400 group-hover:text-gray-600'} transition-colors`} />}
+                          </div>
+                          <CardTitle className={`text-lg md:text-xl ${isDarkMode ? 'text-white group-hover:text-blue-200' : 'text-gray-900 group-hover:text-blue-600'} transition-colors`}>
+                            {project.title}
+                          </CardTitle>
+                          <CardDescription className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'} mb-3 text-sm`}>
+                            {project.period}
+                          </CardDescription>
+                          <div className="flex flex-wrap gap-1 md:gap-2">
+                            {project.tech.map((tech, i) => (
+                              <Badge key={i} variant="secondary" className={`${isDarkMode ? 'bg-indigo-600/20 text-indigo-300 border-indigo-400/30' : 'bg-indigo-100 text-indigo-700 border-indigo-300'} text-xs px-2 py-0.5`}>
+                                {tech}
+                              </Badge>
+                            ))}
+                          </div>
+                        </CardHeader>
+                        <CardContent className="p-4 md:p-6 flex-grow">
+                          <p className={`mb-4 text-sm md:text-base ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{project.description}</p>
+                          <ul className="space-y-2">
+                            {project.achievements.map((achievement, i) => (
+                              <li key={i} className="flex items-start text-xs md:text-sm">
+                                <Award className={`w-3 h-3 mr-2 mt-0.5 md:mt-1 flex-shrink-0 ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`} />
+                                <span className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{achievement}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </CardContent>
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
+                  </Card>
+                </motion.div>
+              );
+
+              if (project.link) {
+                return (
+                  <a key={project.title} href={project.link} target="_blank" rel="noopener noreferrer">
+                    {projectContent}
+                  </a>
+                );
+              }
+              return projectContent;
+            })}
           </div>
 
           {/* Publications */}
