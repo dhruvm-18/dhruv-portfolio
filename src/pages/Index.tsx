@@ -188,12 +188,12 @@ const Index = () => {
     <div ref={containerRef} className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden`}>
       {/* Floating Navigation - Desktop */}
       <motion.nav 
-        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 hidden md:flex justify-center items-center backdrop-blur-md ${navClasses} rounded-full px-4 py-2 border shadow-xl`}
+        className={`fixed top-0 left-0 right-0 z-50 hidden md:flex justify-center items-center backdrop-blur-md ${navClasses} py-3 border-b shadow-lg`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        <div className="flex flex-wrap items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4">
+        <div className="flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4">
           {['Hero', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
             <button
               key={item}
@@ -254,7 +254,7 @@ const Index = () => {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-20 md:pt-0 px-2 md:px-0">
+      <section id="hero" className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-24 md:pt-28 px-2 md:px-0">
         <motion.div style={{ y, opacity }} className="absolute inset-0">
           <div className={`absolute inset-0 ${isDarkMode ? 'bg-gradient-to-r from-blue-900/30 to-indigo-900/30' : 'bg-gradient-to-r from-blue-100/30 to-indigo-100/30'}`} />
           {/* Animated background particles */}
