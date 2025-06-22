@@ -186,25 +186,24 @@ const Index = () => {
     <div ref={containerRef} className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden`}>
       {/* Floating Navigation */}
       <motion.nav 
-        className={`fixed top-2 left-1/2 -translate-x-1/2 z-50 flex justify-center items-center backdrop-blur-md ${navClasses} rounded-full px-3 py-2 border shadow-xl w-[95vw] max-w-[420px] md:max-w-none md:w-auto md:px-6 md:py-3`}
+        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 flex justify-center items-center backdrop-blur-md ${navClasses} rounded-full px-4 py-2 border shadow-xl`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        <div className="flex flex-wrap items-center space-x-2 md:space-x-6">
-          {['Hero', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Contact'].map((item) => (
+        <div className="flex flex-wrap items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4">
+          {['Hero', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
             <button
               key={item}
               onClick={() => scrollToSection(item.toLowerCase())}
-              className={`text-xs md:text-sm font-medium px-2 py-1 md:px-0 md:py-0 rounded transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+              className={`text-xs md:text-sm font-medium px-3 py-1.5 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
                 isDarkMode ? 'text-slate-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
               }`}
-              style={{ minWidth: 44, minHeight: 36 }}
             >
               {item}
             </button>
           ))}
-          <div className="flex items-center space-x-1 md:space-x-2 ml-2 md:ml-4 pl-2 md:pl-4 border-l border-slate-400/30">
+          <div className="flex items-center space-x-1 md:space-x-2 ml-2 pl-2 border-l border-slate-400/30">
             <Sun className={`w-4 h-4 ${isDarkMode ? 'text-slate-400' : 'text-yellow-500'}`} />
             <Switch checked={isDarkMode} onCheckedChange={toggleTheme} />
             <Moon className={`w-4 h-4 ${isDarkMode ? 'text-blue-400' : 'text-slate-400'}`} />
