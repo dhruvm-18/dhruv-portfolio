@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
+import dhruvProfilePic from '/dhruv.jpeg';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('hero');
@@ -185,24 +186,25 @@ const Index = () => {
     <div ref={containerRef} className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden`}>
       {/* Floating Navigation */}
       <motion.nav 
-        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 flex justify-center items-center backdrop-blur-md ${navClasses} rounded-full px-6 py-3 border shadow-xl`}
+        className={`fixed top-2 left-1/2 -translate-x-1/2 z-50 flex justify-center items-center backdrop-blur-md ${navClasses} rounded-full px-3 py-2 border shadow-xl w-[95vw] max-w-[420px] md:max-w-none md:w-auto md:px-6 md:py-3`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        <div className="flex items-center space-x-6">
+        <div className="flex flex-wrap items-center space-x-2 md:space-x-6">
           {['Hero', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Contact'].map((item) => (
             <button
               key={item}
               onClick={() => scrollToSection(item.toLowerCase())}
-              className={`text-sm font-medium transition-colors duration-300 ${
+              className={`text-xs md:text-sm font-medium px-2 py-1 md:px-0 md:py-0 rounded transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
                 isDarkMode ? 'text-slate-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
               }`}
+              style={{ minWidth: 44, minHeight: 36 }}
             >
               {item}
             </button>
           ))}
-          <div className="flex items-center space-x-2 ml-4 pl-4 border-l border-slate-400/30">
+          <div className="flex items-center space-x-1 md:space-x-2 ml-2 md:ml-4 pl-2 md:pl-4 border-l border-slate-400/30">
             <Sun className={`w-4 h-4 ${isDarkMode ? 'text-slate-400' : 'text-yellow-500'}`} />
             <Switch checked={isDarkMode} onCheckedChange={toggleTheme} />
             <Moon className={`w-4 h-4 ${isDarkMode ? 'text-blue-400' : 'text-slate-400'}`} />
@@ -211,7 +213,7 @@ const Index = () => {
       </motion.nav>
 
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section id="hero" className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-20 md:pt-0 px-2 md:px-0">
         <motion.div style={{ y, opacity }} className="absolute inset-0">
           <div className={`absolute inset-0 ${isDarkMode ? 'bg-gradient-to-r from-blue-900/30 to-indigo-900/30' : 'bg-gradient-to-r from-blue-100/30 to-indigo-100/30'}`} />
           {/* Animated background particles */}
@@ -249,9 +251,9 @@ const Index = () => {
                 whileHover={{ scale: 1.05 }}
                 className="relative"
               >
-                <div className="w-32 h-32 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 p-1">
+                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 p-1 mx-auto md:mx-0">
                   <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-white'} flex items-center justify-center text-4xl`}>
-                    👨‍💻
+                    <img src={dhruvProfilePic} alt="Dhruv Mendiratta" className="rounded-full w-full h-full object-cover" />
                   </div>
                 </div>
                 <div className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-full ${isDarkMode ? 'bg-green-500' : 'bg-green-400'} border-4 ${isDarkMode ? 'border-slate-800' : 'border-white'} flex items-center justify-center`}>
@@ -261,15 +263,15 @@ const Index = () => {
               
               <div className="text-left">
                 <div className="flex items-center space-x-4 mb-2">
-                  <h1 className={`text-3xl md:text-4xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                  <h1 className={`text-2xl md:text-4xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                     Dhruv Mendiratta
                   </h1>
                   <Badge className="bg-blue-500/20 text-blue-400 border-blue-400/30">AI Engineer</Badge>
                 </div>
-                <p className={`text-lg mb-4 ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>
+                <p className={`text-base md:text-lg mb-4 ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>
                   LLMs & RAG Systems | Full-Stack Developer
                 </p>
-                <div className="flex items-center space-x-4 text-sm">
+                <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 text-sm">
                   <span className={`flex items-center ${isDarkMode ? 'text-green-400' : 'text-green-600'}`}>
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                     Available for work
@@ -279,7 +281,7 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="flex flex-wrap justify-center gap-4 mt-6">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 md:gap-4 mt-6">
               <Button asChild className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white rounded-full">
                 <a href="mailto:dhruv.mendiratta4@gmail.com">
                   <Mail className="w-4 h-4 mr-2" />
@@ -297,7 +299,7 @@ const Index = () => {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.9 }}
-            className={`text-lg mb-12 max-w-3xl mx-auto leading-relaxed ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}
+            className={`text-base md:text-lg mb-12 max-w-3xl mx-auto leading-relaxed ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}
           >
             Building the future of AI with RAG systems, deep learning, and scalable solutions. 
             Published researcher passionate about human-aligned AI that bridges research and real-world impact.
@@ -308,7 +310,7 @@ const Index = () => {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1.2 }}
-            className={`${cardClasses} backdrop-blur-md rounded-2xl p-4 max-w-md mx-auto border`}
+            className={`${cardClasses} backdrop-blur-md rounded-2xl p-3 md:p-4 max-w-xs md:max-w-md mx-auto border`}
           >
             <div className="flex items-center justify-center space-x-3">
               <Code className="w-5 h-5 text-purple-500" />
@@ -332,24 +334,24 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-6">
+      <section id="about" className="py-16 px-4 sm:px-6 md:py-20">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <div className="flex items-center justify-center mb-6">
-              <User className={`w-8 h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-              <h2 className={`text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
+            <div className="flex items-center justify-center mb-4 md:mb-6">
+              <User className={`w-7 h-7 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
                 Who Am I?
               </h2>
             </div>
-            <div className={`w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-8`}></div>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -379,7 +381,7 @@ const Index = () => {
                     transition={{ delay: index * 0.1 }}
                     className="text-center"
                   >
-                    <div className={`text-3xl font-bold mb-2 ${isDarkMode ? `text-${stat.color}-400` : `text-${stat.color}-600`}`}>
+                    <div className={`text-2xl sm:text-3xl font-bold mb-2 ${isDarkMode ? `text-${stat.color}-400` : `text-${stat.color}-600`}`}>
                       {stat.number}
                     </div>
                     <div className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{stat.label}</div>
@@ -392,7 +394,7 @@ const Index = () => {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-6"
+              className="space-y-4 md:space-y-6"
             >
               {[
                 { icon: Brain, title: "AI & Machine Learning", desc: "Specialized in RAG systems, LLMs, and deep learning with published research", color: "blue" },
@@ -404,12 +406,12 @@ const Index = () => {
                   whileHover={{ scale: 1.02, x: 10 }}
                   className={`${cardClasses} backdrop-blur-sm rounded-xl border`}
                 >
-                  <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
-                      <item.icon className={`w-8 h-8 mr-3 ${isDarkMode ? `text-${item.color}-400` : `text-${item.color}-600`}`} />
-                      <h3 className={`text-xl font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{item.title}</h3>
+                  <CardContent className="p-4 md:p-6">
+                    <div className="flex items-center mb-3">
+                      <item.icon className={`w-6 h-6 md:w-8 md:h-8 mr-3 ${isDarkMode ? `text-${item.color}-400` : `text-${item.color}-600`}`} />
+                      <h3 className={`text-lg md:text-xl font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{item.title}</h3>
                     </div>
-                    <p className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{item.desc}</p>
+                    <p className={`text-sm md:text-base ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{item.desc}</p>
                   </CardContent>
                 </motion.div>
               ))}
@@ -419,19 +421,19 @@ const Index = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className={`py-20 px-6 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
+      <section id="experience" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <Briefcase className={`w-8 h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-            <h2 className={`text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Experience</h2>
+            <Briefcase className={`w-7 h-7 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Experience</h2>
           </motion.div>
 
-          <div className="space-y-12">
+          <div className="space-y-8 md:space-y-12">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
@@ -442,20 +444,20 @@ const Index = () => {
               >
                 <Card className={`${cardClasses} backdrop-blur-sm border hover:shadow-2xl transition-all duration-300`}>
                   <CardHeader>
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                      <div className="flex items-center space-x-4">
-                        <div className="text-4xl">{exp.logo}</div>
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                      <div className="flex items-center space-x-3 md:space-x-4">
+                        <div className="text-3xl md:text-4xl">{exp.logo}</div>
                         <div>
-                          <CardTitle className={`text-2xl mb-2 ${isDarkMode ? 'text-blue-300' : 'text-blue-600'}`}>{exp.company}</CardTitle>
-                          <CardDescription className={`text-lg ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{exp.position}</CardDescription>
+                          <CardTitle className={`text-xl md:text-2xl mb-1 md:mb-2 ${isDarkMode ? 'text-blue-300' : 'text-blue-600'}`}>{exp.company}</CardTitle>
+                          <CardDescription className={`text-base md:text-lg ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{exp.position}</CardDescription>
                         </div>
                       </div>
-                      <div className="text-right mt-4 md:mt-0">
-                        <div className={`flex items-center mb-2 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+                      <div className="text-left md:text-right mt-3 md:mt-0">
+                        <div className={`flex items-center text-sm mb-1 md:mb-2 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
                           <Calendar className="w-4 h-4 mr-2" />
                           {exp.period}
                         </div>
-                        <div className={`flex items-center ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+                        <div className={`flex items-center text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
                           <MapPin className="w-4 h-4 mr-2" />
                           {exp.location}
                         </div>
@@ -463,11 +465,11 @@ const Index = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 pl-1">
                       {exp.achievements.map((achievement, i) => (
                         <li key={i} className="flex items-start">
-                          <Zap className={`w-4 h-4 mr-3 mt-1 flex-shrink-0 ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}`} />
-                          <span className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{achievement}</span>
+                          <Zap className={`w-4 h-4 mr-2 md:mr-3 mt-1 flex-shrink-0 ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}`} />
+                          <span className={`text-sm md:text-base ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{achievement}</span>
                         </li>
                       ))}
                     </ul>
@@ -480,21 +482,21 @@ const Index = () => {
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-20 px-6">
+      <section id="education" className="py-16 px-4 sm:px-6 md:py-20">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <div className="flex items-center justify-center mb-6">
-              <GraduationCap className={`w-8 h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-              <h2 className={`text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
+            <div className="flex items-center justify-center mb-4 md:mb-6">
+              <GraduationCap className={`w-7 h-7 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
                 Education
               </h2>
             </div>
-            <div className={`w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto`}></div>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto`}></div>
           </motion.div>
 
           <div className="space-y-8">
@@ -508,17 +510,17 @@ const Index = () => {
               >
                 <Card className={`${cardClasses} backdrop-blur-sm border hover:shadow-2xl transition-all duration-300`}>
                   <CardHeader>
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                       <div>
-                        <CardTitle className={`text-2xl mb-2 ${isDarkMode ? 'text-emerald-300' : 'text-emerald-600'}`}>{edu.institution}</CardTitle>
-                        <CardDescription className={`text-lg ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{edu.degree}</CardDescription>
+                        <CardTitle className={`text-xl md:text-2xl mb-1 md:mb-2 ${isDarkMode ? 'text-emerald-300' : 'text-emerald-600'}`}>{edu.institution}</CardTitle>
+                        <CardDescription className={`text-base md:text-lg ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{edu.degree}</CardDescription>
                       </div>
-                      <div className="text-right mt-4 md:mt-0">
-                        <div className={`flex items-center mb-2 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+                      <div className="text-left md:text-right mt-3 md:mt-0">
+                        <div className={`flex items-center text-sm mb-1 md:mb-2 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
                           <Calendar className="w-4 h-4 mr-2" />
                           {edu.period}
                         </div>
-                        <div className={`flex items-center ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+                        <div className={`flex items-center text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
                           <MapPin className="w-4 h-4 mr-2" />
                           {edu.location}
                         </div>
@@ -527,11 +529,11 @@ const Index = () => {
                   </CardHeader>
                   {edu.achievements.length > 0 && (
                     <CardContent>
-                      <ul className="space-y-2">
+                      <ul className="space-y-2 pl-1">
                         {edu.achievements.map((achievement, i) => (
                           <li key={i} className="flex items-start">
-                            <Award className={`w-4 h-4 mr-3 mt-1 flex-shrink-0 ${isDarkMode ? 'text-yellow-400' : 'text-yellow-600'}`} />
-                            <span className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{achievement}</span>
+                            <Award className={`w-4 h-4 mr-2 md:mr-3 mt-1 flex-shrink-0 ${isDarkMode ? 'text-yellow-400' : 'text-yellow-600'}`} />
+                            <span className={`text-sm md:text-base ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{achievement}</span>
                           </li>
                         ))}
                       </ul>
@@ -545,21 +547,21 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className={`py-20 px-6 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
+      <section id="projects" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
               Featured Projects
             </h2>
-            <div className={`w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto`}></div>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto`}></div>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={index}
@@ -574,7 +576,7 @@ const Index = () => {
                     <div className={`${isDarkMode ? 'bg-slate-800' : 'bg-white'} rounded-lg h-full`}>
                       <CardHeader className="relative">
                         <div className="flex items-center justify-between mb-4">
-                          <div className="text-4xl">{project.icon}</div>
+                          <div className="text-3xl md:text-4xl">{project.icon}</div>
                           <ExternalLink className={`w-5 h-5 ${isDarkMode ? 'text-slate-400 group-hover:text-slate-200' : 'text-gray-400 group-hover:text-gray-600'} transition-colors`} />
                         </div>
                         <CardTitle className={`text-xl ${isDarkMode ? 'text-white group-hover:text-blue-200' : 'text-gray-900 group-hover:text-blue-600'} transition-colors`}>
@@ -614,9 +616,9 @@ const Index = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mt-20"
+            className="mt-16 md:mt-20"
           >
-            <h3 className={`text-3xl font-bold text-center mb-12 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-600'}`}>Research Publications</h3>
+            <h3 className={`text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-600'}`}>Research Publications</h3>
             <div className="grid md:grid-cols-3 gap-6">
               {publications.map((pub, index) => (
                 <motion.div
@@ -625,8 +627,8 @@ const Index = () => {
                 >
                   <Card className={`${cardClasses} backdrop-blur-sm h-full hover:shadow-xl transition-all duration-300 border`}>
                     <CardHeader>
-                      <CardTitle className={`text-lg ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{pub.title}</CardTitle>
-                      <CardDescription className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{pub.venue}</CardDescription>
+                      <CardTitle className={`text-base md:text-lg ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{pub.title}</CardTitle>
+                      <CardDescription className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{pub.venue}</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <p className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{pub.description}</p>
@@ -640,20 +642,20 @@ const Index = () => {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-6">
+      <section id="skills" className="py-16 px-4 sm:px-6 md:py-20">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Skills & Expertise</h2>
-            <div className={`w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-8`}></div>
-            <p className={`text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>Here are key areas of my expertise, shaped by my academic & professional experience</p>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Skills & Expertise</h2>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
+            <p className={`text-base md:text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>Here are key areas of my expertise, shaped by my academic & professional experience</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {skillGroups.map((group, index) => (
               <motion.div
                 key={index}
@@ -661,15 +663,15 @@ const Index = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className={`${cardClasses} backdrop-blur-sm rounded-xl p-6 border hover:shadow-xl transition-all duration-300 flex flex-col`}
+                className={`${cardClasses} backdrop-blur-sm rounded-xl p-4 md:p-6 border hover:shadow-xl transition-all duration-300 flex flex-col`}
               >
-                <div className="flex items-center mb-4">
-                  <span className="text-2xl mr-2">{group.icon}</span>
-                  <span className={`text-lg font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{group.category}</span>
+                <div className="flex items-center mb-3 md:mb-4">
+                  <span className="text-xl md:text-2xl mr-2">{group.icon}</span>
+                  <span className={`text-base md:text-lg font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{group.category}</span>
                 </div>
-                <ul className="flex flex-wrap gap-2">
+                <ul className="flex flex-wrap gap-1 md:gap-2">
                   {group.skills.map((skill, i) => (
-                    <li key={i} className={`px-3 py-1 rounded-full text-sm font-medium ${isDarkMode ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30' : 'bg-blue-100 text-blue-700 border border-blue-300'}`}>{skill}</li>
+                    <li key={i} className={`px-2 py-1 md:px-3 rounded-full text-xs md:text-sm font-medium ${isDarkMode ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30' : 'bg-blue-100 text-blue-700 border border-blue-300'}`}>{skill}</li>
                   ))}
                 </ul>
               </motion.div>
@@ -679,52 +681,52 @@ const Index = () => {
       </section>
 
       {/* Honors & Awards and Certifications Section */}
-      <section id="honors" className="py-20 px-6">
+      <section id="honors" className="py-16 px-4 sm:px-6 md:py-20">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Honors & Awards</h2>
-            <div className={`w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-8`}></div>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Honors & Awards</h2>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
           </div>
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className={`${cardClasses} backdrop-blur-sm rounded-xl p-6 border flex flex-col gap-4 items-start`}>
-              <div className="flex items-center text-lg font-semibold mb-2"><span className="mr-2"></span>Student Excellence Award</div>
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12">
+            <div className={`${cardClasses} backdrop-blur-sm rounded-xl p-4 md:p-6 border flex flex-col gap-4 items-start`}>
+              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Student Excellence Award</div>
               <div className="text-slate-400 text-sm mb-4">Recognized for overall academic and technical performance in the 5th semester at Manipal University Jaipur</div>
-              <div className="flex items-center text-lg font-semibold mb-2"><span className="mr-2"></span>HACKX Hackathon – Round 2 Finalist (2024)</div>
+              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>HACKX Hackathon – Round 2 Finalist (2024)</div>
               <div className="text-slate-400 text-sm mb-4">Advanced to the final round of a university-level hackathon hosted by Manipal University Jaipur</div>
-              <div className="flex items-center text-lg font-semibold mb-2"><span className="mr-2"></span>Paper Presentation – CML 2025, Sikkim Manipal University</div>
+              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Paper Presentation – CML 2025, Sikkim Manipal University</div>
               <div className="text-slate-400 text-sm mb-4">Presented a paper on Skin Disease Detection using Deep Learning</div>
-              <div className="flex items-center text-lg font-semibold mb-2"><span className="mr-2"></span>Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
+              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
               <div className="text-slate-400 text-sm">Presented research on hybrid stock forecasting using BiLSTM-GRU models</div>
             </div>
-            <div className={`${cardClasses} backdrop-blur-sm rounded-xl p-6 border flex flex-col gap-4 items-start`}>
-              <div className="flex items-center text-lg font-semibold mb-2"><span className="mr-2"></span>NPTEL – Design & Analysis of Algorithms (SWAYAM, Govt. of India)</div>
-              <div className="flex items-center text-lg font-semibold mb-2"><span className="mr-2"></span>Deloitte Internship Certificate – Cloud Computing & AWS (EC2, S3, Lambda)</div>
-              <div className="flex items-center text-lg font-semibold mb-2"><span className="mr-2"></span>Cisco Certified Cybersecurity Specialist</div>
-              <div className="flex items-center text-lg font-semibold mb-2"><span className="mr-2"></span>Java Foundation Course – Oracle</div>
-              <div className="flex items-center text-lg font-semibold mb-2"><span className="mr-2"></span>IBM – Getting Started with Enterprise AI</div>
-              <div className="flex items-center text-lg font-semibold mb-2"><span className="mr-2"></span>Vanderbilt University – MATLAB for Data, Signal & Image Analysis</div>
+            <div className={`${cardClasses} backdrop-blur-sm rounded-xl p-4 md:p-6 border flex flex-col gap-4 items-start`}>
+              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>NPTEL – Design & Analysis of Algorithms (SWAYAM, Govt. of India)</div>
+              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Deloitte Internship Certificate – Cloud Computing & AWS (EC2, S3, Lambda)</div>
+              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Cisco Certified Cybersecurity Specialist</div>
+              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Java Foundation Course – Oracle</div>
+              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>IBM – Getting Started with Enterprise AI</div>
+              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Vanderbilt University – MATLAB for Data, Signal & Image Analysis</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className={`py-20 px-6 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
+      <section id="contact" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
               Let's Connect
             </h2>
-            <div className={`w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-8`}></div>
-            <p className={`text-xl mb-12 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
+            <p className={`text-lg md:text-xl mb-8 md:mb-12 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
               Ready to build the future of AI together? Let's discuss your next project.
             </p>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="grid sm:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12">
               {[
                 { icon: Mail, title: "Email", info: "dhruv.mendiratta4@gmail.com", color: "blue" },
                 { icon: Phone, title: "Phone", info: "+91 901 366 9130", color: "indigo" },
@@ -733,16 +735,16 @@ const Index = () => {
                 <motion.div
                   key={index}
                   whileHover={{ scale: 1.05, y: -5 }}
-                  className={`${cardClasses} backdrop-blur-sm rounded-lg border p-6`}
+                  className={`${cardClasses} backdrop-blur-sm rounded-lg border p-4 md:p-6`}
                 >
-                  <contact.icon className={`w-12 h-12 mx-auto mb-4 ${isDarkMode ? `text-${contact.color}-400` : `text-${contact.color}-600`}`} />
-                  <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{contact.title}</h3>
-                  <p className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{contact.info}</p>
+                  <contact.icon className={`w-10 h-10 md:w-12 md:h-12 mx-auto mb-3 ${isDarkMode ? `text-${contact.color}-400` : `text-${contact.color}-600`}`} />
+                  <h3 className={`text-base md:text-lg font-semibold mb-2 ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{contact.title}</h3>
+                  <p className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{contact.info}</p>
                 </motion.div>
               ))}
             </div>
 
-            <div className="flex justify-center space-x-6">
+            <div className="flex justify-center space-x-4 md:space-x-6">
               {[
                 { icon: Linkedin, href: "https://linkedin.com/in/dhruv-mendiratta", color: "blue" },
                 { icon: Github, href: "https://github.com/dhruvm-18", color: "slate" },
@@ -754,9 +756,9 @@ const Index = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, rotateY: 10 }}
-                  className={`p-4 ${isDarkMode ? `bg-gradient-to-br from-${social.color}-600/20 to-${social.color}-600/40 border-${social.color}-400/30 hover:border-${social.color}-400` : `bg-gradient-to-br from-${social.color}-100 to-${social.color}-200 border-${social.color}-300 hover:border-${social.color}-400`} rounded-full border transition-all duration-300`}
+                  className={`p-3 md:p-4 ${isDarkMode ? `bg-gradient-to-br from-${social.color}-600/20 to-${social.color}-600/40 border-${social.color}-400/30 hover:border-${social.color}-400` : `bg-gradient-to-br from-${social.color}-100 to-${social.color}-200 border-${social.color}-300 hover:border-${social.color}-400`} rounded-full border transition-all duration-300`}
                 >
-                  <social.icon className={`w-6 h-6 ${isDarkMode ? `text-${social.color}-400` : `text-${social.color}-600`}`} />
+                  <social.icon className={`w-5 h-5 md:w-6 md:h-6 ${isDarkMode ? `text-${social.color}-400` : `text-${social.color}-600`}`} />
                 </motion.a>
               ))}
             </div>
@@ -765,9 +767,9 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className={`py-8 px-6 border-t ${isDarkMode ? 'border-slate-600/50' : 'border-gray-200'}`}>
+      <footer className={`py-6 md:py-8 px-4 sm:px-6 border-t ${isDarkMode ? 'border-slate-600/50' : 'border-gray-200'}`}>
         <div className="max-w-6xl mx-auto text-center">
-          <p className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+          <p className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
             © 2025 Dhruv Mendiratta. Built with React, Tailwind CSS, and Framer Motion.
           </p>
         </div>
