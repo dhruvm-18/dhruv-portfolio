@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Award, Code, Brain, Zap, Users, BookOpen, Calendar, MapPin, Phone, Moon, Sun, GraduationCap, Briefcase, User, Download } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Award, Code, Brain, Zap, Users, BookOpen, Calendar, MapPin, Phone, Moon, Sun, GraduationCap, Briefcase, User, Download, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -10,6 +10,7 @@ import dhruvProfilePic from '/dhruv.jpeg';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
@@ -19,6 +20,7 @@ const Index = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: 'smooth' });
+    setIsMobileMenuOpen(false);
   };
 
   const toggleTheme = () => {
@@ -184,9 +186,9 @@ const Index = () => {
 
   return (
     <div ref={containerRef} className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden`}>
-      {/* Floating Navigation */}
+      {/* Floating Navigation - Desktop */}
       <motion.nav 
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 flex justify-center items-center backdrop-blur-md ${navClasses} rounded-full px-4 py-2 border shadow-xl`}
+        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 hidden md:flex justify-center items-center backdrop-blur-md ${navClasses} rounded-full px-4 py-2 border shadow-xl`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
@@ -210,6 +212,46 @@ const Index = () => {
           </div>
         </div>
       </motion.nav>
+
+      {/* Mobile Navigation */}
+      <div className="md:hidden fixed top-4 right-4 z-50">
+        <Button size="icon" variant="outline" onClick={() => setIsMobileMenuOpen(true)} className={`${navClasses} rounded-full`}>
+          <Menu className="h-5 w-5" />
+        </Button>
+      </div>
+
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-lg"
+          >
+            <div className="flex justify-end p-4">
+              <Button size="icon" variant="ghost" onClick={() => setIsMobileMenuOpen(false)}>
+                <X className="h-6 w-6 text-white" />
+              </Button>
+            </div>
+            <div className="flex flex-col items-center justify-center h-full gap-6 -mt-16">
+              {['Hero', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className="text-2xl font-semibold text-slate-100 hover:text-blue-400 transition-colors"
+                >
+                  {item}
+                </button>
+              ))}
+              <div className="flex items-center space-x-4 mt-8">
+                <Sun className={`w-6 h-6 ${isDarkMode ? 'text-slate-400' : 'text-yellow-500'}`} />
+                <Switch checked={isDarkMode} onCheckedChange={toggleTheme} id="mobile-theme-switch" />
+                <Moon className={`w-6 h-6 ${isDarkMode ? 'text-blue-400' : 'text-slate-400'}`} />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-20 md:pt-0 px-2 md:px-0">
