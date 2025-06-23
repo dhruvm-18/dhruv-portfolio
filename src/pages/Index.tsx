@@ -259,7 +259,7 @@ const Index = () => {
       {/* Hero Section */}
       <section id="hero" className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-24 md:pt-28 px-2 md:px-0">
         <div className="w-full max-w-6xl mx-auto px-6 mb-2 md:mb-4">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white text-left drop-shadow-lg" style={{letterSpacing: '0.01em'}}>
+          <h1 className={`text-4xl md:text-6xl font-extrabold ${isDarkMode ? 'text-white' : 'text-gray-900'} text-left drop-shadow-lg`} style={{letterSpacing: '0.01em'}}>
             Hey it's,
           </h1>
         </div>
@@ -288,62 +288,75 @@ const Index = () => {
         </motion.div>
 
         <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
-          {/* Profile Card - inspired by your reference */}
+          {/* Redesigned Profile Card */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className={`${cardClasses} backdrop-blur-md rounded-3xl p-8 mb-8 border shadow-2xl`}
+            className={`relative p-1 mb-8 rounded-[2.5rem] shadow-2xl bg-gradient-to-br from-blue-500 via-fuchsia-500 to-indigo-500 animate-gradient-x`}
+            style={{ boxShadow: isDarkMode ? '0 0 40px 0 #312e81, 0 0 0 4px #0ea5e9' : '0 0 40px 0 #a5b4fc, 0 0 0 4px #38bdf8' }}
           >
-            <div className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8">
+            <div className={`${cardClasses} backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 border-0 relative overflow-hidden`}>
+              {/* Floating Profile Pic */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.08, rotate: 2 }}
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
                 className="relative"
               >
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 p-1 mx-auto md:mx-0">
+                <div className="w-28 h-28 md:w-40 md:h-40 rounded-full bg-gradient-to-tr from-blue-400 via-fuchsia-400 to-indigo-400 p-1 animate-spin-slow shadow-xl">
                   <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-white'} flex items-center justify-center text-4xl`}>
                     <img src={dhruvProfilePic} alt="Dhruv Mendiratta" className="rounded-full w-full h-full object-cover" />
                   </div>
                 </div>
-                <div className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-full ${isDarkMode ? 'bg-green-500' : 'bg-green-400'} border-4 ${isDarkMode ? 'border-slate-800' : 'border-white'} flex items-center justify-center`}>
-                  <div className="w-2 h-2 bg-white rounded-full"></div>
-                </div>
+                {/* Animated status badge */}
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.7, type: 'spring', stiffness: 200 }}
+                  className={`absolute -bottom-3 -right-3 px-4 py-2 rounded-full font-bold text-xs md:text-sm shadow-lg border-2 border-white ${isDarkMode ? 'bg-gradient-to-r from-fuchsia-600 to-blue-600 text-white' : 'bg-gradient-to-r from-fuchsia-300 to-blue-300 text-gray-900'}`}
+                  style={{ filter: 'drop-shadow(0 0 8px #a21caf)' }}
+                >
+                  <span className="inline-flex items-center animate-pulse">
+                    <Code className="w-4 h-4 mr-1 text-yellow-300 animate-spin-slow" />
+                    Currently Debugging Life's Edge Cases
+                  </span>
+                </motion.div>
               </motion.div>
-              
-              <div className="text-left">
+
+              {/* Info */}
+              <div className="flex-1 text-left flex flex-col justify-center items-center md:items-start">
                 <div className="flex items-center space-x-4 mb-2">
-                  <h1 className={`text-2xl md:text-4xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                  <h1 className={`text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-fuchsia-400 to-indigo-400 bg-clip-text text-transparent animate-gradient-x drop-shadow-lg`}>
                     Dhruv Mendiratta
                   </h1>
-                  <Badge className="bg-blue-500/20 text-blue-400 border-blue-400/30">AI Engineer</Badge>
+                  <Badge className="bg-blue-500/20 text-blue-400 border-blue-400/30 text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow">AI Engineer</Badge>
                 </div>
-                <p className={`text-base md:text-lg mb-4 ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>
+                <p className={`text-base md:text-xl mb-4 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}
+                  style={{ textShadow: isDarkMode ? '0 2px 8px #0ea5e9' : '0 2px 8px #a5b4fc' }}>
                   LLMs & RAG Systems | Full-Stack Developer
                 </p>
-                <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 text-sm">
-                  <span className={`flex items-center ${isDarkMode ? 'text-green-400' : 'text-green-600'}`}>
-                    <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                    Available for work
-                  </span>
-                  <span className={`${isDarkMode ? 'text-slate-400' : 'text-gray-500'}`}>🕐 Delhi, India (IST)</span>
+                <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 text-sm md:text-base">
+                  <span className={`flex items-center font-semibold ${isDarkMode ? 'text-green-400' : 'text-green-600'}`}> <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div> Available for work </span>
+                  <span className={`${isDarkMode ? 'text-slate-400' : 'text-gray-500'} font-semibold`}>🕐 Delhi, India (IST)</span>
+                </div>
+                <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-6">
+                  <Button asChild className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white rounded-full shadow-lg hover:shadow-2xl animate-glow">
+                    <a href="mailto:dhruv.mendiratta4@gmail.com">
+                      <Mail className="w-4 h-4 mr-2" />
+                      Hire Me
+                    </a>
+                  </Button>
+                  <Button variant="outline" className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white border-emerald-500 hover:border-emerald-600 rounded-full shadow-lg hover:shadow-2xl animate-glow" onClick={handleDownloadResume}>
+                    <Download className="w-4 h-4 mr-2" />
+                    Download Resume
+                  </Button>
                 </div>
               </div>
             </div>
-            
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 md:gap-4 mt-6">
-              <Button asChild className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white rounded-full">
-                <a href="mailto:dhruv.mendiratta4@gmail.com">
-                  <Mail className="w-4 h-4 mr-2" />
-                  Hire Me
-                </a>
-              </Button>
-              <Button variant="outline" className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white border-emerald-500 hover:border-emerald-600 rounded-full shadow-lg hover:shadow-xl transition-all duration-300" onClick={handleDownloadResume}>
-                <Download className="w-4 h-4 mr-2" />
-                Download Resume
-              </Button>
-            </div>
           </motion.div>
 
+          {/* Remove the old status card and hero description, or move description below the tile for clarity */}
           <motion.p
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -353,21 +366,6 @@ const Index = () => {
             Building the future of AI with RAG systems, deep learning, and scalable solutions. 
             Published researcher passionate about human-aligned AI that bridges research and real-world impact.
           </motion.p>
-
-          {/* Status Card */}
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1.2 }}
-            className={`${cardClasses} backdrop-blur-md rounded-2xl p-3 md:p-4 max-w-xs md:max-w-md mx-auto border`}
-          >
-            <div className="flex items-center justify-center space-x-3">
-              <Code className="w-5 h-5 text-purple-500" />
-              <span className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                Currently Debugging Life's Edge Cases
-              </span>
-            </div>
-          </motion.div>
         </div>
 
         <motion.div
