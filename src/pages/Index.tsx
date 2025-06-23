@@ -341,32 +341,45 @@ const Index = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        <div className="flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4">
-          {['Home', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
-            <button
-              key={item}
-              onClick={() => scrollToSection(item.toLowerCase())}
-              className={`group relative text-xs md:text-sm font-medium px-3 py-1.5 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400
-                ${isDarkMode ? 'text-slate-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'}
-              `}
-              style={{ overflow: 'hidden' }}
+        <div className="flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4 w-full max-w-6xl px-4">
+          {/* Logo - DHRUV */}
+          <div className="mr-6 select-none">
+            <span
+              className={`text-2xl md:text-3xl font-extrabold tracking-widest uppercase bg-gradient-to-r ${isDarkMode ? 'from-cyan-400 via-blue-400 to-indigo-400' : 'from-blue-700 via-indigo-500 to-cyan-600'} bg-clip-text text-transparent drop-shadow-lg`}
+              style={{ letterSpacing: '0.18em', fontFamily: 'Fira Mono, Menlo, monospace' }}
             >
-              <span>{item}</span>
-              <span
-                className={`absolute left-0 bottom-0 h-0.5 w-full transition-all duration-300
-                  ${activeSection === item.toLowerCase() ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') : 'bg-transparent'}
+              DHRUV
+            </span>
+          </div>
+          {/* Navigation Buttons */}
+          <div className="flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4 flex-1">
+            {['Home', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollToSection(item.toLowerCase())}
+                className={`group relative text-xs md:text-sm font-medium px-3 py-1.5 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400
+                  ${isDarkMode ? 'text-slate-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'}
                 `}
-                style={{
-                  transform: activeSection === item.toLowerCase() ? 'scaleX(1)' : 'scaleX(0)',
-                  transformOrigin: 'left',
-                }}
-              />
-              <span
-                className="absolute left-0 bottom-0 h-0.5 w-full bg-blue-400/60 dark:bg-blue-600/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                style={{ transformOrigin: 'left' }}
-              />
-            </button>
-          ))}
+                style={{ overflow: 'hidden' }}
+              >
+                <span>{item}</span>
+                <span
+                  className={`absolute left-0 bottom-0 h-0.5 w-full transition-all duration-300
+                    ${activeSection === item.toLowerCase() ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') : 'bg-transparent'}
+                  `}
+                  style={{
+                    transform: activeSection === item.toLowerCase() ? 'scaleX(1)' : 'scaleX(0)',
+                    transformOrigin: 'left',
+                  }}
+                />
+                <span
+                  className="absolute left-0 bottom-0 h-0.5 w-full bg-blue-400/60 dark:bg-blue-600/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                  style={{ transformOrigin: 'left' }}
+                />
+              </button>
+            ))}
+          </div>
+          {/* Theme and Social Icons */}
           <div className="flex items-center space-x-1 md:space-x-2 ml-2 pl-2 border-l border-slate-400/30">
             <Sun className={`w-4 h-4 ${isDarkMode ? 'text-slate-400' : 'text-yellow-500'}`} />
             <Switch checked={isDarkMode} onCheckedChange={toggleTheme} />
@@ -400,6 +413,15 @@ const Index = () => {
               </Button>
             </div>
             <div className="flex flex-col items-center justify-center h-full gap-6 -mt-16">
+              {/* Mobile Logo */}
+              <div className="mb-8 select-none">
+                <span
+                  className={`text-3xl font-extrabold tracking-widest uppercase bg-gradient-to-r ${isDarkMode ? 'from-cyan-400 via-blue-400 to-indigo-400' : 'from-blue-700 via-indigo-500 to-cyan-600'} bg-clip-text text-transparent drop-shadow-lg`}
+                  style={{ letterSpacing: '0.18em', fontFamily: 'Fira Mono, Menlo, monospace' }}
+                >
+                  DHRUV
+                </span>
+              </div>
               {['Home', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
                 <button
                   key={item}
@@ -486,8 +508,7 @@ const Index = () => {
                   </h1>
                   <Badge className={`bg-gradient-to-r ${isDarkMode ? 'from-slate-800 via-blue-900 to-indigo-900 text-cyan-300 border-blue-700/40' : 'from-blue-100 via-indigo-100 to-cyan-100 text-blue-700 border-blue-300'} text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow`}>AI Engineer</Badge>
                 </div>
-                <p className={`text-base md:text-xl mb-4 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}
-                  style={{ textShadow: isDarkMode ? '0 2px 8px #0ea5e9' : '0 2px 8px #a5b4fc' }}>
+                <p className={`text-base md:text-xl mb-4 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>
                   LLMs & RAG Systems | Full-Stack Developer
                 </p>
                 <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 text-sm md:text-base">
