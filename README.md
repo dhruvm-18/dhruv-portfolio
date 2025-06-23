@@ -51,8 +51,8 @@ src/
 
 3. **Start the development server**
    ```bash
-   npm run dev
-   ```
+npm run dev
+```
 
 4. **Open your browser**
    Navigate to `http://localhost:8080`

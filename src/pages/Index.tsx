@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Award, Code, Brain, Zap, Users, BookOpen, Calendar, MapPin, Phone, Moon, Sun, GraduationCap, Briefcase, User, Download, Menu, X } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Award, Code, Brain, Zap, Users, BookOpen, Calendar, MapPin, Phone, Moon, Sun, GraduationCap, Briefcase, User, Download, Menu, X, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -301,10 +301,10 @@ const Index = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className={`relative p-1 mb-8 rounded-[2.5rem] shadow-2xl bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 animate-gradient-x`}
+            className={`relative p-1 mb-8 rounded-[2.5rem] shadow-2xl animate-gradient-x ${isDarkMode ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900' : 'bg-gradient-to-br from-blue-100 via-sky-100 to-indigo-100'}`}
             style={{ boxShadow: isDarkMode ? '0 0 40px 0 #0ea5e9, 0 0 0 4px #64748b' : '0 0 40px 0 #a5b4fc, 0 0 0 4px #64748b' }}
           >
-            <div className={`bg-gradient-to-br from-slate-800/90 via-blue-950/90 to-indigo-900/90 ${isDarkMode ? 'border border-blue-900/60' : 'border border-blue-200/60'} backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden`}>
+            <div className={`backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden border ${isDarkMode ? 'bg-gradient-to-br from-slate-800/90 via-blue-950/90 to-indigo-900/90 border-blue-900/60' : 'bg-gradient-to-br from-white via-blue-100 to-indigo-100 border-blue-200/60'}`}>
               {/* Floating Profile Pic */}
               <motion.div
                 whileHover={{ scale: 1.08, rotate: 2 }}
@@ -312,7 +312,7 @@ const Index = () => {
                 transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
                 className="relative"
               >
-                <div className="w-28 h-28 md:w-40 md:h-40 rounded-full bg-gradient-to-tr from-blue-700 via-indigo-700 to-slate-800 p-1 animate-spin-slow shadow-xl">
+                <div className={`w-28 h-28 md:w-40 md:h-40 rounded-full p-1 animate-spin-slow shadow-xl ${isDarkMode ? 'bg-gradient-to-tr from-blue-700 via-indigo-700 to-slate-800' : 'bg-gradient-to-tr from-blue-200 via-indigo-200 to-white'}` }>
                   <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-white'} flex items-center justify-center text-4xl`}>
                     <img src={dhruvProfilePic} alt="Dhruv Mendiratta" className="rounded-full w-full h-full object-cover" />
                   </div>
@@ -322,10 +322,10 @@ const Index = () => {
               {/* Info */}
               <div className="flex-1 text-left flex flex-col justify-center items-center md:items-start">
                 <div className="flex items-center space-x-4 mb-2">
-                  <h1 className={`text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-300 via-blue-400 to-indigo-300 bg-clip-text text-transparent animate-gradient-x drop-shadow-lg`}>
+                  <h1 className={`text-3xl md:text-5xl font-extrabold bg-gradient-to-r ${isDarkMode ? 'from-cyan-300 via-blue-400 to-indigo-300' : 'from-blue-700 via-indigo-500 to-cyan-600'} bg-clip-text text-transparent animate-gradient-x drop-shadow-lg`}>
                     Dhruv Mendiratta
                   </h1>
-                  <Badge className="bg-gradient-to-r from-slate-800 via-blue-900 to-indigo-900 text-cyan-300 border-blue-700/40 text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow">AI Engineer</Badge>
+                  <Badge className={`bg-gradient-to-r ${isDarkMode ? 'from-slate-800 via-blue-900 to-indigo-900 text-cyan-300 border-blue-700/40' : 'from-blue-100 via-indigo-100 to-cyan-100 text-blue-700 border-blue-300'} text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow`}>AI Engineer</Badge>
                 </div>
                 <p className={`text-base md:text-xl mb-4 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}
                   style={{ textShadow: isDarkMode ? '0 2px 8px #0ea5e9' : '0 2px 8px #a5b4fc' }}>
@@ -359,15 +359,15 @@ const Index = () => {
             className="relative flex justify-center items-center mb-8"
           >
             <div className="relative">
-              {/* Animated code-y background with floating shapes */}
-              <div className="absolute inset-0 z-0 rounded-2xl blur-xl opacity-80 animate-gradient-x bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900" style={{ filter: 'blur(24px)' }} />
+              {/* Animated code-y background with floating shapes, light/dark adaptive */}
+              <div className={`absolute inset-0 z-0 rounded-2xl blur-xl opacity-80 animate-gradient-x ${isDarkMode ? 'bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-100 via-indigo-100 to-cyan-100'}`} style={{ filter: 'blur(24px)' }} />
               {/* Floating code-y shapes */}
-              <div className="absolute left-2 top-2 w-6 h-6 rounded-full bg-cyan-400/30 animate-bounce-slow" style={{ animationDelay: '0.2s' }} />
-              <div className="absolute right-2 bottom-2 w-8 h-8 rounded-full bg-blue-700/30 animate-pulse" style={{ animationDelay: '0.6s' }} />
-              <div className="absolute left-10 bottom-3 w-4 h-4 rounded-full bg-indigo-400/20 animate-spin-slow" style={{ animationDuration: '10s' }} />
-              <div className="absolute right-10 top-3 w-3 h-3 rounded-full bg-green-400/20 animate-bounce-slow" style={{ animationDelay: '1.2s' }} />
-              <div className="relative z-10 px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border-2 border-blue-800/40 flex items-center gap-3 bg-gradient-to-r from-slate-800 via-blue-900 to-indigo-900 text-cyan-200 animate-gradient-x tracking-wide" style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
-                <Code className="w-6 h-6 text-cyan-300 animate-spin-slow" />
+              <div className={`absolute left-2 top-2 w-6 h-6 rounded-full ${isDarkMode ? 'bg-cyan-400/30' : 'bg-blue-200/40'} animate-bounce-slow`} style={{ animationDelay: '0.2s' }} />
+              <div className={`absolute right-2 bottom-2 w-8 h-8 rounded-full ${isDarkMode ? 'bg-blue-700/30' : 'bg-cyan-200/40'} animate-pulse`} style={{ animationDelay: '0.6s' }} />
+              <div className={`absolute left-10 bottom-3 w-4 h-4 rounded-full ${isDarkMode ? 'bg-indigo-400/20' : 'bg-indigo-200/30'} animate-spin-slow`} style={{ animationDuration: '10s' }} />
+              <div className={`absolute right-10 top-3 w-3 h-3 rounded-full ${isDarkMode ? 'bg-green-400/20' : 'bg-green-200/30'} animate-bounce-slow`} style={{ animationDelay: '1.2s' }} />
+              <div className={`relative z-10 px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border-2 ${isDarkMode ? 'border-blue-800/40 bg-gradient-to-r from-slate-800 via-blue-900 to-indigo-900 text-cyan-200' : 'border-blue-200/60 bg-gradient-to-r from-white via-blue-100 to-cyan-100 text-blue-700'} animate-gradient-x tracking-wide`} style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
+                <Code className={`w-6 h-6 animate-spin-slow ${isDarkMode ? 'text-cyan-300' : 'text-blue-500'}`} />
                 Currently Debugging Life's Edge Cases
               </div>
             </div>
@@ -750,24 +750,70 @@ const Index = () => {
             <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
           </div>
           <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12">
-            <div className={`${cardClasses} backdrop-blur-sm rounded-xl p-4 md:p-6 border flex flex-col gap-4 items-start`}>
-              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Student Excellence Award</div>
-              <div className="text-slate-400 text-sm mb-4">Recognized for overall academic and technical performance in the 5th semester at Manipal University Jaipur</div>
-              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>HACKX Hackathon – Round 2 Finalist (2024)</div>
-              <div className="text-slate-400 text-sm mb-4">Advanced to the final round of a university-level hackathon hosted by Manipal University Jaipur</div>
-              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Paper Presentation – CML 2025, Sikkim Manipal University</div>
-              <div className="text-slate-400 text-sm mb-4">Presented a paper on Skin Disease Detection using Deep Learning</div>
-              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
-              <div className="text-slate-400 text-sm">Presented research on hybrid stock forecasting using BiLSTM-GRU models</div>
-            </div>
-            <div className={`${cardClasses} backdrop-blur-sm rounded-xl p-4 md:p-6 border flex flex-col gap-4 items-start`}>
-              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>NPTEL – Design & Analysis of Algorithms (SWAYAM, Govt. of India)</div>
-              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Deloitte Internship Certificate – Cloud Computing & AWS (EC2, S3, Lambda)</div>
-              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Cisco Certified Cybersecurity Specialist</div>
-              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Java Foundation Course – Oracle</div>
-              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>IBM – Getting Started with Enterprise AI</div>
-              <div className="flex items-center text-base md:text-lg font-semibold mb-2"><span className="mr-2"></span>Vanderbilt University – MATLAB for Data, Signal & Image Analysis</div>
-            </div>
+            {/* Honors & Awards visually distinct card */}
+            <motion.div whileHover={{ scale: 1.03, y: -4 }} className={`relative group rounded-2xl p-6 md:p-8 border-2 shadow-xl transition-all duration-300 overflow-hidden ${isDarkMode ? 'bg-gradient-to-br from-blue-900/80 via-slate-900/90 to-indigo-900/80 border-blue-800/40' : 'bg-gradient-to-br from-white via-blue-100 to-indigo-100 border-blue-200/60'}` }>
+              <div className="absolute -top-4 -left-4 rotate-[-8deg] bg-gradient-to-r from-yellow-400 via-amber-300 to-pink-300 text-white font-bold px-6 py-2 rounded-xl shadow-lg opacity-80 text-sm md:text-base pointer-events-none select-none">🏆 Honors & Awards</div>
+              <ul className="mt-8 space-y-5">
+                <li className="flex items-start gap-3">
+                  <Award className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}`} />
+                  <div>
+                    <div className="font-semibold text-base md:text-lg">Student Excellence Award</div>
+                    <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Recognized for overall academic and technical performance in the 5th semester at Manipal University Jaipur</div>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Zap className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-pink-300' : 'text-pink-500'}`} />
+                  <div>
+                    <div className="font-semibold text-base md:text-lg">HACKX Hackathon – Round 2 Finalist (2024)</div>
+                    <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Advanced to the final round of a university-level hackathon hosted by Manipal University Jaipur</div>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <BookOpen className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-blue-300' : 'text-blue-500'}`} />
+                  <div>
+                    <div className="font-semibold text-base md:text-lg">Paper Presentation – CML 2025, Sikkim Manipal University</div>
+                    <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented a paper on Skin Disease Detection using Deep Learning</div>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <BookOpen className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-500'}`} />
+                  <div>
+                    <div className="font-semibold text-base md:text-lg">Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
+                    <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented research on hybrid stock forecasting using BiLSTM-GRU models</div>
+                  </div>
+                </li>
+              </ul>
+            </motion.div>
+            {/* Certificates visually distinct card */}
+            <motion.div whileHover={{ scale: 1.03, y: -4 }} className={`relative group rounded-2xl p-6 md:p-8 border-2 shadow-xl transition-all duration-300 overflow-hidden ${isDarkMode ? 'bg-gradient-to-br from-blue-900/80 via-slate-900/90 to-indigo-900/80 border-blue-800/40' : 'bg-gradient-to-br from-white via-blue-100 to-indigo-100 border-blue-200/60'}` }>
+              <div className="absolute -top-4 -left-4 rotate-[-8deg] bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 text-white font-bold px-6 py-2 rounded-xl shadow-lg opacity-80 text-sm md:text-base pointer-events-none select-none">🎓 Certificates</div>
+              <ul className="mt-8 space-y-5">
+                <li className="flex items-start gap-3">
+                  <CheckCircle className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-500'}`} />
+                  <div className="font-semibold text-base md:text-lg">NPTEL – Design & Analysis of Algorithms (SWAYAM, Govt. of India)</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-500'}`} />
+                  <div className="font-semibold text-base md:text-lg">Deloitte Internship Certificate – Cloud Computing & AWS (EC2, S3, Lambda)</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-500'}`} />
+                  <div className="font-semibold text-base md:text-lg">Cisco Certified Cybersecurity Specialist</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-500'}`} />
+                  <div className="font-semibold text-base md:text-lg">Java Foundation Course – Oracle</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-500'}`} />
+                  <div className="font-semibold text-base md:text-lg">IBM – Getting Started with Enterprise AI</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-500'}`} />
+                  <div className="font-semibold text-base md:text-lg">Vanderbilt University – MATLAB for Data, Signal & Image Analysis</div>
+                </li>
+              </ul>
+            </motion.div>
           </div>
         </div>
       </section>
