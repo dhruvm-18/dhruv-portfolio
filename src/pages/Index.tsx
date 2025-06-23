@@ -150,7 +150,7 @@ const Index = () => {
     { category: "Backend", icon: "🟩", skills: ["Node.js", "FastAPI", "REST APIs"] },
     { category: "Data Science", icon: "📊", skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Feature Engineering", "Model Evaluation"] },
     { category: "Machine/Deep Learning", icon: "🧠", skills: ["Scikit-learn", "TensorFlow", "Keras", "CNN", "LSTM", "BiLSTM-GRU", "GANs", "XGBoost", "Grad-CAM"] },
-    { category: "Cloud/DevOps", icon: "☁️", skills: ["AWS (EC2, S3, Lambda)", "Docker", "Git & GitHub", "CI/CD"] },
+    { category: "Cloud/DevOps", icon: "☁️", skills: ["AWS (EC2, S3, Lambda)", "Git & GitHub", "CI/CD"] },
     { category: "Database", icon: "🗄️", skills: ["PostgreSQL", "MySQL", "MongoDB"] },
     { category: "Visualization", icon: "📈", skills: ["PowerBI", "Chart.js"] },
     { category: "AI/LLM", icon: "🔗", skills: ["LLMs", "LangChain", "RAG", "Prompt Engineering", "FAISS"] },
@@ -258,6 +258,11 @@ const Index = () => {
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-24 md:pt-28 px-2 md:px-0">
+        <div className="w-full max-w-6xl mx-auto px-6 mb-2 md:mb-4">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white text-left drop-shadow-lg" style={{letterSpacing: '0.01em'}}>
+            Hey it's,
+          </h1>
+        </div>
         <motion.div style={{ y, opacity }} className="absolute inset-0">
           <div className={`absolute inset-0 ${isDarkMode ? 'bg-gradient-to-r from-blue-900/30 to-indigo-900/30' : 'bg-gradient-to-r from-blue-100/30 to-indigo-100/30'}`} />
           {/* Animated background particles */}
