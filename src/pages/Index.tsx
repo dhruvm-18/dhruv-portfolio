@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Award, Code, Brain, Zap, Users, BookOpen, Calendar, MapPin, Phone, Moon, Sun, GraduationCap, Briefcase, User, Download, Menu, X, CheckCircle, Eye, FileText, ChevronUp } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Award, Code, Brain, Zap, Users, BookOpen, Calendar, MapPin, Phone, Moon, Sun, GraduationCap, Briefcase, User, Download, Menu, X, CheckCircle, Eye, FileText, ChevronUp, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -224,12 +224,6 @@ const Index = () => {
     },
     {
       icon: CheckCircle,
-      title: 'Cisco CyberSecurity Specialist',
-      desc: 'Cisco',
-      color: 'yellow',
-    },
-    {
-      icon: CheckCircle,
       title: 'Introduction to Data, Signal, and Image Analysis with MATLAB',
       desc: 'Vanderbilt University',
       color: 'orange',
@@ -247,19 +241,6 @@ const Index = () => {
       desc: 'Oracle',
       color: 'violet',
       link: 'https://drive.google.com/file/d/1eROtRLJQkiaUazcoztz4-f9Cs5Z5aTSN/view?usp=sharing',
-    },
-    {
-      icon: CheckCircle,
-      title: 'CERTIFICATE OF PRESENTATION: Skin Disease Detection using DeepLearning',
-      desc: 'CML 2025, Sikkim Manipal University',
-      color: 'blue',
-      link: 'https://drive.google.com/file/d/1ie-S0rQc9wps4bI1ZAllZCOOMm3h9Elk/view?usp=sharing',
-    },
-    {
-      icon: CheckCircle,
-      title: 'CERTIFICATE OF PRESENTATION: Enhanced Stock Market Forecasting Using Hybrid BiLSTM-GRU Models',
-      desc: 'ICAESRTA - 2K25, KBP College of Engineering, Satara',
-      color: 'cyan',
     },
     {
       icon: CheckCircle,
@@ -876,16 +857,16 @@ const Index = () => {
             {skillGroups.map((group, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.04 }}
+                transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.08 }}
                 className={`${cardClasses} backdrop-blur-sm rounded-xl p-4 md:p-6 border hover:shadow-xl transition-all duration-300 flex flex-col`}
               >
                 <div className="flex items-center mb-3 md:mb-4">
                   <span className="text-xl md:text-2xl mr-2">{group.icon}</span>
                   <span className={`text-base md:text-lg font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{group.category}</span>
-                  </div>
+                </div>
                 <ul className="flex flex-wrap gap-1 md:gap-2">
                   {group.skills.map((skill, i) => (
                     <li key={i} className={`px-2 py-1 md:px-3 rounded-full text-xs md:text-sm font-medium ${isDarkMode ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30' : 'bg-blue-100 text-blue-700 border border-blue-300'}`}>{skill}</li>
@@ -893,8 +874,8 @@ const Index = () => {
                 </ul>
               </motion.div>
             ))}
-                </div>
-                </div>
+          </div>
+        </div>
       </section>
 
       {/* Honors & Awards and Certifications Section */}
@@ -905,13 +886,14 @@ const Index = () => {
               <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>{honorsTab === 'awards' ? 'Honors & Awards' : 'Certifications'}</h2>
               <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
                 </div>
-            {/* Right-side toggle button */}
+            {/* Right-side minimalist toggle button */}
             <button
-              className={`ml-4 px-4 py-2 rounded-full font-semibold shadow transition border-2 ${honorsTab === 'awards' ? (isDarkMode ? 'bg-slate-800 text-white border-blue-400' : 'bg-blue-100 text-blue-700 border-blue-400') : (isDarkMode ? 'bg-blue-800 text-white border-blue-400' : 'bg-blue-500 text-white border-blue-500')}`}
+              className={`ml-4 p-2 rounded-full border-2 border-blue-400 bg-transparent hover:bg-blue-500/10 transition flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400`}
               onClick={() => setHonorsTab(honorsTab === 'awards' ? 'certs' : 'awards')}
-              aria-label={honorsTab === 'awards' ? 'Show Certifications' : 'Show Honors & Awards'}
+              aria-label={honorsTab === 'awards' ? 'Show Certificates' : 'Show Honors & Awards'}
+              title={honorsTab === 'awards' ? 'Show Certificates' : 'Show Honors & Awards'}
             >
-              {honorsTab === 'awards' ? '→ Certificates' : '← Honors'}
+              <ChevronRight className={`w-6 h-6 ${honorsTab === 'awards' ? 'text-blue-400' : 'text-blue-600'} transition-transform duration-200`} style={{ transform: honorsTab === 'awards' ? 'rotate(0deg)' : 'rotate(180deg)' }} />
             </button>
           </div>
           <div className="grid sm:grid-cols-2 gap-6 md:gap-8 mb-12">
@@ -962,19 +944,18 @@ const Index = () => {
                     key={i}
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    whileHover={{ scale: 1.05, y: -6 }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.6, delay: i * 0.08, ease: 'easeOut' }}
+                    className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}
                   >
                     <cert.icon className={`w-8 h-8 ${isDarkMode ? `text-${cert.color}-300` : `text-${cert.color}-500`}`} />
-                    <div className="font-semibold text-lg md:text-xl">
-                      {cert.link ? (
-                        <a href={cert.link} target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500 transition-colors">{cert.title}</a>
-                      ) : (
-                        cert.title
-                      )}
-                    </div>
-                    <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{cert.desc}</div>
+                    <div className="font-semibold text-lg md:text-xl mb-1">{cert.title}</div>
+                    <div className={`text-sm truncate max-w-full ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{cert.desc}</div>
+                    {cert.link && (
+                      <a href={cert.link} target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                        <ExternalLink className="w-5 h-5 text-white" />
+                      </a>
+                    )}
                   </motion.div>
                 ))}
               </>
