@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Award, Code, Brain, Zap, Users, BookOpen, Calendar, MapPin, Phone, Moon, Sun, GraduationCap, Briefcase, User, Download, Menu, X, CheckCircle } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Award, Code, Brain, Zap, Users, BookOpen, Calendar, MapPin, Phone, Moon, Sun, GraduationCap, Briefcase, User, Download, Menu, X, CheckCircle, Eye, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -385,13 +385,13 @@ const Index = () => {
                   </Button>
                   <Button asChild variant="outline" className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white border-emerald-500 hover:border-emerald-600 rounded-full shadow-lg hover:shadow-2xl animate-glow">
                     <a href="/Dhruv_Mendiratta_Detailed_Resume.pdf" target="_blank" rel="noopener noreferrer">
-                      <Download className="w-4 h-4 mr-2" />
+                      <Eye className="w-4 h-4 mr-2" />
                       View Detailed Resume
                     </a>
                   </Button>
                   <Button asChild variant="outline" className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-cyan-500 hover:border-cyan-600 rounded-full shadow-lg hover:shadow-2xl animate-glow">
                     <a href="/Dhruv_Mendiratta_1page_Resume.pdf" target="_blank" rel="noopener noreferrer">
-                      <Download className="w-4 h-4 mr-2" />
+                      <FileText className="w-4 h-4 mr-2" />
                       View ATS Friendly Resume
                     </a>
                   </Button>
