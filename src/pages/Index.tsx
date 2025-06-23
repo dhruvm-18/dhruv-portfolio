@@ -486,23 +486,33 @@ const Index = () => {
             `vectorStore.addDocuments(docs, { chunkSize: 512 })`,
             `const resume = await fetch('/Dhruv_Mendiratta_Detailed_Resume.pdf')`,
             `const chatbot = new RAGChatbot({ llm, retriever })`,
-          ].map((snippet, idx) => (
-            <motion.pre
-              key={idx}
-              className={`pointer-events-none select-none whitespace-pre text-xs md:text-sm font-mono font-semibold absolute opacity-20 ${isDarkMode ? 'text-cyan-200' : 'text-blue-700'}`}
-              style={{
-                left: `${10 + (idx % 5) * 18}%`,
-                top: `${10 + Math.floor(idx / 5) * 28}%`,
-                maxWidth: '220px',
-                zIndex: 1,
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: [0.12, 0.22, 0.12], y: [20, 0, 20] }}
-              transition={{ duration: 7 + idx, repeat: Infinity, repeatType: 'reverse', delay: idx * 0.7 }}
-            >
-              {snippet}
-            </motion.pre>
-          ))}
+          ].map((snippet, idx, arr) => {
+            // Distribute in a grid, avoid overlap
+            const columns = 3;
+            const rows = Math.ceil(arr.length / columns);
+            const col = idx % columns;
+            const row = Math.floor(idx / columns);
+            const left = 8 + col * 30; // percent
+            const top = 10 + row * 22; // percent
+            return (
+              <motion.pre
+                key={idx}
+                className={`pointer-events-none select-none whitespace-pre text-xs md:text-sm font-mono font-semibold absolute ${isDarkMode ? 'text-cyan-200 opacity-20' : 'text-blue-900 opacity-10'}`}
+                style={{
+                  left: `${left}%`,
+                  top: `${top}%`,
+                  maxWidth: '240px',
+                  zIndex: 1,
+                  filter: isDarkMode ? 'none' : 'blur(0.5px)',
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: [0.10, 0.22, 0.10], y: [20, 0, 20] }}
+                transition={{ duration: 7 + idx, repeat: Infinity, repeatType: 'reverse', delay: idx * 0.7 }}
+              >
+                {snippet}
+              </motion.pre>
+            );
+          })}
         </motion.div>
 
         <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
