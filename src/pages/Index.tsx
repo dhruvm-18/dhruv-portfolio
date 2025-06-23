@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Award, Code, Brain, Zap, Users, BookOpen, Calendar, MapPin, Phone, Moon, Sun, GraduationCap, Briefcase, User, Download, Menu, X, CheckCircle, Eye, FileText } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Award, Code, Brain, Zap, Users, BookOpen, Calendar, MapPin, Phone, Moon, Sun, GraduationCap, Briefcase, User, Download, Menu, X, CheckCircle, Eye, FileText, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -16,6 +16,8 @@ const Index = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -214,6 +216,12 @@ const Index = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const onScroll = () => setShowScrollTop(window.scrollY > 200);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <div ref={containerRef} className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden scroll-smooth`}>
       {/* Floating Navigation - Desktop */}
@@ -343,7 +351,7 @@ const Index = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8 }}
             className={`relative p-1 mb-8 rounded-[2.5rem] shadow-2xl animate-gradient-x ${isDarkMode ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900' : 'bg-gradient-to-br from-blue-100 via-sky-100 to-indigo-100'}`}
-            style={{ boxShadow: isDarkMode ? '0 0 40px 0 #0ea5e9, 0 0 0 4px #64748b' : '0 0 40px 0 #a5b4fc, 0 0 0 4px #64748b' }}
+            style={{ boxShadow: isDarkMode ? '0 0 40px 0 #0ea5e9, 0 0 0 4px #64748b' : undefined }}
           >
             <div className={`backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden border ${isDarkMode ? 'bg-gradient-to-br from-slate-800/90 via-blue-950/90 to-indigo-900/90 border-blue-900/60' : 'bg-gradient-to-br from-white via-blue-100 to-indigo-100 border-blue-200/60'}`}>
               {/* Floating Profile Pic */}
@@ -359,7 +367,7 @@ const Index = () => {
                   </div>
                 </div>
               </motion.div>
-
+              
               {/* Info */}
               <div className="flex-1 text-left flex flex-col justify-center items-center md:items-start">
                 <div className="flex items-center space-x-4 mb-2">
@@ -379,10 +387,10 @@ const Index = () => {
                 <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-6">
                   <Button asChild className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white rounded-full shadow-lg hover:shadow-2xl animate-glow">
                     <a href="mailto:dhruv.mendiratta4@gmail.com">
-                      <Mail className="w-4 h-4 mr-2" />
-                      Hire Me
+                <Mail className="w-4 h-4 mr-2" />
+                Hire Me
                     </a>
-                  </Button>
+              </Button>
                   <Button asChild variant="outline" className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white border-emerald-500 hover:border-emerald-600 rounded-full shadow-lg hover:shadow-2xl animate-glow">
                     <a href="/Dhruv_Mendiratta_Detailed_Resume.pdf" target="_blank" rel="noopener noreferrer">
                       <Eye className="w-4 h-4 mr-2" />
@@ -394,7 +402,7 @@ const Index = () => {
                       <FileText className="w-4 h-4 mr-2" />
                       View ATS Friendly Resume
                     </a>
-                  </Button>
+              </Button>
                 </div>
               </div>
             </div>
@@ -657,98 +665,57 @@ const Index = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-12 md:mb-16"
           >
-            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Featured Projects</h2>
-            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto`}></div>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Projects</h2>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
+            <p className={`text-base md:text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-400'}`}>Here are some of my projects spanning full-stack development, data analysis, and cloud computing.</p>
           </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-            {projects.map((project, index) => {
-              const projectContent = (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  whileHover={{ scale: 1.05, rotateY: project.link ? 5 : 0 }}
-                  className="group h-full"
-                >
-                  <Card className={`h-full border-0 overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300 ${isDarkMode ? 'bg-slate-800/80' : 'bg-white/90'} ${isDarkMode ? 'border-slate-700' : 'border-blue-200'}`}>
-                    <div className={`bg-gradient-to-r ${project.gradient} p-1 rounded-lg h-full`}>
-                      <div className={`${isDarkMode ? 'bg-slate-800' : 'bg-white'} rounded-lg h-full flex flex-col`}>
-                        <CardHeader className="relative p-4 md:p-6">
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="text-3xl md:text-4xl">{project.icon}</div>
-                            {project.link && <ExternalLink className={`w-5 h-5 ${isDarkMode ? 'text-slate-400 group-hover:text-slate-200' : 'text-gray-400 group-hover:text-gray-600'} transition-colors`} />}
-                          </div>
-                          <CardTitle className={`text-lg md:text-xl ${isDarkMode ? 'text-white group-hover:text-blue-200' : 'text-gray-900 group-hover:text-blue-600'} transition-colors`}>
-                            {project.title}
-                          </CardTitle>
-                          <CardDescription className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'} mb-3 text-sm`}>
-                            {project.period}
-                          </CardDescription>
-                          <div className="flex flex-wrap gap-1 md:gap-2">
-                            {project.tech.map((tech, i) => (
-                              <Badge key={i} variant="secondary" className={`${isDarkMode ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-400/30' : 'bg-indigo-100 text-indigo-700 border border-indigo-300'} text-xs px-2 py-0.5`}>
-                                {tech}
-                              </Badge>
-                            ))}
-                          </div>
-                        </CardHeader>
-                        <CardContent className="p-4 md:p-6 flex-grow">
-                          <p className={`mb-4 text-sm md:text-base ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{project.description}</p>
-                          <ul className="space-y-2">
-                            {project.achievements.map((achievement, i) => (
-                              <li key={i} className="flex items-start text-xs md:text-sm">
-                                <Award className={`w-3 h-3 mr-2 mt-0.5 md:mt-1 flex-shrink-0 ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`} />
-                                <span className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{achievement}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </CardContent>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              );
-
-              if (project.link) {
-                return (
-                  <a key={project.title} href={project.link} target="_blank" rel="noopener noreferrer">
-                    {projectContent}
-                  </a>
-                );
-              }
-              return projectContent;
-            })}
+          <div className="flex flex-wrap gap-4 justify-center mb-8">
+            {/* Example filter buttons, can be made functional later */}
+            <button className="px-4 py-2 rounded-full font-semibold bg-blue-500 text-white shadow hover:bg-blue-600 transition">All</button>
+            <button className="px-4 py-2 rounded-full font-semibold bg-slate-800 text-white shadow hover:bg-slate-900 transition">Full-Stack Development</button>
+            <button className="px-4 py-2 rounded-full font-semibold bg-slate-800 text-white shadow hover:bg-slate-900 transition">Data Analysis & ML</button>
+            <button className="px-4 py-2 rounded-full font-semibold bg-slate-800 text-white shadow hover:bg-slate-900 transition">DevOps & Cloud Computing</button>
           </div>
-
-          {/* Publications */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mt-16 md:mt-20"
-          >
-            <h3 className={`text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-600'}`}>Research Publications</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              {publications.map((pub, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Card className={`${cardClasses} backdrop-blur-sm h-full hover:shadow-xl transition-all duration-300 border`}>
-                    <CardHeader>
-                      <CardTitle className={`text-base md:text-lg ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{pub.title}</CardTitle>
-                      <CardDescription className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{pub.venue}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{pub.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+          <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-8">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.03, boxShadow: '0 8px 32px 0 rgba(0,0,0,0.25)' }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-900/90 border border-slate-700 group flex flex-col"
+              >
+                {/* Project Image or Placeholder */}
+                <div className="h-48 w-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+                  {/* If you have images, use <img src={project.image} ... /> here */}
+                  <span className="text-5xl">{project.icon}</span>
+                </div>
+                <div className="flex-1 flex flex-col p-5">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="font-bold text-xl text-white group-hover:text-blue-400 transition">{project.title}</h3>
+                    {project.link && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="ml-2">
+                        <Github className="w-7 h-7 text-gray-200 hover:text-white bg-slate-800 rounded-full p-1 border-2 border-gray-700 transition" style={{ boxShadow: '0 2px 8px #24292f55' }} />
+                      </a>
+                    )}
+                  </div>
+                  <div className="text-sm text-slate-300 mb-2">{project.period}</div>
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {project.tech.map((tech, i) => (
+                      <span key={i} className="bg-slate-800 text-blue-300 px-2 py-0.5 rounded-full text-xs font-semibold border border-blue-700">{tech}</span>
+                    ))}
+                  </div>
+                  <div className="text-slate-400 text-sm mb-3 flex-1">{project.description}</div>
+                  <ul className="text-xs text-slate-400 space-y-1 mb-2">
+                    {project.achievements.map((ach, i) => (
+                      <li key={i} className="flex items-start"><Award className="w-3 h-3 mr-2 mt-0.5 text-emerald-400" />{ach}</li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -779,7 +746,7 @@ const Index = () => {
                 <div className="flex items-center mb-3 md:mb-4">
                   <span className="text-xl md:text-2xl mr-2">{group.icon}</span>
                   <span className={`text-base md:text-lg font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{group.category}</span>
-                </div>
+                  </div>
                 <ul className="flex flex-wrap gap-1 md:gap-2">
                   {group.skills.map((skill, i) => (
                     <li key={i} className={`px-2 py-1 md:px-3 rounded-full text-xs md:text-sm font-medium ${isDarkMode ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30' : 'bg-blue-100 text-blue-700 border border-blue-300'}`}>{skill}</li>
@@ -787,8 +754,8 @@ const Index = () => {
                 </ul>
               </motion.div>
             ))}
-          </div>
-        </div>
+                </div>
+                </div>
       </section>
 
       {/* Honors & Awards and Certifications Section */}
@@ -797,71 +764,52 @@ const Index = () => {
           <div className="text-center mb-12 md:mb-16">
             <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Honors & Awards</h2>
             <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12">
-            {/* Honors & Awards visually distinct card */}
-            <motion.div whileHover={{ scale: 1.03, y: -4 }} className={`relative group rounded-2xl p-6 md:p-8 border-2 shadow-xl transition-all duration-300 overflow-hidden ${isDarkMode ? 'bg-gradient-to-br from-blue-900/80 via-slate-900/90 to-indigo-900/80 border-blue-800/40' : 'bg-gradient-to-br from-white via-blue-100 to-indigo-100 border-blue-200/60'}` }>
-              <div className="absolute -top-4 -left-4 rotate-[-8deg] bg-gradient-to-r from-yellow-400 via-amber-300 to-pink-300 text-white font-bold px-6 py-2 rounded-xl shadow-lg opacity-80 text-sm md:text-base pointer-events-none select-none">🏆 Honors & Awards</div>
-              <ul className="mt-8 space-y-5">
-                <li className="flex items-start gap-3">
-                  <Award className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}`} />
-                  <div>
-                    <div className="font-semibold text-base md:text-lg">Student Excellence Award</div>
-                    <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Given for outstanding internship performance and publishing a journal research paper at Manipal University Jaipur</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Zap className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-pink-300' : 'text-pink-500'}`} />
-                  <div>
-                    <div className="font-semibold text-base md:text-lg">HACKX Hackathon – Round 2 Finalist (2024)</div>
-                    <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Advanced to the final round of a university-level hackathon hosted by Manipal University Jaipur</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <BookOpen className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-blue-300' : 'text-blue-500'}`} />
-                  <div>
-                    <div className="font-semibold text-base md:text-lg">Paper Presentation – CML 2025, Sikkim Manipal University</div>
-                    <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented a paper on Skin Disease Detection using Deep Learning</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <BookOpen className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-500'}`} />
-                  <div>
-                    <div className="font-semibold text-base md:text-lg">Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
-                    <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented research on hybrid stock forecasting using BiLSTM-GRU models</div>
-                  </div>
-                </li>
-              </ul>
+                </div>
+          <div className="grid sm:grid-cols-2 gap-6 md:gap-8 mb-12">
+            {/* Individual Award Tiles */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.05, y: -6 }}
+              transition={{ duration: 0.5 }}
+              className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}
+            >
+              <Award className={`w-8 h-8 ${isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}`} />
+              <div className="font-semibold text-lg md:text-xl">Student Excellence Award</div>
+              <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Given for outstanding internship performance and publishing a journal research paper at Manipal University Jaipur</div>
+              </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.05, y: -6 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}
+            >
+              <Zap className={`w-8 h-8 ${isDarkMode ? 'text-pink-300' : 'text-pink-500'}`} />
+              <div className="font-semibold text-lg md:text-xl">HACKX Hackathon – Round 2 Finalist (2024)</div>
+              <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Advanced to the final round of a university-level hackathon hosted by Manipal University Jaipur</div>
             </motion.div>
-            {/* Certificates visually distinct card */}
-            <motion.div whileHover={{ scale: 1.03, y: -4 }} className={`relative group rounded-2xl p-6 md:p-8 border-2 shadow-xl transition-all duration-300 overflow-hidden ${isDarkMode ? 'bg-gradient-to-br from-blue-900/80 via-slate-900/90 to-indigo-900/80 border-blue-800/40' : 'bg-gradient-to-br from-white via-blue-100 to-indigo-100 border-blue-200/60'}` }>
-              <div className="absolute -top-4 -left-4 rotate-[-8deg] bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 text-white font-bold px-6 py-2 rounded-xl shadow-lg opacity-80 text-sm md:text-base pointer-events-none select-none">🎓 Certificates</div>
-              <ul className="mt-8 space-y-5">
-                <li className="flex items-start gap-3">
-                  <CheckCircle className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-500'}`} />
-                  <div className="font-semibold text-base md:text-lg">NPTEL – Design & Analysis of Algorithms (SWAYAM, Govt. of India)</div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-500'}`} />
-                  <div className="font-semibold text-base md:text-lg">Deloitte Internship Certificate – Cloud Computing & AWS (EC2, S3, Lambda)</div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-500'}`} />
-                  <div className="font-semibold text-base md:text-lg">Cisco Certified Cybersecurity Specialist</div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-500'}`} />
-                  <div className="font-semibold text-base md:text-lg">Java Foundation Course – Oracle</div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-500'}`} />
-                  <div className="font-semibold text-base md:text-lg">IBM – Getting Started with Enterprise AI</div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-500'}`} />
-                  <div className="font-semibold text-base md:text-lg">Vanderbilt University – MATLAB for Data, Signal & Image Analysis</div>
-                </li>
-              </ul>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.05, y: -6 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}
+            >
+              <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-blue-300' : 'text-blue-500'}`} />
+              <div className="font-semibold text-lg md:text-xl">Paper Presentation – CML 2025, Sikkim Manipal University</div>
+              <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented a paper on Skin Disease Detection using Deep Learning</div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.05, y: -6 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}
+            >
+              <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-500'}`} />
+              <div className="font-semibold text-lg md:text-xl">Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
+              <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented research on hybrid stock forecasting using BiLSTM-GRU models</div>
             </motion.div>
           </div>
         </div>
@@ -925,21 +873,36 @@ const Index = () => {
 
       {/* Map Section at the bottom */}
       <section className="py-12 px-4 sm:px-6 md:py-16 bg-transparent">
-        <div className="max-w-2xl mx-auto text-center mb-6">
-          <h3 className={`text-2xl md:text-3xl font-bold mb-2 ${isDarkMode ? 'text-blue-300' : 'text-blue-700'}`}>My Location</h3>
-          <p className={`text-base md:text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Delhi, India</p>
-        </div>
-        <div className="flex justify-center">
-          <div className={`relative rounded-2xl border-2 shadow-lg overflow-hidden ${isDarkMode ? 'border-blue-800 bg-slate-900' : 'border-blue-200 bg-white'}`} style={{ width: 400, height: 300, minWidth: 300, minHeight: 200 }}>
-            <img
-              src="https://static-maps.yandex.ru/1.x/?lang=en-US&ll=77.2090,28.6139&z=11&l=map&size=400,300&pt=77.2090,28.6139,pm2rdm" 
-              alt="Delhi Map Preview"
-              className="w-full h-full object-cover opacity-90"
-              style={{ filter: isDarkMode ? 'grayscale(0.3) brightness(0.8)' : 'grayscale(0.1)' }}
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <MapPin className="w-12 h-12 text-red-500 drop-shadow-lg mb-2 animate-bounce" />
-              <span className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-blue-900'} bg-white/80 dark:bg-slate-900/80 px-4 py-1 rounded-full shadow-md`}>Delhi, India</span>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
+            {/* Left: About Me */}
+            <div className={`flex-1 max-w-xs rounded-2xl border-2 shadow-lg p-6 ${isDarkMode ? 'border-blue-800 bg-slate-900 text-white' : 'border-blue-200 bg-white text-blue-900'}` }>
+              <h4 className="text-xl font-bold mb-2">About Me</h4>
+              <p className="text-sm md:text-base">AI Engineer & Full-Stack Developer passionate about building scalable AI solutions and modern web apps. Always learning, always building.</p>
+              <ul className="mt-4 space-y-1 text-xs md:text-sm">
+                <li>🌐 React, FastAPI, AWS</li>
+                <li>🤖 LLMs, RAG, Deep Learning</li>
+                <li>📍 Based in Delhi, India</li>
+              </ul>
+            </div>
+            {/* Center: Map */}
+            <div className={`relative rounded-2xl border-2 shadow-lg overflow-hidden ${isDarkMode ? 'border-blue-800 bg-slate-900' : 'border-blue-200 bg-white'}`} style={{ width: 400, height: 300, minWidth: 300, minHeight: 200 }}>
+              <img
+                src="https://static-maps.yandex.ru/1.x/?lang=en-US&ll=77.2090,28.6139&z=11&l=map&size=400,300&pt=77.2090,28.6139,pm2rdm"
+                alt="Delhi Map Preview"
+                className="w-full h-full object-cover opacity-90"
+                style={{ filter: isDarkMode ? 'grayscale(0.3) brightness(0.8)' : 'grayscale(0.1)' }}
+              />
+            </div>
+            {/* Right: Contact Info */}
+            <div className={`flex-1 max-w-xs rounded-2xl border-2 shadow-lg p-6 ${isDarkMode ? 'border-blue-800 bg-slate-900 text-white' : 'border-blue-200 bg-white text-blue-900'}` }>
+              <h4 className="text-xl font-bold mb-2">Contact</h4>
+              <ul className="space-y-2 text-sm md:text-base">
+                <li><span className="font-semibold">Email:</span> <a href="mailto:dhruv.mendiratta4@gmail.com" className="underline hover:text-blue-500">dhruv.mendiratta4@gmail.com</a></li>
+                <li><span className="font-semibold">LinkedIn:</span> <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">/in/dhruv-mendiratta-132a46255</a></li>
+                <li><span className="font-semibold">GitHub:</span> <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">@dhruvm-18</a></li>
+              </ul>
+              <div className="mt-4 text-xs text-gray-400 dark:text-gray-500">Let's build something great together!</div>
             </div>
           </div>
         </div>
@@ -953,6 +916,22 @@ const Index = () => {
           </p>
         </div>
       </footer>
+
+      {/* Scroll-to-Top Button */}
+      {showScrollTop && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="fixed bottom-6 right-6 z-50 p-3 bg-blue-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Scroll to top"
+        >
+          <ChevronUp className="w-6 h-6" />
+        </motion.button>
+      )}
     </div>
   );
 };
