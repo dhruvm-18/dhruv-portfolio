@@ -212,6 +212,10 @@ const Index = () => {
             <Sun className={`w-4 h-4 ${isDarkMode ? 'text-slate-400' : 'text-yellow-500'}`} />
             <Switch checked={isDarkMode} onCheckedChange={toggleTheme} />
             <Moon className={`w-4 h-4 ${isDarkMode ? 'text-blue-400' : 'text-slate-400'}`} />
+            {/* Social Icons */}
+            <a href="https://linkedin.com/in/dhruv-mendiratta" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`ml-3 p-2 rounded-full transition-colors duration-200 hover:bg-blue-100/30 ${isDarkMode ? 'hover:bg-blue-900/40' : ''}`}> <Linkedin className={`w-5 h-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
+            <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 rounded-full transition-colors duration-200 hover:bg-slate-200/40 dark:hover:bg-slate-700/40"> <Github className={`w-5 h-5 ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`} /> </a>
+            <a href="mailto:dhruv.mendiratta4@gmail.com" aria-label="Mail" className="p-2 rounded-full transition-colors duration-200 hover:bg-cyan-100/30 dark:hover:bg-cyan-900/40"> <Mail className={`w-5 h-5 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
           </div>
         </div>
       </motion.nav>
@@ -250,6 +254,10 @@ const Index = () => {
                 <Sun className={`w-6 h-6 ${isDarkMode ? 'text-slate-400' : 'text-yellow-500'}`} />
                 <Switch checked={isDarkMode} onCheckedChange={toggleTheme} id="mobile-theme-switch" />
                 <Moon className={`w-6 h-6 ${isDarkMode ? 'text-blue-400' : 'text-slate-400'}`} />
+                {/* Social Icons Mobile */}
+                <a href="https://linkedin.com/in/dhruv-mendiratta" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 rounded-full transition-colors duration-200 hover:bg-blue-900/40"> <Linkedin className={`w-6 h-6 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
+                <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 rounded-full transition-colors duration-200 hover:bg-slate-700/40"> <Github className={`w-6 h-6 ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`} /> </a>
+                <a href="mailto:dhruv.mendiratta4@gmail.com" aria-label="Mail" className="p-2 rounded-full transition-colors duration-200 hover:bg-cyan-900/40"> <Mail className={`w-6 h-6 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
               </div>
             </div>
           </motion.div>
@@ -309,19 +317,6 @@ const Index = () => {
                     <img src={dhruvProfilePic} alt="Dhruv Mendiratta" className="rounded-full w-full h-full object-cover" />
                   </div>
                 </div>
-                {/* Animated status badge */}
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.7, type: 'spring', stiffness: 200 }}
-                  className={`absolute -bottom-3 -right-3 px-4 py-2 rounded-full font-bold text-xs md:text-sm shadow-lg border-2 border-white ${isDarkMode ? 'bg-gradient-to-r from-fuchsia-600 to-blue-600 text-white' : 'bg-gradient-to-r from-fuchsia-300 to-blue-300 text-gray-900'}`}
-                  style={{ filter: 'drop-shadow(0 0 8px #a21caf)' }}
-                >
-                  <span className="inline-flex items-center animate-pulse">
-                    <Code className="w-4 h-4 mr-1 text-yellow-300 animate-spin-slow" />
-                    Currently Debugging Life's Edge Cases
-                  </span>
-                </motion.div>
               </motion.div>
 
               {/* Info */}
@@ -356,16 +351,26 @@ const Index = () => {
             </div>
           </motion.div>
 
-          {/* Remove the old status card and hero description, or move description below the tile for clarity */}
-          <motion.p
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.9 }}
-            className={`text-base md:text-lg mb-12 max-w-3xl mx-auto leading-relaxed ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}
+          {/* Animated Status Badge Below Tile */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 1.1, type: 'spring', stiffness: 180 }}
+            className="relative flex justify-center items-center mb-8"
           >
-            Building the future of AI with RAG systems, deep learning, and scalable solutions. 
-            Published researcher passionate about human-aligned AI that bridges research and real-world impact.
-          </motion.p>
+            <div className="relative">
+              {/* Animated gradient background with floating shapes */}
+              <div className="absolute inset-0 z-0 rounded-2xl blur-xl opacity-80 animate-gradient-x bg-gradient-to-r from-fuchsia-500 via-blue-500 to-indigo-500" style={{ filter: 'blur(24px)' }} />
+              {/* Floating shapes */}
+              <div className="absolute left-2 top-2 w-6 h-6 rounded-full bg-pink-400/60 animate-bounce-slow" style={{ animationDelay: '0.2s' }} />
+              <div className="absolute right-2 bottom-2 w-8 h-8 rounded-full bg-blue-400/50 animate-pulse" style={{ animationDelay: '0.6s' }} />
+              <div className="absolute left-10 bottom-3 w-4 h-4 rounded-full bg-indigo-400/40 animate-spin-slow" style={{ animationDuration: '10s' }} />
+              <div className="relative z-10 px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border-2 border-white/30 flex items-center gap-3 bg-gradient-to-r from-fuchsia-600 via-blue-600 to-indigo-600 text-white animate-gradient-x">
+                <Code className="w-6 h-6 text-yellow-300 animate-spin-slow" />
+                Currently Debugging Life's Edge Cases
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         <motion.div
