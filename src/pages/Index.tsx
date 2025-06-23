@@ -213,7 +213,7 @@ const Index = () => {
             <Switch checked={isDarkMode} onCheckedChange={toggleTheme} />
             <Moon className={`w-4 h-4 ${isDarkMode ? 'text-blue-400' : 'text-slate-400'}`} />
             {/* Social Icons */}
-            <a href="https://linkedin.com/in/dhruv-mendiratta" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`ml-3 p-2 rounded-full transition-colors duration-200 hover:bg-blue-100/30 ${isDarkMode ? 'hover:bg-blue-900/40' : ''}`}> <Linkedin className={`w-5 h-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
+            <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`ml-3 p-2 rounded-full transition-colors duration-200 hover:bg-blue-100/30 ${isDarkMode ? 'hover:bg-blue-900/40' : ''}`}> <Linkedin className={`w-5 h-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
             <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 rounded-full transition-colors duration-200 hover:bg-slate-200/40 dark:hover:bg-slate-700/40"> <Github className={`w-5 h-5 ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`} /> </a>
             <a href="mailto:dhruv.mendiratta4@gmail.com" aria-label="Mail" className="p-2 rounded-full transition-colors duration-200 hover:bg-cyan-100/30 dark:hover:bg-cyan-900/40"> <Mail className={`w-5 h-5 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
           </div>
@@ -255,7 +255,7 @@ const Index = () => {
                 <Switch checked={isDarkMode} onCheckedChange={toggleTheme} id="mobile-theme-switch" />
                 <Moon className={`w-6 h-6 ${isDarkMode ? 'text-blue-400' : 'text-slate-400'}`} />
                 {/* Social Icons Mobile */}
-                <a href="https://linkedin.com/in/dhruv-mendiratta" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 rounded-full transition-colors duration-200 hover:bg-blue-900/40"> <Linkedin className={`w-6 h-6 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
+                <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 rounded-full transition-colors duration-200 hover:bg-blue-900/40"> <Linkedin className={`w-6 h-6 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
                 <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 rounded-full transition-colors duration-200 hover:bg-slate-700/40"> <Github className={`w-6 h-6 ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`} /> </a>
                 <a href="mailto:dhruv.mendiratta4@gmail.com" aria-label="Mail" className="p-2 rounded-full transition-colors duration-200 hover:bg-cyan-900/40"> <Mail className={`w-6 h-6 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
               </div>
@@ -301,10 +301,10 @@ const Index = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className={`relative p-1 mb-8 rounded-[2.5rem] shadow-2xl bg-gradient-to-br from-blue-500 via-fuchsia-500 to-indigo-500 animate-gradient-x`}
-            style={{ boxShadow: isDarkMode ? '0 0 40px 0 #312e81, 0 0 0 4px #0ea5e9' : '0 0 40px 0 #a5b4fc, 0 0 0 4px #38bdf8' }}
+            className={`relative p-1 mb-8 rounded-[2.5rem] shadow-2xl bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 animate-gradient-x`}
+            style={{ boxShadow: isDarkMode ? '0 0 40px 0 #0ea5e9, 0 0 0 4px #64748b' : '0 0 40px 0 #a5b4fc, 0 0 0 4px #64748b' }}
           >
-            <div className={`${cardClasses} backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 border-0 relative overflow-hidden`}>
+            <div className={`bg-gradient-to-br from-slate-800/90 via-blue-950/90 to-indigo-900/90 ${isDarkMode ? 'border border-blue-900/60' : 'border border-blue-200/60'} backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden`}>
               {/* Floating Profile Pic */}
               <motion.div
                 whileHover={{ scale: 1.08, rotate: 2 }}
@@ -312,7 +312,7 @@ const Index = () => {
                 transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
                 className="relative"
               >
-                <div className="w-28 h-28 md:w-40 md:h-40 rounded-full bg-gradient-to-tr from-blue-400 via-fuchsia-400 to-indigo-400 p-1 animate-spin-slow shadow-xl">
+                <div className="w-28 h-28 md:w-40 md:h-40 rounded-full bg-gradient-to-tr from-blue-700 via-indigo-700 to-slate-800 p-1 animate-spin-slow shadow-xl">
                   <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-white'} flex items-center justify-center text-4xl`}>
                     <img src={dhruvProfilePic} alt="Dhruv Mendiratta" className="rounded-full w-full h-full object-cover" />
                   </div>
@@ -322,10 +322,10 @@ const Index = () => {
               {/* Info */}
               <div className="flex-1 text-left flex flex-col justify-center items-center md:items-start">
                 <div className="flex items-center space-x-4 mb-2">
-                  <h1 className={`text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-fuchsia-400 to-indigo-400 bg-clip-text text-transparent animate-gradient-x drop-shadow-lg`}>
+                  <h1 className={`text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-cyan-300 via-blue-400 to-indigo-300 bg-clip-text text-transparent animate-gradient-x drop-shadow-lg`}>
                     Dhruv Mendiratta
                   </h1>
-                  <Badge className="bg-blue-500/20 text-blue-400 border-blue-400/30 text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow">AI Engineer</Badge>
+                  <Badge className="bg-gradient-to-r from-slate-800 via-blue-900 to-indigo-900 text-cyan-300 border-blue-700/40 text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow">AI Engineer</Badge>
                 </div>
                 <p className={`text-base md:text-xl mb-4 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}
                   style={{ textShadow: isDarkMode ? '0 2px 8px #0ea5e9' : '0 2px 8px #a5b4fc' }}>
@@ -359,14 +359,15 @@ const Index = () => {
             className="relative flex justify-center items-center mb-8"
           >
             <div className="relative">
-              {/* Animated gradient background with floating shapes */}
-              <div className="absolute inset-0 z-0 rounded-2xl blur-xl opacity-80 animate-gradient-x bg-gradient-to-r from-fuchsia-500 via-blue-500 to-indigo-500" style={{ filter: 'blur(24px)' }} />
-              {/* Floating shapes */}
-              <div className="absolute left-2 top-2 w-6 h-6 rounded-full bg-pink-400/60 animate-bounce-slow" style={{ animationDelay: '0.2s' }} />
-              <div className="absolute right-2 bottom-2 w-8 h-8 rounded-full bg-blue-400/50 animate-pulse" style={{ animationDelay: '0.6s' }} />
-              <div className="absolute left-10 bottom-3 w-4 h-4 rounded-full bg-indigo-400/40 animate-spin-slow" style={{ animationDuration: '10s' }} />
-              <div className="relative z-10 px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border-2 border-white/30 flex items-center gap-3 bg-gradient-to-r from-fuchsia-600 via-blue-600 to-indigo-600 text-white animate-gradient-x">
-                <Code className="w-6 h-6 text-yellow-300 animate-spin-slow" />
+              {/* Animated code-y background with floating shapes */}
+              <div className="absolute inset-0 z-0 rounded-2xl blur-xl opacity-80 animate-gradient-x bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900" style={{ filter: 'blur(24px)' }} />
+              {/* Floating code-y shapes */}
+              <div className="absolute left-2 top-2 w-6 h-6 rounded-full bg-cyan-400/30 animate-bounce-slow" style={{ animationDelay: '0.2s' }} />
+              <div className="absolute right-2 bottom-2 w-8 h-8 rounded-full bg-blue-700/30 animate-pulse" style={{ animationDelay: '0.6s' }} />
+              <div className="absolute left-10 bottom-3 w-4 h-4 rounded-full bg-indigo-400/20 animate-spin-slow" style={{ animationDuration: '10s' }} />
+              <div className="absolute right-10 top-3 w-3 h-3 rounded-full bg-green-400/20 animate-bounce-slow" style={{ animationDelay: '1.2s' }} />
+              <div className="relative z-10 px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border-2 border-blue-800/40 flex items-center gap-3 bg-gradient-to-r from-slate-800 via-blue-900 to-indigo-900 text-cyan-200 animate-gradient-x tracking-wide" style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
+                <Code className="w-6 h-6 text-cyan-300 animate-spin-slow" />
                 Currently Debugging Life's Edge Cases
               </div>
             </div>
@@ -638,7 +639,7 @@ const Index = () => {
                           </CardDescription>
                           <div className="flex flex-wrap gap-1 md:gap-2">
                             {project.tech.map((tech, i) => (
-                              <Badge key={i} variant="secondary" className={`${isDarkMode ? 'bg-indigo-600/20 text-indigo-300 border-indigo-400/30' : 'bg-indigo-100 text-indigo-700 border-indigo-300'} text-xs px-2 py-0.5`}>
+                              <Badge key={i} variant="secondary" className={`${isDarkMode ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-400/30' : 'bg-indigo-100 text-indigo-700 border border-indigo-300'} text-xs px-2 py-0.5`}>
                                 {tech}
                               </Badge>
                             ))}
@@ -807,7 +808,7 @@ const Index = () => {
 
             <div className="flex justify-center space-x-4 md:space-x-6">
               {[
-                { icon: Linkedin, href: "https://linkedin.com/in/dhruv-mendiratta", color: "blue" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/dhruv-mendiratta-132a46255/", color: "blue" },
                 { icon: Github, href: "https://github.com/dhruvm-18", color: "slate" },
                 { icon: Mail, href: "mailto:dhruv.mendiratta4@gmail.com", color: "cyan" }
               ].map((social, index) => (
@@ -817,7 +818,7 @@ const Index = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, rotateY: 10 }}
-                  className={`p-3 md:p-4 ${isDarkMode ? `bg-gradient-to-br from-${social.color}-600/20 to-${social.color}-600/40 border-${social.color}-400/30 hover:border-${social.color}-400` : `bg-gradient-to-br from-${social.color}-100 to-${social.color}-200 border-${social.color}-300 hover:border-${social.color}-400`} rounded-full border transition-all duration-300`}
+                  className={`p-3 md:p-4 ${isDarkMode ? `bg-gradient-to-br from-${social.color}-600/20 to-${social.color}-600/40 border-${social.color}-400` : `bg-gradient-to-br from-${social.color}-100 to-${social.color}-200 border-${social.color}-300 hover:border-${social.color}-400`} rounded-full border transition-all duration-300`}
                 >
                   <social.icon className={`w-5 h-5 md:w-6 md:h-6 ${isDarkMode ? `text-${social.color}-400` : `text-${social.color}-600`}`} />
                 </motion.a>
