@@ -19,6 +19,95 @@ const Index = () => {
 
   const [showScrollTop, setShowScrollTop] = useState(false);
 
+  const [honorsTab, setHonorsTab] = useState<'awards' | 'certs'>('awards');
+
+  const [projectFilter, setProjectFilter] = useState('All');
+
+  const projects = [
+    {
+      title: "Enterprise RAG Chatbot",
+      period: "May 2025 - July 2025",
+      tech: ["LangChain", "FAISS", "Gemini APIs", "Python", "LLMs"],
+      description: "Developed an internal enterprise chatbot using Retrieval-Augmented Generation (RAG) techniques for efficient document retrieval and question answering.",
+      achievements: [
+        "Integrated vector search (FAISS) with Gemini APIs and LangChain pipelines",
+        "30% gain in response relevance through optimization",
+        "Advanced prompt engineering and document chunking"
+      ],
+      gradient: "from-purple-500 to-pink-500",
+      icon: "🤖",
+      image: "/PlaceholderRAG.jpg"
+    },
+    {
+      title: "Hybrid Stock Price Prediction",
+      period: "Jan 2025",
+      tech: ["Python", "TensorFlow", "Keras", "Pandas", "ARCH", "Matplotlib"],
+      description: "Designed a hybrid model combining LSTM (time-series) and GARCH (volatility modeling) for S&P 500 data forecasting.",
+      achievements: [
+        "Achieved R² = 0.9901, RMSE = 0.0125 prediction accuracy",
+        "Submitted findings for academic publication",
+        "Advanced feature engineering and cross-validation"
+      ],
+      gradient: "from-blue-500 to-cyan-500",
+      icon: "📈",
+      link: "https://github.com/dhruvm-18/Stock-market-model",
+      image: "/PlaceholderStock.jpg"
+    },
+    {
+      title: "Product Sentiment Analyzer",
+      period: "March 2025",
+      tech: ["FastAPI", "React", "NLTK", "PostgreSQL", "Chart.js"],
+      description: "Full-stack NLP application with custom sentiment analysis algorithm for product review classification.",
+      achievements: [
+        "Real-time review processing and analysis",
+        "Dynamic graphs and visual sentiment indicators",
+        "Keyphrase extraction for customer feedback themes"
+      ],
+      gradient: "from-green-500 to-emerald-500",
+      icon: "💭",
+      link: "https://github.com/dhruvm-18/Product-Sentiment-Analysis",
+      image: "/PlaceholderSentiment.jpg"
+    },
+    {
+      title: "Railway Ticketing Chatbot",
+      period: "May 2025",
+      tech: ["Python", "NLTK"],
+      description: "Built a rule-based chatbot simulating a train ticket booking flow using keyword mapping and intent matching.",
+      achievements: [
+        "Rule-based chatbot with keyword mapping",
+        "Text interface and input validation pipeline",
+        "Applied early NLP techniques for query classification"
+      ],
+      gradient: "from-orange-500 to-red-500",
+      icon: "🚂",
+      link: "https://github.com/dhruvm-18/TicketBookingChatbot",
+      image: "/PlaceholderRailway.jpg"
+    }
+  ];
+
+  const projectCategories = [
+    'All',
+    ...Array.from(new Set(projects.flatMap(p =>
+      p.tech.some(t => ['React', 'FastAPI', 'Node.js'].includes(t)) ? ['Full-Stack Development'] : []
+    ).concat(
+      projects.flatMap(p =>
+        p.tech.some(t => ['TensorFlow', 'Keras', 'Pandas', 'NLTK', 'Chart.js', 'Data Analysis'].includes(t)) ? ['Data Analysis & ML'] : []
+      )
+    )))
+  ];
+
+  const filteredProjects = projectFilter === 'All'
+    ? projects
+    : projects.filter(p => {
+        if (projectFilter === 'Full-Stack Development') {
+          return p.tech.some(t => ['React', 'FastAPI', 'Node.js'].includes(t));
+        }
+        if (projectFilter === 'Data Analysis & ML') {
+          return p.tech.some(t => ['TensorFlow', 'Keras', 'Pandas', 'NLTK', 'Chart.js', 'Data Analysis'].includes(t));
+        }
+        return false;
+      });
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -81,64 +170,6 @@ const Index = () => {
     }
   ];
 
-  const projects = [
-    {
-      title: "Enterprise RAG Chatbot",
-      period: "May 2025 - July 2025",
-      tech: ["LangChain", "FAISS", "Gemini APIs", "Python", "LLMs"],
-      description: "Developed an internal enterprise chatbot using Retrieval-Augmented Generation (RAG) techniques for efficient document retrieval and question answering.",
-      achievements: [
-        "Integrated vector search (FAISS) with Gemini APIs and LangChain pipelines",
-        "30% gain in response relevance through optimization",
-        "Advanced prompt engineering and document chunking"
-      ],
-      gradient: "from-purple-500 to-pink-500",
-      icon: "🤖"
-    },
-    {
-      title: "Hybrid Stock Price Prediction",
-      period: "Jan 2025",
-      tech: ["Python", "TensorFlow", "Keras", "Pandas", "ARCH", "Matplotlib"],
-      description: "Designed a hybrid model combining LSTM (time-series) and GARCH (volatility modeling) for S&P 500 data forecasting.",
-      achievements: [
-        "Achieved R² = 0.9901, RMSE = 0.0125 prediction accuracy",
-        "Submitted findings for academic publication",
-        "Advanced feature engineering and cross-validation"
-      ],
-      gradient: "from-blue-500 to-cyan-500",
-      icon: "📈",
-      link: "https://github.com/dhruvm-18/Stock-market-model"
-    },
-    {
-      title: "Product Sentiment Analyzer",
-      period: "March 2025",
-      tech: ["FastAPI", "React", "NLTK", "PostgreSQL", "Chart.js"],
-      description: "Full-stack NLP application with custom sentiment analysis algorithm for product review classification.",
-      achievements: [
-        "Real-time review processing and analysis",
-        "Dynamic graphs and visual sentiment indicators",
-        "Keyphrase extraction for customer feedback themes"
-      ],
-      gradient: "from-green-500 to-emerald-500",
-      icon: "💭",
-      link: "https://github.com/dhruvm-18/Product-Sentiment-Analysis"
-    },
-    {
-      title: "Railway Ticketing Chatbot",
-      period: "May 2025",
-      tech: ["Python", "NLTK"],
-      description: "Built a rule-based chatbot simulating a train ticket booking flow using keyword mapping and intent matching.",
-      achievements: [
-        "Rule-based chatbot with keyword mapping",
-        "Text interface and input validation pipeline",
-        "Applied early NLP techniques for query classification"
-      ],
-      gradient: "from-orange-500 to-red-500",
-      icon: "🚂",
-      link: "https://github.com/dhruvm-18/TicketBookingChatbot"
-    }
-  ];
-
   const skillGroups = [
     { category: "Programming", icon: "💻", skills: ["Python", "C", "JavaScript", "SQL"] },
     { category: "Frontend", icon: "🌐", skills: ["HTML/CSS", "React"] },
@@ -168,6 +199,33 @@ const Index = () => {
       venue: "Cuestiones de Fisioterapia Journal",
       description: "Comprehensive review of AI applications in healthcare diagnostics"
     }
+  ];
+
+  const certifications = [
+    {
+      icon: CheckCircle,
+      title: 'AWS Academy Graduate – AWS Academy Cloud Foundations',
+      desc: 'Credentialed by Amazon Web Services Academy for foundational cloud skills',
+      color: 'emerald',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Google Data Analytics Professional Certificate',
+      desc: 'Completed Googles 8-course program on data analytics and visualization',
+      color: 'blue',
+    },
+    {
+      icon: CheckCircle,
+      title: 'DeepLearning.AI – Generative AI with LLMs',
+      desc: 'Completed DeepLearning.AIs specialization on LLMs and prompt engineering',
+      color: 'indigo',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Microsoft Certified: Azure AI Fundamentals',
+      desc: 'Credentialed by Microsoft for foundational AI and cloud skills',
+      color: 'cyan',
+    },
   ];
 
   const themeClasses = isDarkMode 
@@ -670,48 +728,59 @@ const Index = () => {
             <p className={`text-base md:text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-400'}`}>Here are some of my projects spanning full-stack development, data analysis, and cloud computing.</p>
           </motion.div>
           <div className="flex flex-wrap gap-4 justify-center mb-8">
-            {/* Example filter buttons, can be made functional later */}
-            <button className="px-4 py-2 rounded-full font-semibold bg-blue-500 text-white shadow hover:bg-blue-600 transition">All</button>
-            <button className="px-4 py-2 rounded-full font-semibold bg-slate-800 text-white shadow hover:bg-slate-900 transition">Full-Stack Development</button>
-            <button className="px-4 py-2 rounded-full font-semibold bg-slate-800 text-white shadow hover:bg-slate-900 transition">Data Analysis & ML</button>
-            <button className="px-4 py-2 rounded-full font-semibold bg-slate-800 text-white shadow hover:bg-slate-900 transition">DevOps & Cloud Computing</button>
+            {projectCategories.map(cat => (
+              <button
+                key={cat}
+                className={`px-4 py-2 rounded-full font-semibold shadow transition ${projectFilter === cat ? 'bg-blue-500 text-white' : isDarkMode ? 'bg-slate-800 text-white hover:bg-slate-900' : 'bg-blue-100 text-blue-700 hover:bg-blue-200'}`}
+                onClick={() => setProjectFilter(cat)}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
-          <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
+          <div className="grid md:grid-cols-2 gap-8">
+            {filteredProjects.map((project, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ scale: 1.03, boxShadow: '0 8px 32px 0 rgba(0,0,0,0.25)' }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-900/90 border border-slate-700 group flex flex-col"
+                className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700 bg-gradient-to-b from-yellow-50 to-slate-900/90 group flex flex-col"
               >
-                {/* Project Image or Placeholder */}
-                <div className="h-48 w-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                  {/* If you have images, use <img src={project.image} ... /> here */}
-                  <span className="text-5xl">{project.icon}</span>
+                {/* Top: Light area */}
+                <div className="p-6 bg-yellow-50 dark:bg-slate-800 flex flex-col md:flex-row items-center gap-4 relative">
+                  <div className="flex-1">
+                    <div className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white mb-1">{project.title}</div>
+                    <div className="text-base font-medium text-slate-700 dark:text-slate-300 mb-2">{project.period}</div>
+                    <div className="flex gap-2 mb-3">
+                      {project.tech.slice(0, 4).map((tech, i) => (
+                        <span key={i} className="inline-block bg-slate-200 dark:bg-slate-700 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full text-xs font-semibold border border-blue-200 dark:border-blue-700">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Illustration/Placeholder */}
+                  <div className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
+                    {project.image ? (
+                      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-6xl md:text-7xl">{project.icon}</span>
+                    )}
+                  </div>
                 </div>
-                <div className="flex-1 flex flex-col p-5">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-bold text-xl text-white group-hover:text-blue-400 transition">{project.title}</h3>
+                {/* Bottom: Dark area */}
+                <div className="flex-1 flex flex-col justify-between bg-slate-900 p-6">
+                  <div>
+                    <div className="text-lg font-bold text-white mb-2">{project.title}</div>
+                    <div className="text-slate-300 text-sm mb-3">{project.description}</div>
+                  </div>
+                  <div className="flex justify-end items-center mt-2">
                     {project.link && (
                       <a href={project.link} target="_blank" rel="noopener noreferrer" className="ml-2">
                         <Github className="w-7 h-7 text-gray-200 hover:text-white bg-slate-800 rounded-full p-1 border-2 border-gray-700 transition" style={{ boxShadow: '0 2px 8px #24292f55' }} />
                       </a>
                     )}
                   </div>
-                  <div className="text-sm text-slate-300 mb-2">{project.period}</div>
-                  <div className="flex flex-wrap gap-1 mb-3">
-                    {project.tech.map((tech, i) => (
-                      <span key={i} className="bg-slate-800 text-blue-300 px-2 py-0.5 rounded-full text-xs font-semibold border border-blue-700">{tech}</span>
-                    ))}
-                  </div>
-                  <div className="text-slate-400 text-sm mb-3 flex-1">{project.description}</div>
-                  <ul className="text-xs text-slate-400 space-y-1 mb-2">
-                    {project.achievements.map((ach, i) => (
-                      <li key={i} className="flex items-start"><Award className="w-3 h-3 mr-2 mt-0.5 text-emerald-400" />{ach}</li>
-                    ))}
-                  </ul>
                 </div>
               </motion.div>
             ))}
@@ -761,56 +830,69 @@ const Index = () => {
       {/* Honors & Awards and Certifications Section */}
       <section id="honors" className="py-16 px-4 sm:px-6 md:py-20">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Honors & Awards</h2>
-            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
-                </div>
+          <div className="flex items-center justify-between mb-12 md:mb-16">
+            <div className="text-center w-full">
+              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Honors & Awards</h2>
+              <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
+            </div>
+            <div className="absolute right-0 top-0 flex gap-2">
+              <button
+                className={`px-4 py-2 rounded-full font-semibold text-sm shadow transition ${honorsTab === 'awards' ? 'bg-blue-500 text-white' : 'bg-slate-200 text-blue-700 dark:bg-slate-800 dark:text-blue-300'}`}
+                onClick={() => setHonorsTab('awards')}
+              >
+                Honors
+              </button>
+              <button
+                className={`px-4 py-2 rounded-full font-semibold text-sm shadow transition ${honorsTab === 'certs' ? 'bg-blue-500 text-white' : 'bg-slate-200 text-blue-700 dark:bg-slate-800 dark:text-blue-300'}`}
+                onClick={() => setHonorsTab('certs')}
+              >
+                Certifications
+              </button>
+            </div>
+          </div>
           <div className="grid sm:grid-cols-2 gap-6 md:gap-8 mb-12">
-            {/* Individual Award Tiles */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.05, y: -6 }}
-              transition={{ duration: 0.5 }}
-              className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}
-            >
-              <Award className={`w-8 h-8 ${isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}`} />
-              <div className="font-semibold text-lg md:text-xl">Student Excellence Award</div>
-              <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Given for outstanding internship performance and publishing a journal research paper at Manipal University Jaipur</div>
-              </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.05, y: -6 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}
-            >
-              <Zap className={`w-8 h-8 ${isDarkMode ? 'text-pink-300' : 'text-pink-500'}`} />
-              <div className="font-semibold text-lg md:text-xl">HACKX Hackathon – Round 2 Finalist (2024)</div>
-              <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Advanced to the final round of a university-level hackathon hosted by Manipal University Jaipur</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.05, y: -6 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}
-            >
-              <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-blue-300' : 'text-blue-500'}`} />
-              <div className="font-semibold text-lg md:text-xl">Paper Presentation – CML 2025, Sikkim Manipal University</div>
-              <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented a paper on Skin Disease Detection using Deep Learning</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.05, y: -6 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}
-            >
-              <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-500'}`} />
-              <div className="font-semibold text-lg md:text-xl">Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
-              <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented research on hybrid stock forecasting using BiLSTM-GRU models</div>
-            </motion.div>
+            {honorsTab === 'awards' ? (
+              <>
+                {/* Individual Award Tiles */}
+                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
+                  <Award className={`w-8 h-8 ${isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}`} />
+                  <div className="font-semibold text-lg md:text-xl">Student Excellence Award</div>
+                  <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Given for outstanding internship performance and publishing a journal research paper at Manipal University Jaipur</div>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5, delay: 0.1 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
+                  <Zap className={`w-8 h-8 ${isDarkMode ? 'text-pink-300' : 'text-pink-500'}`} />
+                  <div className="font-semibold text-lg md:text-xl">HACKX Hackathon – Round 2 Finalist (2024)</div>
+                  <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Advanced to the final round of a university-level hackathon hosted by Manipal University Jaipur</div>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5, delay: 0.2 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
+                  <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-blue-300' : 'text-blue-500'}`} />
+                  <div className="font-semibold text-lg md:text-xl">Paper Presentation – CML 2025, Sikkim Manipal University</div>
+                  <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented a paper on Skin Disease Detection using Deep Learning</div>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5, delay: 0.3 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
+                  <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-500'}`} />
+                  <div className="font-semibold text-lg md:text-xl">Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
+                  <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented research on hybrid stock forecasting using BiLSTM-GRU models</div>
+                </motion.div>
+              </>
+            ) : (
+              <>
+                {certifications.map((cert, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.05, y: -6 }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}
+                  >
+                    <cert.icon className={`w-8 h-8 ${isDarkMode ? `text-${cert.color}-300` : `text-${cert.color}-500`}`} />
+                    <div className="font-semibold text-lg md:text-xl">{cert.title}</div>
+                    <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{cert.desc}</div>
+                  </motion.div>
+                ))}
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -861,7 +943,7 @@ const Index = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, rotateY: 10 }}
-                  className={`p-3 md:p-4 ${isDarkMode ? `bg-gradient-to-br from-${social.color}-600/20 to-${social.color}-600/40 border-${social.color}-400` : `bg-gradient-to-br from-${social.color}-100 to-${social.color}-200 border-${social.color}-300 hover:border-${social.color}-400`} rounded-full border transition-all duration-300`}
+                  className={`p-3 md:p-4 ${isDarkMode ? `bg-gradient-to-br from-${social.color}-600/20 to-${social.color}-600/40 border-${social.color}-400` : `bg-gradient-to-br from-${social.color}-100 to-${social.color}-200 border-${social.color}-300`} rounded-full border transition-all duration-300`}
                 >
                   <social.icon className={`w-5 h-5 md:w-6 md:h-6 ${isDarkMode ? `text-${social.color}-400` : `text-${social.color}-600`}`} />
                 </motion.a>
