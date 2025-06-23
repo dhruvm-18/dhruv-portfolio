@@ -8,7 +8,7 @@ import { Switch } from '@/components/ui/switch';
 import dhruvProfilePic from '/dhruv.jpeg';
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState('home');
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -187,6 +187,31 @@ const Index = () => {
     ? "bg-slate-800/80 border-slate-600/50"
     : "bg-white/80 border-blue-200/50";
 
+  // --- Scrollspy logic ---
+  useEffect(() => {
+    const sectionIds = [
+      'home', 'about', 'experience', 'education', 'projects', 'skills', 'honors', 'contact'
+    ];
+    const handleScroll = () => {
+      let found = false;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 80) { // 80px for nav height
+            setActiveSection(sectionIds[i]);
+            found = true;
+            break;
+          }
+        }
+      }
+      if (!found) setActiveSection('home');
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div ref={containerRef} className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden`}>
       {/* Floating Navigation - Desktop */}
@@ -197,15 +222,29 @@ const Index = () => {
         transition={{ delay: 1 }}
       >
         <div className="flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4">
-          {['Hero', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
+          {['Home', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
             <button
               key={item}
               onClick={() => scrollToSection(item.toLowerCase())}
-              className={`text-xs md:text-sm font-medium px-3 py-1.5 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
-                isDarkMode ? 'text-slate-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
-              }`}
+              className={`group relative text-xs md:text-sm font-medium px-3 py-1.5 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400
+                ${isDarkMode ? 'text-slate-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'}
+              `}
+              style={{ overflow: 'hidden' }}
             >
-              {item}
+              <span>{item}</span>
+              <span
+                className={`absolute left-0 bottom-0 h-0.5 w-full transition-all duration-300
+                  ${activeSection === item.toLowerCase() ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') : 'bg-transparent'}
+                `}
+                style={{
+                  transform: activeSection === item.toLowerCase() ? 'scaleX(1)' : 'scaleX(0)',
+                  transformOrigin: 'left',
+                }}
+              />
+              <span
+                className="absolute left-0 bottom-0 h-0.5 w-full bg-blue-400/60 dark:bg-blue-600/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                style={{ transformOrigin: 'left' }}
+              />
             </button>
           ))}
           <div className="flex items-center space-x-1 md:space-x-2 ml-2 pl-2 border-l border-slate-400/30">
@@ -241,7 +280,7 @@ const Index = () => {
               </Button>
             </div>
             <div className="flex flex-col items-center justify-center h-full gap-6 -mt-16">
-              {['Hero', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
+              {['Home', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -265,7 +304,7 @@ const Index = () => {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-24 md:pt-28 px-2 md:px-0">
+      <section id="home" className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-24 md:pt-28 px-2 md:px-0">
         <div className="w-full max-w-6xl mx-auto px-6 mb-2 md:mb-4">
           <h1 className={`text-4xl md:text-6xl font-extrabold ${isDarkMode ? 'text-white' : 'text-gray-900'} text-left drop-shadow-lg`} style={{letterSpacing: '0.01em'}}>
             Hey it's,
@@ -758,7 +797,7 @@ const Index = () => {
                   <Award className={`w-6 h-6 flex-shrink-0 ${isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}`} />
                   <div>
                     <div className="font-semibold text-base md:text-lg">Student Excellence Award</div>
-                    <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Recognized for overall academic and technical performance in the 5th semester at Manipal University Jaipur</div>
+                    <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Given for outstanding internship performance and publishing a journal research paper at Manipal University Jaipur</div>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
@@ -871,6 +910,26 @@ const Index = () => {
               ))}
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Map Section at the bottom */}
+      <section className="py-12 px-4 sm:px-6 md:py-16 bg-transparent">
+        <div className="max-w-2xl mx-auto text-center mb-6">
+          <h3 className={`text-2xl md:text-3xl font-bold mb-2 ${isDarkMode ? 'text-blue-300' : 'text-blue-700'}`}>My Location</h3>
+          <p className={`text-base md:text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Delhi, India</p>
+        </div>
+        <div className="flex justify-center">
+          <iframe
+            title="Delhi Map"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=76.83715820312501%2C28.38081818087789%2C77.38952636718751%2C28.8831596093235&amp;layer=mapnik&amp;marker=28.6139%2C77.2090"
+            width="400"
+            height="300"
+            className="rounded-2xl border-2 border-blue-200 shadow-lg"
+            style={{ minWidth: '300px', minHeight: '200px', border: 0 }}
+            allowFullScreen
+            loading="lazy"
+          ></iframe>
         </div>
       </section>
 
