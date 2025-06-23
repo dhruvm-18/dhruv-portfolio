@@ -476,16 +476,16 @@ const Index = () => {
           ))}
           {/* Animated code snippets background */}
           {[
-            { code: `const ragResponse = await llm.query({ context: faiss.search(query) })`, color: 'from-cyan-400 to-blue-400' },
-            { code: `def predict_stock(data):\n    model = LSTMGRU()\n    return model.predict(data)`, color: 'from-emerald-400 to-teal-400' },
-            { code: `app.get('/api/projects', (req, res) => res.json(projects))`, color: 'from-indigo-400 to-purple-400' },
-            { code: `const embeddings = langchain.embed(docs)`, color: 'from-pink-400 to-fuchsia-400' },
-            { code: `if (accuracy > 0.99) {\n  publish('Research Paper')\n}`, color: 'from-yellow-400 to-orange-400' },
-            { code: `const sentiment = analyzeReview(text)`, color: 'from-blue-400 to-cyan-400' },
-            { code: `# FastAPI endpoint\n@app.post('/analyze')\ndef analyze(data: Review): ...`, color: 'from-teal-400 to-emerald-400' },
-            { code: `vectorStore.addDocuments(docs, { chunkSize: 512 })`, color: 'from-purple-400 to-indigo-400' },
-            { code: `const resume = await fetch('/Dhruv_Mendiratta_Detailed_Resume.pdf')`, color: 'from-orange-400 to-yellow-400' },
-            { code: `const chatbot = new RAGChatbot({ llm, retriever })`, color: 'from-fuchsia-400 to-pink-400' },
+            { code: `const ragResponse = await llm.query({ context: faiss.search(query) })`, color: 'from-cyan-500 to-blue-500' },
+            { code: `def predict_stock(data):\n    model = LSTMGRU()\n    return model.predict(data)`, color: 'from-emerald-500 to-teal-500' },
+            { code: `app.get('/api/projects', (req, res) => res.json(projects))`, color: 'from-indigo-500 to-purple-500' },
+            { code: `const embeddings = langchain.embed(docs)`, color: 'from-pink-500 to-fuchsia-500' },
+            { code: `if (accuracy > 0.99) {\n  publish('Research Paper')\n}`, color: 'from-yellow-500 to-orange-500' },
+            { code: `const sentiment = analyzeReview(text)`, color: 'from-blue-500 to-cyan-500' },
+            { code: `# FastAPI endpoint\n@app.post('/analyze')\ndef analyze(data: Review): ...`, color: 'from-teal-500 to-emerald-500' },
+            { code: `vectorStore.addDocuments(docs, { chunkSize: 512 })`, color: 'from-purple-500 to-indigo-500' },
+            { code: `const resume = await fetch('/Dhruv_Mendiratta_Detailed_Resume.pdf')`, color: 'from-orange-500 to-yellow-500' },
+            { code: `const chatbot = new RAGChatbot({ llm, retriever })`, color: 'from-fuchsia-500 to-pink-500' },
           ].map((snippet, idx, arr) => {
             // Grid: 3 columns
             const columns = 3;
@@ -496,11 +496,10 @@ const Index = () => {
             return (
               <pre
                 key={idx}
-                className={`pointer-events-none select-none whitespace-pre text-xs md:text-sm font-mono font-semibold absolute 
-                  bg-clip-text text-transparent 
+                className={`pointer-events-none select-none whitespace-pre text-xs md:text-sm font-mono font-semibold absolute bg-clip-text text-transparent 
                   ${isDarkMode 
-                    ? `bg-gradient-to-r ${snippet.color} opacity-30` 
-                    : `bg-gradient-to-r ${snippet.color.replace('400', '300')} opacity-20`}
+                    ? `bg-gradient-to-r ${snippet.color} opacity-25 drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]` 
+                    : `bg-gradient-to-r from-gray-400 to-gray-200 opacity-15 drop-shadow-[0_1px_2px_rgba(0,0,0,0.10)]`}
                 `}
                 style={{
                   left: `${left}%`,
@@ -522,7 +521,7 @@ const Index = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className={`relative p-1 mb-8 rounded-[2.5rem] shadow-2xl animate-gradient-x ${isDarkMode ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900' : 'bg-gradient-to-br from-blue-100 via-sky-100 to-indigo-100'}`}
+            className={`relative p-1 mb-4 rounded-[2.5rem] shadow-2xl animate-gradient-x ${isDarkMode ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900' : 'bg-gradient-to-br from-blue-100 via-sky-100 to-indigo-100'}`}
             style={{ boxShadow: isDarkMode ? '0 0 40px 0 #0ea5e9, 0 0 0 4px #64748b' : undefined }}
           >
             <div className={`backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden border ${isDarkMode ? 'bg-gradient-to-br from-slate-800/90 via-blue-950/90 to-indigo-900/90 border-blue-900/60' : 'bg-gradient-to-br from-white via-blue-100 to-indigo-100 border-blue-200/60'}`}>
@@ -534,7 +533,6 @@ const Index = () => {
                   </div>
                 </div>
               </div>
-              
               {/* Info */}
               <div className="flex-1 text-left flex flex-col justify-center items-center md:items-start">
                 <div className="flex items-center space-x-4 mb-2">
@@ -543,56 +541,45 @@ const Index = () => {
                   </h1>
                   <Badge className={`bg-gradient-to-r ${isDarkMode ? 'from-slate-800 via-blue-900 to-indigo-900 text-cyan-300 border-blue-700/40' : 'from-blue-100 via-indigo-100 to-cyan-100 text-blue-700 border-blue-300'} text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow`}>AI Engineer</Badge>
                 </div>
-                <p className={`text-base md:text-xl mb-4 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>
-                  LLMs & RAG Systems | Full-Stack Developer
-                </p>
+                <p className={`text-base md:text-xl mb-4 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>LLMs & RAG Systems | Full-Stack Developer</p>
                 <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 text-sm md:text-base">
                   <span className={`flex items-center font-semibold ${isDarkMode ? 'text-green-400' : 'text-green-600'}`}> <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div> Available for work </span>
                   <span className={`${isDarkMode ? 'text-slate-400' : 'text-gray-500'} font-semibold`}>🕐 Delhi, India (IST)</span>
                 </div>
+                {/* Modern, neutral buttons */}
                 <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-6">
-                  <Button asChild className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white rounded-full">
+                  <Button asChild className={`rounded-full px-6 py-2 font-semibold ${isDarkMode ? 'bg-slate-700 hover:bg-slate-600 text-white' : 'bg-slate-200 hover:bg-slate-300 text-blue-900'} transition`}>
                     <a href="mailto:dhruv.mendiratta4@gmail.com">
-                <Mail className="w-4 h-4 mr-2" />
-                Hire Me
+                      <Mail className="w-4 h-4 mr-2" />
+                      Hire Me
                     </a>
-              </Button>
-                  <Button asChild variant="outline" className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white border-emerald-500 hover:border-emerald-600 rounded-full">
+                  </Button>
+                  <Button asChild variant="outline" className={`rounded-full px-6 py-2 font-semibold border ${isDarkMode ? 'border-blue-700 text-blue-200 hover:bg-blue-900/10' : 'border-blue-300 text-blue-700 hover:bg-blue-100'} transition`}>
                     <a href="/Dhruv_Mendiratta_Detailed_Resume.pdf" target="_blank" rel="noopener noreferrer">
                       <Eye className="w-4 h-4 mr-2" />
                       View Detailed Resume
                     </a>
                   </Button>
-                  <Button asChild variant="outline" className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-cyan-500 hover:border-cyan-600 rounded-full">
+                  <Button asChild variant="outline" className={`rounded-full px-6 py-2 font-semibold border ${isDarkMode ? 'border-cyan-700 text-cyan-200 hover:bg-cyan-900/10' : 'border-cyan-300 text-cyan-700 hover:bg-cyan-100'} transition`}>
                     <a href="/Dhruv_Mendiratta_1page_Resume.pdf" target="_blank" rel="noopener noreferrer">
                       <FileText className="w-4 h-4 mr-2" />
                       View ATS Friendly Resume
                     </a>
-              </Button>
+                  </Button>
                 </div>
               </div>
             </div>
           </motion.div>
-
-          {/* Animated Status Badge Below Tile */}
+          {/* Unified Status Card below profile card */}
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 1.1, type: 'spring', stiffness: 180 }}
-            className="relative flex justify-center items-center mb-8"
+            className={`relative flex justify-center items-center mb-8 max-w-2xl mx-auto`}
           >
-            <div className="relative">
-              {/* Animated code-y background with floating shapes, light/dark adaptive */}
-              <div className={`absolute inset-0 z-0 rounded-2xl blur-xl opacity-80 animate-gradient-x ${isDarkMode ? 'bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900' : 'bg-gradient-to-r from-blue-100 via-indigo-100 to-cyan-100'}`} style={{ filter: 'blur(24px)' }} />
-              {/* Floating code-y shapes */}
-              <div className={`absolute left-2 top-2 w-6 h-6 rounded-full ${isDarkMode ? 'bg-cyan-400/30' : 'bg-blue-200/40'} animate-bounce-slow`} style={{ animationDelay: '0.2s' }} />
-              <div className={`absolute right-2 bottom-2 w-8 h-8 rounded-full ${isDarkMode ? 'bg-blue-700/30' : 'bg-cyan-200/40'} animate-pulse`} style={{ animationDelay: '0.6s' }} />
-              <div className={`absolute left-10 bottom-3 w-4 h-4 rounded-full ${isDarkMode ? 'bg-indigo-400/20' : 'bg-indigo-200/30'} animate-spin-slow`} style={{ animationDuration: '10s' }} />
-              <div className={`absolute right-10 top-3 w-3 h-3 rounded-full ${isDarkMode ? 'bg-green-400/20' : 'bg-green-200/30'} animate-bounce-slow`} style={{ animationDelay: '1.2s' }} />
-              <div className={`relative z-10 px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border-2 ${isDarkMode ? 'border-blue-800/40 bg-gradient-to-r from-slate-800 via-blue-900 to-indigo-900 text-cyan-200' : 'border-blue-200/60 bg-gradient-to-r from-white via-blue-100 to-cyan-100 text-blue-700'} animate-gradient-x tracking-wide`} style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
-                <Code className={`w-6 h-6 animate-spin-slow ${isDarkMode ? 'text-cyan-300' : 'text-blue-500'}`} />
-                Currently Debugging Life's Edge Cases
-              </div>
+            <div className={`relative w-full px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border-2 ${isDarkMode ? 'border-blue-800/40 bg-gradient-to-r from-slate-800 via-blue-900 to-indigo-900 text-cyan-200' : 'border-blue-200/60 bg-gradient-to-r from-white via-blue-100 to-cyan-100 text-blue-700'} animate-gradient-x tracking-wide`} style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
+              <Code className={`w-6 h-6 inline-block mr-2 align-middle animate-spin-slow ${isDarkMode ? 'text-cyan-300' : 'text-blue-500'}`} />
+              Currently Debugging Life's Edge Cases
             </div>
           </motion.div>
         </div>
