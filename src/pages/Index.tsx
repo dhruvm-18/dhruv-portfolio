@@ -476,28 +476,32 @@ const Index = () => {
           ))}
           {/* Animated code snippets background */}
           {[
-            `const ragResponse = await llm.query({ context: faiss.search(query) })`,
-            `def predict_stock(data):\n    model = LSTMGRU()\n    return model.predict(data)` ,
-            `app.get('/api/projects', (req, res) => res.json(projects))`,
-            `const embeddings = langchain.embed(docs)`,
-            `if (accuracy > 0.99) {\n  publish('Research Paper')\n}`,
-            `const sentiment = analyzeReview(text)`,
-            `# FastAPI endpoint\n@app.post('/analyze')\ndef analyze(data: Review): ...`,
-            `vectorStore.addDocuments(docs, { chunkSize: 512 })`,
-            `const resume = await fetch('/Dhruv_Mendiratta_Detailed_Resume.pdf')`,
-            `const chatbot = new RAGChatbot({ llm, retriever })`,
+            { code: `const ragResponse = await llm.query({ context: faiss.search(query) })`, color: 'from-cyan-400 to-blue-400' },
+            { code: `def predict_stock(data):\n    model = LSTMGRU()\n    return model.predict(data)`, color: 'from-emerald-400 to-teal-400' },
+            { code: `app.get('/api/projects', (req, res) => res.json(projects))`, color: 'from-indigo-400 to-purple-400' },
+            { code: `const embeddings = langchain.embed(docs)`, color: 'from-pink-400 to-fuchsia-400' },
+            { code: `if (accuracy > 0.99) {\n  publish('Research Paper')\n}`, color: 'from-yellow-400 to-orange-400' },
+            { code: `const sentiment = analyzeReview(text)`, color: 'from-blue-400 to-cyan-400' },
+            { code: `# FastAPI endpoint\n@app.post('/analyze')\ndef analyze(data: Review): ...`, color: 'from-teal-400 to-emerald-400' },
+            { code: `vectorStore.addDocuments(docs, { chunkSize: 512 })`, color: 'from-purple-400 to-indigo-400' },
+            { code: `const resume = await fetch('/Dhruv_Mendiratta_Detailed_Resume.pdf')`, color: 'from-orange-400 to-yellow-400' },
+            { code: `const chatbot = new RAGChatbot({ llm, retriever })`, color: 'from-fuchsia-400 to-pink-400' },
           ].map((snippet, idx, arr) => {
-            // Distribute in a grid, avoid overlap
+            // Grid: 3 columns
             const columns = 3;
-            const rows = Math.ceil(arr.length / columns);
             const col = idx % columns;
             const row = Math.floor(idx / columns);
             const left = 8 + col * 30; // percent
             const top = 10 + row * 22; // percent
             return (
-              <motion.pre
+              <pre
                 key={idx}
-                className={`pointer-events-none select-none whitespace-pre text-xs md:text-sm font-mono font-semibold absolute ${isDarkMode ? 'text-cyan-200 opacity-20' : 'text-blue-900 opacity-10'}`}
+                className={`pointer-events-none select-none whitespace-pre text-xs md:text-sm font-mono font-semibold absolute 
+                  bg-clip-text text-transparent 
+                  ${isDarkMode 
+                    ? `bg-gradient-to-r ${snippet.color} opacity-30` 
+                    : `bg-gradient-to-r ${snippet.color.replace('400', '300')} opacity-20`}
+                `}
                 style={{
                   left: `${left}%`,
                   top: `${top}%`,
@@ -505,12 +509,9 @@ const Index = () => {
                   zIndex: 1,
                   filter: isDarkMode ? 'none' : 'blur(0.5px)',
                 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: [0.10, 0.22, 0.10], y: [20, 0, 20] }}
-                transition={{ duration: 7 + idx, repeat: Infinity, repeatType: 'reverse', delay: idx * 0.7 }}
               >
-                {snippet}
-              </motion.pre>
+                {snippet.code}
+              </pre>
             );
           })}
         </motion.div>
@@ -526,18 +527,13 @@ const Index = () => {
           >
             <div className={`backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden border ${isDarkMode ? 'bg-gradient-to-br from-slate-800/90 via-blue-950/90 to-indigo-900/90 border-blue-900/60' : 'bg-gradient-to-br from-white via-blue-100 to-indigo-100 border-blue-200/60'}`}>
               {/* Floating Profile Pic */}
-              <motion.div
-                whileHover={{ scale: 1.08, rotate: 2 }}
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
-                className="relative"
-              >
+              <div className="relative">
                 <div className={`w-28 h-28 md:w-40 md:h-40 rounded-full p-1 animate-spin-slow shadow-xl ${isDarkMode ? 'bg-gradient-to-tr from-blue-700 via-indigo-700 to-slate-800' : 'bg-gradient-to-tr from-blue-200 via-indigo-200 to-white'}` }>
                   <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-white'} flex items-center justify-center text-4xl`}>
                     <img src={dhruvProfilePic} alt="Dhruv Mendiratta" className="rounded-full w-full h-full object-cover" />
                   </div>
                 </div>
-              </motion.div>
+              </div>
               
               {/* Info */}
               <div className="flex-1 text-left flex flex-col justify-center items-center md:items-start">
