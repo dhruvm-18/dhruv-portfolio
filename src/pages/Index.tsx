@@ -548,19 +548,19 @@ const Index = () => {
                 </div>
                 {/* Modern, neutral buttons */}
                 <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-6">
-                  <Button asChild className={`rounded-full px-6 py-2 font-semibold ${isDarkMode ? 'bg-slate-700 hover:bg-slate-600 text-white' : 'bg-slate-200 hover:bg-slate-300 text-blue-900'} transition`}>
+                  <Button asChild className={`rounded-full px-6 py-2 font-semibold ${isDarkMode ? 'bg-blue-700 hover:bg-blue-600 text-white' : 'bg-slate-200 hover:bg-slate-300 text-blue-900'} transition`}>
                     <a href="mailto:dhruv.mendiratta4@gmail.com">
                       <Mail className="w-4 h-4 mr-2" />
                       Hire Me
                     </a>
                   </Button>
-                  <Button asChild variant="outline" className={`rounded-full px-6 py-2 font-semibold border ${isDarkMode ? 'border-blue-700 text-blue-200 hover:bg-blue-900/10' : 'border-blue-300 text-blue-700 hover:bg-blue-100'} transition`}>
+                  <Button asChild className={`rounded-full px-6 py-2 font-semibold transition border ${isDarkMode ? 'bg-blue-900 hover:bg-blue-800 text-blue-100 border-blue-800' : 'border-blue-300 text-blue-700 hover:bg-blue-100 bg-white'} `}>
                     <a href="/Dhruv_Mendiratta_Detailed_Resume.pdf" target="_blank" rel="noopener noreferrer">
                       <Eye className="w-4 h-4 mr-2" />
                       View Detailed Resume
                     </a>
                   </Button>
-                  <Button asChild variant="outline" className={`rounded-full px-6 py-2 font-semibold border ${isDarkMode ? 'border-cyan-700 text-cyan-200 hover:bg-cyan-900/10' : 'border-cyan-300 text-cyan-700 hover:bg-cyan-100'} transition`}>
+                  <Button asChild className={`rounded-full px-6 py-2 font-semibold transition border ${isDarkMode ? 'bg-cyan-900 hover:bg-cyan-800 text-cyan-100 border-cyan-800' : 'border-cyan-300 text-cyan-700 hover:bg-cyan-100 bg-white'} `}>
                     <a href="/Dhruv_Mendiratta_1page_Resume.pdf" target="_blank" rel="noopener noreferrer">
                       <FileText className="w-4 h-4 mr-2" />
                       View ATS Friendly Resume
