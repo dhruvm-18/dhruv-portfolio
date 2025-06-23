@@ -19,7 +19,9 @@ const Index = () => {
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
     setIsMobileMenuOpen(false);
   };
 
@@ -212,8 +214,17 @@ const Index = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+    document.body.style.scrollBehavior = 'smooth';
+    return () => {
+      document.documentElement.style.scrollBehavior = '';
+      document.body.style.scrollBehavior = '';
+    };
+  }, []);
+
   return (
-    <div ref={containerRef} className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden`}>
+    <div ref={containerRef} className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden scroll-smooth`}>
       {/* Floating Navigation - Desktop */}
       <motion.nav 
         className={`fixed top-0 left-0 right-0 z-50 hidden md:flex justify-center items-center backdrop-blur-md ${navClasses} py-3 border-b shadow-lg`}
