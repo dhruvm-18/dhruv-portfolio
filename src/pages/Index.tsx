@@ -88,11 +88,11 @@ const Index = () => {
   const projectCategories = [
     'All',
     ...Array.from(new Set(projects.flatMap(p =>
-      p.tech.some(t => ['React', 'FastAPI', 'Node.js'].includes(t)) ? ['Full-Stack Development'] : []
-    ).concat(
-      projects.flatMap(p =>
-        p.tech.some(t => ['TensorFlow', 'Keras', 'Pandas', 'NLTK', 'Chart.js', 'Data Analysis'].includes(t)) ? ['Data Analysis & ML'] : []
-      )
+      [
+        p.tech.some(t => ['React', 'FastAPI', 'Node.js'].includes(t)) ? 'Full-Stack Development' : null,
+        p.tech.some(t => ['TensorFlow', 'Keras', 'Pandas', 'NLTK', 'Chart.js', 'Data Analysis'].includes(t)) ? 'Data Analysis & ML' : null,
+        p.tech.some(t => ['LLMs', 'LangChain', 'RAG', 'AI', 'Gemini APIs'].includes(t)) ? 'AI & RAG Systems' : null,
+      ].filter(Boolean)
     )))
   ];
 
@@ -104,6 +104,9 @@ const Index = () => {
         }
         if (projectFilter === 'Data Analysis & ML') {
           return p.tech.some(t => ['TensorFlow', 'Keras', 'Pandas', 'NLTK', 'Chart.js', 'Data Analysis'].includes(t));
+        }
+        if (projectFilter === 'AI & RAG Systems') {
+          return p.tech.some(t => ['LLMs', 'LangChain', 'RAG', 'AI', 'Gemini APIs'].includes(t));
         }
         return false;
       });
