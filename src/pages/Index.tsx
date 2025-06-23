@@ -186,48 +186,107 @@ const Index = () => {
     { category: "Research", icon: "📝", skills: ["Academic Writing", "Paper Presentation", "Literature Review"] }
   ];
 
-  const publications = [
-    {
-      title: "Skin Disease Detection using Deep Learning",
-      venue: "CML 2025, Sikkim Manipal University",
-      description: "Achieved 96.3% accuracy with hybrid CNN, GAN, and XGBoost model"
-    },
-    {
-      title: "Enhanced Stock Market Forecasting Using Hybrid BiLSTM-GRU Models",
-      venue: "ICAESRTA 2K25, KBP College of Engineering",
-      description: "R² = 0.9901 accuracy with advanced preprocessing and cross-validation"
-    },
-    {
-      title: "Driving Medical Diagnostics Forward: The Role of AI",
-      venue: "Cuestiones de Fisioterapia Journal",
-      description: "Comprehensive review of AI applications in healthcare diagnostics"
-    }
-  ];
-
   const certifications = [
     {
       icon: CheckCircle,
-      title: 'AWS Academy Graduate – AWS Academy Cloud Foundations',
-      desc: 'Credentialed by Amazon Web Services Academy for foundational cloud skills',
+      title: 'Deloitte Internship Certificate',
+      desc: 'Deloitte Touche Tohmatsu India LLP: Aug 2024',
       color: 'emerald',
     },
     {
       icon: CheckCircle,
-      title: 'Google Data Analytics Professional Certificate',
-      desc: 'Completed Googles 8-course program on data analytics and visualization',
+      title: 'NPTEL Design and Analysis of Algorithm',
+      desc: 'SWAYAM',
       color: 'blue',
+      link: 'https://drive.google.com/file/d/13RTH2AALJEI1O6s5hV183HIeQLZv5TF-/view?usp=sharing',
     },
     {
       icon: CheckCircle,
-      title: 'DeepLearning.AI – Generative AI with LLMs',
-      desc: 'Completed DeepLearning.AIs specialization on LLMs and prompt engineering',
+      title: 'CCNA: Enterprise Networking, Security, and Automation',
+      desc: 'Cisco',
       color: 'indigo',
+      link: 'https://www.credly.com/badges/b31195bf-7e35-4ed1-b6d6-b64a31288abf/public_url',
     },
     {
       icon: CheckCircle,
-      title: 'Microsoft Certified: Azure AI Fundamentals',
-      desc: 'Credentialed by Microsoft for foundational AI and cloud skills',
+      title: 'CCNA: Switching, Routing, and Wireless Essentials',
+      desc: 'Cisco',
+      color: 'indigo',
+      link: 'https://www.credly.com/badges/cf53a1a9-fb6b-4272-a0d2-8611c5580306/public_url',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Getting Started with Enterprise-grade AI',
+      desc: 'IBM',
       color: 'cyan',
+      link: 'https://www.credly.com/badges/8a873631-3c8a-43b9-808d-5efd941a6bfe/public_url',
+    },
+    {
+      icon: CheckCircle,
+      title: 'AWS Academy Graduate - AWS Academy Cloud Foundations',
+      desc: 'Amazon Web Services Academy',
+      color: 'blue',
+      link: 'https://www.credly.com/badges/6164f5df-9c25-4dd1-b221-6f5be898b043/public_url',
+    },
+    {
+      icon: CheckCircle,
+      title: 'HACKX Hackathon Round 2',
+      desc: 'Manipal University Jaipur',
+      color: 'pink',
+      link: 'https://unstop.com/certificate-preview/2d40a416-34db-461b-9044-61f2114baf96',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Cisco CyberSecurity Specialist',
+      desc: 'Cisco',
+      color: 'yellow',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Introduction to Data, Signal, and Image Analysis with MATLAB',
+      desc: 'Vanderbilt University',
+      color: 'orange',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Introduction to Cybersecurity',
+      desc: 'Cisco',
+      color: 'yellow',
+      link: 'https://drive.google.com/file/d/10ILT26y0j1zoETf6RP-vbzTyJGyqInUE/view?usp=sharing',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Java Foundation Course',
+      desc: 'Oracle',
+      color: 'violet',
+      link: 'https://drive.google.com/file/d/1eROtRLJQkiaUazcoztz4-f9Cs5Z5aTSN/view?usp=sharing',
+    },
+    {
+      icon: CheckCircle,
+      title: 'CERTIFICATE OF PRESENTATION: Skin Disease Detection using DeepLearning',
+      desc: 'CML 2025, Sikkim Manipal University',
+      color: 'blue',
+      link: 'https://drive.google.com/file/d/1ie-S0rQc9wps4bI1ZAllZCOOMm3h9Elk/view?usp=sharing',
+    },
+    {
+      icon: CheckCircle,
+      title: 'CERTIFICATE OF PRESENTATION: Enhanced Stock Market Forecasting Using Hybrid BiLSTM-GRU Models',
+      desc: 'ICAESRTA - 2K25, KBP College of Engineering, Satara',
+      color: 'cyan',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Certificate of Participation: Tata Imagination Challenge 2024',
+      desc: 'This certificate provided by Tata group is proof of the sheer grit, hard work, & dedication of the participant through which he/she has participated in the Tata Imagination Challenge 2024. Unstop congratulates them on achieving yet another milestone.',
+      color: 'red',
+      link: 'https://unstop.com/certificate-preview/54bc4922-8c18-4dce-a92e-936ac2971bef',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Certificate of Participation: TATA Crucible Campus Quiz 2024',
+      desc: 'This certificate provided by Tata Group is proof of the sheer grit, hard work, & dedication of the participant through which he/she has participated in the TATA Crucible Campus Quiz 2024. Unstop congratulates them on achieving yet another milestone.',
+      color: 'green',
+      link: 'https://unstop.com/certificate-preview/dfb6861c-9538-4bf3-92dc-7d5974a78f6a',
     },
   ];
 
@@ -759,9 +818,9 @@ const Index = () => {
                     <div className="flex gap-2 mb-3">
                       {project.tech.slice(0, 4).map((tech, i) => (
                         <span key={i} className="inline-block bg-slate-200 dark:bg-slate-700 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full text-xs font-semibold border border-blue-200 dark:border-blue-700">{tech}</span>
-                      ))}
+                          ))}
+                        </div>
                     </div>
-                  </div>
                   {/* Illustration/Placeholder */}
                   <div className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
                     {project.image ? (
@@ -770,7 +829,7 @@ const Index = () => {
                       <span className="text-6xl md:text-7xl">{project.icon}</span>
                     )}
                   </div>
-                </div>
+          </div>
                 {/* Bottom: Dark area */}
                 <div className="flex-1 flex flex-col justify-between bg-slate-900 p-6">
                   <div>
@@ -785,9 +844,9 @@ const Index = () => {
                     )}
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
         </div>
       </section>
 
@@ -837,7 +896,7 @@ const Index = () => {
             <div className="text-center w-full">
               <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>{honorsTab === 'awards' ? 'Honors & Awards' : 'Certifications'}</h2>
               <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
-            </div>
+                </div>
             {/* Right-side toggle button */}
             <button
               className={`ml-4 px-4 py-2 rounded-full font-semibold shadow transition border-2 ${honorsTab === 'awards' ? (isDarkMode ? 'bg-slate-800 text-white border-blue-400' : 'bg-blue-100 text-blue-700 border-blue-400') : (isDarkMode ? 'bg-blue-800 text-white border-blue-400' : 'bg-blue-500 text-white border-blue-500')}`}
@@ -853,7 +912,9 @@ const Index = () => {
                 {/* Individual Award Tiles */}
                 <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
                   <Award className={`w-8 h-8 ${isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}`} />
-                  <div className="font-semibold text-lg md:text-xl">Student Excellence Award</div>
+                  <div className="font-semibold text-lg md:text-xl">
+                    <a href="https://drive.google.com/file/d/1IAJbcBOw41Wi9EDc4M4jCCHX9HAvn0Dz/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500 transition-colors">Student Excellence Award</a>
+                  </div>
                   <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Given for outstanding internship performance and publishing a journal research paper at Manipal University Jaipur</div>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5, delay: 0.1 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
@@ -884,10 +945,16 @@ const Index = () => {
                     className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}
                   >
                     <cert.icon className={`w-8 h-8 ${isDarkMode ? `text-${cert.color}-300` : `text-${cert.color}-500`}`} />
-                    <div className="font-semibold text-lg md:text-xl">{cert.title}</div>
+                    <div className="font-semibold text-lg md:text-xl">
+                      {cert.link ? (
+                        <a href={cert.link} target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500 transition-colors">{cert.title}</a>
+                      ) : (
+                        cert.title
+                      )}
+                    </div>
                     <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{cert.desc}</div>
-                  </motion.div>
-                ))}
+              </motion.div>
+            ))}
               </>
             )}
           </div>
