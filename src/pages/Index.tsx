@@ -29,15 +29,6 @@ const Index = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  const handleDownloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '/Dhruv_Mendiratta_Detailed_Resume.pdf';
-    link.download = 'Dhruv_Mendiratta_Detailed_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   const experiences = [
     {
       company: "Ernst & Young (EY)",
@@ -392,9 +383,17 @@ const Index = () => {
                       Hire Me
                     </a>
                   </Button>
-                  <Button variant="outline" className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white border-emerald-500 hover:border-emerald-600 rounded-full shadow-lg hover:shadow-2xl animate-glow" onClick={handleDownloadResume}>
-                    <Download className="w-4 h-4 mr-2" />
-                    Download Resume
+                  <Button asChild variant="outline" className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white border-emerald-500 hover:border-emerald-600 rounded-full shadow-lg hover:shadow-2xl animate-glow">
+                    <a href="/Dhruv_Mendiratta_Detailed_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                      <Download className="w-4 h-4 mr-2" />
+                      View Detailed Resume
+                    </a>
+                  </Button>
+                  <Button asChild variant="outline" className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-cyan-500 hover:border-cyan-600 rounded-full shadow-lg hover:shadow-2xl animate-glow">
+                    <a href="/Dhruv_Mendiratta_1page_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                      <Download className="w-4 h-4 mr-2" />
+                      View ATS Friendly Resume
+                    </a>
                   </Button>
                 </div>
               </div>
