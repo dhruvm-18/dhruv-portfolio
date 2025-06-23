@@ -474,6 +474,35 @@ const Index = () => {
               }}
             />
           ))}
+          {/* Animated code snippets background */}
+          {[
+            `const ragResponse = await llm.query({ context: faiss.search(query) })`,
+            `def predict_stock(data):\n    model = LSTMGRU()\n    return model.predict(data)` ,
+            `app.get('/api/projects', (req, res) => res.json(projects))`,
+            `const embeddings = langchain.embed(docs)`,
+            `if (accuracy > 0.99) {\n  publish('Research Paper')\n}`,
+            `const sentiment = analyzeReview(text)`,
+            `# FastAPI endpoint\n@app.post('/analyze')\ndef analyze(data: Review): ...`,
+            `vectorStore.addDocuments(docs, { chunkSize: 512 })`,
+            `const resume = await fetch('/Dhruv_Mendiratta_Detailed_Resume.pdf')`,
+            `const chatbot = new RAGChatbot({ llm, retriever })`,
+          ].map((snippet, idx) => (
+            <motion.pre
+              key={idx}
+              className={`pointer-events-none select-none whitespace-pre text-xs md:text-sm font-mono font-semibold absolute opacity-20 ${isDarkMode ? 'text-cyan-200' : 'text-blue-700'}`}
+              style={{
+                left: `${10 + (idx % 5) * 18}%`,
+                top: `${10 + Math.floor(idx / 5) * 28}%`,
+                maxWidth: '220px',
+                zIndex: 1,
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: [0.12, 0.22, 0.12], y: [20, 0, 20] }}
+              transition={{ duration: 7 + idx, repeat: Infinity, repeatType: 'reverse', delay: idx * 0.7 }}
+            >
+              {snippet}
+            </motion.pre>
+          ))}
         </motion.div>
 
         <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
@@ -516,19 +545,19 @@ const Index = () => {
                   <span className={`${isDarkMode ? 'text-slate-400' : 'text-gray-500'} font-semibold`}>🕐 Delhi, India (IST)</span>
                 </div>
                 <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-6">
-                  <Button asChild className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white rounded-full shadow-lg hover:shadow-2xl animate-glow">
+                  <Button asChild className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white rounded-full">
                     <a href="mailto:dhruv.mendiratta4@gmail.com">
                 <Mail className="w-4 h-4 mr-2" />
                 Hire Me
                     </a>
               </Button>
-                  <Button asChild variant="outline" className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white border-emerald-500 hover:border-emerald-600 rounded-full shadow-lg hover:shadow-2xl animate-glow">
+                  <Button asChild variant="outline" className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white border-emerald-500 hover:border-emerald-600 rounded-full">
                     <a href="/Dhruv_Mendiratta_Detailed_Resume.pdf" target="_blank" rel="noopener noreferrer">
                       <Eye className="w-4 h-4 mr-2" />
                       View Detailed Resume
                     </a>
                   </Button>
-                  <Button asChild variant="outline" className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-cyan-500 hover:border-cyan-600 rounded-full shadow-lg hover:shadow-2xl animate-glow">
+                  <Button asChild variant="outline" className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white border-cyan-500 hover:border-cyan-600 rounded-full">
                     <a href="/Dhruv_Mendiratta_1page_Resume.pdf" target="_blank" rel="noopener noreferrer">
                       <FileText className="w-4 h-4 mr-2" />
                       View ATS Friendly Resume
