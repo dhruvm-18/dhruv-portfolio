@@ -930,16 +930,18 @@ const Index = () => {
           <p className={`text-base md:text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Delhi, India</p>
         </div>
         <div className="flex justify-center">
-          <iframe
-            title="Delhi Map"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=76.83715820312501%2C28.38081818087789%2C77.38952636718751%2C28.8831596093235&amp;layer=mapnik&amp;marker=28.6139%2C77.2090"
-            width="400"
-            height="300"
-            className="rounded-2xl border-2 border-blue-200 shadow-lg"
-            style={{ minWidth: '300px', minHeight: '200px', border: 0 }}
-            allowFullScreen
-            loading="lazy"
-          ></iframe>
+          <div className={`relative rounded-2xl border-2 shadow-lg overflow-hidden ${isDarkMode ? 'border-blue-800 bg-slate-900' : 'border-blue-200 bg-white'}`} style={{ width: 400, height: 300, minWidth: 300, minHeight: 200 }}>
+            <img
+              src="https://static-maps.yandex.ru/1.x/?lang=en-US&ll=77.2090,28.6139&z=11&l=map&size=400,300&pt=77.2090,28.6139,pm2rdm" 
+              alt="Delhi Map Preview"
+              className="w-full h-full object-cover opacity-90"
+              style={{ filter: isDarkMode ? 'grayscale(0.3) brightness(0.8)' : 'grayscale(0.1)' }}
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <MapPin className="w-12 h-12 text-red-500 drop-shadow-lg mb-2 animate-bounce" />
+              <span className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-blue-900'} bg-white/80 dark:bg-slate-900/80 px-4 py-1 rounded-full shadow-md`}>Delhi, India</span>
+            </div>
+          </div>
         </div>
       </section>
 
