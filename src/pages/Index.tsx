@@ -832,23 +832,17 @@ const Index = () => {
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between mb-12 md:mb-16">
             <div className="text-center w-full">
-              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Honors & Awards</h2>
+              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>{honorsTab === 'awards' ? 'Honors & Awards' : 'Certifications'}</h2>
               <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
             </div>
-            <div className="absolute right-0 top-0 flex gap-2">
-              <button
-                className={`px-4 py-2 rounded-full font-semibold text-sm shadow transition ${honorsTab === 'awards' ? 'bg-blue-500 text-white' : 'bg-slate-200 text-blue-700 dark:bg-slate-800 dark:text-blue-300'}`}
-                onClick={() => setHonorsTab('awards')}
-              >
-                Honors
-              </button>
-              <button
-                className={`px-4 py-2 rounded-full font-semibold text-sm shadow transition ${honorsTab === 'certs' ? 'bg-blue-500 text-white' : 'bg-slate-200 text-blue-700 dark:bg-slate-800 dark:text-blue-300'}`}
-                onClick={() => setHonorsTab('certs')}
-              >
-                Certifications
-              </button>
-            </div>
+            {/* Right-side toggle button */}
+            <button
+              className={`ml-4 px-4 py-2 rounded-full font-semibold shadow transition border-2 ${honorsTab === 'awards' ? (isDarkMode ? 'bg-slate-800 text-white border-blue-400' : 'bg-blue-100 text-blue-700 border-blue-400') : (isDarkMode ? 'bg-blue-800 text-white border-blue-400' : 'bg-blue-500 text-white border-blue-500')}`}
+              onClick={() => setHonorsTab(honorsTab === 'awards' ? 'certs' : 'awards')}
+              aria-label={honorsTab === 'awards' ? 'Show Certifications' : 'Show Honors & Awards'}
+            >
+              {honorsTab === 'awards' ? '→ Certificates' : '← Honors'}
+            </button>
           </div>
           <div className="grid sm:grid-cols-2 gap-6 md:gap-8 mb-12">
             {honorsTab === 'awards' ? (
