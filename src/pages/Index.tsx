@@ -857,10 +857,10 @@ const Index = () => {
             {skillGroups.map((group, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.04 }}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.08 }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.06 }}
                 className={`${cardClasses} backdrop-blur-sm rounded-xl p-4 md:p-6 border hover:shadow-xl transition-all duration-300 flex flex-col`}
               >
                 <div className="flex items-center mb-3 md:mb-4">
@@ -900,41 +900,42 @@ const Index = () => {
             {honorsTab === 'awards' ? (
               <>
                 {/* Individual Award Tiles */}
-                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
+                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.06 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}>
                   <Award className={`w-8 h-8 ${isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}`} />
-                  <div className="font-semibold text-lg md:text-xl">
-                    <a href="https://drive.google.com/file/d/1IAJbcBOw41Wi9EDc4M4jCCHX9HAvn0Dz/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500 transition-colors">Student Excellence Award</a>
-                  </div>
+                  <div className="font-semibold text-lg md:text-xl mb-1">Student Excellence Award</div>
                   <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Given for outstanding internship performance and publishing a journal research paper at Manipal University Jaipur</div>
+                  <a href="https://drive.google.com/file/d/1IAJbcBOw41Wi9EDc4M4jCCHX9HAvn0Dz/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
                 </motion.div>
-                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5, delay: 0.1 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
+                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.12 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}>
                   <Zap className={`w-8 h-8 ${isDarkMode ? 'text-pink-300' : 'text-pink-500'}`} />
-                  <div className="font-semibold text-lg md:text-xl flex flex-col items-start">
-                    <a href="https://unstop.com/certificate-preview/2d40a416-34db-461b-9044-61f2114baf96" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500 transition-colors">HACKX Hackathon – Round 2 Finalist (2024)</a>
-                    <ExternalLink className="w-4 h-4 mt-1 text-blue-400 hover:text-blue-600 transition-colors" />
-                  </div>
+                  <div className="font-semibold text-lg md:text-xl mb-1">HACKX Hackathon – Round 2 Finalist (2024)</div>
                   <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Advanced to the final round of a university-level hackathon hosted by Manipal University Jaipur</div>
+                  <a href="https://unstop.com/certificate-preview/2d40a416-34db-461b-9044-61f2114baf96" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
                 </motion.div>
-                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5, delay: 0.2 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
+                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.18 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}>
                   <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-blue-300' : 'text-blue-500'}`} />
-                  <div className="font-semibold text-lg md:text-xl flex flex-col items-start">
-                    <a href="https://drive.google.com/file/d/1ie-S0rQc9wps4bI1ZAllZCOOMm3h9Elk/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500 transition-colors">Paper Presentation – CML 2025, Sikkim Manipal University</a>
-                    <ExternalLink className="w-4 h-4 mt-1 text-blue-400 hover:text-blue-600 transition-colors" />
-                  </div>
+                  <div className="font-semibold text-lg md:text-xl mb-1">Paper Presentation – CML 2025, Sikkim Manipal University</div>
                   <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented a paper on Skin Disease Detection using Deep Learning</div>
+                  <a href="https://drive.google.com/file/d/1ie-S0rQc9wps4bI1ZAllZCOOMm3h9Elk/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
                 </motion.div>
-                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5, delay: 0.3 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
+                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.24 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}>
                   <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-500'}`} />
-                  <div className="font-semibold text-lg md:text-xl">Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
+                  <div className="font-semibold text-lg md:text-xl mb-1">Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
                   <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented research on hybrid stock forecasting using BiLSTM-GRU models</div>
                 </motion.div>
-                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5, delay: 0.05 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
+                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.06 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}>
                   <Briefcase className={`w-8 h-8 ${isDarkMode ? 'text-emerald-300' : 'text-emerald-600'}`} />
-                  <div className="font-semibold text-lg md:text-xl flex flex-col items-start">
-                    <a href="https://drive.google.com/file/d/1E3Rnl5LBxIV-zlEO11d4Vll4nib47bCQ/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500 transition-colors">Deloitte Internship Certificate</a>
-                    <ExternalLink className="w-4 h-4 mt-1 text-blue-400 hover:text-blue-600 transition-colors" />
-                  </div>
+                  <div className="font-semibold text-lg md:text-xl mb-1">Deloitte Internship Certificate</div>
                   <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Deloitte Touche Tohmatsu India LLP: Aug 2024</div>
+                  <a href="https://drive.google.com/file/d/1E3Rnl5LBxIV-zlEO11d4Vll4nib47bCQ/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
                 </motion.div>
               </>
             ) : (
@@ -942,10 +943,10 @@ const Index = () => {
                 {certifications.map((cert, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, y: 40 }}
+                    initial={{ opacity: 0, y: 32 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.6, delay: i * 0.08, ease: 'easeOut' }}
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.06 }}
                     className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}
                   >
                     <cert.icon className={`w-8 h-8 ${isDarkMode ? `text-${cert.color}-300` : `text-${cert.color}-500`}`} />
