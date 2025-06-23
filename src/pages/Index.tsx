@@ -189,12 +189,6 @@ const Index = () => {
   const certifications = [
     {
       icon: CheckCircle,
-      title: 'Deloitte Internship Certificate',
-      desc: 'Deloitte Touche Tohmatsu India LLP: Aug 2024',
-      color: 'emerald',
-    },
-    {
-      icon: CheckCircle,
       title: 'NPTEL Design and Analysis of Algorithm',
       desc: 'SWAYAM',
       color: 'blue',
@@ -227,13 +221,6 @@ const Index = () => {
       desc: 'Amazon Web Services Academy',
       color: 'blue',
       link: 'https://www.credly.com/badges/6164f5df-9c25-4dd1-b221-6f5be898b043/public_url',
-    },
-    {
-      icon: CheckCircle,
-      title: 'HACKX Hackathon Round 2',
-      desc: 'Manipal University Jaipur',
-      color: 'pink',
-      link: 'https://unstop.com/certificate-preview/2d40a416-34db-461b-9044-61f2114baf96',
     },
     {
       icon: CheckCircle,
@@ -287,6 +274,27 @@ const Index = () => {
       desc: 'This certificate provided by Tata Group is proof of the sheer grit, hard work, & dedication of the participant through which he/she has participated in the TATA Crucible Campus Quiz 2024. Unstop congratulates them on achieving yet another milestone.',
       color: 'green',
       link: 'https://unstop.com/certificate-preview/dfb6861c-9538-4bf3-92dc-7d5974a78f6a',
+    },
+    {
+      icon: CheckCircle,
+      title: 'HTML Tutorial Certification',
+      desc: 'HTML Tutorial Completion',
+      color: 'rose',
+      link: 'https://drive.google.com/file/d/1khXePy8VNpJhheGnE0Ww-nNFnHoBnKy3/view?usp=sharing',
+    },
+    {
+      icon: CheckCircle,
+      title: 'CSS Tutorial Certification',
+      desc: 'CSS Tutorial Completion',
+      color: 'blue',
+      link: 'https://drive.google.com/file/d/1n5-pCE2-1DkgQfOEwsWNrzpsE-8_1B6P/view?usp=sharing',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Introduction to JavaScript',
+      desc: 'JavaScript Tutorial Completion',
+      color: 'yellow',
+      link: 'https://drive.google.com/file/d/1EX0boiVIluCV6mQLdu8HkHcHTxHzTRWZ/view?usp=sharing',
     },
   ];
 
@@ -919,18 +927,32 @@ const Index = () => {
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5, delay: 0.1 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
                   <Zap className={`w-8 h-8 ${isDarkMode ? 'text-pink-300' : 'text-pink-500'}`} />
-                  <div className="font-semibold text-lg md:text-xl">HACKX Hackathon – Round 2 Finalist (2024)</div>
+                  <div className="font-semibold text-lg md:text-xl flex flex-col items-start">
+                    <a href="https://unstop.com/certificate-preview/2d40a416-34db-461b-9044-61f2114baf96" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500 transition-colors">HACKX Hackathon – Round 2 Finalist (2024)</a>
+                    <ExternalLink className="w-4 h-4 mt-1 text-blue-400 hover:text-blue-600 transition-colors" />
+                  </div>
                   <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Advanced to the final round of a university-level hackathon hosted by Manipal University Jaipur</div>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5, delay: 0.2 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
                   <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-blue-300' : 'text-blue-500'}`} />
-                  <div className="font-semibold text-lg md:text-xl">Paper Presentation – CML 2025, Sikkim Manipal University</div>
+                  <div className="font-semibold text-lg md:text-xl flex flex-col items-start">
+                    <a href="https://drive.google.com/file/d/1ie-S0rQc9wps4bI1ZAllZCOOMm3h9Elk/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500 transition-colors">Paper Presentation – CML 2025, Sikkim Manipal University</a>
+                    <ExternalLink className="w-4 h-4 mt-1 text-blue-400 hover:text-blue-600 transition-colors" />
+                  </div>
                   <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented a paper on Skin Disease Detection using Deep Learning</div>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5, delay: 0.3 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
                   <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-500'}`} />
                   <div className="font-semibold text-lg md:text-xl">Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
                   <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented research on hybrid stock forecasting using BiLSTM-GRU models</div>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.05, y: -6 }} transition={{ duration: 0.5, delay: 0.05 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3`}>
+                  <Briefcase className={`w-8 h-8 ${isDarkMode ? 'text-emerald-300' : 'text-emerald-600'}`} />
+                  <div className="font-semibold text-lg md:text-xl flex flex-col items-start">
+                    <a href="https://drive.google.com/file/d/1E3Rnl5LBxIV-zlEO11d4Vll4nib47bCQ/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500 transition-colors">Deloitte Internship Certificate</a>
+                    <ExternalLink className="w-4 h-4 mt-1 text-blue-400 hover:text-blue-600 transition-colors" />
+                  </div>
+                  <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Deloitte Touche Tohmatsu India LLP: Aug 2024</div>
                 </motion.div>
               </>
             ) : (
@@ -953,8 +975,8 @@ const Index = () => {
                       )}
                     </div>
                     <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{cert.desc}</div>
-              </motion.div>
-            ))}
+                  </motion.div>
+                ))}
               </>
             )}
           </div>
