@@ -227,6 +227,7 @@ const Index = () => {
       title: 'Introduction to Data, Signal, and Image Analysis with MATLAB',
       desc: 'Vanderbilt University',
       color: 'orange',
+      link: 'https://coursera.org/share/7408ce04d381206f256be139e8326626',
     },
     {
       icon: CheckCircle,
@@ -245,14 +246,14 @@ const Index = () => {
     {
       icon: CheckCircle,
       title: 'Certificate of Participation: Tata Imagination Challenge 2024',
-      desc: 'This certificate provided by Tata group is proof of the sheer grit, hard work, & dedication of the participant through which he/she has participated in the Tata Imagination Challenge 2024. Unstop congratulates them on achieving yet another milestone.',
+      desc: 'Participation in Tata Imagination Challenge 2024',
       color: 'red',
       link: 'https://unstop.com/certificate-preview/54bc4922-8c18-4dce-a92e-936ac2971bef',
     },
     {
       icon: CheckCircle,
       title: 'Certificate of Participation: TATA Crucible Campus Quiz 2024',
-      desc: 'This certificate provided by Tata Group is proof of the sheer grit, hard work, & dedication of the participant through which he/she has participated in the TATA Crucible Campus Quiz 2024. Unstop congratulates them on achieving yet another milestone.',
+      desc: 'Participation in TATA Crucible Campus Quiz 2024',
       color: 'green',
       link: 'https://unstop.com/certificate-preview/dfb6861c-9538-4bf3-92dc-7d5974a78f6a',
     },
