@@ -1122,8 +1122,8 @@ const Index = () => {
             <div className={`flex-1 max-w-xs rounded-2xl border-2 shadow-lg p-6 ${isDarkMode ? 'border-blue-800 bg-slate-900 text-white' : 'border-blue-200 bg-white text-blue-900'}` }>
               <h4 className="text-xl font-bold mb-2">Contact</h4>
               <ul className="space-y-2 text-sm md:text-base">
-                <li><span className="font-semibold">Email:</span> <a href="mailto:dhruv.mendiratta4@gmail.com" className="underline hover:text-blue-500">dhruv.mendiratta4@gmail.com</a></li>
-                <li><span className="font-semibold">LinkedIn:</span> <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">/in/dhruv-mendiratta-132a46255</a></li>
+                <li><span className="font-semibold">Email:</span> <a href="mailto:dhruv.mendiratta4@gmail.com" className="underline hover:text-blue-500">Mail Here</a></li>
+                <li><span className="font-semibold">LinkedIn:</span> <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">Click Here</a></li>
                 <li><span className="font-semibold">GitHub:</span> <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">@dhruvm-18</a></li>
               </ul>
               <div className="mt-4 text-xs text-gray-400 dark:text-gray-500">Let's build something great together!</div>
