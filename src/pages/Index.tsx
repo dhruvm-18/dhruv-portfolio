@@ -27,7 +27,7 @@ const Index = () => {
     {
       title: "Enterprise RAG Chatbot",
       period: "May 2025 - July 2025",
-      tech: ["LangChain", "FAISS", "Gemini APIs", "Python", "LLMs"],
+      tech: ["LangChain", "FAISS", "Gemini APIs", "Python", "LLMs", "Full-Stack Development"],
       description: "Developed an internal enterprise chatbot using Retrieval-Augmented Generation (RAG) techniques for efficient document retrieval and question answering.",
       achievements: [
         "Integrated vector search (FAISS) with Gemini APIs and LangChain pipelines",
@@ -38,6 +38,23 @@ const Index = () => {
       icon: "🤖",
       link: "https://github.com/dhruvm-18/UnifiedKnowledgePlatform",
       image: "/PlaceholderRAG.jpg"
+    },
+    {
+      title: "Crisis Reporting(Crowd Sourced Disaster Management)",
+      period: "May 2025 - July 2025",
+      tech: ["React.js","Material UI (MUI)","Framer Motion","Axios","Leaflet.js","React Leaflet","React Router","React Dropzone","Flask","Werkzeug","flask-cors","JavaScript","Python","Full-Stack Development"],
+      description: "Built a full-stack crowdsourced disaster reporting platform with interactive maps, live data feeds, emergency contacts, and donation integration for real-time crisis response.",
+      achievements: [
+        "Implemented interactive map features using Leaflet and React Leaflet for real-time disaster localization",
+        "Enabled image/file uploads and dynamic content rendering with React Dropzone",
+        "Integrated Flask backend with CORS support for seamless cross-origin communication",
+        "Optimized API communication and data handling using Axios and Flask endpoints",
+        "Designed responsive and accessible UI using Material UI and Framer Motion"
+      ],      
+      gradient: "from-purple-500 to-pink-500",
+      icon: "🤖",
+      link: "https://github.com/dhruvm-18/CrisisReporting",
+      image: "/PlaceholderCrisis.jpg"
     },
     {
       title: "Hybrid Stock Price Prediction",
@@ -969,7 +986,7 @@ const Index = () => {
                     <ExternalLink className="w-5 h-5 text-white" />
                   </a>
                 </motion.div>
-                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.24 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}>
+                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.24 }} className={`${cardClasses} rounded-2xl p-6 pb-12 border shadow-xl flex flex-col items-start gap-3 relative`}>
                   <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-500'}`} />
                   <div className="font-semibold text-lg md:text-xl mb-1">Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
                   <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented research on hybrid stock forecasting using BiLSTM-GRU models</div>
