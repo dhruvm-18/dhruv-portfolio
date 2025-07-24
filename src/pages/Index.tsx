@@ -36,6 +36,7 @@ const Index = () => {
       ],
       gradient: "from-purple-500 to-pink-500",
       icon: "🤖",
+      link: "https://github.com/dhruvm-18/UnifiedKnowledgePlatform",
       image: "/PlaceholderRAG.jpg"
     },
     {
@@ -972,6 +973,9 @@ const Index = () => {
                   <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-500'}`} />
                   <div className="font-semibold text-lg md:text-xl mb-1">Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
                   <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented research on hybrid stock forecasting using BiLSTM-GRU models</div>
+                  <a href="https://drive.google.com/file/d/1KyGyowdEUuQxQravyHPIAeTCUtsf4pCq/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
                 </motion.div>
                 <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.06 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}>
                   <Briefcase className={`w-8 h-8 ${isDarkMode ? 'text-emerald-300' : 'text-emerald-600'}`} />
