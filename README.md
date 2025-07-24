@@ -4,7 +4,7 @@ A modern, responsive portfolio website built with React, TypeScript, and Tailwin
 
 ## 🚀 Live Demo
 
-Visit the live website:[![Website](https://img.shields.io/badge/Website-Visit-blue?style=flat&logo=vercel)](https://dhruv-portfolio-bay.vercel.app/)
+Visit the live website: [![Website](https://img.shields.io/badge/Website-Visit-blue?style=flat&logo=vercel)](https://dhruv-portfolio-bay.vercel.app/)
 
 ## 🛠️ Technologies Used
 
