@@ -786,7 +786,7 @@ const Index = () => {
           </motion.div>
 
           <div className="space-y-8">
-            {education.map((edu, index) => (
+            {education.map((edu,index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
@@ -797,7 +797,10 @@ const Index = () => {
                 <Card className={`${cardClasses} backdrop-blur-sm border hover:shadow-2xl transition-all duration-300`}>
                   <CardHeader>
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                      <div className="flex items-center space-x-3 md:space-x-4">
+                        <div className="text-3xl md:text-4xl">{edu.logo}</div>
                       <div>
+                        </div>
                         <CardTitle className={`text-xl md:text-2xl mb-1 md:mb-2 ${isDarkMode ? 'text-emerald-300' : 'text-emerald-600'}`}>{edu.institution}</CardTitle>
                         <CardDescription className={`text-base md:text-lg ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{edu.degree}</CardDescription>
                       </div>
