@@ -7,6 +7,8 @@ import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import eylogo from '/ey.png';
 import Deloitte from '/Deloitte.png';
+import Somerville from '/Somerville.png';
+import Vivek from '/Vivek.jpeg';
 import Manipal from '/logo.jpeg';
 import dhruvProfilePic from '/dhruv.jpeg';
 
@@ -192,6 +194,7 @@ const Index = () => {
       degree: "Class XII",
       period: "July 2022",
       location: "Delhi, India",
+      logo: <img src={Vivek} alt="Dhruv Mendiratta"className="w-16 h-16 object-cover rounded-md"/>,
       achievements: []
     },
     {
@@ -199,6 +202,7 @@ const Index = () => {
       degree: "Class X",
       period: "July 2020",
       location: "Noida, India",
+      logo: <img src={Somerville} alt="Dhruv Mendiratta"className="w-16 h-16 object-cover rounded-md"/>,
       achievements: []
     }
   ];
