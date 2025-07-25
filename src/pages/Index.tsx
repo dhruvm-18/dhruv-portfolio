@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
-import eylogo from '/ey.png';
-import Deloitte from '/Deloitte.png';
+import eylogo from '/public/ey.png';
+import Deloitte from '/public/Deloitte.png';
 import dhruvProfilePic from '/dhruv.jpeg';
 
 
