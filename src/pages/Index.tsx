@@ -150,15 +150,7 @@ const Index = () => {
       position: "AI Intern – Generative AI & RAG Systems",
       location: "Delhi, India",
       period: "May 2025 - Present",
-      logo: <img
-  src={eylogo}
-  alt="Dhruv Mendiratta"
-  style={{
-    width: "60px",
-    height: "60px",
-    objectFit: "cover",
-  }}
-/>,
+      logo: <img src={eylogo} alt="Dhruv Mendiratta"className="w-16 h-16 object-cover rounded-md"/>,
       achievements: [
         "Developed RAG-based enterprise AI chatbots using LangChain, FAISS, and Gemini APIs",
         "Designed and optimized LLM pipelines with 30% improved contextual accuracy",
@@ -171,7 +163,7 @@ const Index = () => {
       position: "Software Engineering Intern – Cloud Computing (AWS)",
       location: "Gurugram, India",
       period: "May 2024 – Jul 2024",
-      logo: <img src={Deloitte} alt="Dhruv Mendiratta" className="rounded-full w-full h-full object-cover" />,
+      logo: <img src={Deloitte} alt="Dhruv Mendiratta" className="w-16 h-16 object-cover rounded-md"/>,
       achievements: [
         "Completed intensive AWS services training including EC2, S3, and Lambda",
         "Participated in cloud-based solution development with senior engineers",
