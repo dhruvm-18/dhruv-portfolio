@@ -40,7 +40,7 @@ const Index = () => {
       image: "/PlaceholderRAG.jpg"
     },
     {
-      title: "Crisis Reporting A Crowd-Sourced Disaster Management",
+      title: "Crisis Reporting - A Crowd-Sourced Disaster Management",
       period: "May 2025 - July 2025",
       tech: ["React.js","Material UI (MUI)","Framer Motion","Axios","Leaflet.js","React Leaflet","React Router","React Dropzone","Flask","Werkzeug","flask-cors","JavaScript","Python","Full-Stack Development"],
       description: "Built a full-stack crowdsourced disaster reporting platform with interactive maps, live data feeds, emergency contacts, and donation integration for real-time crisis response.",
@@ -147,7 +147,7 @@ const Index = () => {
       position: "AI Intern – Generative AI & RAG Systems",
       location: "Delhi, India",
       period: "May 2025 - Present",
-      logo: "🏢",
+      logo: "/ey.png",
       achievements: [
         "Developed RAG-based enterprise AI chatbots using LangChain, FAISS, and Gemini APIs",
         "Designed and optimized LLM pipelines with 30% improved contextual accuracy",
@@ -160,7 +160,7 @@ const Index = () => {
       position: "Software Engineering Intern – Cloud Computing (AWS)",
       location: "Gurugram, India",
       period: "May 2024 – Jul 2024",
-      logo: "☁️",
+      logo: "/Deloitte.png",
       achievements: [
         "Completed intensive AWS services training including EC2, S3, and Lambda",
         "Participated in cloud-based solution development with senior engineers",
