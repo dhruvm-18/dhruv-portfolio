@@ -33,7 +33,7 @@ const Index = () => {
     {
       title: "Unified Knowledge Platform - An Enterprise RAG Chatbot",
       period: "May 2025 - July 2025",
-      tech: ["LangChain", "FAISS", "Gemini APIs", "Python", "LLMs", "Full-Stack Development"],
+      tech: ["React","Flask","LangChain", "FAISS", "Gemini APIs", "Python", "LLMs"],
       description: "Developed an internal enterprise chatbot using Retrieval-Augmented Generation (RAG) techniques for efficient document retrieval and question answering.",
       achievements: [
         "Integrated vector search (FAISS) with Gemini APIs and LangChain pipelines",
@@ -48,7 +48,7 @@ const Index = () => {
     {
       title: "Crisis Reporting - A Crowd-Sourced Disaster Management",
       period: "May 2025 - July 2025",
-      tech: ["React.js","Material UI (MUI)","Framer Motion","Axios","Leaflet.js","React Leaflet","React Router","React Dropzone","Flask","Werkzeug","flask-cors","JavaScript","Python","Full-Stack Development"],
+      tech: ["React","Material UI (MUI)","Framer Motion","Axios","Leaflet.js","React Leaflet","React Router","React Dropzone","Flask","Werkzeug","flask-cors","JavaScript","Python","Full-Stack Development"],
       description: "Built a full-stack crowdsourced disaster reporting platform with interactive maps, live data feeds, emergency contacts, and donation integration for real-time crisis response.",
       achievements: [
         "Implemented interactive map features using Leaflet and React Leaflet for real-time disaster localization",
