@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import eylogo from '/ey.png';
 import Deloitte from '/Deloitte.png';
+import Manipal from '/logo.jpeg';
 import dhruvProfilePic from '/dhruv.jpeg';
 
 
@@ -179,7 +180,7 @@ const Index = () => {
       degree: "B.Tech in Computer Science and Engineering",
       period: "Sep 2022 - Present (Expected 2026)",
       location: "Jaipur, India",
-      logo: "/logo.jpeg",
+      logo: <img src={Manipal} alt="Dhruv Mendiratta"className="w-16 h-16 object-cover rounded-md"/>,
       achievements: [
         "Student Excellence Award for outstanding overall performance (5th & 6th semester)",
         "Active Member – Google Developer Student Club (GDSC) – AI/ML & Full Stack Domains",
