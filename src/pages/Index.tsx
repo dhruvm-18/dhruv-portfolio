@@ -655,13 +655,12 @@ const Index = () => {
               transition={{ duration: 0.8 }}
             >
               <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
-                Final-year Computer Science student with hands-on experience developing Retrieval-Augmented Generation (RAG) 
-                AI systems during a Generative AI internship at EY. I specialize in leveraging tools like LangChain, FAISS, 
-                and Gemini APIs to build scalable AI solutions.
+                I'm Dhruv Mendiratta a final-year Computer Science student passionate about building impactful AI-powered systems. During my Generative AI internship at Ernst & Young (EY), I worked hands-on with Retrieval-Augmented Generation (RAG) techniques, using LangChain, FAISS, and Gemini APIs to develop scalable enterprise-level chatbot solutions.
               </p>
               <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
-                With a strong foundation in cloud computing through AWS-focused experience at Deloitte, I've published research 
-                in applied deep learning, contributing to CNN, GAN, and hybrid LSTM-GRU models for finance and medical imaging.
+                I bring a strong foundation in cloud computing through my AWS-focused experience at Deloitte, where I explored the deployment and optimization of cloud-native architectures. My academic journey includes published research in applied deep learning, covering innovations in CNNs, GANs, and hybrid LSTM-GRU models across domains like finance and medical imaging.
+                Whether it's integrating AI into real-world workflows, designing efficient data pipelines, or optimizing performance in distributed systems I enjoy solving complex problems that matter. Outside the world of code, you'll find me diving into competitive programming, collaborating at hackathons, or exploring the next big breakthrough in tech.
+                Thanks for stopping by! Check out my resume and projects to learn more. Let’s connect if you're up for a collaboration or tech chat!
               </p>
               
               <div className="grid grid-cols-2 gap-6">
