@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import eylogo from '/ey.png';
+import Deloitte from '/Deloitte.png';
 import dhruvProfilePic from '/dhruv.jpeg';
 
 
@@ -162,7 +163,7 @@ const Index = () => {
       position: "Software Engineering Intern – Cloud Computing (AWS)",
       location: "Gurugram, India",
       period: "May 2024 – Jul 2024",
-      logo: "/Deloitte.png",
+      logo: Deloitte,
       achievements: [
         "Completed intensive AWS services training including EC2, S3, and Lambda",
         "Participated in cloud-based solution development with senior engineers",
