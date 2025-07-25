@@ -5,7 +5,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
+import eylogo from '/ey.png';
 import dhruvProfilePic from '/dhruv.jpeg';
+
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -147,7 +149,7 @@ const Index = () => {
       position: "AI Intern – Generative AI & RAG Systems",
       location: "Delhi, India",
       period: "May 2025 - Present",
-      logo: "/ey.png",
+      logo: eylogo,
       achievements: [
         "Developed RAG-based enterprise AI chatbots using LangChain, FAISS, and Gemini APIs",
         "Designed and optimized LLM pipelines with 30% improved contextual accuracy",
