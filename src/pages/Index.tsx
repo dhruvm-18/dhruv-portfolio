@@ -1058,7 +1058,7 @@ const Index = () => {
             <div className="grid sm:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12">
               {[
                 { icon: Mail, title: "Email", info: "dhruv.mendiratta4@gmail.com", color: "blue" },
-                { icon: Phone, title: "Phone", info: "+91 901 366 9130", color: "indigo" },
+                { icon: Phone, title: "Phone", info: "+91 9013669130", color: "indigo" },
                 { icon: MapPin, title: "Location", info: "Delhi, India", color: "cyan" }
               ].map((contact, index) => (
                 <motion.div
