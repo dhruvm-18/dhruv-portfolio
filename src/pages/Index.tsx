@@ -659,7 +659,11 @@ const Index = () => {
               </p>
               <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
                 I bring a strong foundation in cloud computing through my AWS-focused experience at Deloitte, where I explored the deployment and optimization of cloud-native architectures. My academic journey includes published research in applied deep learning, covering innovations in CNNs, GANs, and hybrid LSTM-GRU models across domains like finance and medical imaging.
+                </p>
+                <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
                 Whether it's integrating AI into real-world workflows, designing efficient data pipelines, or optimizing performance in distributed systems I enjoy solving complex problems that matter. Outside the world of code, you'll find me diving into competitive programming, collaborating at hackathons, or exploring the next big breakthrough in tech.
+                </p>
+                <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
                 Thanks for stopping by! Check out my resume and projects to learn more. Let’s connect if you're up for a collaboration or tech chat!
               </p>
               
