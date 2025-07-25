@@ -176,6 +176,7 @@ const Index = () => {
       degree: "B.Tech in Computer Science and Engineering",
       period: "Sep 2022 - Present (Expected 2026)",
       location: "Jaipur, India",
+      logo: "/logo.jpeg",
       achievements: [
         "Student Excellence Award for outstanding overall performance (5th & 6th semester)",
         "Active Member – Google Developer Student Club (GDSC) – AI/ML & Full Stack Domains",
