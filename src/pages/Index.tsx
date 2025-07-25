@@ -182,9 +182,9 @@ const Index = () => {
       location: "Jaipur, India",
       logo: <img src={Manipal} alt="Dhruv Mendiratta"className="w-16 h-16 object-cover rounded-md"/>,
       achievements: [
-        "Student Excellence Award for outstanding overall performance (5th & 6th semester)",
+        "Student Excellence Award for outstanding overall performance (August 2024 & March 2025)",
         "Active Member – Google Developer Student Club (GDSC) – AI/ML & Full Stack Domains",
-        "Published 3 AI-focused research papers (Deep Learning, RAG Systems, Stock Forecasting)"
+        "Published 3 AI-focused research papers"
       ]
     },
     {
@@ -192,6 +192,13 @@ const Index = () => {
       degree: "Class XII",
       period: "July 2022",
       location: "Delhi, India",
+      achievements: []
+    },
+    {
+      institution: "Somerville School",
+      degree: "Class X",
+      period: "July 2020",
+      location: "Noida, India",
       achievements: []
     }
   ];
