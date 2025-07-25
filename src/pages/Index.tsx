@@ -150,7 +150,15 @@ const Index = () => {
       position: "AI Intern – Generative AI & RAG Systems",
       location: "Delhi, India",
       period: "May 2025 - Present",
-      logo: <img src={eylogo} alt="Dhruv Mendiratta"/>,
+      logo: <img
+  src={eylogo}
+  alt="Dhruv Mendiratta"
+  style={{
+    width: "60px",
+    height: "60px",
+    objectFit: "cover",
+  }}
+/>,
       achievements: [
         "Developed RAG-based enterprise AI chatbots using LangChain, FAISS, and Gemini APIs",
         "Designed and optimized LLM pipelines with 30% improved contextual accuracy",
