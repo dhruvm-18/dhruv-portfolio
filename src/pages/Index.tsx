@@ -1141,7 +1141,7 @@ const Index = () => {
       <footer className={`py-6 md:py-8 px-4 sm:px-6 border-t ${isDarkMode ? 'border-slate-600/50' : 'border-gray-200'}`}>
         <div className="max-w-6xl mx-auto text-center">
           <p className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-            © 2025 Dhruv Mendiratta. Built with React, Tailwind CSS, and Framer Motion.
+            © 2025 Dhruv Mendiratta.Built from scratch with <code className="text-red-500">&lt;code&gt;</code> &amp; ☕.
           </p>
         </div>
       </footer>
