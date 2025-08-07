@@ -428,7 +428,10 @@ const Index = () => {
             {/* Social Icons */}
             <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`ml-3 p-2 rounded-full transition-colors duration-200 hover:bg-blue-100/30 ${isDarkMode ? 'hover:bg-blue-900/40' : ''}`}> <Linkedin className={`w-5 h-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
             <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 rounded-full transition-colors duration-200 hover:bg-slate-200/40 dark:hover:bg-slate-700/40"> <Github className={`w-5 h-5 ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`} /> </a>
-            <a href="mailto:dhruv.mendiratta4@gmail.com" aria-label="Mail" className="p-2 rounded-full transition-colors duration-200 hover:bg-cyan-100/30 dark:hover:bg-cyan-900/40"> <Mail className={`w-5 h-5 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
+            <a   href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer"
+ aria-label="Mail" className="p-2 rounded-full transition-colors duration-200 hover:bg-cyan-100/30 dark:hover:bg-cyan-900/40"> <Mail className={`w-5 h-5 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
           </div>
         </div>
       </motion.nav>
