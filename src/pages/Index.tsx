@@ -174,10 +174,11 @@ const Index = () => {
       period: "May 2024 – Jul 2024",
       logo: <img src={Deloitte} alt="Dhruv Mendiratta" className="w-16 h-16 object-cover rounded-md"/>,
       achievements: [
-        "Completed intensive AWS services training including EC2, S3, and Lambda",
-        "Participated in cloud-based solution development with senior engineers",
-        "Learned cloud architecture best practices and cost optimization",
-        "Contributed to DevOps tooling and AWS ecosystem documentation"
+        
+"Completed hands-on training with 40+ AWS services including EC2, S3, Lambda, and IAM",
+"Practiced secure cloud access management with IAM roles and policy configurations",
+"Built foundational expertise in AWS architecture, scalability, and security principles",
+"Prepared for and gained exposure to the AWS Certified Cloud Practitioner exam objectives"
       ]
     }
   ];
