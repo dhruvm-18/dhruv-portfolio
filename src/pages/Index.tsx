@@ -482,7 +482,9 @@ const Index = () => {
                 {/* Social Icons Mobile */}
                 <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 rounded-full transition-colors duration-200 hover:bg-blue-900/40"> <Linkedin className={`w-6 h-6 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
                 <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 rounded-full transition-colors duration-200 hover:bg-slate-700/40"> <Github className={`w-6 h-6 ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`} /> </a>
-                <a href="mailto:dhruv.mendiratta4@gmail.com" aria-label="Mail" className="p-2 rounded-full transition-colors duration-200 hover:bg-cyan-900/40"> <Mail className={`w-6 h-6 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer" aria-label="Mail" className="p-2 rounded-full transition-colors duration-200 hover:bg-cyan-900/40"> <Mail className={`w-6 h-6 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
               </div>
             </div>
           </motion.div>
@@ -593,7 +595,9 @@ const Index = () => {
                 {/* Modern, neutral buttons */}
                 <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-6">
                   <Button asChild className={`rounded-full px-6 py-2 font-semibold ${isDarkMode ? 'bg-blue-700 hover:bg-blue-600 text-white' : 'bg-slate-200 hover:bg-slate-300 text-blue-900'} transition`}>
-                    <a href="mailto:dhruv.mendiratta4@gmail.com">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer">
                       <Mail className="w-4 h-4 mr-2" />
                       Hire Me
                     </a>
@@ -1109,7 +1113,9 @@ const Index = () => {
               {[
                 { icon: Linkedin, href: "https://www.linkedin.com/in/dhruv-mendiratta-132a46255/", color: "blue" },
                 { icon: Github, href: "https://github.com/dhruvm-18", color: "slate" },
-                { icon: Mail, href: "mailto:dhruv.mendiratta4@gmail.com", color: "cyan" }
+                { icon: Mail,href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com",
+  target="_blank",
+  rel="noopener noreferrer", color: "cyan" }
               ].map((social, index) => (
                 <motion.a
                   key={index}
@@ -1154,7 +1160,9 @@ const Index = () => {
             <div className={`flex-1 max-w-xs rounded-2xl border-2 shadow-lg p-6 ${isDarkMode ? 'border-blue-800 bg-slate-900 text-white' : 'border-blue-200 bg-white text-blue-900'}` }>
               <h4 className="text-xl font-bold mb-2">Contact</h4>
               <ul className="space-y-2 text-sm md:text-base">
-                <li><span className="font-semibold">Email:</span> <a href="mailto:dhruv.mendiratta4@gmail.com" className="underline hover:text-blue-500">Mail Here</a></li>
+                <li><span className="font-semibold">Email:</span> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer" className="underline hover:text-blue-500">Mail Here</a></li>
                 <li><span className="font-semibold">LinkedIn:</span> <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">Click Here</a></li>
                 <li><span className="font-semibold">GitHub:</span> <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">@dhruvm-18</a></li>
               </ul>
