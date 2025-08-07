@@ -1113,9 +1113,9 @@ const Index = () => {
               {[
                 { icon: Linkedin, href: "https://www.linkedin.com/in/dhruv-mendiratta-132a46255/", color: "blue" },
                 { icon: Github, href: "https://github.com/dhruvm-18", color: "slate" },
-                { icon: Mail,href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com",
-  target="_blank",
-  rel="noopener noreferrer", color: "cyan" }
+                { icon: Mail,href :"https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com",
+  target:"_blank",
+  rel:"noopener noreferrer", color: "cyan" }
               ].map((social, index) => (
                 <motion.a
                   key={index}
