@@ -152,13 +152,19 @@ const Index = () => {
       company: "Ernst & Young (EY)",
       position: "AI Intern – Generative AI & RAG Systems",
       location: "Delhi, India",
-      period: "May 2025 - Present",
+      period: "May 2025 - July 2025",
       logo: <img src={eylogo} alt="Dhruv Mendiratta"className="w-16 h-16 object-cover rounded-md"/>,
       achievements: [
-        "Developed RAG-based enterprise AI chatbots using LangChain, FAISS, and Gemini APIs",
-        "Designed and optimized LLM pipelines with 30% improved contextual accuracy",
-        "Built scalable ingestion systems with chunking strategies and efficient embedding models",
-        "Implemented prompt engineering and vector store tuning"
+        "Developed a modular RAG pipeline using LangChain, FAISS, and Gemini for enterprise-grade document-grounded responses",
+"Engineered multi-agent orchestration with domain-specific vector stores for context-aware query resolution",
+"Implemented multilingual semantic chunking and embeddings using MiniLM optimized for Hindi-English corpora",
+"Designed scalable document ingestion pipelines with OCR, metadata tagging, and incremental FAISS indexing",
+"Built a React-based conversational frontend with real-time Gemini streaming, PDF traceability, and voice interaction",
+"Integrated LLMs including Gemini, LLaMA 3, and Mistral with dynamic selection based on domain and query complexity",
+"Authored robust prompt engineering templates with tone control, citation formatting, and domain-specific context",
+"Reduced search latency through optimized FAISS similarity search and structured context augmentation",
+"Enabled audit-compliant insights via inline pdf:// citations and chunk-level metadata for traceable responses",
+
       ]
     },
     {
