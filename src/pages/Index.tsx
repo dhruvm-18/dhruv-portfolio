@@ -602,16 +602,10 @@ const Index = () => {
                       Hire Me
                     </a>
                   </Button>
-                  <Button asChild className={`rounded-full px-6 py-2 font-semibold transition border ${isDarkMode ? 'bg-blue-900 hover:bg-blue-800 text-blue-100 border-blue-800' : 'border-blue-300 text-blue-700 hover:bg-blue-100 bg-white'} `}>
-                    <a href="/Dhruv_Mendiratta_Detailed_Resume.pdf" target="_blank" rel="noopener noreferrer">
-                      <Eye className="w-4 h-4 mr-2" />
-                      View Detailed Resume
-                    </a>
-                  </Button>
                   <Button asChild className={`rounded-full px-6 py-2 font-semibold transition border ${isDarkMode ? 'bg-cyan-900 hover:bg-cyan-800 text-cyan-100 border-cyan-800' : 'border-cyan-300 text-cyan-700 hover:bg-cyan-100 bg-white'} `}>
-                    <a href="/Dhruv_Mendiratta_1page_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                    <a href="/Dhruv_Mendiratta_Resume.pdf" target="_blank" rel="noopener noreferrer">
                       <FileText className="w-4 h-4 mr-2" />
-                      View ATS Friendly Resume
+                      View My Resume
                     </a>
                   </Button>
                 </div>
