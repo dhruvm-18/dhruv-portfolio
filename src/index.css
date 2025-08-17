@@ -111,17 +111,27 @@
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
-  .animate-spin-slow {
-    animation: spin 8s linear infinite;
+  
+  /* Smooth scrolling for the entire page */
+  html {
+    scroll-behavior: smooth;
   }
-  .animate-bounce-slow {
-    animation: bounce 2.5s infinite;
+  
+  /* Custom scrollbar for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
   }
-  .animate-glow {
-    box-shadow: 0 0 16px 2px #a21caf, 0 0 32px 8px #2563eb33;
-    transition: box-shadow 0.3s;
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
   }
-  .animate-glow:hover {
-    box-shadow: 0 0 32px 8px #a21caf, 0 0 64px 16px #2563eb99;
+  
+  ::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
   }
 }
