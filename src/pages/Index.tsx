@@ -1,63 +1,139 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Github, Linkedin, Mail, ExternalLink, Moon, Sun, Menu, X, ArrowDown, MapPin, Calendar } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Award, Code, Brain, Zap, Users, BookOpen, Calendar, MapPin, Phone, Moon, Sun, GraduationCap, Briefcase, User, Download, Menu, X, CheckCircle, Eye, FileText, ChevronUp, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Switch } from '@/components/ui/switch';
+import eylogo from '/ey.png';
+import Deloitte from '/Deloitte.png';
+import Somerville from '/Somerville.png';
+import Vivek from '/Vivek.jpeg';
+import Manipal from '/logo.jpeg';
 import dhruvProfilePic from '/dhruv.jpeg';
 
+
 const Index = () => {
+  const [activeSection, setActiveSection] = useState('home');
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  const [honorsTab, setHonorsTab] = useState<'awards' | 'certs'>('awards');
+
+  const [projectFilter, setProjectFilter] = useState('All');
 
   const projects = [
     {
-      title: "Unified Knowledge Platform",
-      description: "Enterprise RAG chatbot using LangChain, FAISS, and Gemini APIs for document retrieval and Q&A.",
-      tech: ["React", "Flask", "LangChain", "FAISS", "Python"],
+      title: "Unified Knowledge Platform - An Enterprise RAG Chatbot",
+      period: "May 2025 - July 2025",
+      tech: ["React","Flask","LangChain", "FAISS", "Gemini APIs", "Python", "LLMs"],
+      description: "Developed an internal enterprise chatbot using Retrieval-Augmented Generation (RAG) techniques for efficient document retrieval and question answering.",
+      achievements: [
+        "Integrated vector search (FAISS) with Gemini APIs and LangChain pipelines",
+        "30% gain in response relevance through optimization",
+        "Advanced prompt engineering and document chunking"
+      ],
+      gradient: "from-purple-500 to-pink-500",
+      icon: "🤖",
       link: "https://github.com/dhruvm-18/UnifiedKnowledgePlatform",
-      year: "2025"
+      image: "/PlaceholderRAG.jpg"
     },
     {
-      title: "Crisis Reporting Platform",
-      description: "Full-stack disaster management platform with interactive maps and real-time data feeds.",
-      tech: ["React", "Flask", "Leaflet.js", "Material UI"],
+      title: "Crisis Reporting - A Crowd-Sourced Disaster Management",
+      period: "May 2025 - July 2025",
+      tech: ["React","Material UI (MUI)","Framer Motion","Axios","Leaflet.js","React Leaflet","React Router","React Dropzone","Flask","Werkzeug","flask-cors","JavaScript","Python","Full-Stack Development"],
+      description: "Built a full-stack crowdsourced disaster reporting platform with interactive maps, live data feeds, emergency contacts, and donation integration for real-time crisis response.",
+      achievements: [
+        "Implemented interactive map features using Leaflet and React Leaflet for real-time disaster localization",
+        "Enabled image/file uploads and dynamic content rendering with React Dropzone",
+        "Integrated Flask backend with CORS support for seamless cross-origin communication",
+        "Optimized API communication and data handling using Axios and Flask endpoints",
+        "Designed responsive and accessible UI using Material UI and Framer Motion"
+      ],      
+      gradient: "from-purple-500 to-pink-500",
+      icon: "🤖",
       link: "https://github.com/dhruvm-18/CrisisReporting",
-      year: "2025"
+      image: "/PlaceholderCrisis.jpg"
     },
     {
-      title: "Hybrid Stock Prediction",
-      description: "LSTM-GARCH hybrid model for S&P 500 forecasting with 99% accuracy.",
-      tech: ["Python", "TensorFlow", "Keras", "ARCH"],
+      title: "Hybrid Stock Price Prediction",
+      period: "Jan 2025",
+      tech: ["Python", "TensorFlow", "Keras", "Pandas", "ARCH", "Matplotlib"],
+      description: "Designed a hybrid model combining LSTM (time-series) and GARCH (volatility modeling) for S&P 500 data forecasting.",
+      achievements: [
+        "Achieved R² = 0.9901, RMSE = 0.0125 prediction accuracy",
+        "Submitted findings for academic publication",
+        "Advanced feature engineering and cross-validation"
+      ],
+      gradient: "from-blue-500 to-cyan-500",
+      icon: "📈",
       link: "https://github.com/dhruvm-18/Stock-market-model",
-      year: "2025"
+      image: "/PlaceholderStock.jpg"
     },
     {
       title: "Product Sentiment Analyzer",
-      description: "NLP application for real-time product review sentiment analysis.",
-      tech: ["FastAPI", "React", "NLTK", "PostgreSQL"],
+      period: "March 2025",
+      tech: ["FastAPI", "React", "NLTK", "PostgreSQL", "Chart.js"],
+      description: "Full-stack NLP application with custom sentiment analysis algorithm for product review classification.",
+      achievements: [
+        "Real-time review processing and analysis",
+        "Dynamic graphs and visual sentiment indicators",
+        "Keyphrase extraction for customer feedback themes"
+      ],
+      gradient: "from-green-500 to-emerald-500",
+      icon: "💭",
       link: "https://github.com/dhruvm-18/Product-Sentiment-Analysis",
-      year: "2025"
+      image: "/PlaceholderSentiment.jpg"
+    },
+    {
+      title: "Railway Ticketing Chatbot",
+      period: "May 2025",
+      tech: ["Python", "NLTK"],
+      description: "Built a rule-based chatbot simulating a train ticket booking flow using keyword mapping and intent matching.",
+      achievements: [
+        "Rule-based chatbot with keyword mapping",
+        "Text interface and input validation pipeline",
+        "Applied early NLP techniques for query classification"
+      ],
+      gradient: "from-orange-500 to-red-500",
+      icon: "🚂",
+      link: "https://github.com/dhruvm-18/TicketBookingChatbot",
+      image: "/PlaceholderRailway.jpg"
     }
   ];
 
-  const experiences = [
-    {
-      company: "Ernst & Young (EY)",
-      role: "AI Intern – Generative AI & RAG Systems",
-      period: "May 2025 - July 2025",
-      location: "Delhi, India",
-      description: "Developed enterprise RAG pipelines using LangChain, FAISS, and Gemini APIs with 30% improvement in response relevance."
-    },
-    {
-      company: "Deloitte Touche Tohmatsu India LLP",
-      role: "Software Engineering Intern – Cloud Computing",
-      period: "May 2024 – July 2024",
-      location: "Gurugram, India",
-      description: "Gained hands-on experience with 40+ AWS services including EC2, S3, Lambda, and IAM with focus on cloud architecture."
-    }
+  const projectCategories = [
+    'All',
+    ...Array.from(new Set(projects.flatMap(p =>
+      [
+        p.tech.some(t => ['React', 'FastAPI', 'Node.js'].includes(t)) ? 'Full-Stack Development' : null,
+        p.tech.some(t => ['TensorFlow', 'Keras', 'Pandas', 'NLTK', 'Chart.js', 'Data Analysis'].includes(t)) ? 'Data Analysis & ML' : null,
+        p.tech.some(t => ['LLMs', 'LangChain', 'RAG', 'AI', 'Gemini APIs'].includes(t)) ? 'AI & RAG Systems' : null,
+      ].filter(Boolean)
+    )))
   ];
+
+  const filteredProjects = projectFilter === 'All'
+    ? projects
+    : projects.filter(p => {
+        if (projectFilter === 'Full-Stack Development') {
+          return p.tech.some(t => ['React', 'FastAPI', 'Node.js'].includes(t));
+        }
+        if (projectFilter === 'Data Analysis & ML') {
+          return p.tech.some(t => ['TensorFlow', 'Keras', 'Pandas', 'NLTK', 'Chart.js', 'Data Analysis'].includes(t));
+        }
+        if (projectFilter === 'AI & RAG Systems') {
+          return p.tech.some(t => ['LLMs', 'LangChain', 'RAG', 'AI', 'Gemini APIs'].includes(t));
+        }
+        return false;
+      });
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -71,527 +147,1049 @@ const Index = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  const skills = [
-    "Python", "JavaScript", "React", "Node.js", "TensorFlow", "LangChain", 
-    "FastAPI", "PostgreSQL", "AWS", "Docker", "Git"
+  const experiences = [
+    {
+      company: "Ernst & Young (EY)",
+      position: "AI Intern – Generative AI & RAG Systems",
+      location: "Delhi, India",
+      period: "May 2025 - July 2025",
+      logo: <img src={eylogo} alt="Dhruv Mendiratta"className="w-16 h-16 object-cover rounded-md"/>,
+      achievements: [
+        "Developed a modular RAG pipeline using LangChain, FAISS, and Gemini for enterprise-grade document-grounded responses",
+"Engineered multi-agent orchestration with domain-specific vector stores for context-aware query resolution",
+"Implemented multilingual semantic chunking and embeddings using MiniLM optimized for Hindi-English corpora",
+"Designed scalable document ingestion pipelines with OCR, metadata tagging, and incremental FAISS indexing",
+"Built a React-based conversational frontend with real-time Gemini streaming, PDF traceability, and voice interaction",
+"Integrated LLMs including Gemini, LLaMA 3, and Mistral with dynamic selection based on domain and query complexity",
+"Authored robust prompt engineering templates with tone control, citation formatting, and domain-specific context",
+"Reduced search latency through optimized FAISS similarity search and structured context augmentation",
+"Enabled audit-compliant insights via inline pdf:// citations and chunk-level metadata for traceable responses",
+
+      ]
+    },
+    {
+      company: "Deloitte Touche Tohmatsu India LLP",
+      position: "Software Engineering Intern – Cloud Computing (AWS)",
+      location: "Gurugram, India",
+      period: "May 2024 – Jul 2024",
+      logo: <img src={Deloitte} alt="Dhruv Mendiratta" className="w-16 h-16 object-cover rounded-md"/>,
+      achievements: [
+        
+"Completed hands-on training with 40+ AWS services including EC2, S3, Lambda, and IAM",
+"Practiced secure cloud access management with IAM roles and policy configurations",
+"Built foundational expertise in AWS architecture, scalability, and security principles",
+"Prepared for and gained exposure to the AWS Certified Cloud Practitioner exam objectives"
+      ]
+    }
   ];
 
-  // Scroll spy effect
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'experience', 'projects', 'contact'];
-      const scrollPosition = window.scrollY + 100;
+  const education = [
+    {
+      institution: "Manipal University Jaipur",
+      degree: "B.Tech in Computer Science and Engineering",
+      period: "Sep 2022 - Present (Expected 2026)",
+      location: "Jaipur, India",
+      logo: <img src={Manipal} alt="Dhruv Mendiratta"className="w-16 h-16 object-cover rounded-md"/>,
+      achievements: [
+        "Student Excellence Award for outstanding overall performance (August 2024 & March 2025)",
+        "Active Member – Google Developer Student Club (GDSC) – AI/ML & Full Stack Domains",
+        "Published 3 AI-focused research papers"
+      ]
+    },
+    {
+      institution: "The Vivekanand School",
+      degree: "Class XII",
+      period: "July 2022",
+      location: "Delhi, India",
+      logo: <img src={Vivek} alt="Dhruv Mendiratta"className="w-16 h-16 object-cover rounded-md"/>,
+      achievements: []
+    },
+    {
+      institution: "Somerville School",
+      degree: "Class X",
+      period: "July 2020",
+      location: "Noida, India",
+      logo: <img src={Somerville} alt="Dhruv Mendiratta"className="w-16 h-16 object-cover rounded-md"/>,
+      achievements: []
+    }
+  ];
 
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
+  const skillGroups = [
+    { category: "Programming", icon: "💻", skills: ["Python", "C", "JavaScript", "SQL"] },
+    { category: "Frontend", icon: "🌐", skills: ["HTML/CSS", "React"] },
+    { category: "Backend", icon: "🟩", skills: ["Node.js", "FastAPI", "REST APIs"] },
+    { category: "Data Science", icon: "📊", skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Feature Engineering", "Model Evaluation"] },
+    { category: "Machine/Deep Learning", icon: "🧠", skills: ["Scikit-learn", "TensorFlow", "Keras", "CNN", "LSTM", "BiLSTM-GRU", "GANs", "XGBoost", "Grad-CAM"] },
+    { category: "Cloud/DevOps", icon: "☁️", skills: ["AWS (EC2, S3, Lambda)", "Git & GitHub", "CI/CD"] },
+    { category: "Database", icon: "🗄️", skills: ["PostgreSQL", "MySQL", "MongoDB"] },
+    { category: "Visualization", icon: "📈", skills: ["PowerBI", "Chart.js"] },
+    { category: "AI/LLM", icon: "🔗", skills: ["LLMs", "LangChain", "RAG", "Prompt Engineering", "FAISS"] },
+    { category: "Research", icon: "📝", skills: ["Academic Writing", "Paper Presentation", "Literature Review"] }
+  ];
+
+  const certifications = [
+    {
+      icon: CheckCircle,
+      title: 'NPTEL Design and Analysis of Algorithm',
+      desc: 'SWAYAM',
+      color: 'blue',
+      link: 'https://drive.google.com/file/d/13RTH2AALJEI1O6s5hV183HIeQLZv5TF-/view?usp=sharing',
+    },
+    {
+      icon: CheckCircle,
+      title: 'CCNA: Enterprise Networking, Security, and Automation',
+      desc: 'Cisco',
+      color: 'indigo',
+      link: 'https://www.credly.com/badges/b31195bf-7e35-4ed1-b6d6-b64a31288abf/public_url',
+    },
+    {
+      icon: CheckCircle,
+      title: 'CCNA: Switching, Routing, and Wireless Essentials',
+      desc: 'Cisco',
+      color: 'indigo',
+      link: 'https://www.credly.com/badges/cf53a1a9-fb6b-4272-a0d2-8611c5580306/public_url',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Getting Started with Enterprise-grade AI',
+      desc: 'IBM',
+      color: 'cyan',
+      link: 'https://www.credly.com/badges/8a873631-3c8a-43b9-808d-5efd941a6bfe/public_url',
+    },
+    {
+      icon: CheckCircle,
+      title: 'AWS Academy Graduate - AWS Academy Cloud Foundations',
+      desc: 'Amazon Web Services Academy',
+      color: 'blue',
+      link: 'https://www.credly.com/badges/6164f5df-9c25-4dd1-b221-6f5be898b043/public_url',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Introduction to Data, Signal, and Image Analysis with MATLAB',
+      desc: 'Vanderbilt University',
+      color: 'orange',
+      link: 'https://coursera.org/share/7408ce04d381206f256be139e8326626',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Introduction to Cybersecurity',
+      desc: 'Cisco',
+      color: 'yellow',
+      link: 'https://drive.google.com/file/d/10ILT26y0j1zoETf6RP-vbzTyJGyqInUE/view?usp=sharing',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Java Foundation Course',
+      desc: 'Oracle',
+      color: 'violet',
+      link: 'https://drive.google.com/file/d/1eROtRLJQkiaUazcoztz4-f9Cs5Z5aTSN/view?usp=sharing',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Certificate of Participation: Tata Imagination Challenge 2024',
+      desc: 'Participation in Tata Imagination Challenge 2024',
+      color: 'red',
+      link: 'https://unstop.com/certificate-preview/54bc4922-8c18-4dce-a92e-936ac2971bef',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Certificate of Participation: TATA Crucible Campus Quiz 2024',
+      desc: 'Participation in TATA Crucible Campus Quiz 2024',
+      color: 'green',
+      link: 'https://unstop.com/certificate-preview/dfb6861c-9538-4bf3-92dc-7d5974a78f6a',
+    },
+    {
+      icon: CheckCircle,
+      title: 'HTML Tutorial Certification',
+      desc: 'HTML Tutorial Completion',
+      color: 'rose',
+      link: 'https://drive.google.com/file/d/1khXePy8VNpJhheGnE0Ww-nNFnHoBnKy3/view?usp=sharing',
+    },
+    {
+      icon: CheckCircle,
+      title: 'CSS Tutorial Certification',
+      desc: 'CSS Tutorial Completion',
+      color: 'blue',
+      link: 'https://drive.google.com/file/d/1n5-pCE2-1DkgQfOEwsWNrzpsE-8_1B6P/view?usp=sharing',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Introduction to JavaScript',
+      desc: 'JavaScript Tutorial Completion',
+      color: 'yellow',
+      link: 'https://drive.google.com/file/d/1EX0boiVIluCV6mQLdu8HkHcHTxHzTRWZ/view?usp=sharing',
+    },
+  ];
+
+  const themeClasses = isDarkMode 
+    ? "bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 text-white"
+    : "bg-gradient-to-br from-blue-50 via-sky-50 to-indigo-50 text-gray-900";
+
+  const cardClasses = isDarkMode
+    ? "bg-slate-800/60 border-slate-600/50 text-white"
+    : "bg-white/80 border-blue-200/50 text-gray-900";
+
+  const navClasses = isDarkMode
+    ? "bg-slate-800/80 border-slate-600/50"
+    : "bg-white/80 border-blue-200/50";
+
+  // --- Scrollspy logic ---
+  useEffect(() => {
+    const sectionIds = [
+      'home', 'about', 'experience', 'education', 'projects', 'skills', 'honors', 'contact'
+    ];
+    const handleScroll = () => {
+      let found = false;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 80) { // 80px for nav height
+            setActiveSection(sectionIds[i]);
+            found = true;
             break;
           }
         }
       }
+      if (!found) setActiveSection('home');
     };
-
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' }
-  ];
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+    document.body.style.scrollBehavior = 'smooth';
+    return () => {
+      document.documentElement.style.scrollBehavior = '';
+      document.body.style.scrollBehavior = '';
+    };
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setShowScrollTop(window.scrollY > 200);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${
-      isDarkMode 
-        ? 'bg-gray-950 text-white' 
-        : 'bg-white text-gray-900'
-    }`}>
-      {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 backdrop-blur-md border-b transition-colors duration-300 ${
-        isDarkMode 
-          ? 'bg-gray-950/80 border-gray-800' 
-          : 'bg-white/80 border-gray-200'
-      }`}>
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-2xl font-bold"
+    <div ref={containerRef} className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden scroll-smooth`}>
+      {/* Floating Navigation - Desktop */}
+      <motion.nav 
+        className={`fixed top-0 left-0 right-0 z-50 hidden md:flex justify-center items-center backdrop-blur-md ${navClasses} py-3 border-b shadow-lg`}
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 1 }}
+      >
+        <div className="flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4 w-full max-w-6xl px-4">
+          {/* Logo - DHRUV */}
+          <div className="mr-6 select-none">
+            <span
+              className={`text-2xl md:text-3xl font-extrabold tracking-widest uppercase bg-gradient-to-r ${isDarkMode ? 'from-cyan-400 via-blue-400 to-indigo-400' : 'from-blue-700 via-indigo-500 to-cyan-600'} bg-clip-text text-transparent drop-shadow-lg`}
+              style={{ letterSpacing: '0.18em', fontFamily: 'Fira Mono, Menlo, monospace' }}
             >
-              Dhruv
-            </motion.div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`text-sm font-medium transition-colors duration-200 hover:text-blue-500 ${
-                    activeSection === item.id ? 'text-blue-500' : ''
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-              
-              {/* Theme Toggle */}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                className="ml-4"
+              DHRUV
+            </span>
+          </div>
+          {/* Navigation Buttons */}
+          <div className="flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4 flex-1">
+            {['Home', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollToSection(item.toLowerCase())}
+                className={`group relative text-xs md:text-sm font-medium px-3 py-1.5 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400
+                  ${isDarkMode ? 'text-slate-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'}
+                `}
+                style={{ overflow: 'hidden' }}
               >
-                {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </Button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setIsMobileMenuOpen(true)}
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
+                <span>{item}</span>
+                <span
+                  className={`absolute left-0 bottom-0 h-0.5 w-full transition-all duration-300
+                    ${activeSection === item.toLowerCase() ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') : 'bg-transparent'}
+                  `}
+                  style={{
+                    transform: activeSection === item.toLowerCase() ? 'scaleX(1)' : 'scaleX(0)',
+                    transformOrigin: 'left',
+                  }}
+                />
+                <span
+                  className="absolute left-0 bottom-0 h-0.5 w-full bg-blue-400/60 dark:bg-blue-600/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                  style={{ transformOrigin: 'left' }}
+                />
+              </button>
+            ))}
+          </div>
+          {/* Theme and Social Icons */}
+          <div className="flex items-center space-x-1 md:space-x-2 ml-2 pl-2 border-l border-slate-400/30">
+            <Sun className={`w-4 h-4 ${isDarkMode ? 'text-slate-400' : 'text-yellow-500'}`} />
+            <Switch checked={isDarkMode} onCheckedChange={toggleTheme} />
+            <Moon className={`w-4 h-4 ${isDarkMode ? 'text-blue-400' : 'text-slate-400'}`} />
+            {/* Social Icons */}
+            <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`ml-3 p-2 rounded-full transition-colors duration-200 hover:bg-blue-100/30 ${isDarkMode ? 'hover:bg-blue-900/40' : ''}`}> <Linkedin className={`w-5 h-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
+            <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 rounded-full transition-colors duration-200 hover:bg-slate-200/40 dark:hover:bg-slate-700/40"> <Github className={`w-5 h-5 ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`} /> </a>
+            <a   href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer"
+ aria-label="Mail" className="p-2 rounded-full transition-colors duration-200 hover:bg-cyan-100/30 dark:hover:bg-cyan-900/40"> <Mail className={`w-5 h-5 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation */}
+      <div className="md:hidden fixed top-4 right-4 z-50">
+        <Button size="icon" variant="outline" onClick={() => setIsMobileMenuOpen(true)} className={`${navClasses} rounded-full`}>
+          <Menu className="h-5 w-5" />
+        </Button>
+      </div>
+
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm md:hidden"
-            onClick={() => setIsMobileMenuOpen(false)}
+            className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-lg"
           >
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              className={`absolute right-0 top-0 h-full w-80 p-6 shadow-lg ${
-                isDarkMode ? 'bg-gray-950' : 'bg-white'
-              }`}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex items-center justify-between mb-8">
-                <span className="text-xl font-bold">Menu</span>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setIsMobileMenuOpen(false)}
+            <div className="flex justify-end p-4">
+              <Button size="icon" variant="ghost" onClick={() => setIsMobileMenuOpen(false)}>
+                <X className="h-6 w-6 text-white" />
+              </Button>
+            </div>
+            <div className="flex flex-col items-center justify-center h-full gap-6 -mt-16">
+              {/* Mobile Logo */}
+              <div className="mb-8 select-none">
+                <span
+                  className={`text-3xl font-extrabold tracking-widest uppercase bg-gradient-to-r ${isDarkMode ? 'from-cyan-400 via-blue-400 to-indigo-400' : 'from-blue-700 via-indigo-500 to-cyan-600'} bg-clip-text text-transparent drop-shadow-lg`}
+                  style={{ letterSpacing: '0.18em', fontFamily: 'Fira Mono, Menlo, monospace' }}
                 >
-                  <X className="h-5 w-5" />
-                </Button>
+                  DHRUV
+                </span>
               </div>
-              
-              <div className="space-y-4">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left py-2 text-lg font-medium hover:text-blue-500 transition-colors"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-                
-                <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
-                  <Button
-                    variant="ghost"
-                    onClick={toggleTheme}
-                    className="w-full justify-start"
-                  >
-                    {isDarkMode ? <Sun className="h-5 w-5 mr-2" /> : <Moon className="h-5 w-5 mr-2" />}
-                    {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+              {['Home', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className="text-2xl font-semibold text-slate-100 hover:text-blue-400 transition-colors"
+                >
+                  {item}
+                </button>
+              ))}
+              <div className="flex items-center space-x-4 mt-8">
+                <Sun className={`w-6 h-6 ${isDarkMode ? 'text-slate-400' : 'text-yellow-500'}`} />
+                <Switch checked={isDarkMode} onCheckedChange={toggleTheme} id="mobile-theme-switch" />
+                <Moon className={`w-6 h-6 ${isDarkMode ? 'text-blue-400' : 'text-slate-400'}`} />
+                {/* Social Icons Mobile */}
+                <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 rounded-full transition-colors duration-200 hover:bg-blue-900/40"> <Linkedin className={`w-6 h-6 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
+                <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 rounded-full transition-colors duration-200 hover:bg-slate-700/40"> <Github className={`w-6 h-6 ${isDarkMode ? 'text-slate-300' : 'text-slate-700'}`} /> </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer" aria-label="Mail" className="p-2 rounded-full transition-colors duration-200 hover:bg-cyan-900/40"> <Mail className={`w-6 h-6 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Hero Section */}
+      <section id="home" className="relative min-h-[80vh] flex flex-col items-center justify-center overflow-hidden pt-24 md:pt-28 px-2 md:px-0">
+        <div className="w-full max-w-6xl mx-auto px-6 mb-2 md:mb-4">
+          <h1 className={`text-4xl md:text-6xl font-extrabold ${isDarkMode ? 'text-white' : 'text-gray-900'} text-left drop-shadow-lg`} style={{letterSpacing: '0.01em'}}>
+            Hey it's,
+          </h1>
+        </div>
+        <motion.div style={{ y, opacity }} className="absolute inset-0">
+          <div className={`absolute inset-0 ${isDarkMode ? 'bg-gradient-to-r from-blue-900/30 to-indigo-900/30' : 'bg-gradient-to-r from-blue-100/30 to-indigo-100/30'}`} />
+          {/* Animated background particles */}
+          {[...Array(50)].map((_, i) => (
+            <motion.div
+              key={i}
+              className={`absolute w-1 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-500'} rounded-full`}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+          {/* Animated code snippets background */}
+          {[
+            { code: `const ragResponse = await llm.query({ context: faiss.search(query) })`, color: 'from-cyan-500 to-blue-500' },
+            { code: `def predict_stock(data):\n    model = LSTMGRU()\n    return model.predict(data)`, color: 'from-emerald-500 to-teal-500' },
+            { code: `app.get('/api/projects', (req, res) => res.json(projects))`, color: 'from-indigo-500 to-purple-500' },
+            { code: `const embeddings = langchain.embed(docs)`, color: 'from-pink-500 to-fuchsia-500' },
+            { code: `if (accuracy > 0.99) {\n  publish('Research Paper')\n}`, color: 'from-yellow-500 to-orange-500' },
+            { code: `const sentiment = analyzeReview(text)`, color: 'from-blue-500 to-cyan-500' },
+            { code: `# FastAPI endpoint\n@app.post('/analyze')\ndef analyze(data: Review): ...`, color: 'from-teal-500 to-emerald-500' },
+            { code: `vectorStore.addDocuments(docs, { chunkSize: 512 })`, color: 'from-purple-500 to-indigo-500' },
+            { code: `const resume = await fetch('/Dhruv_Mendiratta_Detailed_Resume.pdf')`, color: 'from-orange-500 to-yellow-500' },
+            { code: `const chatbot = new RAGChatbot({ llm, retriever })`, color: 'from-fuchsia-500 to-pink-500' },
+          ].map((snippet, idx, arr) => {
+            // Grid: 3 columns
+            const columns = 3;
+            const col = idx % columns;
+            const row = Math.floor(idx / columns);
+            const left = 8 + col * 30; // percent
+            const top = 10 + row * 22; // percent
+            return (
+              <pre
+                key={idx}
+                className={`pointer-events-none select-none whitespace-pre text-xs md:text-sm font-mono font-semibold absolute bg-clip-text text-transparent 
+                  ${isDarkMode 
+                    ? `bg-gradient-to-r ${snippet.color} opacity-25 drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]` 
+                    : `bg-gradient-to-r from-gray-400 to-gray-200 opacity-15 drop-shadow-[0_1px_2px_rgba(0,0,0,0.10)]`}
+                `}
+                style={{
+                  left: `${left}%`,
+                  top: `${top}%`,
+                  maxWidth: '240px',
+                  zIndex: 1,
+                  filter: isDarkMode ? 'none' : 'blur(0.5px)',
+                }}
+              >
+                {snippet.code}
+              </pre>
+            );
+          })}
+        </motion.div>
+
+        <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
+          {/* Redesigned Profile Card */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className={`relative p-1 mb-4 rounded-[2.5rem] shadow-2xl animate-gradient-x ${isDarkMode ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900' : 'bg-gradient-to-br from-blue-100 via-sky-100 to-indigo-100'}`}
+            style={{ boxShadow: isDarkMode ? '0 0 40px 0 #0ea5e9, 0 0 0 4px #64748b' : undefined }}
+          >
+            <div className={`backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden border ${isDarkMode ? 'bg-gradient-to-br from-slate-800/90 via-blue-950/90 to-indigo-900/90 border-blue-900/60' : 'bg-gradient-to-br from-white via-blue-100 to-indigo-100 border-blue-200/60'}`}>
+              {/* Floating Profile Pic */}
+              <div className="relative">
+                <div className={`w-28 h-28 md:w-40 md:h-40 rounded-full p-1 animate-spin-slow shadow-xl ${isDarkMode ? 'bg-gradient-to-tr from-blue-700 via-indigo-700 to-slate-800' : 'bg-gradient-to-tr from-blue-200 via-indigo-200 to-white'}` }>
+                  <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-white'} flex items-center justify-center text-4xl`}>
+                    <img src={dhruvProfilePic} alt="Dhruv Mendiratta" className="rounded-full w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
+              {/* Info */}
+              <div className="flex-1 text-left flex flex-col justify-center items-center md:items-start">
+                <div className="flex items-center space-x-4 mb-2">
+                  <h1 className={`text-3xl md:text-5xl font-extrabold bg-gradient-to-r ${isDarkMode ? 'from-cyan-300 via-blue-400 to-indigo-300' : 'from-blue-700 via-indigo-500 to-cyan-600'} bg-clip-text text-transparent animate-gradient-x drop-shadow-lg`}>
+                    Dhruv Mendiratta
+                  </h1>
+                  <Badge className={`bg-gradient-to-r ${isDarkMode ? 'from-slate-800 via-blue-900 to-indigo-900 text-cyan-300 border-blue-700/40' : 'from-blue-100 via-indigo-100 to-cyan-100 text-blue-700 border-blue-300'} text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow`}>AI Engineer</Badge>
+                </div>
+                <p className={`text-base md:text-xl mb-4 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>LLMs & RAG Systems | Full-Stack Developer</p>
+                <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 text-sm md:text-base">
+                  <span className={`flex items-center font-semibold ${isDarkMode ? 'text-green-400' : 'text-green-600'}`}> <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div> Available for work </span>
+                  <span className={`${isDarkMode ? 'text-slate-400' : 'text-gray-500'} font-semibold`}>🕐 Delhi, India (IST)</span>
+                </div>
+                {/* Modern, neutral buttons */}
+                <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-6">
+                  <Button asChild className={`rounded-full px-6 py-2 font-semibold ${isDarkMode ? 'bg-blue-700 hover:bg-blue-600 text-white' : 'bg-slate-200 hover:bg-slate-300 text-blue-900'} transition`}>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer">
+                      <Mail className="w-4 h-4 mr-2" />
+                      Hire Me
+                    </a>
+                  </Button>
+                  <Button asChild className={`rounded-full px-6 py-2 font-semibold transition border ${isDarkMode ? 'bg-cyan-900 hover:bg-cyan-800 text-cyan-100 border-cyan-800' : 'border-cyan-300 text-cyan-700 hover:bg-cyan-100 bg-white'} `}>
+                    <a href="/Dhruv_Mendiratta_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                      <FileText className="w-4 h-4 mr-2" />
+                      View My Resume
+                    </a>
                   </Button>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>     
- {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-6 pt-20">
-        <div className="max-w-6xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-8"
-          >
-            <img
-              src={dhruvProfilePic}
-              alt="Dhruv Mendiratta"
-              className="w-32 h-32 rounded-full mx-auto mb-8 object-cover border-4 border-blue-500/20"
-            />
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-              Dhruv Mendiratta
-            </h1>
-            
-            <p className={`text-xl md:text-2xl mb-8 ${
-              isDarkMode ? 'text-gray-300' : 'text-gray-600'
-            }`}>
-              AI Engineer & Full-Stack Developer
-            </p>
-            
-            <p className={`text-lg max-w-2xl mx-auto mb-12 leading-relaxed ${
-              isDarkMode ? 'text-gray-400' : 'text-gray-600'
-            }`}>
-              Passionate about building intelligent systems with RAG, LLMs, and modern web technologies. 
-              Currently pursuing B.Tech in Computer Science at Manipal University Jaipur.
-            </p>
-            
-            <div className="flex items-center justify-center space-x-6">
-              <Button
-                variant="outline"
-                size="lg"
-                asChild
-                className="group"
-              >
-                <a
-                  href="https://github.com/dhruvm-18"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2"
-                >
-                  <Github className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                  <span>GitHub</span>
-                </a>
-              </Button>
-              
-              <Button
-                variant="outline"
-                size="lg"
-                asChild
-                className="group"
-              >
-                <a
-                  href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2"
-                >
-                  <Linkedin className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                  <span>LinkedIn</span>
-                </a>
-              </Button>
-              
-              <Button
-                size="lg"
-                asChild
-                className="group bg-blue-600 hover:bg-blue-700"
-              >
-                <a
-                  href="mailto:dhruv.mendiratta4@gmail.com"
-                  className="flex items-center space-x-2"
-                >
-                  <Mail className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                  <span>Contact</span>
-                </a>
-              </Button>
             </div>
           </motion.div>
-          
+          {/* Unified Status Card below profile card */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 1.1, type: 'spring', stiffness: 180 }}
+            className={`relative flex justify-center items-center mb-8 max-w-2xl mx-auto`}
           >
-            <button
-              onClick={() => scrollToSection('about')}
-              className="animate-bounce"
-            >
-              <ArrowDown className="h-6 w-6 text-gray-400" />
-            </button>
+            <div className={`relative w-full px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border-2 ${isDarkMode ? 'border-blue-800/40 bg-gradient-to-r from-slate-800 via-blue-900 to-indigo-900 text-cyan-200' : 'border-blue-200/60 bg-gradient-to-r from-white via-blue-100 to-cyan-100 text-blue-700'} animate-gradient-x tracking-wide`} style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
+              <Code className={`w-6 h-6 inline-block mr-2 align-middle animate-spin-slow ${isDarkMode ? 'text-cyan-300' : 'text-blue-500'}`} />
+              Currently Debugging Life's Edge Cases
+            </div>
           </motion.div>
         </div>
+
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <ChevronDown 
+            className={`w-8 h-8 cursor-pointer ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} 
+            onClick={() => scrollToSection('about')} 
+          />
+        </motion.div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
+      <section id="about" className="py-16 px-4 sm:px-6 md:py-20">
+        <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-4xl font-bold mb-12 text-center">About Me</h2>
-            
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <p className={`text-lg leading-relaxed mb-6 ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                }`}>
-                  I'm a passionate AI engineer and full-stack developer with expertise in building 
-                  intelligent systems using cutting-edge technologies like RAG, LangChain, and modern web frameworks.
-                </p>
-                
-                <p className={`text-lg leading-relaxed mb-8 ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                }`}>
-                  Currently pursuing my B.Tech in Computer Science at Manipal University Jaipur, 
-                  I've gained valuable experience through internships at Ernst & Young and Deloitte, 
-                  working on enterprise-grade AI solutions and cloud computing projects.
-                </p>
-                
-                <Button
-                  variant="outline"
-                  asChild
-                  className="group"
-                >
-                  <a
-                    href="/Dhruv_Mendiratta_Resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2"
-                  >
-                    <span>View Resume</span>
-                    <ExternalLink className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                  </a>
-                </Button>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Skills</h3>
-                <div className="flex flex-wrap gap-2">
-                  {skills.map((skill) => (
-                    <Badge
-                      key={skill}
-                      variant="secondary"
-                      className="text-sm py-1 px-3"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
+            <div className="flex items-center justify-center mb-4 md:mb-6">
+              <User className={`w-7 h-7 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
+                Who Am I?
+              </h2>
             </div>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
           </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+                I'm Dhruv Mendiratta a final-year Computer Science student passionate about building impactful AI-powered systems. During my Generative AI internship at Ernst & Young (EY), I worked hands-on with Retrieval-Augmented Generation (RAG) techniques, using LangChain, FAISS, and Gemini APIs to develop scalable enterprise-level chatbot solutions.
+              </p>
+              <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+                I bring a strong foundation in cloud computing through my AWS-focused experience at Deloitte, where I explored the deployment and optimization of cloud-native architectures. My academic journey includes published research in applied deep learning, covering innovations in CNNs, GANs, and hybrid LSTM-GRU models across domains like finance and medical imaging.
+                </p>
+                <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+                Whether it's integrating AI into real-world workflows, designing efficient data pipelines, or optimizing performance in distributed systems I enjoy solving complex problems that matter. Outside the world of code, you'll find me diving into competitive programming, collaborating at hackathons, or exploring the next big breakthrough in tech.
+                </p>
+                <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+                Thanks for stopping by! Check out my resume and projects to learn more. Let’s connect if you're up for a collaboration or tech chat!
+              </p>
+              
+              <div className="grid grid-cols-2 gap-6">
+                {[
+                  { number: "3+", label: "Research Papers", color: "blue" },
+                  { number: "2", label: "Internships", color: "indigo" },
+                  { number: "4+", label: "Major Projects", color: "cyan" },
+                  { number: "5+", label: "Awards", color: "emerald" }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="text-center"
+                  >
+                    <div className={`text-2xl sm:text-3xl font-bold mb-2 ${isDarkMode ? `text-${stat.color}-400` : `text-${stat.color}-600`}`}>
+                      {stat.number}
+                    </div>
+                    <div className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{stat.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-4 md:space-y-6"
+            >
+              {[
+                { icon: Brain, title: "AI & Machine Learning", desc: "Specialized in RAG systems, LLMs, and deep learning with published research", color: "blue" },
+                { icon: Code, title: "Full-Stack Development", desc: "Building scalable applications with React, FastAPI, and cloud technologies", color: "indigo" },
+                { icon: BookOpen, title: "Research & Innovation", desc: "Published researcher with focus on practical AI applications", color: "cyan" }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.02, x: 10 }}
+                  className={`${cardClasses} backdrop-blur-sm rounded-xl border`}
+                >
+                  <CardContent className="p-4 md:p-6">
+                    <div className="flex items-center mb-3">
+                      <item.icon className={`w-6 h-6 md:w-8 md:h-8 mr-3 ${isDarkMode ? `text-${item.color}-400` : `text-${item.color}-600`}`} />
+                      <h3 className={`text-lg md:text-xl font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{item.title}</h3>
+                    </div>
+                    <p className={`text-sm md:text-base ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{item.desc}</p>
+                  </CardContent>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className={`py-20 px-6 ${
-        isDarkMode ? 'bg-gray-900/50' : 'bg-gray-50'
-      }`}>
-        <div className="max-w-4xl mx-auto">
+      <section id="experience" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
+        <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-4xl font-bold mb-12 text-center">Experience</h2>
-            
-            <div className="space-y-8">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className={`${
-                    isDarkMode ? 'bg-gray-800/50 border-gray-700' : 'bg-white border-gray-200'
-                  }`}>
-                    <CardHeader>
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+            <Briefcase className={`w-7 h-7 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Experience</h2>
+          </motion.div>
+
+          <div className="space-y-8 md:space-y-12">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <Card className={`${cardClasses} backdrop-blur-sm border hover:shadow-2xl transition-all duration-300`}>
+                  <CardHeader>
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                      <div className="flex items-center space-x-3 md:space-x-4">
+                        <div className="text-3xl md:text-4xl">{exp.logo}</div>
                         <div>
-                          <CardTitle className="text-xl mb-2">{exp.company}</CardTitle>
-                          <p className="text-lg font-medium text-blue-500">{exp.role}</p>
-                        </div>
-                        <div className={`text-sm mt-2 md:mt-0 ${
-                          isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                        }`}>
-                          <div className="flex items-center space-x-1 mb-1">
-                            <Calendar className="h-4 w-4" />
-                            <span>{exp.period}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <MapPin className="h-4 w-4" />
-                            <span>{exp.location}</span>
-                          </div>
+                          <CardTitle className={`text-xl md:text-2xl mb-1 md:mb-2 ${isDarkMode ? 'text-blue-300' : 'text-blue-600'}`}>{exp.company}</CardTitle>
+                          <CardDescription className={`text-base md:text-lg ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{exp.position}</CardDescription>
                         </div>
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className={`${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                      }`}>
-                        {exp.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
+                      <div className="text-left md:text-right mt-3 md:mt-0">
+                        <div className={`flex items-center text-sm mb-1 md:mb-2 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+                          <Calendar className="w-4 h-4 mr-2" />
+                          {exp.period}
+                        </div>
+                        <div className={`flex items-center text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+                          <MapPin className="w-4 h-4 mr-2" />
+                          {exp.location}
+                        </div>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 pl-1">
+                      {exp.achievements.map((achievement, i) => (
+                        <li key={i} className="flex items-start">
+                          <Zap className={`w-4 h-4 mr-2 md:mr-3 mt-1 flex-shrink-0 ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}`} />
+                          <span className={`text-sm md:text-base ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{achievement}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="py-16 px-4 sm:px-6 md:py-20">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12 md:mb-16"
+          >
+            <div className="flex items-center justify-center mb-4 md:mb-6">
+              <GraduationCap className={`w-7 h-7 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
+                Education
+              </h2>
             </div>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto`}></div>
           </motion.div>
+
+          <div className="space-y-8">
+            {education.map((edu,index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <Card className={`${cardClasses} backdrop-blur-sm border hover:shadow-2xl transition-all duration-300`}>
+                  <CardHeader>
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                      <div className="flex items-center space-x-3 md:space-x-4">
+                        <div className="text-3xl md:text-4xl">{edu.logo}</div>
+                      <div>
+                        </div>
+                        <CardTitle className={`text-xl md:text-2xl mb-1 md:mb-2 ${isDarkMode ? 'text-emerald-300' : 'text-emerald-600'}`}>{edu.institution}</CardTitle>
+                        <CardDescription className={`text-base md:text-lg ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{edu.degree}</CardDescription>
+                      </div>
+                      <div className="text-left md:text-right mt-3 md:mt-0">
+                        <div className={`flex items-center text-sm mb-1 md:mb-2 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+                          <Calendar className="w-4 h-4 mr-2" />
+                          {edu.period}
+                        </div>
+                        <div className={`flex items-center text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+                          <MapPin className="w-4 h-4 mr-2" />
+                          {edu.location}
+                        </div>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  {edu.achievements.length > 0 && (
+                    <CardContent>
+                      <ul className="space-y-2 pl-1">
+                        {edu.achievements.map((achievement, i) => (
+                          <li key={i} className="flex items-start">
+                            <Award className={`w-4 h-4 mr-2 md:mr-3 mt-1 flex-shrink-0 ${isDarkMode ? 'text-yellow-400' : 'text-yellow-600'}`} />
+                            <span className={`text-sm md:text-base ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  )}
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-6">
+      <section id="projects" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
         <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-4xl font-bold mb-12 text-center">Featured Projects</h2>
-            
-            <div className="grid md:grid-cols-2 gap-8">
-              {projects.map((project, index) => (
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Projects</h2>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
+            <p className={`text-base md:text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-400'}`}>Here are some of my projects spanning full-stack development, data analysis, and cloud computing.</p>
+          </motion.div>
+          <div className="flex flex-wrap gap-4 justify-center mb-8">
+            {projectCategories.map(cat => (
+              <button
+                key={cat}
+                className={`px-4 py-2 rounded-full font-semibold shadow transition ${projectFilter === cat ? 'bg-blue-500 text-white' : isDarkMode ? 'bg-slate-800 text-white hover:bg-slate-900' : 'bg-blue-100 text-blue-700 hover:bg-blue-200'}`}
+                onClick={() => setProjectFilter(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.03, boxShadow: '0 8px 32px 0 rgba(0,0,0,0.25)' }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700 bg-gradient-to-b from-yellow-50 to-slate-900/90 group flex flex-col"
+              >
+                {/* Top: Light area */}
+                <div className="p-6 bg-yellow-50 dark:bg-slate-800 flex flex-col md:flex-row items-center gap-4 relative">
+                  <div className="flex-1">
+                    <div className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white mb-1">{project.title}</div>
+                    <div className="text-base font-medium text-slate-700 dark:text-slate-300 mb-2">{project.period}</div>
+                    <div className="flex gap-2 mb-3">
+                      {project.tech.slice(0, 4).map((tech, i) => (
+                        <span key={i} className="inline-block bg-slate-200 dark:bg-slate-700 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full text-xs font-semibold border border-blue-200 dark:border-blue-700">{tech}</span>
+                          ))}
+                        </div>
+                    </div>
+                  {/* Illustration/Placeholder */}
+                  <div className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
+                    {project.image ? (
+                      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-6xl md:text-7xl">{project.icon}</span>
+                    )}
+                  </div>
+          </div>
+                {/* Bottom: Dark area */}
+                <div className="flex-1 flex flex-col justify-between bg-slate-900 p-6">
+                  <div>
+                    <div className="text-lg font-bold text-white mb-2">{project.title}</div>
+                    <div className="text-slate-300 text-sm mb-3">{project.description}</div>
+                  </div>
+                  <div className="flex justify-end items-center mt-2">
+                    {project.link && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="ml-2">
+                        <Github className="w-7 h-7 text-gray-200 hover:text-white bg-slate-800 rounded-full p-1 border-2 border-gray-700 transition" style={{ boxShadow: '0 2px 8px #24292f55' }} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+                </motion.div>
+              ))}
+            </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-16 px-4 sm:px-6 md:py-20">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12 md:mb-16"
+          >
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Skills & Expertise</h2>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
+            <p className={`text-base md:text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>Here are key areas of my expertise, shaped by my academic & professional experience</p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+            {skillGroups.map((group, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.06 }}
+                className={`${cardClasses} backdrop-blur-sm rounded-xl p-4 md:p-6 border hover:shadow-xl transition-all duration-300 flex flex-col`}
+              >
+                <div className="flex items-center mb-3 md:mb-4">
+                  <span className="text-xl md:text-2xl mr-2">{group.icon}</span>
+                  <span className={`text-base md:text-lg font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{group.category}</span>
+                </div>
+                <ul className="flex flex-wrap gap-1 md:gap-2">
+                  {group.skills.map((skill, i) => (
+                    <li key={i} className={`px-2 py-1 md:px-3 rounded-full text-xs md:text-sm font-medium ${isDarkMode ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30' : 'bg-blue-100 text-blue-700 border border-blue-300'}`}>{skill}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Honors & Awards and Certifications Section */}
+      <section id="honors" className="py-16 px-4 sm:px-6 md:py-20">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center justify-between mb-12 md:mb-16">
+            <div className="text-center w-full">
+              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>{honorsTab === 'awards' ? 'Honors & Awards' : 'Certifications'}</h2>
+              <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
+                </div>
+            {/* Right-side minimalist toggle button */}
+            <button
+              className={`ml-4 p-2 rounded-full border-2 border-blue-400 bg-transparent hover:bg-blue-500/10 transition flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400`}
+              onClick={() => setHonorsTab(honorsTab === 'awards' ? 'certs' : 'awards')}
+              aria-label={honorsTab === 'awards' ? 'Show Certificates' : 'Show Honors & Awards'}
+              title={honorsTab === 'awards' ? 'Show Certificates' : 'Show Honors & Awards'}
+            >
+              <ChevronRight className={`w-6 h-6 ${honorsTab === 'awards' ? 'text-blue-400' : 'text-blue-600'} transition-transform duration-200`} style={{ transform: honorsTab === 'awards' ? 'rotate(0deg)' : 'rotate(180deg)' }} />
+            </button>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6 md:gap-8 mb-12">
+            {honorsTab === 'awards' ? (
+              <>
+                {/* Individual Award Tiles */}
+                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.06 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}>
+                  <Award className={`w-8 h-8 ${isDarkMode ? 'text-yellow-300' : 'text-yellow-500'}`} />
+                  <div className="font-semibold text-lg md:text-xl mb-1">Student Excellence Award</div>
+                  <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Given for outstanding internship performance and publishing a journal research paper at Manipal University Jaipur</div>
+                  <a href="https://drive.google.com/file/d/1IAJbcBOw41Wi9EDc4M4jCCHX9HAvn0Dz/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.12 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}>
+                  <Zap className={`w-8 h-8 ${isDarkMode ? 'text-pink-300' : 'text-pink-500'}`} />
+                  <div className="font-semibold text-lg md:text-xl mb-1">HACKX Hackathon – Round 2 Finalist (2024)</div>
+                  <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Advanced to the final round of a university-level hackathon hosted by Manipal University Jaipur</div>
+                  <a href="https://unstop.com/certificate-preview/2d40a416-34db-461b-9044-61f2114baf96" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.18 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}>
+                  <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-blue-300' : 'text-blue-500'}`} />
+                  <div className="font-semibold text-lg md:text-xl mb-1">Paper Presentation – CML 2025, Sikkim Manipal University</div>
+                  <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented a paper on Skin Disease Detection using Deep Learning</div>
+                  <a href="https://drive.google.com/file/d/1ie-S0rQc9wps4bI1ZAllZCOOMm3h9Elk/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.24 }} className={`${cardClasses} rounded-2xl p-6 pb-12 border shadow-xl flex flex-col items-start gap-3 relative`}>
+                  <BookOpen className={`w-8 h-8 ${isDarkMode ? 'text-indigo-300' : 'text-indigo-500'}`} />
+                  <div className="font-semibold text-lg md:text-xl mb-1">Paper Presentation – ICAESRTA 2K25, KBP College of Engineering</div>
+                  <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Presented research on hybrid stock forecasting using BiLSTM-GRU models</div>
+                  <a href="https://drive.google.com/file/d/1KyGyowdEUuQxQravyHPIAeTCUtsf4pCq/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.06 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}>
+                  <Briefcase className={`w-8 h-8 ${isDarkMode ? 'text-emerald-300' : 'text-emerald-600'}`} />
+                  <div className="font-semibold text-lg md:text-xl mb-1">Ernst & Young Internship Certificate</div>
+                  <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Ernst & Young: July 2024</div>
+                  <a href="https://drive.google.com/file/d/1Jp9_sDtTZ8TzZB6Wubbh9rlwYwjnq5gF/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.03 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 0.06 }} className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}>
+                  <Briefcase className={`w-8 h-8 ${isDarkMode ? 'text-emerald-300' : 'text-emerald-600'}`} />
+                  <div className="font-semibold text-lg md:text-xl mb-1">Deloitte Internship Certificate</div>
+                  <div className={`text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>Deloitte Touche Tohmatsu India LLP: Aug 2024</div>
+                  <a href="https://drive.google.com/file/d/1E3Rnl5LBxIV-zlEO11d4Vll4nib47bCQ/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                    <ExternalLink className="w-5 h-5 text-white" />
+                  </a>
+                </motion.div>
+
+              </>
+            ) : (
+              <>
+                {certifications.map((cert, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 32 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ duration: 0.6, ease: 'easeOut', delay: i * 0.06 }}
+                    className={`${cardClasses} rounded-2xl p-6 border shadow-xl flex flex-col items-start gap-3 relative`}
+                  >
+                    <cert.icon className={`w-8 h-8 ${isDarkMode ? `text-${cert.color}-300` : `text-${cert.color}-500`}`} />
+                    <div className="font-semibold text-lg md:text-xl mb-1">{cert.title}</div>
+                    <div className={`text-sm truncate max-w-full ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{cert.desc}</div>
+                    {cert.link && (
+                      <a href={cert.link} target="_blank" rel="noopener noreferrer" className="absolute bottom-4 right-4 p-2 rounded-full bg-blue-500 hover:bg-blue-600 transition-colors shadow-lg" title="View Certificate">
+                        <ExternalLink className="w-5 h-5 text-white" />
+                      </a>
+                    )}
+                  </motion.div>
+                ))}
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
+              Let's Connect
+            </h2>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
+            <p className={`text-lg md:text-xl mb-8 md:mb-12 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+              Ready to build the future of AI together? Let's discuss your next project.
+            </p>
+
+            <div className="grid sm:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12">
+              {[
+                { icon: Mail, title: "Email", info: "dhruv.mendiratta4@gmail.com", color: "blue" },
+                { icon: Phone, title: "Phone", info: "+91 9013669130", color: "indigo" },
+                { icon: MapPin, title: "Location", info: "Delhi, India", color: "cyan" }
+              ].map((contact, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className={`${cardClasses} backdrop-blur-sm rounded-lg border p-4 md:p-6`}
                 >
-                  <Card className={`h-full group hover:shadow-lg transition-all duration-300 ${
-                    isDarkMode ? 'bg-gray-800/50 border-gray-700 hover:bg-gray-800/70' : 'bg-white border-gray-200 hover:shadow-xl'
-                  }`}>
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <CardTitle className="text-xl mb-2 group-hover:text-blue-500 transition-colors">
-                            {project.title}
-                          </CardTitle>
-                          <p className={`text-sm ${
-                            isDarkMode ? 'text-gray-400' : 'text-gray-600'
-                          }`}>
-                            {project.year}
-                          </p>
-                        </div>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          asChild
-                          className="opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <ExternalLink className="h-4 w-4" />
-                          </a>
-                        </Button>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className={`mb-4 ${
-                        isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                      }`}>
-                        {project.description}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.map((tech) => (
-                          <Badge
-                            key={tech}
-                            variant="outline"
-                            className="text-xs"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <contact.icon className={`w-10 h-10 md:w-12 md:h-12 mx-auto mb-3 ${isDarkMode ? `text-${contact.color}-400` : `text-${contact.color}-600`}`} />
+                  <h3 className={`text-base md:text-lg font-semibold mb-2 ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{contact.title}</h3>
+                  <p className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{contact.info}</p>
                 </motion.div>
+              ))}
+            </div>
+
+            <div className="flex justify-center space-x-4 md:space-x-6">
+              {[
+                { icon: Linkedin, href: "https://www.linkedin.com/in/dhruv-mendiratta-132a46255/", color: "blue" },
+                { icon: Github, href: "https://github.com/dhruvm-18", color: "slate" },
+                { icon: Mail,href :"https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com",
+  target:"_blank",
+  rel:"noopener noreferrer", color: "cyan" }
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, rotateY: 10 }}
+                  className={`p-3 md:p-4 ${isDarkMode ? `bg-gradient-to-br from-${social.color}-600/20 to-${social.color}-600/40 border-${social.color}-400` : `bg-gradient-to-br from-${social.color}-100 to-${social.color}-200 border-${social.color}-300`} rounded-full border transition-all duration-300`}
+                >
+                  <social.icon className={`w-5 h-5 md:w-6 md:h-6 ${isDarkMode ? `text-${social.color}-400` : `text-${social.color}-600`}`} />
+                </motion.a>
               ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className={`py-20 px-6 ${
-        isDarkMode ? 'bg-gray-900/50' : 'bg-gray-50'
-      }`}>
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-8">Let's Connect</h2>
-            
-            <p className={`text-lg mb-12 max-w-2xl mx-auto ${
-              isDarkMode ? 'text-gray-300' : 'text-gray-600'
-            }`}>
-              I'm always interested in discussing new opportunities, innovative projects, 
-              or just having a conversation about technology and AI.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <Button
-                size="lg"
-                asChild
-                className="bg-blue-600 hover:bg-blue-700 group"
-              >
-                <a
-                  href="mailto:dhruv.mendiratta4@gmail.com"
-                  className="flex items-center space-x-2"
-                >
-                  <Mail className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                  <span>Send Email</span>
-                </a>
-              </Button>
-              
-              <Button
-                variant="outline"
-                size="lg"
-                asChild
-                className="group"
-              >
-                <a
-                  href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2"
-                >
-                  <Linkedin className="h-5 w-5 group-hover:scale-110 transition-transform" />
-                  <span>LinkedIn</span>
-                </a>
-              </Button>
+      {/* Map Section at the bottom */}
+      <section className="py-12 px-4 sm:px-6 md:py-16 bg-transparent">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
+            {/* Left: About Me */}
+            <div className={`flex-1 max-w-xs rounded-2xl border-2 shadow-lg p-6 ${isDarkMode ? 'border-blue-800 bg-slate-900 text-white' : 'border-blue-200 bg-white text-blue-900'}` }>
+              <h4 className="text-xl font-bold mb-2">About Me</h4>
+              <p className="text-sm md:text-base">AI Engineer & Full-Stack Developer passionate about building scalable AI solutions and modern web apps. Always learning, always building.</p>
+              <ul className="mt-4 space-y-1 text-xs md:text-sm">
+                <li>🌐 React, FastAPI, AWS</li>
+                <li>🤖 LLMs, RAG, Deep Learning</li>
+                <li>📍 Based in Delhi, India</li>
+              </ul>
             </div>
-          </motion.div>
+            {/* Center: Map */}
+            <div className={`relative rounded-2xl border-2 shadow-lg overflow-hidden ${isDarkMode ? 'border-blue-800 bg-slate-900' : 'border-blue-200 bg-white'}`} style={{ width: 400, height: 300, minWidth: 300, minHeight: 200 }}>
+              <img
+                src="https://static-maps.yandex.ru/1.x/?lang=en-US&ll=77.2090,28.6139&z=11&l=map&size=400,300&pt=77.2090,28.6139,pm2rdm"
+                alt="Delhi Map Preview"
+                className="w-full h-full object-cover opacity-90"
+                style={{ filter: isDarkMode ? 'grayscale(0.3) brightness(0.8)' : 'grayscale(0.1)' }}
+              />
+            </div>
+            {/* Right: Contact Info */}
+            <div className={`flex-1 max-w-xs rounded-2xl border-2 shadow-lg p-6 ${isDarkMode ? 'border-blue-800 bg-slate-900 text-white' : 'border-blue-200 bg-white text-blue-900'}` }>
+              <h4 className="text-xl font-bold mb-2">Contact</h4>
+              <ul className="space-y-2 text-sm md:text-base">
+                <li><span className="font-semibold">Email:</span> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer" className="underline hover:text-blue-500">Mail Here</a></li>
+                <li><span className="font-semibold">LinkedIn:</span> <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">Click Here</a></li>
+                <li><span className="font-semibold">GitHub:</span> <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-500">@dhruvm-18</a></li>
+              </ul>
+              <div className="mt-4 text-xs text-gray-400 dark:text-gray-500">Let's build something great together!</div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className={`py-8 px-6 border-t ${
-        isDarkMode ? 'border-gray-800' : 'border-gray-200'
-      }`}>
+      <footer className={`py-6 md:py-8 px-4 sm:px-6 border-t ${isDarkMode ? 'border-slate-600/50' : 'border-gray-200'}`}>
         <div className="max-w-6xl mx-auto text-center">
-          <p className={`${
-            isDarkMode ? 'text-gray-400' : 'text-gray-600'
-          }`}>
-            © 2025 Dhruv Mendiratta. Built with React & Tailwind CSS.
+          <p className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+            © 2025 Dhruv Mendiratta.Built from scratch with <code className="text-red-500">&lt;code&gt;</code> &amp; ☕.
           </p>
         </div>
       </footer>
+
+      {/* Scroll-to-Top Button */}
+      {showScrollTop && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="fixed bottom-6 right-6 z-50 p-3 bg-blue-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Scroll to top"
+        >
+          <ChevronUp className="w-6 h-6" />
+        </motion.button>
+      )}
     </div>
   );
 };
