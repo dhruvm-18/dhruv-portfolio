@@ -1,10 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Award, Code, Brain, Zap, Users, BookOpen, Calendar, MapPin, Phone, Moon, Sun, GraduationCap, Briefcase, User, Download, Menu, X, CheckCircle, Eye, FileText, ChevronUp, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
+import { LazyImage } from '@/components/ui/lazy-image';
+import { FadeIn, SlideIn, ScaleIn, StaggerContainer, StaggerItem } from '@/components/ui/optimized-motion';
+import { useOptimizedScroll, useScrollSpy, usePerformanceOptimizer } from '@/hooks/use-optimized-scroll';
 import eylogo from '/ey.png';
 import Deloitte from '/Deloitte.png';
 import Somerville from '/Somerville.png';
@@ -14,20 +17,28 @@ import dhruvProfilePic from '/dhruv.jpeg';
 
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState('home');
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [honorsTab, setHonorsTab] = useState<'awards' | 'certs'>('awards');
+  const [projectFilter, setProjectFilter] = useState('All');
+
+  // Performance optimizations
+  const { scrollY, isScrolling } = useOptimizedScroll({ throttleMs: 16 });
+  const { isLowPowerMode, prefersReducedMotion } = usePerformanceOptimizer();
+  
+  // Optimized scroll progress
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  const [honorsTab, setHonorsTab] = useState<'awards' | 'certs'>('awards');
-
-  const [projectFilter, setProjectFilter] = useState('All');
+  // Optimized scrollspy
+  const sectionIds = useMemo(() => [
+    'home', 'about', 'experience', 'education', 'projects', 'skills', 'honors', 'contact'
+  ], []);
+  const activeSection = useScrollSpy(sectionIds, 80);
 
   const projects = [
     {
@@ -135,17 +146,17 @@ const Index = () => {
         return false;
       });
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     setIsMobileMenuOpen(false);
-  };
+  }, []);
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     setIsDarkMode(!isDarkMode);
-  };
+  }, [isDarkMode]);
 
   const experiences = [
     {
@@ -333,54 +344,30 @@ const Index = () => {
     ? "bg-slate-800/80 border-slate-600/50"
     : "bg-white/80 border-blue-200/50";
 
-  // --- Scrollspy logic ---
+  // Optimized scroll effects
   useEffect(() => {
-    const sectionIds = [
-      'home', 'about', 'experience', 'education', 'projects', 'skills', 'honors', 'contact'
-    ];
-    const handleScroll = () => {
-      let found = false;
-      for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sectionIds[i]);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 80) { // 80px for nav height
-            setActiveSection(sectionIds[i]);
-            found = true;
-            break;
-          }
-        }
-      }
-      if (!found) setActiveSection('home');
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
-    document.body.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollBehavior = '';
-      document.body.style.scrollBehavior = '';
-    };
-  }, []);
-
-  useEffect(() => {
-    const onScroll = () => setShowScrollTop(window.scrollY > 200);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    const onScroll = () => setShowScrollTop(scrollY > 200);
+    setShowScrollTop(scrollY > 200);
+  }, [scrollY]);
 
   return (
-    <div ref={containerRef} className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden scroll-smooth`}>
+    <div 
+      ref={containerRef} 
+      className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden scroll-smooth scrollbar-thin`}
+      style={{
+        willChange: 'auto',
+        contain: 'layout style paint',
+      }}
+    >
       {/* Floating Navigation - Desktop */}
       <motion.nav 
-        className={`fixed top-0 left-0 right-0 z-50 hidden md:flex justify-center items-center backdrop-blur-md ${navClasses} py-3 border-b shadow-lg`}
+        className={`fixed top-0 left-0 right-0 z-50 hidden md:flex justify-center items-center backdrop-blur-optimized ${navClasses} py-3 border-b shadow-lg`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
+        style={{
+          willChange: 'transform, opacity',
+        }}
       >
         <div className="flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4 w-full max-w-6xl px-4">
           {/* Logo - DHRUV */}
@@ -498,16 +485,21 @@ const Index = () => {
             Hey it's,
           </h1>
         </div>
-        <motion.div style={{ y, opacity }} className="absolute inset-0">
+        <motion.div 
+          style={{ y, opacity }} 
+          className="absolute inset-0"
+          initial={false}
+        >
           <div className={`absolute inset-0 ${isDarkMode ? 'bg-gradient-to-r from-blue-900/30 to-indigo-900/30' : 'bg-gradient-to-r from-blue-100/30 to-indigo-100/30'}`} />
-          {/* Animated background particles */}
-          {[...Array(50)].map((_, i) => (
+          {/* Optimized animated background particles - reduced count for performance */}
+          {!isLowPowerMode && !prefersReducedMotion && [...Array(20)].map((_, i) => (
             <motion.div
               key={i}
               className={`absolute w-1 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-500'} rounded-full`}
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
+                willChange: 'transform, opacity',
               }}
               animate={{
                 y: [0, -30, 0],
@@ -575,7 +567,12 @@ const Index = () => {
               <div className="relative">
                 <div className={`w-28 h-28 md:w-40 md:h-40 rounded-full p-1 animate-spin-slow shadow-xl ${isDarkMode ? 'bg-gradient-to-tr from-blue-700 via-indigo-700 to-slate-800' : 'bg-gradient-to-tr from-blue-200 via-indigo-200 to-white'}` }>
                   <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-white'} flex items-center justify-center text-4xl`}>
-                    <img src={dhruvProfilePic} alt="Dhruv Mendiratta" className="rounded-full w-full h-full object-cover" />
+                    <LazyImage 
+                      src={dhruvProfilePic} 
+                      alt="Dhruv Mendiratta" 
+                      className="rounded-full w-full h-full object-cover"
+                      priority={true}
+                    />
                   </div>
                 </div>
               </div>
@@ -641,11 +638,11 @@ const Index = () => {
       {/* About Section */}
       <section id="about" className="py-16 px-4 sm:px-6 md:py-20">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <FadeIn
+            delay={0.2}
+            duration={0.8}
             className="text-center mb-12 md:mb-16"
+            reducedMotion={prefersReducedMotion}
           >
             <div className="flex items-center justify-center mb-4 md:mb-6">
               <User className={`w-7 h-7 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
@@ -654,14 +651,14 @@ const Index = () => {
               </h2>
             </div>
             <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
-          </motion.div>
+          </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+                      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+              <SlideIn
+                direction="left"
+                duration={0.8}
+                reducedMotion={prefersReducedMotion}
+              >
               <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
                 I'm Dhruv Mendiratta a final-year Computer Science student passionate about building impactful AI-powered systems. During my Generative AI internship at Ernst & Young (EY), I worked hands-on with Retrieval-Augmented Generation (RAG) techniques, using LangChain, FAISS, and Gemini APIs to develop scalable enterprise-level chatbot solutions.
               </p>
@@ -696,14 +693,14 @@ const Index = () => {
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+                          </SlideIn>
 
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-4 md:space-y-6"
-            >
+              <SlideIn
+                direction="right"
+                duration={0.8}
+                className="space-y-4 md:space-y-6"
+                reducedMotion={prefersReducedMotion}
+              >
               {[
                 { icon: Brain, title: "AI & Machine Learning", desc: "Specialized in RAG systems, LLMs, and deep learning with published research", color: "blue" },
                 { icon: Code, title: "Full-Stack Development", desc: "Building scalable applications with React, FastAPI, and cloud technologies", color: "indigo" },
@@ -723,7 +720,7 @@ const Index = () => {
                   </CardContent>
                 </motion.div>
               ))}
-            </motion.div>
+            </SlideIn>
           </div>
         </div>
       </section>
@@ -731,24 +728,23 @@ const Index = () => {
       {/* Experience Section */}
       <section id="experience" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <FadeIn
+            delay={0.2}
+            duration={0.8}
             className="text-center mb-12 md:mb-16"
+            reducedMotion={prefersReducedMotion}
           >
             <Briefcase className={`w-7 h-7 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
             <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Experience</h2>
-          </motion.div>
+          </FadeIn>
 
           <div className="space-y-8 md:space-y-12">
             {experiences.map((exp, index) => (
-              <motion.div
+              <FadeIn
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                whileHover={{ scale: 1.02 }}
+                delay={index * 0.2}
+                duration={0.8}
+                reducedMotion={prefersReducedMotion}
               >
                 <Card className={`${cardClasses} backdrop-blur-sm border hover:shadow-2xl transition-all duration-300`}>
                   <CardHeader>
@@ -783,7 +779,7 @@ const Index = () => {
                     </ul>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -792,11 +788,11 @@ const Index = () => {
       {/* Education Section */}
       <section id="education" className="py-16 px-4 sm:px-6 md:py-20">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <FadeIn
+            delay={0.2}
+            duration={0.8}
             className="text-center mb-12 md:mb-16"
+            reducedMotion={prefersReducedMotion}
           >
             <div className="flex items-center justify-center mb-4 md:mb-6">
               <GraduationCap className={`w-7 h-7 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
@@ -805,16 +801,16 @@ const Index = () => {
               </h2>
             </div>
             <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto`}></div>
-          </motion.div>
+          </FadeIn>
 
           <div className="space-y-8">
             {education.map((edu,index) => (
-              <motion.div
+              <SlideIn
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                whileHover={{ scale: 1.02 }}
+                direction={index % 2 === 0 ? 'left' : 'right'}
+                delay={index * 0.2}
+                duration={0.8}
+                reducedMotion={prefersReducedMotion}
               >
                 <Card className={`${cardClasses} backdrop-blur-sm border hover:shadow-2xl transition-all duration-300`}>
                   <CardHeader>
@@ -851,7 +847,7 @@ const Index = () => {
                     </CardContent>
                   )}
                 </Card>
-              </motion.div>
+              </SlideIn>
             ))}
           </div>
         </div>
@@ -860,16 +856,16 @@ const Index = () => {
       {/* Projects Section */}
       <section id="projects" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <FadeIn
+            delay={0.2}
+            duration={0.8}
             className="text-center mb-12 md:mb-16"
+            reducedMotion={prefersReducedMotion}
           >
             <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Projects</h2>
             <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
             <p className={`text-base md:text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-400'}`}>Here are some of my projects spanning full-stack development, data analysis, and cloud computing.</p>
-          </motion.div>
+          </FadeIn>
           <div className="flex flex-wrap gap-4 justify-center mb-8">
             {projectCategories.map(cat => (
               <button
@@ -881,15 +877,16 @@ const Index = () => {
               </button>
             ))}
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
+          <StaggerContainer
+            staggerDelay={0.1}
+            className="grid md:grid-cols-2 gap-8"
+            reducedMotion={prefersReducedMotion}
+          >
             {filteredProjects.map((project, index) => (
-              <motion.div
+              <StaggerItem
                 key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.03, boxShadow: '0 8px 32px 0 rgba(0,0,0,0.25)' }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700 bg-gradient-to-b from-yellow-50 to-slate-900/90 group flex flex-col"
+                reducedMotion={prefersReducedMotion}
               >
                 {/* Top: Light area */}
                 <div className="p-6 bg-yellow-50 dark:bg-slate-800 flex flex-col md:flex-row items-center gap-4 relative">
@@ -905,7 +902,12 @@ const Index = () => {
                   {/* Illustration/Placeholder */}
                   <div className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
                     {project.image ? (
-                      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                      <LazyImage 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover"
+                        placeholder="/placeholder.jpg"
+                      />
                     ) : (
                       <span className="text-6xl md:text-7xl">{project.icon}</span>
                     )}
@@ -925,35 +927,36 @@ const Index = () => {
                     )}
                   </div>
                 </div>
-                </motion.div>
-              ))}
-            </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Skills Section */}
       <section id="skills" className="py-16 px-4 sm:px-6 md:py-20">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <FadeIn
+            delay={0.2}
+            duration={0.8}
             className="text-center mb-12 md:mb-16"
+            reducedMotion={prefersReducedMotion}
           >
             <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Skills & Expertise</h2>
             <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
             <p className={`text-base md:text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>Here are key areas of my expertise, shaped by my academic & professional experience</p>
-          </motion.div>
+          </FadeIn>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          <StaggerContainer
+            staggerDelay={0.06}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8"
+            reducedMotion={prefersReducedMotion}
+          >
             {skillGroups.map((group, index) => (
-              <motion.div
+              <StaggerItem
                 key={index}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.06 }}
                 className={`${cardClasses} backdrop-blur-sm rounded-xl p-4 md:p-6 border hover:shadow-xl transition-all duration-300 flex flex-col`}
+                reducedMotion={prefersReducedMotion}
               >
                 <div className="flex items-center mb-3 md:mb-4">
                   <span className="text-xl md:text-2xl mr-2">{group.icon}</span>
@@ -964,9 +967,9 @@ const Index = () => {
                     <li key={i} className={`px-2 py-1 md:px-3 rounded-full text-xs md:text-sm font-medium ${isDarkMode ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30' : 'bg-blue-100 text-blue-700 border border-blue-300'}`}>{skill}</li>
                   ))}
                 </ul>
-              </motion.div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -1072,10 +1075,10 @@ const Index = () => {
       {/* Contact Section */}
       <section id="contact" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <FadeIn
+            delay={0.2}
+            duration={0.8}
+            reducedMotion={prefersReducedMotion}
           >
             <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
               Let's Connect
@@ -1123,7 +1126,7 @@ const Index = () => {
                 </motion.a>
               ))}
             </div>
-          </motion.div>
+          </FadeIn>
         </div>
       </section>
 
@@ -1186,6 +1189,9 @@ const Index = () => {
           className="fixed bottom-6 right-6 z-50 p-3 bg-blue-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Scroll to top"
+          style={{
+            willChange: 'transform, opacity',
+          }}
         >
           <ChevronUp className="w-6 h-6" />
         </motion.button>
