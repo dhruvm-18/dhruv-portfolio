@@ -658,25 +658,25 @@ const Index = () => {
                 duration={0.8}
                 reducedMotion={prefersReducedMotion}
               >
-              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
-                I'm Dhruv Mendiratta a final-year Computer Science student passionate about building impactful AI-powered systems. During my Generative AI internship at Ernst & Young (EY), I worked hands-on with Retrieval-Augmented Generation (RAG) techniques, using LangChain, FAISS, and Gemini APIs to develop scalable enterprise-level chatbot solutions.
+              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                I'm <span className="font-semibold text-gray-900 dark:text-gray-100">Dhruv Mendiratta</span>, a final-year Computer Science student at Manipal University Jaipur, specializing in AI and Machine Learning. My passion lies in developing intelligent systems that solve real-world problems, with a particular focus on Large Language Models and Retrieval-Augmented Generation (RAG) systems.
               </p>
-              <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
-                I bring a strong foundation in cloud computing through my AWS-focused experience at Deloitte, where I explored the deployment and optimization of cloud-native architectures. My academic journey includes published research in applied deep learning, covering innovations in CNNs, GANs, and hybrid LSTM-GRU models across domains like finance and medical imaging.
-                </p>
-                <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
-                Whether it's integrating AI into real-world workflows, designing efficient data pipelines, or optimizing performance in distributed systems I enjoy solving complex problems that matter. Outside the world of code, you'll find me diving into competitive programming, collaborating at hackathons, or exploring the next big breakthrough in tech.
-                </p>
+              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                Currently, I'm working as an <span className="font-semibold text-gray-900 dark:text-gray-100">AI Intern at Ernst & Young (EY)</span>, where I'm developing enterprise-grade RAG solutions using cutting-edge technologies like LangChain, FAISS, and Gemini APIs. This role has given me hands-on experience in building scalable chatbot systems that can handle complex enterprise queries with high accuracy.
+              </p>
+              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                My technical foundation is strengthened by my <span className="font-semibold text-gray-900 dark:text-gray-100">Cloud Computing internship at Deloitte</span>, where I gained expertise in AWS services and cloud-native architecture. I've also published <span className="font-semibold text-gray-900 dark:text-gray-100">3 research papers</span> in applied deep learning, covering innovations in CNNs, GANs, and hybrid LSTM-GRU models for finance and medical imaging applications.
+              </p>
                 <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
                 Thanks for stopping by! Check out my resume and projects to learn more. Let’s connect if you're up for a collaboration or tech chat!
               </p>
               
               <div className="grid grid-cols-2 gap-6">
                 {[
-                  { number: "3+", label: "Research Papers", color: "blue" },
-                  { number: "2", label: "Internships", color: "indigo" },
-                  { number: "4+", label: "Major Projects", color: "cyan" },
-                  { number: "5+", label: "Awards", color: "emerald" }
+                  { number: "3+", label: "Research Papers", color: "gray" },
+                  { number: "2", label: "Internships", color: "gray" },
+                  { number: "4+", label: "Major Projects", color: "gray" },
+                  { number: "5+", label: "Awards", color: "gray" }
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -685,10 +685,10 @@ const Index = () => {
                     transition={{ delay: index * 0.1 }}
                     className="text-center"
                   >
-                    <div className={`text-2xl sm:text-3xl font-bold mb-2 ${isDarkMode ? `text-${stat.color}-400` : `text-${stat.color}-600`}`}>
+                    <div className={`text-2xl sm:text-3xl font-bold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                       {stat.number}
                     </div>
-                    <div className={`${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{stat.label}</div>
+                    <div className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
@@ -701,9 +701,9 @@ const Index = () => {
                 reducedMotion={prefersReducedMotion}
               >
               {[
-                { icon: Brain, title: "AI & Machine Learning", desc: "Specialized in RAG systems, LLMs, and deep learning with published research", color: "blue" },
-                { icon: Code, title: "Full-Stack Development", desc: "Building scalable applications with React, FastAPI, and cloud technologies", color: "indigo" },
-                { icon: BookOpen, title: "Research & Innovation", desc: "Published researcher with focus on practical AI applications", color: "cyan" }
+                { icon: Brain, title: "AI & Machine Learning", desc: "Specialized in RAG systems, LLMs, and deep learning with published research", color: "gray" },
+                { icon: Code, title: "Full-Stack Development", desc: "Building scalable applications with React, FastAPI, and cloud technologies", color: "gray" },
+                { icon: BookOpen, title: "Research & Innovation", desc: "Published researcher with focus on practical AI applications", color: "gray" }
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -712,10 +712,10 @@ const Index = () => {
                 >
                   <CardContent className="p-4 md:p-6">
                     <div className="flex items-center mb-3">
-                      <item.icon className={`w-6 h-6 md:w-8 md:h-8 mr-3 ${isDarkMode ? `text-${item.color}-400` : `text-${item.color}-600`}`} />
-                      <h3 className={`text-lg md:text-xl font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{item.title}</h3>
+                      <item.icon className={`w-6 h-6 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`} />
+                      <h3 className={`text-lg md:text-xl font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-900'}`}>{item.title}</h3>
                     </div>
-                    <p className={`text-sm md:text-base ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{item.desc}</p>
+                    <p className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>{item.desc}</p>
                   </CardContent>
                 </motion.div>
               ))}
