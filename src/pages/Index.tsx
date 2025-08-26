@@ -333,16 +333,16 @@ const Index = () => {
   ];
 
   const themeClasses = isDarkMode 
-    ? "bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 text-white"
-    : "bg-gradient-to-br from-blue-50 via-sky-50 to-indigo-50 text-gray-900";
+    ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100"
+    : "bg-gradient-to-br from-gray-50 via-white to-gray-50 text-gray-900";
 
   const cardClasses = isDarkMode
-    ? "bg-slate-800/60 border-slate-600/50 text-white"
-    : "bg-white/80 border-blue-200/50 text-gray-900";
+    ? "bg-gray-800/60 border-gray-600/50 text-gray-100"
+    : "bg-white/90 border-gray-200/50 text-gray-900";
 
   const navClasses = isDarkMode
-    ? "bg-slate-800/80 border-slate-600/50"
-    : "bg-white/80 border-blue-200/50";
+    ? "bg-gray-800/90 border-gray-600/50"
+    : "bg-white/90 border-gray-200/50";
 
   // Optimized scroll effects
   useEffect(() => {
@@ -559,14 +559,14 @@ const Index = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className={`relative p-1 mb-4 rounded-[2.5rem] shadow-2xl animate-gradient-x ${isDarkMode ? 'bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900' : 'bg-gradient-to-br from-blue-100 via-sky-100 to-indigo-100'}`}
-            style={{ boxShadow: isDarkMode ? '0 0 40px 0 #0ea5e9, 0 0 0 4px #64748b' : undefined }}
+            className={`relative p-1 mb-4 rounded-[2.5rem] shadow-2xl animate-gradient-x ${isDarkMode ? 'bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800' : 'bg-gradient-to-br from-gray-100 via-white to-gray-100'}`}
+            style={{ boxShadow: isDarkMode ? '0 0 40px 0 rgba(107, 114, 128, 0.3), 0 0 0 4px rgba(75, 85, 99, 0.2)' : undefined }}
           >
-            <div className={`backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden border ${isDarkMode ? 'bg-gradient-to-br from-slate-800/90 via-blue-950/90 to-indigo-900/90 border-blue-900/60' : 'bg-gradient-to-br from-white via-blue-100 to-indigo-100 border-blue-200/60'}`}>
+            <div className={`backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden border ${isDarkMode ? 'bg-gradient-to-br from-gray-800/90 via-gray-700/90 to-gray-800/90 border-gray-600/60' : 'bg-gradient-to-br from-white via-gray-50 to-white border-gray-200/60'}`}>
               {/* Floating Profile Pic */}
               <div className="relative">
-                <div className={`w-28 h-28 md:w-40 md:h-40 rounded-full p-1 shadow-xl ${isDarkMode ? 'bg-gradient-to-tr from-blue-700 via-indigo-700 to-slate-800' : 'bg-gradient-to-tr from-blue-200 via-indigo-200 to-white'}` }>
-                  <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-white'} flex items-center justify-center text-4xl`}>
+                <div className={`w-28 h-28 md:w-40 md:h-40 rounded-full p-1 shadow-xl ${isDarkMode ? 'bg-gradient-to-tr from-gray-600 via-gray-500 to-gray-700' : 'bg-gradient-to-tr from-gray-200 via-gray-100 to-white'}` }>
+                  <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-gray-800' : 'bg-white'} flex items-center justify-center text-4xl`}>
                     <img 
                       src={dhruvProfilePic} 
                       alt="Dhruv Mendiratta" 
@@ -578,10 +578,10 @@ const Index = () => {
               {/* Info */}
               <div className="flex-1 text-left flex flex-col justify-center items-center md:items-start">
                 <div className="flex items-center space-x-4 mb-2">
-                  <h1 className={`text-3xl md:text-5xl font-extrabold bg-gradient-to-r ${isDarkMode ? 'from-cyan-300 via-blue-400 to-indigo-300' : 'from-blue-700 via-indigo-500 to-cyan-600'} bg-clip-text text-transparent animate-gradient-x drop-shadow-lg`}>
+                  <h1 className={`text-3xl md:text-5xl font-extrabold bg-gradient-to-r ${isDarkMode ? 'from-gray-300 via-gray-200 to-gray-100' : 'from-gray-700 via-gray-600 to-gray-500'} bg-clip-text text-transparent animate-gradient-x drop-shadow-lg`}>
                     Dhruv Mendiratta
                   </h1>
-                  <Badge className={`bg-gradient-to-r ${isDarkMode ? 'from-slate-800 via-blue-900 to-indigo-900 text-cyan-300 border-blue-700/40' : 'from-blue-100 via-indigo-100 to-cyan-100 text-blue-700 border-blue-300'} text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow`}>AI Engineer</Badge>
+                  <Badge className={`bg-gradient-to-r ${isDarkMode ? 'from-gray-700 via-gray-600 to-gray-800 text-gray-200 border-gray-500/40' : 'from-gray-100 via-gray-50 to-white text-gray-700 border-gray-300'} text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow`}>AI Engineer</Badge>
                 </div>
                 <p className={`text-base md:text-xl mb-4 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>LLMs & RAG Systems | Full-Stack Developer</p>
                 <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 text-sm md:text-base">
@@ -615,8 +615,8 @@ const Index = () => {
             transition={{ delay: 1.1, type: 'spring', stiffness: 180 }}
             className={`relative flex justify-center items-center mb-8 max-w-2xl mx-auto`}
           >
-            <div className={`relative w-full px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border-2 ${isDarkMode ? 'border-blue-800/40 bg-gradient-to-r from-slate-800 via-blue-900 to-indigo-900 text-cyan-200' : 'border-blue-200/60 bg-gradient-to-r from-white via-blue-100 to-cyan-100 text-blue-700'} animate-gradient-x tracking-wide`} style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
-              <Code className={`w-6 h-6 inline-block mr-2 align-middle animate-spin-slow ${isDarkMode ? 'text-cyan-300' : 'text-blue-500'}`} />
+            <div className={`relative w-full px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border-2 ${isDarkMode ? 'border-gray-600/40 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 text-gray-200' : 'border-gray-200/60 bg-gradient-to-r from-white via-gray-50 to-gray-100 text-gray-700'} animate-gradient-x tracking-wide`} style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
+              <Code className={`w-6 h-6 inline-block mr-2 align-middle animate-spin-slow ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`} />
               Currently Debugging Life's Edge Cases
             </div>
           </motion.div>
