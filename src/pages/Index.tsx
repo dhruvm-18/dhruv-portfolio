@@ -567,11 +567,10 @@ const Index = () => {
               <div className="relative">
                 <div className={`w-28 h-28 md:w-40 md:h-40 rounded-full p-1 animate-spin-slow shadow-xl ${isDarkMode ? 'bg-gradient-to-tr from-blue-700 via-indigo-700 to-slate-800' : 'bg-gradient-to-tr from-blue-200 via-indigo-200 to-white'}` }>
                   <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-slate-800' : 'bg-white'} flex items-center justify-center text-4xl`}>
-                    <LazyImage 
+                    <img 
                       src={dhruvProfilePic} 
                       alt="Dhruv Mendiratta" 
                       className="rounded-full w-full h-full object-cover"
-                      priority={true}
                     />
                   </div>
                 </div>
