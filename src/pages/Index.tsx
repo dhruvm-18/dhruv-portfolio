@@ -635,7 +635,7 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-16 px-4 sm:px-6 md:py-20">
+      <section id="about" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-gray-900/20' : 'bg-gray-50/50'}`}>
         <div className="max-w-6xl mx-auto">
           <FadeIn
             delay={0.2}
@@ -644,12 +644,12 @@ const Index = () => {
             reducedMotion={prefersReducedMotion}
           >
             <div className="flex items-center justify-center mb-4 md:mb-6">
-              <User className={`w-7 h-7 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
+              <User className={`w-7 h-7 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`} />
+              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-gray-300 to-gray-200 bg-clip-text text-transparent' : 'text-gray-900'}`}>
                 Who Am I?
               </h2>
             </div>
-            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-gray-400 to-gray-300' : 'bg-gradient-to-r from-gray-500 to-gray-400'} mx-auto mb-6 md:mb-8`}></div>
           </FadeIn>
 
                       <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -658,14 +658,14 @@ const Index = () => {
                 duration={0.8}
                 reducedMotion={prefersReducedMotion}
               >
-              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                I'm <span className="font-semibold text-gray-900 dark:text-gray-100">Dhruv Mendiratta</span>, a final-year Computer Science student at Manipal University Jaipur, specializing in AI and Machine Learning. My passion lies in developing intelligent systems that solve real-world problems, with a particular focus on Large Language Models and Retrieval-Augmented Generation (RAG) systems.
+              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                I'm <span className="font-semibold text-white dark:text-white">Dhruv Mendiratta</span>, a final-year Computer Science student at Manipal University Jaipur, specializing in AI and Machine Learning. My passion lies in developing intelligent systems that solve real-world problems, with a particular focus on Large Language Models and Retrieval-Augmented Generation (RAG) systems.
               </p>
-              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                Currently, I'm working as an <span className="font-semibold text-gray-900 dark:text-gray-100">AI Intern at Ernst & Young (EY)</span>, where I'm developing enterprise-grade RAG solutions using cutting-edge technologies like LangChain, FAISS, and Gemini APIs. This role has given me hands-on experience in building scalable chatbot systems that can handle complex enterprise queries with high accuracy.
+              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                Currently, I'm working as an <span className="font-semibold text-white dark:text-white">AI Intern at Ernst & Young (EY)</span>, where I'm developing enterprise-grade RAG solutions using cutting-edge technologies like LangChain, FAISS, and Gemini APIs. This role has given me hands-on experience in building scalable chatbot systems that can handle complex enterprise queries with high accuracy.
               </p>
-              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                My technical foundation is strengthened by my <span className="font-semibold text-gray-900 dark:text-gray-100">Cloud Computing internship at Deloitte</span>, where I gained expertise in AWS services and cloud-native architecture. I've also published <span className="font-semibold text-gray-900 dark:text-gray-100">3 research papers</span> in applied deep learning, covering innovations in CNNs, GANs, and hybrid LSTM-GRU models for finance and medical imaging applications.
+              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                My technical foundation is strengthened by my <span className="font-semibold text-white dark:text-white">Cloud Computing internship at Deloitte</span>, where I gained expertise in AWS services and cloud-native architecture. I've also published <span className="font-semibold text-white dark:text-white">3 research papers</span> in applied deep learning, covering innovations in CNNs, GANs, and hybrid LSTM-GRU models for finance and medical imaging applications.
               </p>
                 <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
                 Thanks for stopping by! Check out my resume and projects to learn more. Let’s connect if you're up for a collaboration or tech chat!
@@ -685,10 +685,10 @@ const Index = () => {
                     transition={{ delay: index * 0.1 }}
                     className="text-center"
                   >
-                    <div className={`text-2xl sm:text-3xl font-bold mb-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    <div className={`text-2xl sm:text-3xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                       {stat.number}
                     </div>
-                    <div className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>{stat.label}</div>
+                    <div className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
