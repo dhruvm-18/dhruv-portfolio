@@ -514,27 +514,7 @@ const Index = () => {
           initial={false}
         >
           <div className={`absolute inset-0 ${isDarkMode ? 'bg-gradient-to-r from-blue-900/30 to-indigo-900/30' : 'bg-gradient-to-r from-blue-100/30 to-indigo-100/30'}`} />
-          {/* Optimized animated background particles - reduced count for performance */}
-          {!isLowPowerMode && !prefersReducedMotion && [...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className={`absolute w-1 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-500'} rounded-full`}
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                willChange: 'transform, opacity',
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0, 1, 0],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
+
           {/* Animated code snippets background */}
           {[
             { code: `const ragResponse = await llm.query({ context: faiss.search(query) })`, color: 'from-cyan-500 to-blue-500' },
@@ -918,46 +898,36 @@ const Index = () => {
             {filteredProjects.map((project, index) => (
               <StaggerItem
                 key={index}
-                className={`${cardClasses} rounded-2xl overflow-hidden shadow-2xl border group flex flex-col`}
+                className={`${cardClasses} rounded-2xl overflow-hidden border group flex flex-col transition-all duration-300 hover:scale-[1.01]`}
                 reducedMotion={prefersReducedMotion}
               >
                 {/* Top: Light area */}
-                <div className="p-6 bg-yellow-50 dark:bg-slate-800 flex flex-col md:flex-row items-center gap-4 relative">
-                  <div className="flex-1">
-                    <div className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white mb-1">{project.title}</div>
-                    <div className="text-base font-medium text-slate-700 dark:text-slate-300 mb-2">{project.period}</div>
-                    <div className="flex gap-2 mb-3">
-                      {project.tech.slice(0, 4).map((tech, i) => (
-                        <span key={i} className="inline-block bg-slate-200 dark:bg-slate-700 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full text-xs font-semibold border border-blue-200 dark:border-blue-700">{tech}</span>
-                          ))}
-                        </div>
-                    </div>
-                  {/* Illustration/Placeholder */}
-                  <div className="flex-shrink-0 w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
-                    {project.image ? (
-                      <LazyImage 
-                        src={project.image} 
-                        alt={project.title} 
-                        className="w-full h-full object-cover"
-                        placeholder="/placeholder.jpg"
-                      />
-                    ) : (
-                      <span className="text-6xl md:text-7xl">{project.icon}</span>
-                    )}
-                  </div>
-          </div>
-                {/* Bottom: Dark area */}
-                <div className="flex-1 flex flex-col justify-between bg-slate-900 p-6">
-                  <div>
-                    <div className="text-lg font-bold text-white mb-2">{project.title}</div>
-                    <div className="text-slate-300 text-sm mb-3">{project.description}</div>
-                  </div>
-                  <div className="flex justify-end items-center mt-2">
+                <div className="relative h-40 md:h-48 overflow-hidden">
+                  <LazyImage 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover"
+                    placeholder="/placeholder.jpg"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                    <div className="text-white font-bold text-lg md:text-xl drop-shadow">{project.title}</div>
                     {project.link && (
                       <a href={project.link} target="_blank" rel="noopener noreferrer" className="ml-2">
-                        <Github className="w-7 h-7 text-gray-200 hover:text-white bg-slate-800 rounded-full p-1 border-2 border-gray-700 transition" style={{ boxShadow: '0 2px 8px #24292f55' }} />
+                        <Github className="w-7 h-7 text-white/90 hover:text-white transition" />
                       </a>
                     )}
+                  </div>
+                </div>
+                {/* Bottom: Content */}
+                <div className="p-5 md:p-6 flex-1 flex flex-col justify-between">
+                  <div className={`text-sm md:text-base ${isDarkMode ? 'text-slate-300' : 'text-gray-700'} mb-3`}>{project.description}</div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.slice(0, 6).map((tech, i) => (
+                      <span key={i} className="px-2 py-1 rounded-full text-xs font-semibold border border-white/10 bg-white/5 text-slate-200">
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </StaggerItem>
