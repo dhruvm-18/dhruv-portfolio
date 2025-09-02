@@ -765,49 +765,55 @@ const Index = () => {
             <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>Experience</h2>
           </FadeIn>
 
-          <div className="space-y-8 md:space-y-12">
-            {experiences.map((exp, index) => (
-              <FadeIn
-                key={index}
-                delay={index * 0.2}
-                duration={0.8}
-                reducedMotion={prefersReducedMotion}
-              >
-                <Card className={`${cardClasses} backdrop-blur-sm border hover:shadow-2xl transition-all duration-300`}>
-                  <CardHeader>
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                      <div className="flex items-center space-x-3 md:space-x-4">
-                        <div className="text-3xl md:text-4xl">{exp.logo}</div>
-                        <div>
-                          <CardTitle className={`text-xl md:text-2xl mb-1 md:mb-2 ${isDarkMode ? 'text-blue-300' : 'text-blue-600'}`}>{exp.company}</CardTitle>
-                          <CardDescription className={`text-base md:text-lg ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{exp.position}</CardDescription>
+          <div className="relative">
+            <div className="absolute left-4 md:left-6 top-0 bottom-0 w-px bg-white/10" />
+            <div className="space-y-6 md:space-y-8">
+              {experiences.map((exp, index) => (
+                <FadeIn
+                  key={index}
+                  delay={Math.min(index * 0.08, 0.24)}
+                  duration={0.5}
+                  reducedMotion={prefersReducedMotion}
+                >
+                  <div className="relative pl-10 md:pl-14">
+                    <div className="absolute left-3 md:left-5 top-6 w-2.5 h-2.5 rounded-full bg-white/70 ring-4 ring-white/10" />
+                    <Card className={`${cardClasses} backdrop-blur-sm border transition-all duration-300` }>
+                      <CardHeader>
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                          <div className="flex items-center space-x-3 md:space-x-4">
+                            <div className="text-3xl md:text-4xl">{exp.logo}</div>
+                            <div>
+                              <CardTitle className={`text-xl md:text-2xl mb-1 md:mb-2 ${isDarkMode ? 'text-blue-300' : 'text-blue-600'}`}>{exp.company}</CardTitle>
+                              <CardDescription className={`text-base md:text-lg ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>{exp.position}</CardDescription>
+                            </div>
+                          </div>
+                          <div className="text-left md:text-right mt-3 md:mt-0">
+                            <div className={`flex items-center text-sm mb-1 md:mb-2 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+                              <Calendar className="w-4 h-4 mr-2" />
+                              {exp.period}
+                            </div>
+                            <div className={`flex items-center text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+                              <MapPin className="w-4 h-4 mr-2" />
+                              {exp.location}
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div className="text-left md:text-right mt-3 md:mt-0">
-                        <div className={`flex items-center text-sm mb-1 md:mb-2 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-                          <Calendar className="w-4 h-4 mr-2" />
-                          {exp.period}
-                        </div>
-                        <div className={`flex items-center text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-                          <MapPin className="w-4 h-4 mr-2" />
-                          {exp.location}
-                        </div>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 pl-1">
-                      {exp.achievements.map((achievement, i) => (
-                        <li key={i} className="flex items-start">
-                          <Zap className={`w-4 h-4 mr-2 md:mr-3 mt-1 flex-shrink-0 ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}`} />
-                          <span className={`text-sm md:text-base ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </FadeIn>
-            ))}
+                      </CardHeader>
+                      <CardContent>
+                        <ul className="space-y-2 pl-1">
+                          {exp.achievements.map((achievement, i) => (
+                            <li key={i} className="flex items-start">
+                              <Zap className={`w-4 h-4 mr-2 md:mr-3 mt-1 flex-shrink-0 ${isDarkMode ? 'text-indigo-400' : 'text-indigo-600'}`} />
+                              <span className={`text-sm md:text-base ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
           </div>
         </div>
       </section>
