@@ -1890,15 +1890,17 @@ const Index = () => {
             {/* Right: High-Quality Delhi Map */}
             <div className={`relative rounded-2xl border shadow-2xl overflow-hidden ${isDarkMode ? 'border-blue-800 bg-slate-900' : 'border-blue-200 bg-white'}`} style={{ width: '100%', height: 300 }}>
               <div className="w-full h-full relative">
-                {/* High-Quality Map Image */}
-                <img
-                  src="https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-                  alt="Delhi, India Map"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    // Fallback to a high-quality Delhi cityscape image
-                    (e.currentTarget as HTMLImageElement).src = "https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80";
-                  }}
+                {/* Google Maps Embed */}
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224345.83923192776!2d77.06889754725782!3d28.52758200617607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x52c2b7494e204dce!2sNew%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1703123456789!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Delhi, India Map"
+                  className="w-full h-full"
                 />
                 
                 {/* Alternative: Use OpenStreetMap with better styling */}
