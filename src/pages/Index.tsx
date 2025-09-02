@@ -1227,7 +1227,7 @@ const Index = () => {
       <AnimatePresence>
         {activeProjectPreview && (
           <motion.div 
-            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-3xl"
+            className={`fixed inset-0 z-[9999] backdrop-blur-3xl ${isDarkMode ? 'bg-black/95' : 'bg-white/95'}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -1235,15 +1235,18 @@ const Index = () => {
           >
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20" />
+              <div className={`absolute inset-0 ${isDarkMode ? 'bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20' : 'bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10'}`} />
               <div className="absolute inset-0" style={{
-                backgroundImage: `radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), 
-                                 radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.1) 0%, transparent 50%)`
+                backgroundImage: isDarkMode 
+                  ? `radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), 
+                     radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.1) 0%, transparent 50%)`
+                  : `radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%), 
+                     radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.05) 0%, transparent 50%)`
               }} />
             </div>
 
             <motion.div 
-              className="absolute inset-0 flex items-center justify-center p-4 md:p-8"
+              className="absolute inset-0 flex items-center justify-center p-8 md:p-12"
               initial={{ scale: 0.8, y: 50 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.8, y: 50 }}
@@ -1255,7 +1258,7 @@ const Index = () => {
               }}
               onMouseLeave={() => setActiveProjectPreview(null)}
             >
-              <div className="bg-black/80 backdrop-blur-3xl rounded-3xl p-6 md:p-8 border border-white/20 shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-y-auto relative">
+              <div className={`${isDarkMode ? 'bg-black/80 border-white/20' : 'bg-white/90 border-gray-200/60'} backdrop-blur-3xl rounded-3xl p-6 md:p-8 border shadow-2xl w-full max-w-5xl max-h-[80vh] overflow-y-auto relative`}>
                 
                 {/* Animated Header */}
                 <motion.div 
@@ -1264,7 +1267,7 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                  <h3 className="text-3xl md:text-5xl font-bold text-white mb-4">{activeProjectPreview.title}</h3>
+                  <h3 className={`text-3xl md:text-5xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{activeProjectPreview.title}</h3>
                   <motion.div 
                     className="w-32 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"
                     initial={{ width: 0 }}
@@ -1272,7 +1275,7 @@ const Index = () => {
                     transition={{ delay: 0.4, duration: 0.6 }}
                   />
                   <motion.p 
-                    className="text-gray-300 mt-4 text-lg max-w-3xl mx-auto"
+                    className={`mt-4 text-lg max-w-3xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.6, duration: 0.5 }}
@@ -1333,7 +1336,7 @@ const Index = () => {
                       className="relative group/image"
                     >
                       {/* Image Container - Full Size */}
-                      <div className="relative overflow-hidden rounded-2xl ring-2 ring-white/40 shadow-2xl bg-white/5 backdrop-blur-sm">
+                      <div className={`relative overflow-hidden rounded-2xl ring-2 shadow-2xl backdrop-blur-sm ${isDarkMode ? 'ring-white/40 bg-white/5' : 'ring-gray-300/60 bg-gray-100/50'}`}>
                         <LazyImage 
                           src={img} 
                           alt={`${activeProjectPreview.title} preview ${i+1}`} 
