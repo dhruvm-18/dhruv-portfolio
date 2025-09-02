@@ -706,48 +706,19 @@ const Index = () => {
                 duration={0.8}
                 reducedMotion={prefersReducedMotion}
               >
-              <div className={`${cardClasses} rounded-2xl border p-4 md:p-6 mb-6 flex items-center gap-4 backdrop-blur-2xl`}>
-                <div className="relative w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden ring-1 ring-white/10">
+              <div className={`${cardClasses} rounded-[1.25rem] border p-6 md:p-8 mb-6 backdrop-blur-2xl flex flex-col items-center text-center`}>
+                <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-xl overflow-hidden ring-1 ring-white/10 shadow-2xl">
                   <img src={dhruvProfilePic} alt="Dhruv Mendiratta" className="w-full h-full object-cover" />
                 </div>
-                <div className="flex-1">
-                  <div className={`${isDarkMode ? 'text-white' : 'text-gray-900'} text-lg md:text-xl font-semibold`}>Dhruv Mendiratta</div>
-                  <div className={`${isDarkMode ? 'text-slate-300' : 'text-gray-600'} text-sm`}>AI Engineer • Full‑Stack Developer</div>
+                <div className="mt-4">
+                  <div className="text-2xl md:text-3xl font-extrabold text-white">Dhruv Mendiratta</div>
+                  <div className="text-sm md:text-base text-slate-300 mt-1">AI Engineer • Full‑Stack Developer</div>
                 </div>
-              </div>
-              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-                I'm <span className="font-semibold text-white dark:text-white">Dhruv Mendiratta</span>, a final-year Computer Science student at Manipal University Jaipur, specializing in AI and Machine Learning. My passion lies in developing intelligent systems that solve real-world problems, with a particular focus on Large Language Models and Retrieval-Augmented Generation (RAG) systems.
-              </p>
-              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-                Currently, I'm working as an <span className="font-semibold text-white dark:text-white">AI Intern at Ernst & Young (EY)</span>, where I'm developing enterprise-grade RAG solutions using cutting-edge technologies like LangChain, FAISS, and Gemini APIs. This role has given me hands-on experience in building scalable chatbot systems that can handle complex enterprise queries with high accuracy.
-              </p>
-              <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-                My technical foundation is strengthened by my <span className="font-semibold text-white dark:text-white">Cloud Computing internship at Deloitte</span>, where I gained expertise in AWS services and cloud-native architecture. I've also published <span className="font-semibold text-white dark:text-white">3 research papers</span> in applied deep learning, covering innovations in CNNs, GANs, and hybrid LSTM-GRU models for finance and medical imaging applications.
-              </p>
-                <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
-                Thanks for stopping by! Check out my resume and projects to learn more. Let's connect if you're up for a collaboration or tech chat!
-              </p>
-              
-              <div className="grid grid-cols-2 gap-6">
-                {[
-                  { number: "3+", label: "Research Papers", color: "gray" },
-                  { number: "2", label: "Internships", color: "gray" },
-                  { number: "4+", label: "Major Projects", color: "gray" },
-                  { number: "5+", label: "Awards", color: "gray" }
-                ].map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="text-center"
-                  >
-                    <div className={`text-2xl sm:text-3xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                      {stat.number}
-                    </div>
-                    <div className={`${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>{stat.label}</div>
-                  </motion.div>
-                ))}
+                <div className="mt-4 flex flex-wrap justify-center gap-2">
+                  {['LLM/RAG', 'Full‑Stack', 'Cloud', 'Research'].map((chip, i) => (
+                    <span key={i} className="px-3 py-1 rounded-full text-xs font-semibold border border-white/10 bg-white/5 text-slate-200">{chip}</span>
+                  ))}
+                </div>
               </div>
                           </SlideIn>
 
@@ -757,6 +728,7 @@ const Index = () => {
                 className="space-y-4 md:space-y-6"
                 reducedMotion={prefersReducedMotion}
               >
+              <div className={`${cardClasses} rounded-[1.25rem] border p-6 md:p-8 backdrop-blur-2xl`}>
               {[
                 { icon: Brain, title: "AI & Machine Learning", desc: "Specialized in RAG systems, LLMs, and deep learning with published research", color: "gray" },
                 { icon: Code, title: "Full-Stack Development", desc: "Building scalable applications with React, FastAPI, and cloud technologies", color: "gray" },
@@ -776,6 +748,7 @@ const Index = () => {
                   </CardContent>
                 </motion.div>
               ))}
+              </div>
             </SlideIn>
           </div>
         </div>
