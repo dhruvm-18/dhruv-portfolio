@@ -379,6 +379,154 @@ const Index = () => {
     ? "bg-gray-800/90 border-gray-600/50"
     : "bg-white/90 border-gray-200/50";
 
+  // --- Icon sources (Devicon / Simple Icons) ---------------------------------
+  const devicon = useCallback((slug: string) => `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${slug}/${slug}-original.svg`, []);
+  const simple = useCallback((slug: string) => `https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${slug}.svg`, []);
+
+  const logoMap: Record<string, string> = useMemo(() => ({
+    // Programming
+    Python: devicon('python'),
+    C: devicon('c'),
+    SQL: simple('mysql'),
+    JavaScript: devicon('javascript'),
+
+    // Big Data
+    Hadoop: simple('apachehadoop'),
+    Sqoop: simple('apache'),
+    Hive: simple('apachehive'),
+    Kafka: simple('apachekafka'),
+
+    // AI/ML
+    LangChain: simple('langchain'),
+    'Large Language Models (LLMs)': simple('openaigym'),
+    FAISS: simple('facebook'),
+    TensorFlow: devicon('tensorflow'),
+    Keras: devicon('keras'),
+    'Scikit-learn': devicon('scikitlearn'),
+    PyTorch: devicon('pytorch'),
+    'Hugging Face': simple('huggingface'),
+    'Transformer Models': simple('huggingface'),
+    'Prompt Engineering': simple('openai'),
+    'Model Deployment': simple('vercel'),
+
+    // Data Tools
+    Pandas: devicon('pandas'),
+    NumPy: devicon('numpy'),
+    Matplotlib: simple('matplotlib'),
+    GARCH: simple('academia'),
+    'Data Preprocessing': simple('databricks'),
+    'Exploratory Data Analysis (EDA)': simple('tableau'),
+    Tableau: simple('tableau'),
+    'Power BI': simple('powerbi'),
+    'Data Management': simple('googlecloud'),
+    'Data Governance': simple('hashicorp'),
+
+    // Web & APIs
+    FastAPI: simple('fastapi'),
+    'React.js': devicon('react'),
+    'Node.js': devicon('nodejs'),
+    'REST APIs': simple('swagger'),
+    PostgreSQL: devicon('postgresql'),
+    Flask: devicon('flask'),
+
+    // Consulting
+    Documentation: simple('readthedocs'),
+    'Requirements Gathering': simple('notion'),
+    'Client Communication': simple('gmail'),
+    'Business Process Analysis': simple('miro'),
+    'Solution Design': simple('figma'),
+    'Stakeholder Management': simple('asana'),
+
+    // Cloud
+    'AWS (EC2, S3, Lambda, IAM, CloudWatch)': simple('amazonaws'),
+    Git: devicon('git'),
+
+    // Other Tools
+    MongoDB: devicon('mongodb'),
+    JIRA: simple('jira'),
+    NLTK: simple('python'),
+    'Chart.js': simple('chartdotjs'),
+    'Framer Motion': simple('framer'),
+    'Leaflet.js': simple('leaflet'),
+  }), [devicon, simple]);
+
+  const urlMap: Record<string, string> = useMemo(() => ({
+    Python: 'https://www.python.org/',
+    C: 'https://en.wikipedia.org/wiki/C_(programming_language)',
+    SQL: 'https://www.mysql.com/',
+    JavaScript: 'https://developer.mozilla.org/docs/Web/JavaScript',
+    Hadoop: 'https://hadoop.apache.org/',
+    Sqoop: 'https://sqoop.apache.org/',
+    Hive: 'https://hive.apache.org/',
+    Kafka: 'https://kafka.apache.org/',
+    LangChain: 'https://www.langchain.com/',
+    'Large Language Models (LLMs)': 'https://en.wikipedia.org/wiki/Large_language_model',
+    FAISS: 'https://github.com/facebookresearch/faiss',
+    TensorFlow: 'https://www.tensorflow.org/',
+    Keras: 'https://keras.io/',
+    'Scikit-learn': 'https://scikit-learn.org/',
+    PyTorch: 'https://pytorch.org/',
+    'Hugging Face': 'https://huggingface.co/',
+    'Transformer Models': 'https://huggingface.co/docs/transformers/index',
+    'Prompt Engineering': 'https://platform.openai.com/docs/guides/prompt-engineering',
+    'Model Deployment': 'https://vercel.com/',
+    Pandas: 'https://pandas.pydata.org/',
+    NumPy: 'https://numpy.org/',
+    Matplotlib: 'https://matplotlib.org/',
+    Tableau: 'https://www.tableau.com/',
+    'Power BI': 'https://powerbi.microsoft.com/',
+    FastAPI: 'https://fastapi.tiangolo.com/',
+    'React.js': 'https://react.dev/',
+    'Node.js': 'https://nodejs.org/',
+    'REST APIs': 'https://swagger.io/resources/articles/best-practices-in-api-design/',
+    PostgreSQL: 'https://www.postgresql.org/',
+    Flask: 'https://flask.palletsprojects.com/',
+    Git: 'https://git-scm.com/',
+    MongoDB: 'https://www.mongodb.com/',
+    JIRA: 'https://www.atlassian.com/software/jira',
+    NLTK: 'https://www.nltk.org/',
+    'Chart.js': 'https://www.chartjs.org/',
+    'Framer Motion': 'https://www.framer.com/motion/',
+    'Leaflet.js': 'https://leafletjs.com/',
+  }), []);
+
+  const Logo: React.FC<{ name: string; categoryIcon: string }> = ({ name, categoryIcon }) => {
+    const src = logoMap[name];
+    const base = `w-5 h-5 md:w-6 md:h-6 object-contain`;
+    if (!src) {
+      return (
+        <div className={`w-6 h-6 md:w-7 md:h-7 rounded-lg ${isDarkMode ? 'bg-white/10' : 'bg-gray-100'} flex items-center justify-center text-xs`} title={name}>
+          <span aria-hidden>{categoryIcon}</span>
+        </div>
+      );
+    }
+    const img = (
+      <img
+        src={src}
+        alt={`${name} logo`}
+        className={base}
+        loading="lazy"
+        onError={(e) => {
+          if (src.includes('devicons')) {
+            const slug = src.split('/').slice(-2, -1)[0];
+            (e.currentTarget as HTMLImageElement).src = simple(slug);
+          } else {
+            const el = document.createElement('div');
+            el.className = `w-6 h-6 md:w-7 md:h-7 rounded-lg ${isDarkMode ? 'bg-white/10' : 'bg-gray-100'} flex items-center justify-center text-[10px]`;
+            el.title = name;
+            el.innerText = name.charAt(0) || '?';
+            e.currentTarget.replaceWith(el);
+          }
+        }}
+      />
+    );
+    return urlMap[name] ? (
+      <a href={urlMap[name]} target="_blank" rel="noreferrer" aria-label={`${name} website`}>
+        {img}
+      </a>
+    ) : img;
+  };
+
   // Optimized scroll effects
   useEffect(() => {
     const onScroll = () => setShowScrollTop(scrollY > 200);
@@ -1111,7 +1259,7 @@ const Index = () => {
                   {group.skills.map((skill, i) => (
                     <li key={i} className={`group flex items-center gap-2 px-2 py-1.5 rounded-lg border ${isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-blue-50/60 border-blue-200/60 hover:bg-blue-100/70'} transition` }>
                       <span className="shrink-0">
-                        <SkillIcon name={skill} className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:scale-110" />
+                        <Logo name={skill} categoryIcon={group.icon as string} />
                       </span>
                       <span className={`text-xs md:text-sm ${isDarkMode ? 'text-slate-200' : 'text-gray-800'}`}>{skill}</span>
                     </li>
