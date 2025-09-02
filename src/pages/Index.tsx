@@ -708,6 +708,15 @@ const Index = () => {
                 duration={0.8}
                 reducedMotion={prefersReducedMotion}
               >
+              <div className={`${cardClasses} rounded-2xl border p-4 md:p-6 mb-6 flex items-center gap-4 backdrop-blur-2xl`}>
+                <div className="relative w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden ring-1 ring-white/10">
+                  <img src={dhruvProfilePic} alt="Dhruv Mendiratta" className="w-full h-full object-cover" />
+                </div>
+                <div className="flex-1">
+                  <div className={`${isDarkMode ? 'text-white' : 'text-gray-900'} text-lg md:text-xl font-semibold`}>Dhruv Mendiratta</div>
+                  <div className={`${isDarkMode ? 'text-slate-300' : 'text-gray-600'} text-sm`}>AI Engineer • Full‑Stack Developer</div>
+                </div>
+              </div>
               <p className={`text-lg leading-relaxed mb-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
                 I'm <span className="font-semibold text-white dark:text-white">Dhruv Mendiratta</span>, a final-year Computer Science student at Manipal University Jaipur, specializing in AI and Machine Learning. My passion lies in developing intelligent systems that solve real-world problems, with a particular focus on Large Language Models and Retrieval-Augmented Generation (RAG) systems.
               </p>
