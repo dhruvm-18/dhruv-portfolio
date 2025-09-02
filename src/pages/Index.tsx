@@ -1232,7 +1232,6 @@ const Index = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            onMouseLeave={() => setActiveProjectPreview(null)}
           >
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
@@ -1254,6 +1253,7 @@ const Index = () => {
                 damping: 30,
                 mass: 0.8
               }}
+              onMouseLeave={() => setActiveProjectPreview(null)}
             >
               <div className="bg-black/80 backdrop-blur-3xl rounded-3xl p-6 md:p-8 border border-white/20 shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-y-auto relative">
                 
