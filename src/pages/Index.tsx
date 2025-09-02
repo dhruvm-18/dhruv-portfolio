@@ -25,7 +25,7 @@ const Index = () => {
   const [typewriterIndex, setTypewriterIndex] = useState(0);
   const [typewriterText, setTypewriterText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [skillsTab, setSkillsTab] = useState<'All' | 'AI/ML' | 'Full‑Stack' | 'Analytics' | 'Cloud/DevOps'>('All');
+  const [skillsTab, setSkillsTab] = useState<'All' | 'AI/ML' | 'Full‑Stack' | 'Analytics' | 'Cloud/DevOps' | 'Other'>('All');
 
   const rotatingRoles = useMemo(() => [
     'Full-Stack Developer',
@@ -417,8 +417,8 @@ const Index = () => {
     GARCH: simple('apachespark'),
     'Data Preprocessing': simple('databricks'),
     'Exploratory Data Analysis (EDA)': null,
-    Tableau: null,
-    'Power BI': null,
+    Tableau: '/tableau.png',
+    'Power BI': '/power.png',
     'Data Management': simple('googlecloud'),
     'Data Governance': simple('hashicorp'),
 
@@ -439,7 +439,7 @@ const Index = () => {
     'Stakeholder Management': simple('asana'),
 
     // Cloud
-    'AWS (EC2, S3, Lambda, IAM, CloudWatch)': simple('amazonaws'),
+    'AWS (EC2, S3, Lambda, IAM, CloudWatch)': '/aws.png',
     Git: devicon('git'),
 
     // Other Tools
@@ -632,7 +632,7 @@ const Index = () => {
     if (c.includes('web') || c.includes('apis')) return 'Full‑Stack' as const;
     if (c.includes('data tools') || c.includes('data management')) return 'Analytics' as const;
     if (c.includes('cloud')) return 'Cloud/DevOps' as const;
-    return 'All' as const;
+    return 'Other' as const;
   }, []);
 
   const filteredSkillGroups = useMemo(() => {
@@ -1222,10 +1222,10 @@ const Index = () => {
             <p className={`text-base md:text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>Here are key areas of my expertise, shaped by my academic & professional experience</p>
           </FadeIn>
 
-          {/* Tabs */}
-          <div className={`${cardClasses} rounded-xl border backdrop-blur-2xl px-2 py-2 mb-6 md:mb-8`}> 
-            <div className="flex flex-wrap gap-2 md:gap-3">
-              {(['All','AI/ML','Full‑Stack','Analytics','Cloud/DevOps'] as const).map(tab => (
+                      {/* Tabs */}
+            <div className={`${cardClasses} rounded-xl border backdrop-blur-2xl px-2 py-2 mb-6 md:mb-8`}> 
+              <div className="flex flex-wrap gap-2 md:gap-3">
+                {(['All','AI/ML','Full‑Stack','Analytics','Cloud/DevOps','Other'] as const).map(tab => (
                 <button
                   key={tab}
                   onClick={() => setSkillsTab(tab)}
@@ -1282,29 +1282,32 @@ const Index = () => {
           <div className="mt-12">
             <h3 className={`text-2xl md:text-3xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Roles I Can Excel In</h3>
             <p className={`${isDarkMode ? 'text-slate-300' : 'text-gray-600'} mb-6`}>Based on my experience across AI, RAG systems, data, and full-stack.</p>
-            <StaggerContainer staggerDelay={0.05} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" reducedMotion={prefersReducedMotion}>
-              {[
-                { title: 'Full-Stack Developer', bullets: ['React, Node.js/Flask/FastAPI', 'REST APIs & Auth', 'PostgreSQL/MongoDB'], icon: '🧩' },
-                { title: 'AI/ML Engineer', bullets: ['TensorFlow, PyTorch, Scikit-learn', 'Model training & deployment', 'MLOps basics on AWS'], icon: '🧠' },
-                { title: 'Data Engineer', bullets: ['Hadoop, Hive, Kafka, Sqoop', 'ETL & Data Pipelines', 'Batch/Streaming'], icon: '🛠️' },
-                { title: 'LLM/RAG Engineer', bullets: ['LangChain, FAISS, Vector DBs', 'Prompt Engineering & Evaluation', 'Context/Retrieval Pipelines'], icon: '🤖' },
-                { title: 'Prompt Engineer', bullets: ['Prompt design & tuning', 'Guardrails & evaluation', 'Few-shot & RAG prompts'], icon: '✍️' },
-                { title: 'Cloud Developer', bullets: ['AWS EC2/S3/Lambda', 'CI/CD & Git', 'CloudWatch monitoring'], icon: '☁️' },
-                { title: 'Consultant', bullets: ['Requirements gathering', 'Stakeholder management', 'Solution design & docs'], icon: '🗂️' }
-              ].map((role, idx) => (
-                <StaggerItem key={idx} className={`${cardClasses} rounded-xl p-5 border hover:shadow-xl transition-all`} reducedMotion={prefersReducedMotion}>
-                  <div className="flex items-center mb-3">
-                    <span className="text-2xl mr-2">{role.icon}</span>
-                    <div className={`text-lg md:text-xl font-semibold ${isDarkMode ? 'text-slate-100' : 'text-gray-900'}`}>{role.title}</div>
-                  </div>
-                  <ul className="list-disc pl-5 space-y-1">
-                    {role.bullets.map((b, i) => (
-                      <li key={i} className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{b}</li>
-                    ))}
-                  </ul>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+            <div className={`${cardClasses} rounded-2xl border p-4 md:p-6 backdrop-blur-2xl`}
+              style={{ backgroundImage: isDarkMode ? 'radial-gradient(1200px 300px at 10% -20%, rgba(255,255,255,0.06), transparent)' : 'none' }}>
+              <StaggerContainer staggerDelay={0.05} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" reducedMotion={prefersReducedMotion}>
+                {[
+                  { title: 'Full-Stack Developer', bullets: ['React, Node.js/Flask/FastAPI', 'REST APIs & Auth', 'PostgreSQL/MongoDB'], icon: '🧩' },
+                  { title: 'AI/ML Engineer', bullets: ['TensorFlow, PyTorch, Scikit-learn', 'Model training & deployment', 'MLOps basics on AWS'], icon: '🧠' },
+                  { title: 'Data Engineer', bullets: ['Hadoop, Hive, Kafka, Sqoop', 'ETL & Data Pipelines', 'Batch/Streaming'], icon: '🛠️' },
+                  { title: 'LLM/RAG Engineer', bullets: ['LangChain, FAISS, Vector DBs', 'Prompt Engineering & Evaluation', 'Context/Retrieval Pipelines'], icon: '🤖' },
+                  { title: 'Prompt Engineer', bullets: ['Prompt design & tuning', 'Guardrails & evaluation', 'Few-shot & RAG prompts'], icon: '✍️' },
+                  { title: 'Cloud Developer', bullets: ['AWS EC2/S3/Lambda', 'CI/CD & Git', 'CloudWatch monitoring'], icon: '☁️' },
+                  { title: 'Consultant', bullets: ['Requirements gathering', 'Stakeholder management', 'Solution design & docs'], icon: '🗂️' }
+                ].map((role, idx) => (
+                  <StaggerItem key={idx} className={`${cardClasses} backdrop-blur-sm rounded-xl p-5 border hover:shadow-xl transition-all duration-300`} reducedMotion={prefersReducedMotion}>
+                    <div className="flex items-center mb-3">
+                      <span className="text-2xl mr-2">{role.icon}</span>
+                      <div className={`text-lg md:text-xl font-semibold ${isDarkMode ? 'text-slate-100' : 'text-gray-900'}`}>{role.title}</div>
+                    </div>
+                    <ul className="list-disc pl-5 space-y-1">
+                      {role.bullets.map((b, i) => (
+                        <li key={i} className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{b}</li>
+                      ))}
+                    </ul>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
           </div>
           </div>
       </section>
