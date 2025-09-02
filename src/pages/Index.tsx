@@ -40,7 +40,6 @@ const Index = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [skillsTab, setSkillsTab] = useState<'All' | 'AI/ML' | 'Full‑Stack' | 'Analytics' | 'Cloud/DevOps' | 'Other'>('All');
   const [activeProjectPreview, setActiveProjectPreview] = useState<Project | null>(null);
-  const [isOverlayHovered, setIsOverlayHovered] = useState(false);
 
   const rotatingRoles = useMemo(() => [
     'Full-Stack Developer',
@@ -1183,19 +1182,14 @@ const Index = () => {
               >
                 <div 
                   className={`${cardClasses} rounded-2xl overflow-hidden border group flex flex-col transition-all duration-300 hover:scale-[1.01] w-full h-full`}
-                  onMouseEnter={() => {
-                    setTimeout(() => setActiveProjectPreview(project), 100);
-                  }}
-                  onMouseLeave={() => {
-                    setTimeout(() => setActiveProjectPreview(null), 300);
-                  }}
+                  onMouseEnter={() => setActiveProjectPreview(project)}
                 >
-                {/* Top: Image area - auto height */}
-                <div className="relative overflow-hidden">
+                {/* Top: Image area - fixed height */}
+                <div className="relative h-48 md:h-56 overflow-hidden">
                       <LazyImage 
                         src={project.image} 
                         alt={project.title} 
-                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         placeholder="/placeholder.jpg"
                       />
                 </div>
@@ -1238,15 +1232,7 @@ const Index = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            onMouseEnter={() => setIsOverlayHovered(true)}
-            onMouseLeave={() => {
-              setIsOverlayHovered(false);
-              setTimeout(() => {
-                if (!isOverlayHovered) {
-                  setActiveProjectPreview(null);
-                }
-              }, 100);
-            }}
+            onMouseLeave={() => setActiveProjectPreview(null)}
           >
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
