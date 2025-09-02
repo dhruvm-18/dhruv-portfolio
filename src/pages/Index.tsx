@@ -1185,20 +1185,15 @@ const Index = () => {
           <div className="text-center mb-4 text-sm text-gray-500">
             Showing {filteredProjects.length} of {projects.length} projects (Filter: {projectFilter})
           </div>
-          <StaggerContainer
-            staggerDelay={0.1}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-            reducedMotion={prefersReducedMotion}
-          >
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProjects.map((project, index) => (
-              <StaggerItem
+              <motion.div
                 key={index}
-                className="w-full h-full"
-                reducedMotion={prefersReducedMotion}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`${cardClasses} rounded-2xl overflow-hidden border group flex flex-col transition-all duration-300 hover:scale-[1.01] w-full h-full`}
               >
-                <div 
-                  className={`${cardClasses} rounded-2xl overflow-hidden border group flex flex-col transition-all duration-300 hover:scale-[1.01] w-full h-full`}
-                >
                 {/* Top: Image area - compact height with full image visibility */}
                 <div 
                   className={`relative h-28 md:h-36 overflow-hidden bg-gray-100/10 ${project.title.includes('Hybrid Stock Price Prediction') || project.title.includes('Railway Ticketing Chatbot') ? '' : 'cursor-pointer'}`}
@@ -1238,10 +1233,9 @@ const Index = () => {
                     ))}
                   </div>
                 </div>
-                </div>
-              </StaggerItem>
+              </motion.div>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
