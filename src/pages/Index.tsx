@@ -399,7 +399,7 @@ const Index = () => {
     >
       {/* Floating Navigation - Desktop */}
       <motion.nav 
-        className={`fixed top-3 left-1/2 -translate-x-1/2 z-50 hidden md:flex justify-center items-center px-4`}
+        className={`fixed top-3 left-1/2 -translate-x-1/2 z-[100] hidden md:flex justify-center items-center w-full max-w-7xl px-4`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
@@ -407,7 +407,7 @@ const Index = () => {
           willChange: 'transform, opacity',
         }}
       >
-        <div className={`flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4 w-full max-w-6xl px-4 rounded-2xl backdrop-blur-2xl ${isDarkMode ? 'bg-white/6 ring-1 ring-white/10' : 'bg-white/70 ring-1 ring-slate-200/60'} shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] py-2` }>
+        <div className={`mx-auto flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4 w-full px-4 rounded-2xl backdrop-blur-2xl ${isDarkMode ? 'bg-white/6 ring-1 ring-white/10' : 'bg-white/70 ring-1 ring-slate-200/60'} shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] py-2` }>
            {/* Logo - DHRUV */}
            <div className="mr-6 select-none">
              <span
