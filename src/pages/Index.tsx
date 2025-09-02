@@ -1712,242 +1712,112 @@ const Index = () => {
 
       {/* Contact Section */}
       <section id="contact" className="py-16 px-4 sm:px-6 md:py-20">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto text-center">
           <FadeIn
             delay={0.2}
             duration={0.8}
             reducedMotion={prefersReducedMotion}
           >
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
-                Let's Connect
-              </h2>
-              <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
-              <p className={`text-lg md:text-xl mb-4 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
-                Ready to build the future of AI together? Let's discuss your next project.
-              </p>
-              <p className={`text-base ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-                Based in Delhi, India • Available for remote collaboration worldwide
-              </p>
-            </div>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 ${isDarkMode ? 'bg-gradient-to-r from-blue-300 to-indigo-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
+              Let's Connect
+            </h2>
+            <div className={`w-20 md:w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mb-6 md:mb-8`}></div>
+            <p className={`text-lg md:text-xl mb-8 md:mb-12 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
+              Ready to build the future of AI together? Let's discuss your next project.
+            </p>
 
-            {/* Enhanced Contact Cards */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+            {/* Simple Contact Cards */}
+            <div className="grid sm:grid-cols-3 gap-6 mb-8 md:mb-12">
               {[
-                { 
-                  icon: Mail, 
-                  title: "Email", 
-                  info: "dhruv.mendiratta4@gmail.com", 
-                  subtitle: "Primary Contact",
-                  color: "blue",
-                  gradient: "from-blue-500 to-cyan-500",
-                  action: "Send Email"
-                },
-                { 
-                  icon: Phone, 
-                  title: "Phone", 
-                  info: "+91 9013669130", 
-                  subtitle: "WhatsApp Available",
-                  color: "green",
-                  gradient: "from-green-500 to-emerald-500",
-                  action: "Call Now"
-                },
-                { 
-                  icon: MapPin, 
-                  title: "Location", 
-                  info: "Delhi, India", 
-                  subtitle: "Open to Relocation",
-                  color: "purple",
-                  gradient: "from-purple-500 to-pink-500",
-                  action: "View Map"
-                }
+                { icon: Mail, title: "Email", info: "dhruv.mendiratta4@gmail.com", href: "https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com" },
+                { icon: Phone, title: "Phone", info: "+91 9013669130", href: "tel:+919013669130" },
+                { icon: MapPin, title: "Location", info: "Delhi, India", href: null }
               ].map((contact, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.02, y: -8 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className={`${cardClasses} backdrop-blur-2xl rounded-2xl border overflow-hidden group relative`}
-                >
-                  {/* Gradient Top Border */}
-                  <div className={`h-1 bg-gradient-to-r ${contact.gradient}`} />
-                  
-                  {/* Content */}
-                  <div className="p-6 md:p-8 text-center">
-                    <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${contact.gradient} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300`}>
-                      <contact.icon className="w-8 h-8 text-white" />
-                    </div>
-                    
-                    <h3 className={`text-xl md:text-2xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                      {contact.title}
-                    </h3>
-                    
-                    <p className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'} mb-3`}>
-                      {contact.subtitle}
-                    </p>
-                    
-                    <p className={`text-base md:text-lg font-semibold mb-4 ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>
+                <div key={index} className={`${cardClasses} rounded-xl border p-6 hover:shadow-lg transition-all duration-300`}>
+                  <contact.icon className={`w-8 h-8 mx-auto mb-3 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+                  <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{contact.title}</h3>
+                  {contact.href ? (
+                    <a href={contact.href} target="_blank" rel="noopener noreferrer" className={`text-sm ${isDarkMode ? 'text-slate-400 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'} transition-colors`}>
                       {contact.info}
-                    </p>
-                    
-                    <div className={`px-4 py-2 rounded-full text-sm font-medium ${isDarkMode ? 'bg-white/10 text-white' : 'bg-gray-100 text-gray-700'} border border-white/20`}>
-                      {contact.action}
-                    </div>
-                  </div>
-                </motion.div>
+                    </a>
+                  ) : (
+                    <p className={`text-sm ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>{contact.info}</p>
+                  )}
+                </div>
               ))}
             </div>
 
-            {/* Enhanced Social Media Section */}
-            <div className="text-center mb-12 md:mb-16">
-              <h3 className={`text-2xl md:text-3xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                Connect & Collaborate
-              </h3>
-              <p className={`text-base ${isDarkMode ? 'text-slate-400' : 'text-gray-600'} mb-8`}>
-                Let's build something amazing together
-              </p>
-              
-              <div className="flex justify-center items-center gap-4 md:gap-6">
-                {[
-                  { 
-                    icon: Linkedin, 
-                    href: "https://www.linkedin.com/in/dhruv-mendiratta-132a46255/", 
-                    name: "LinkedIn",
-                    color: "blue",
-                    gradient: "from-blue-500 to-blue-600"
-                  },
-                  { 
-                    icon: Github, 
-                    href: "https://github.com/dhruvm-18", 
-                    name: "GitHub",
-                    color: "slate",
-                    gradient: "from-slate-600 to-slate-700"
-                  },
-                  { 
-                    icon: Mail,
-                    href: "https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com",
-                    name: "Email",
-                    color: "red",
-                    gradient: "from-red-500 to-red-600"
-                  }
-                ].map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1, y: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`group relative p-4 md:p-6 rounded-2xl bg-gradient-to-br ${social.gradient} shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/20`}
-                  >
-                    <div className="absolute inset-0 bg-white/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="relative flex flex-col items-center">
-                      <social.icon className="w-8 h-8 md:w-10 md:h-10 text-white mb-2" />
-                      <span className="text-white text-sm font-medium">{social.name}</span>
-                    </div>
-                  </motion.a>
-                ))}
-              </div>
+            {/* Social Links */}
+            <div className="flex justify-center gap-4">
+              {[
+                { icon: Linkedin, href: "https://www.linkedin.com/in/dhruv-mendiratta-132a46255/", label: "LinkedIn" },
+                { icon: Github, href: "https://github.com/dhruvm-18", label: "GitHub" },
+                { icon: Mail, href: "https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com", label: "Email" }
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`p-3 rounded-full ${isDarkMode ? 'bg-white/10 hover:bg-white/20' : 'bg-gray-100 hover:bg-gray-200'} transition-all duration-200`}
+                >
+                  <social.icon className={`w-6 h-6 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`} />
+                </a>
+              ))}
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* Enhanced Location & About Section */}
+      {/* Location Section */}
       <section className="py-12 px-4 sm:px-6 md:py-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h3 className={`text-2xl md:text-3xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-              Based in Delhi, India
-            </h3>
-            <p className={`text-base ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
-              Open to remote collaboration and relocation opportunities worldwide
-            </p>
-          </div>
+        <div className="max-w-4xl mx-auto text-center">
+          <h3 className={`text-2xl md:text-3xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            Based in Delhi, India
+          </h3>
+          <p className={`text-base mb-8 ${isDarkMode ? 'text-slate-400' : 'text-gray-600'}`}>
+            Open to remote collaboration and relocation opportunities worldwide
+          </p>
           
-          <div className="grid lg:grid-cols-3 gap-8 items-center">
-            {/* Left: About Me */}
-            <div className={`${cardClasses} rounded-2xl border shadow-xl p-6 md:p-8 backdrop-blur-2xl`}>
-              <h4 className="text-xl md:text-2xl font-bold mb-4">About Me</h4>
-              <p className="text-sm md:text-base mb-4">AI Engineer & Full-Stack Developer passionate about building scalable AI solutions and modern web apps. Always learning, always building.</p>
-              <div className="space-y-2 text-xs md:text-sm">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                  <span>🌐 React, FastAPI, AWS</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                  <span>🤖 LLMs, RAG, Deep Learning</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-                  <span>📍 Based in Delhi, India</span>
-                </div>
-              </div>
-            </div>
-            
-            {/* Center: Delhi State Map */}
-            <div className={`relative rounded-2xl border shadow-2xl overflow-hidden ${isDarkMode ? 'border-blue-800 bg-slate-900' : 'border-blue-200 bg-white'}`} style={{ width: '100%', height: 300, minHeight: 250 }}>
-              {/* Delhi State Outline Map */}
-              <div className="w-full h-full flex items-center justify-center relative">
-                <svg 
-                  viewBox="0 0 400 300" 
-                  className="w-full h-full"
-                  style={{ filter: isDarkMode ? 'invert(0.9) hue-rotate(180deg)' : 'none' }}
-                >
-                  {/* Delhi State Boundary */}
-                  <path 
-                    d="M 50 80 Q 80 60 120 70 Q 160 80 200 75 Q 240 70 280 80 Q 320 90 350 100 L 360 150 Q 350 200 320 220 Q 280 240 200 250 Q 120 240 80 220 Q 50 200 50 150 Z" 
-                    fill="none" 
-                    stroke={isDarkMode ? '#3b82f6' : '#1d4ed8'} 
-                    strokeWidth="3"
-                    strokeDasharray="5,5"
-                  />
-                  
-                  {/* Delhi City Marker */}
-                  <circle cx="200" cy="160" r="8" fill={isDarkMode ? '#ef4444' : '#dc2626'} />
-                  <circle cx="200" cy="160" r="12" fill="none" stroke={isDarkMode ? '#ef4444' : '#dc2626'} strokeWidth="2" opacity="0.6">
-                    <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite" />
-                  </circle>
-                  
-                  {/* State Label */}
-                  <text x="200" y="280" textAnchor="middle" className={`text-lg font-bold ${isDarkMode ? 'fill-white' : 'fill-gray-800'}`}>
-                    DELHI
-                  </text>
-                  
-                  {/* Coordinates */}
-                  <text x="200" y="295" textAnchor="middle" className={`text-xs ${isDarkMode ? 'fill-slate-400' : 'fill-gray-600'}`}>
-                    28.7041° N, 77.1025° E
-                  </text>
-                </svg>
+          {/* Delhi State Map */}
+          <div className={`relative rounded-2xl border shadow-xl overflow-hidden ${isDarkMode ? 'border-blue-800 bg-slate-900' : 'border-blue-200 bg-white'} mx-auto`} style={{ width: '100%', maxWidth: 500, height: 300 }}>
+            <div className="w-full h-full flex items-center justify-center relative">
+              <svg 
+                viewBox="0 0 400 300" 
+                className="w-full h-full"
+                style={{ filter: isDarkMode ? 'invert(0.9) hue-rotate(180deg)' : 'none' }}
+              >
+                {/* Delhi State Boundary */}
+                <path 
+                  d="M 50 80 Q 80 60 120 70 Q 160 80 200 75 Q 240 70 280 80 Q 320 90 350 100 L 360 150 Q 350 200 320 220 Q 280 240 200 250 Q 120 240 80 220 Q 50 200 50 150 Z" 
+                  fill="none" 
+                  stroke={isDarkMode ? '#3b82f6' : '#1d4ed8'} 
+                  strokeWidth="3"
+                  strokeDasharray="5,5"
+                />
                 
-                {/* Location Info Overlay */}
-                <div className={`absolute top-4 left-4 right-4 p-3 rounded-lg ${isDarkMode ? 'bg-black/60 text-white' : 'bg-white/90 text-gray-800'} backdrop-blur-sm`}>
-                  <div className="text-sm font-medium">📍 New Delhi, India</div>
-                  <div className="text-xs opacity-80">Capital Region • Tech Hub</div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Right: Contact Quick Links */}
-            <div className={`${cardClasses} rounded-2xl border shadow-xl p-6 md:p-8 backdrop-blur-2xl`}>
-              <h4 className="text-xl md:text-2xl font-bold mb-4">Quick Connect</h4>
-              <div className="space-y-3">
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com" target="_blank" rel="noopener noreferrer" className={`flex items-center gap-3 p-3 rounded-lg ${isDarkMode ? 'bg-white/10 hover:bg-white/20' : 'bg-gray-100 hover:bg-gray-200'} transition-all duration-200`}>
-                  <Mail className="w-5 h-5 text-blue-500" />
-                  <span className="text-sm font-medium">Send Email</span>
-                </a>
-                <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" className={`flex items-center gap-3 p-3 rounded-lg ${isDarkMode ? 'bg-white/10 hover:bg-white/20' : 'bg-gray-100 hover:bg-gray-200'} transition-all duration-200`}>
-                  <Linkedin className="w-5 h-5 text-blue-600" />
-                  <span className="text-sm font-medium">Connect on LinkedIn</span>
-                </a>
-                <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" className={`flex items-center gap-3 p-3 rounded-lg ${isDarkMode ? 'bg-white/10 hover:bg-white/20' : 'bg-gray-100 hover:bg-gray-200'} transition-all duration-200`}>
-                  <Github className="w-5 h-5 text-slate-700" />
-                  <span className="text-sm font-medium">View GitHub</span>
-                </a>
-              </div>
-              <div className="mt-4 p-3 rounded-lg bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20">
-                <div className="text-xs text-center font-medium">🚀 Let's build something great together!</div>
+                {/* Delhi City Marker */}
+                <circle cx="200" cy="160" r="8" fill={isDarkMode ? '#ef4444' : '#dc2626'} />
+                <circle cx="200" cy="160" r="12" fill="none" stroke={isDarkMode ? '#ef4444' : '#dc2626'} strokeWidth="2" opacity="0.6">
+                  <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite" />
+                </circle>
+                
+                {/* State Label */}
+                <text x="200" y="280" textAnchor="middle" className={`text-lg font-bold ${isDarkMode ? 'fill-white' : 'fill-gray-800'}`}>
+                  DELHI
+                </text>
+                
+                {/* Coordinates */}
+                <text x="200" y="295" textAnchor="middle" className={`text-xs ${isDarkMode ? 'fill-slate-400' : 'fill-gray-600'}`}>
+                  28.7041° N, 77.1025° E
+                </text>
+              </svg>
+              
+              {/* Location Info Overlay */}
+              <div className={`absolute top-4 left-4 right-4 p-3 rounded-lg ${isDarkMode ? 'bg-black/60 text-white' : 'bg-white/90 text-gray-800'} backdrop-blur-sm`}>
+                <div className="text-sm font-medium">📍 New Delhi, India</div>
+                <div className="text-xs opacity-80">Capital Region • Tech Hub</div>
               </div>
             </div>
           </div>
