@@ -613,7 +613,7 @@ const Index = () => {
                       className="rounded-full w-full h-full object-cover shadow-[0_10px_30px_-12px_rgba(59,130,246,0.55)]"
                     />
                     {/* spinning subtle outer ring */}
-                    <motion.div className="absolute -inset-0.5 rounded-full pointer-events-none" style={{ border: isDarkMode ? '1px solid rgba(99,102,241,0.35)' : '1px solid rgba(59,130,246,0.35)' }} animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: 'linear' }} />
+                    <div className="absolute -inset-0.5 rounded-full pointer-events-none" style={{ border: isDarkMode ? '1px solid rgba(99,102,241,0.35)' : '1px solid rgba(59,130,246,0.35)' }} />
                   </div>
                 </div>
               </div>
@@ -623,7 +623,6 @@ const Index = () => {
                   <h1 className={`text-3xl md:text-5xl font-extrabold bg-gradient-to-r ${isDarkMode ? 'from-gray-300 via-gray-200 to-gray-100' : 'from-gray-700 via-gray-600 to-gray-500'} bg-clip-text text-transparent animate-gradient-x drop-shadow-lg`}>
                     Dhruv Mendiratta
                   </h1>
-                  <Badge className={`bg-gradient-to-r ${isDarkMode ? 'from-gray-700 via-gray-600 to-gray-800 text-gray-200 border-gray-500/40' : 'from-gray-100 via-gray-50 to-white text-gray-700 border-gray-300'} text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow`}>AI Engineer</Badge>
                 </div>
                 <p className={`text-base md:text-xl mb-3 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>
                   <span className={`${isDarkMode ? 'text-blue-300' : 'text-blue-700'} font-semibold`}>{typewriterText}</span>
@@ -634,37 +633,39 @@ const Index = () => {
                   />
                 </p>
                 {/* Role chips */}
-                <div className="flex flex-wrap items-center gap-2 mb-4">
+                <div className="flex flex-wrap items-center gap-2 mb-5 md:mb-6 justify-center md:justify-start">
                   {rotatingRoles.map((r, i) => (
                     <span key={i} className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${isDarkMode ? 'bg-sky-500/10 text-sky-200 border-sky-400/30' : 'bg-sky-50 text-sky-700 border-sky-200'}`}>
                       {r}
                     </span>
                   ))}
                 </div>
-                {/* Modern, neutral buttons */}
-                <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-2">
-                  <Button asChild className={`group relative rounded-full px-8 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'text-white focus:ring-sky-400 focus:ring-offset-gray-800' : 'text-sky-900 focus:ring-sky-400 focus:ring-offset-white'}`}>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
-   target="_blank"
-   rel="noopener noreferrer">
-                      <span className={`absolute inset-0 rounded-full ${isDarkMode ? 'bg-gradient-to-r from-sky-600 to-indigo-600' : 'bg-gradient-to-r from-sky-300 to-indigo-300'}`}></span>
-                      <span className={`absolute inset-[2px] rounded-full ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}></span>
-                      <span className="relative flex items-center">
-                        <Mail className="w-4 h-4 mr-2" />
-                        Hire Me
-                      </span>
-                    </a>
-                  </Button>
-                  <Button asChild className={`group relative rounded-full px-8 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'text-cyan-100 focus:ring-cyan-500 focus:ring-offset-gray-800' : 'text-sky-700 focus:ring-sky-400 focus:ring-offset-white'}`}>
-                    <a href="/Dhruv_Mendiratta_Resume.pdf" target="_blank" rel="noopener noreferrer">
-                      <span className={`absolute inset-0 rounded-full ${isDarkMode ? 'bg-gradient-to-r from-cyan-700 to-indigo-700' : 'bg-gradient-to-r from-sky-300 to-indigo-300'}`}></span>
-                      <span className={`absolute inset-[2px] rounded-full ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}></span>
-                      <span className="relative flex items-center">
-                        <FileText className="w-4 h-4 mr-2" />
-                        View My Resume
-                      </span>
-                    </a>
-                  </Button>
+                {/* CTAs - centered within card on small screens */}
+                <div className="w-full flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-1">
+                  <motion.div whileHover={{ y: -2 }} transition={{ type: 'spring', stiffness: 250, damping: 18 }}>
+                    <Button asChild className={`group relative rounded-full px-8 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'text-white focus:ring-sky-400 focus:ring-offset-transparent' : 'text-sky-900 focus:ring-sky-400 focus:ring-offset-white'}`}>
+                      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com" target="_blank" rel="noopener noreferrer">
+                        <span className={`absolute inset-0 rounded-full ${isDarkMode ? 'bg-gradient-to-r from-sky-600 to-indigo-600' : 'bg-gradient-to-r from-sky-300 to-indigo-300'}`}></span>
+                        <span className={`absolute inset-[2px] rounded-full ${isDarkMode ? 'bg-slate-900/80' : 'bg-white/95'} shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]`}></span>
+                        <span className="relative flex items-center">
+                          <Mail className="w-4 h-4 mr-2" />
+                          Hire Me
+                        </span>
+                      </a>
+                    </Button>
+                  </motion.div>
+                  <motion.div whileHover={{ y: -2 }} transition={{ type: 'spring', stiffness: 250, damping: 18 }}>
+                    <Button asChild className={`group relative rounded-full px-8 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'text-cyan-100 focus:ring-cyan-500 focus:ring-offset-transparent' : 'text-sky-700 focus:ring-sky-400 focus:ring-offset-white'}`}>
+                      <a href="/Dhruv_Mendiratta_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                        <span className={`absolute inset-0 rounded-full ${isDarkMode ? 'bg-gradient-to-r from-cyan-700 to-indigo-700' : 'bg-gradient-to-r from-sky-300 to-indigo-300'}`}></span>
+                        <span className={`absolute inset-[2px] rounded-full ${isDarkMode ? 'bg-slate-900/80' : 'bg-white/95'} shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]`}></span>
+                        <span className="relative flex items-center">
+                          <FileText className="w-4 h-4 mr-2" />
+                          View My Resume
+                        </span>
+                      </a>
+                    </Button>
+                  </motion.div>
                 </div>
               </div>
             </div>
@@ -676,8 +677,9 @@ const Index = () => {
             transition={{ delay: 1.1, type: 'spring', stiffness: 180 }}
              className={`relative flex justify-center items-center mb-8 max-w-2xl mx-auto`}
            >
-            <div className={`relative w-full px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl ${isDarkMode ? 'bg-white/6 text-gray-100 ring-1 ring-white/15' : 'bg-white/70 text-gray-800 ring-1 ring-slate-200/50'} tracking-wide backdrop-blur-xl`} style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
-              <Code className={`w-6 h-6 inline-block mr-2 align-middle animate-spin-slow ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`} />
+            <div className={`relative w-full px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl ${isDarkMode ? 'text-gray-100' : 'text-gray-800'} tracking-wide backdrop-blur-2xl`} style={{ fontFamily: 'Fira Mono, Menlo, monospace', background: isDarkMode ? 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.04))' : 'linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6))' }}>
+              <div className={`pointer-events-none absolute inset-0 rounded-2xl ${isDarkMode ? 'bg-gradient-to-r from-sky-400/10 via-indigo-400/10 to-purple-400/10' : 'bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-purple-500/10'}`} />
+              <Code className={`relative w-6 h-6 inline-block mr-2 align-middle ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`} />
               Currently Debugging Life's Edge Cases
             </div>
           </motion.div>
