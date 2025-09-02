@@ -27,12 +27,12 @@ const Index = () => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const rotatingRoles = useMemo(() => [
-    'LLMs & RAG Systems Engineer',
     'Full-Stack Developer',
     'AI/ML Engineer',
     'Data Engineer',
+    'LLMs & RAG Systems Engineer',
     'Prompt Engineer',
-    'MLOps Practitioner'
+    'Cloud Developer'
   ], []);
 
   useEffect(() => {
@@ -597,10 +597,12 @@ const Index = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className={`relative p-1 mb-4 rounded-[2.5rem] shadow-2xl animate-gradient-x ${isDarkMode ? 'bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800' : 'bg-gradient-to-br from-gray-100 via-white to-gray-100'}`}
-            style={{ boxShadow: isDarkMode ? '0 0 40px 0 rgba(107, 114, 128, 0.3), 0 0 0 4px rgba(75, 85, 99, 0.2)' : undefined }}
+            className={`relative p-1 mb-4 rounded-[2.5rem] shadow-2xl ${isDarkMode ? 'bg-gradient-to-br from-white/10 via-white/5 to-white/10' : 'bg-gradient-to-br from-white/70 via-white/60 to-white/70'}`}
+            style={{ boxShadow: isDarkMode ? '0 0 40px 0 rgba(99,102,241,0.25), 0 0 0 3px rgba(30,58,138,0.25)' : '0 0 40px 0 rgba(56,189,248,0.20), 0 0 0 3px rgba(29,78,216,0.15)' }}
           >
-            <div className={`backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden border ${isDarkMode ? 'bg-gradient-to-br from-gray-800/90 via-gray-700/90 to-gray-800/90 border-gray-600/60' : 'bg-gradient-to-br from-white via-gray-50 to-white border-gray-200/60'}`}>
+            <div className={`rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden border backdrop-blur-2xl ${isDarkMode ? 'bg-white/5 border-white/15' : 'bg-white/60 border-white/40'}`}>
+              <div className={`pointer-events-none absolute -inset-px rounded-[2.3rem] ${isDarkMode ? 'bg-gradient-to-br from-sky-400/10 via-indigo-400/10 to-purple-400/10' : 'bg-gradient-to-br from-sky-500/10 via-indigo-500/10 to-purple-500/10'}`} />
+              <div className={`pointer-events-none absolute inset-0 rounded-[2.3rem] ring-1 ${isDarkMode ? 'ring-white/15' : 'ring-slate-200/50'}`} />
               {/* Floating Profile Pic */}
               <div className="relative">
                 <div className={`relative w-28 h-28 md:w-40 md:h-40 rounded-full p-1 shadow-xl ${isDarkMode ? 'bg-gradient-to-tr from-gray-600 via-gray-500 to-gray-700' : 'bg-gradient-to-tr from-gray-200 via-gray-100 to-white'}` }>
@@ -636,14 +638,14 @@ const Index = () => {
                 {/* Role chips */}
                 <div className="flex flex-wrap items-center gap-2 mb-4">
                   {rotatingRoles.map((r, i) => (
-                    <span key={i} className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${isDarkMode ? 'bg-blue-500/10 text-blue-200 border-blue-400/30' : 'bg-blue-50 text-blue-700 border-blue-200'}`}>
+                    <span key={i} className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${isDarkMode ? 'bg-sky-500/10 text-sky-200 border-sky-400/30' : 'bg-sky-50 text-sky-700 border-sky-200'}`}>
                       {r}
                     </span>
                   ))}
                 </div>
                 {/* Modern, neutral buttons */}
                 <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-2">
-                  <Button asChild className={`rounded-full px-6 py-2 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'bg-gradient-to-r from-blue-700 to-indigo-700 hover:from-blue-600 hover:to-indigo-600 text-white focus:ring-blue-400 focus:ring-offset-gray-800' : 'bg-gradient-to-r from-blue-100 to-indigo-100 hover:from-blue-200 hover:to-indigo-200 text-blue-900 focus:ring-blue-400 focus:ring-offset-white'} shadow-[0_6px_20px_-6px_rgba(59,130,246,0.5)]` }>
+                  <Button asChild className={`rounded-full px-7 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white focus:ring-sky-400 focus:ring-offset-gray-800' : 'bg-gradient-to-r from-sky-100 to-indigo-100 hover:from-sky-200 hover:to-indigo-200 text-sky-900 focus:ring-sky-400 focus:ring-offset-white'} shadow-[0_8px_24px_-8px_rgba(56,189,248,0.55)]` }>
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
   target="_blank"
   rel="noopener noreferrer">
@@ -651,7 +653,7 @@ const Index = () => {
                       Hire Me
                     </a>
                   </Button>
-                  <Button asChild className={`rounded-full px-6 py-2 font-semibold transition border focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'bg-gradient-to-r from-cyan-900 to-blue-900 hover:from-cyan-800 hover:to-blue-800 text-cyan-100 border-cyan-800 focus:ring-cyan-500 focus:ring-offset-gray-800' : 'border-cyan-300 text-cyan-700 hover:bg-cyan-50 bg-white focus:ring-cyan-400 focus:ring-offset-white'} shadow-[0_6px_20px_-6px_rgba(14,165,233,0.45)]` }>
+                  <Button asChild className={`rounded-full px-7 py-2.5 font-semibold transition border focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'bg-gradient-to-r from-cyan-900 to-indigo-900 hover:from-cyan-800 hover:to-indigo-800 text-cyan-100 border-cyan-800 focus:ring-cyan-500 focus:ring-offset-gray-800' : 'border-sky-300 text-sky-700 hover:bg-sky-50 bg-white focus:ring-sky-400 focus:ring-offset-white'} shadow-[0_8px_24px_-8px_rgba(14,165,233,0.45)]` }>
                     <a href="/Dhruv_Mendiratta_Resume.pdf" target="_blank" rel="noopener noreferrer">
                       <FileText className="w-4 h-4 mr-2" />
                       View My Resume
@@ -668,7 +670,8 @@ const Index = () => {
             transition={{ delay: 1.1, type: 'spring', stiffness: 180 }}
             className={`relative flex justify-center items-center mb-8 max-w-2xl mx-auto`}
           >
-            <div className={`relative w-full px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border-2 ${isDarkMode ? 'border-gray-600/40 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 text-gray-200' : 'border-gray-200/60 bg-gradient-to-r from-white via-gray-50 to-gray-100 text-gray-700'} animate-gradient-x tracking-wide`} style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
+            <div className={`relative w-full px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border ${isDarkMode ? 'border-white/15 bg-white/5 text-gray-100' : 'border-white/40 bg-white/60 text-gray-800'} tracking-wide backdrop-blur-xl`} style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
+              <div className={`pointer-events-none absolute -inset-px rounded-2xl ${isDarkMode ? 'bg-gradient-to-r from-sky-400/10 via-indigo-400/10 to-purple-400/10' : 'bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-purple-500/10'}`} />
               <Code className={`w-6 h-6 inline-block mr-2 align-middle animate-spin-slow ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`} />
               Currently Debugging Life's Edge Cases
             </div>
@@ -1029,12 +1032,12 @@ const Index = () => {
             <p className={`${isDarkMode ? 'text-slate-300' : 'text-gray-600'} mb-6`}>Based on my experience across AI, RAG systems, data, and full-stack.</p>
             <StaggerContainer staggerDelay={0.05} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" reducedMotion={prefersReducedMotion}>
               {[
-                { title: 'LLM/RAG Engineer', bullets: ['LangChain, FAISS, Vector DBs', 'Prompt Engineering & Evaluation', 'Context/Retrieval Pipelines'], icon: '🤖' },
-                { title: 'AI/ML Engineer', bullets: ['TensorFlow, PyTorch, Scikit-learn', 'Model training & deployment', 'MLOps basics on AWS'], icon: '🧠' },
                 { title: 'Full-Stack Developer', bullets: ['React, Node.js/Flask/FastAPI', 'REST APIs & Auth', 'PostgreSQL/MongoDB'], icon: '🧩' },
+                { title: 'AI/ML Engineer', bullets: ['TensorFlow, PyTorch, Scikit-learn', 'Model training & deployment', 'MLOps basics on AWS'], icon: '🧠' },
                 { title: 'Data Engineer', bullets: ['Hadoop, Hive, Kafka, Sqoop', 'ETL & Data Pipelines', 'Batch/Streaming'], icon: '🛠️' },
-                { title: 'Data Analyst/Scientist', bullets: ['Pandas, NumPy, Matplotlib', 'EDA & Preprocessing', 'Power BI/Tableau'], icon: '📊' },
-                { title: 'Cloud/DevOps (Foundational)', bullets: ['AWS EC2/S3/Lambda', 'CI/CD & Git', 'Monitoring with CloudWatch'], icon: '☁️' },
+                { title: 'LLM/RAG Engineer', bullets: ['LangChain, FAISS, Vector DBs', 'Prompt Engineering & Evaluation', 'Context/Retrieval Pipelines'], icon: '🤖' },
+                { title: 'Prompt Engineer', bullets: ['Prompt design & tuning', 'Guardrails & evaluation', 'Few-shot & RAG prompts'], icon: '✍️' },
+                { title: 'Cloud Developer', bullets: ['AWS EC2/S3/Lambda', 'CI/CD & Git', 'CloudWatch monitoring'], icon: '☁️' },
                 { title: 'Consultant', bullets: ['Requirements gathering', 'Stakeholder management', 'Solution design & docs'], icon: '🗂️' }
               ].map((role, idx) => (
                 <StaggerItem key={idx} className={`${cardClasses} rounded-xl p-5 border hover:shadow-xl transition-all`} reducedMotion={prefersReducedMotion}>
