@@ -919,9 +919,9 @@ const Index = () => {
                     )}
                   </div>
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 flex items-center justify-center">
-                    <div className="grid grid-cols-3 gap-2 p-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 p-4 w-full max-w-3xl">
                       {[project.image, project.image, project.image].map((img, i) => (
-                        <LazyImage key={i} src={img} alt={`${project.title} preview ${i+1}`} className="w-20 h-14 md:w-24 md:h-16 object-cover rounded-md" placeholder="/placeholder.jpg" />
+                        <LazyImage key={i} src={img} alt={`${project.title} preview ${i+1}`} className="w-full h-24 md:h-28 object-cover rounded-lg ring-1 ring-white/20 shadow-xl transition-transform duration-300 hover:scale-[1.03]" placeholder="/placeholder.jpg" />
                       ))}
                     </div>
                   </div>
