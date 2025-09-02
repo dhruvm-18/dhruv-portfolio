@@ -1249,14 +1249,12 @@ const Index = () => {
 
             <motion.div 
               className="absolute inset-0 flex items-center justify-center p-8 md:p-12"
-              initial={{ scale: 0.8, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.8, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
               transition={{ 
-                type: "spring", 
-                stiffness: 300, 
-                damping: 30,
-                mass: 0.8
+                duration: 0.2,
+                ease: "easeOut"
               }}
             >
               <div 
@@ -1264,58 +1262,29 @@ const Index = () => {
                 onMouseLeave={() => setActiveProjectPreview(null)}
               >
                 
-                {/* Animated Header */}
-                <motion.div 
-                  className="text-center mb-8"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
-                >
+                {/* Header */}
+                <div className="text-center mb-8">
                   <h3 className={`text-3xl md:text-5xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{activeProjectPreview.title}</h3>
-                  <motion.div 
-                    className="w-32 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: 128 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                  />
-                  <motion.p 
-                    className={`mt-4 text-lg max-w-3xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6, duration: 0.5 }}
-                  >
+                  <div className="w-32 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full mb-6" />
+                  <p className={`mt-4 text-lg max-w-3xl mx-auto ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                     {activeProjectPreview.description}
-                  </motion.p>
-                </motion.div>
+                  </p>
+                </div>
                 
                 {/* Tech Stack Pills */}
-                <motion.div 
-                  className="flex flex-wrap gap-3 justify-center mb-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8, duration: 0.5 }}
-                >
+                <div className="flex flex-wrap gap-3 justify-center mb-8">
                   {activeProjectPreview.tech.map((tech, i) => (
-                    <motion.span 
+                    <span 
                       key={i} 
-                      className="px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white border border-white/30 backdrop-blur-sm"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.9 + i * 0.1, duration: 0.3 }}
-                      whileHover={{ scale: 1.05 }}
+                      className="px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white border border-white/30 backdrop-blur-sm hover:scale-105 transition-transform duration-200"
                     >
                       {tech}
-                    </motion.span>
+                    </span>
                   ))}
-                </motion.div>
+                </div>
                 
                 {/* Full Size Image Grid */}
-                <motion.div 
-                  className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 w-full"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1, duration: 0.6 }}
-                >
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 w-full">
                 {(() => {
                   // Use specific images for UKP and Crisis Report projects
                   let previewImages: string[] = [];
@@ -1328,15 +1297,8 @@ const Index = () => {
                   }
                   
                   return previewImages.map((img, i) => (
-                    <motion.div
+                    <div
                       key={i}
-                      initial={{ scale: 0.8, opacity: 0, y: 30 }}
-                      animate={{ scale: 1, opacity: 1, y: 0 }}
-                      transition={{ 
-                        duration: 0.6, 
-                        delay: i * 0.2,
-                        ease: "easeOut"
-                      }}
                       className="relative group/image"
                     >
                       {/* Image Container - Full Size */}
@@ -1351,15 +1313,10 @@ const Index = () => {
                         {/* Enhanced Image Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
                         
-                        {/* Animated Image Number Badge */}
-                        <motion.div 
-                          className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-2 border-white/50 flex items-center justify-center shadow-lg"
-                          initial={{ scale: 0, rotate: -180 }}
-                          animate={{ scale: 1, rotate: 0 }}
-                          transition={{ delay: 1.2 + i * 0.1, duration: 0.5, type: "spring" }}
-                        >
+                        {/* Image Number Badge */}
+                        <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-2 border-white/50 flex items-center justify-center shadow-lg">
                           <span className="text-white text-xl font-bold">{i + 1}</span>
-                        </motion.div>
+                        </div>
                         
                         {/* Hover Info */}
                         <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
@@ -1372,10 +1329,10 @@ const Index = () => {
                       
                       {/* Enhanced Glow Effect */}
                       <div className="absolute -inset-3 bg-gradient-to-r from-blue-500/40 via-purple-500/40 to-pink-500/40 rounded-2xl blur-2xl opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
-                    </motion.div>
+                    </div>
                   ));
                 })()}
-                </motion.div>
+                </div>
                 
                 {/* Project Actions */}
                 <motion.div 
