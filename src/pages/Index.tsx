@@ -407,11 +407,11 @@ const Index = () => {
         }}
       >
         <div className="w-full">
-          <div className={`mx-auto mt-3 mb-2 flex items-center justify-between gap-x-4 w-full max-w-6xl px-4 rounded-2xl backdrop-blur-2xl ${isDarkMode ? 'bg-white/6 ring-1 ring-white/10' : 'bg-white/70 ring-1 ring-slate-200/60'} shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] py-2` }>
+          <div className={`mx-auto mt-3 mb-2 flex items-center justify-between gap-x-4 w-full max-w-6xl px-4 rounded-2xl backdrop-blur-2xl ${isDarkMode ? 'bg-black/70 ring-1 ring-white/10' : 'bg-black/80 ring-1 ring-black/40'} shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] py-2` }>
             {/* Logo - DHRUV */}
             <div className="mr-6 select-none">
               <span
-                className={`text-2xl md:text-3xl font-extrabold tracking-widest uppercase bg-gradient-to-r ${isDarkMode ? 'from-cyan-400 via-blue-400 to-indigo-400' : 'from-blue-700 via-indigo-500 to-cyan-600'} bg-clip-text text-transparent drop-shadow-lg`}
+                className={`text-2xl md:text-3xl font-extrabold tracking-widest uppercase text-white drop-shadow-lg`}
                 style={{ letterSpacing: '0.18em', fontFamily: 'Fira Mono, Menlo, monospace' }}
               >
                 DHRUV
@@ -436,13 +436,13 @@ const Index = () => {
             </div>
             {/* Theme and Social Icons */}
             <div className="flex items-center space-x-2 md:space-x-3 ml-2 pl-3 border-l border-white/10">
-              <Sun className={`w-4 h-4 ${isDarkMode ? 'text-slate-300' : 'text-yellow-500'}`} />
+              <Sun className={`w-4 h-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-200'}`} />
               <Switch checked={isDarkMode} onCheckedChange={toggleTheme} />
-              <Moon className={`w-4 h-4 ${isDarkMode ? 'text-blue-300' : 'text-slate-400'}`} />
+              <Moon className={`w-4 h-4 ${isDarkMode ? 'text-gray-400' : 'text-gray-400'}`} />
               {/* Social Icons */}
-              <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Linkedin className={`w-5 h-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
-              <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Github className={`w-5 h-5 ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`} /> </a>
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Mail" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Mail className={`w-5 h-5 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
+                              <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Linkedin className={`w-5 h-5 ${isDarkMode ? 'text-white' : 'text-black'}`} /> </a>
+                              <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Github className={`w-5 h-5 ${isDarkMode ? 'text-white' : 'text-black'}`} /> </a>
+                              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Mail" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Mail className={`w-5 h-5 ${isDarkMode ? 'text-white' : 'text-black'}`} /> </a>
             </div>
           </div>
         </div>
@@ -472,7 +472,7 @@ const Index = () => {
               {/* Mobile Logo */}
               <div className="mb-8 select-none">
                 <span
-                  className={`text-3xl font-extrabold tracking-widest uppercase bg-gradient-to-r ${isDarkMode ? 'from-cyan-400 via-blue-400 to-indigo-400' : 'from-blue-700 via-indigo-500 to-cyan-600'} bg-clip-text text-transparent drop-shadow-lg`}
+                  className={`text-3xl font-extrabold tracking-widest uppercase text-white drop-shadow-lg`}
                   style={{ letterSpacing: '0.18em', fontFamily: 'Fira Mono, Menlo, monospace' }}
                 >
                   DHRUV
