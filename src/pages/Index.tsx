@@ -375,8 +375,8 @@ const Index = () => {
     : "bg-gradient-to-br from-gray-50 via-white to-gray-50 text-gray-900";
 
   const cardClasses = isDarkMode
-    ? "bg-gray-800/60 border-gray-600/50 text-gray-100"
-    : "bg-white/90 border-gray-200/50 text-gray-900";
+    ? "bg-white/6 border-white/10 text-gray-100 backdrop-blur-2xl"
+    : "bg-white/70 border-gray-200/60 text-gray-900 backdrop-blur-2xl";
 
   const navClasses = isDarkMode
     ? "bg-gray-800/90 border-gray-600/50"
@@ -934,7 +934,7 @@ const Index = () => {
             {filteredProjects.map((project, index) => (
               <StaggerItem
                 key={index}
-                className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700 bg-gradient-to-b from-yellow-50 to-slate-900/90 group flex flex-col"
+                className={`${cardClasses} rounded-2xl overflow-hidden shadow-2xl border group flex flex-col`}
                 reducedMotion={prefersReducedMotion}
               >
                 {/* Top: Light area */}
@@ -1213,7 +1213,7 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
             {/* Left: About Me */}
-            <div className={`flex-1 max-w-xs rounded-2xl border-2 shadow-lg p-6 ${isDarkMode ? 'border-blue-800 bg-slate-900 text-white' : 'border-blue-200 bg-white text-blue-900'}` }>
+            <div className={`${cardClasses} flex-1 max-w-xs rounded-2xl border shadow-lg p-6` }>
               <h4 className="text-xl font-bold mb-2">About Me</h4>
               <p className="text-sm md:text-base">AI Engineer & Full-Stack Developer passionate about building scalable AI solutions and modern web apps. Always learning, always building.</p>
               <ul className="mt-4 space-y-1 text-xs md:text-sm">
@@ -1223,7 +1223,7 @@ const Index = () => {
               </ul>
             </div>
             {/* Center: Map */}
-            <div className={`relative rounded-2xl border-2 shadow-lg overflow-hidden ${isDarkMode ? 'border-blue-800 bg-slate-900' : 'border-blue-200 bg-white'}`} style={{ width: 400, height: 300, minWidth: 300, minHeight: 200 }}>
+            <div className={`relative rounded-2xl border shadow-lg overflow-hidden ${isDarkMode ? 'border-blue-800 bg-slate-900' : 'border-blue-200 bg-white'}`} style={{ width: 400, height: 300, minWidth: 300, minHeight: 200 }}>
               <img
                 src="https://static-maps.yandex.ru/1.x/?lang=en-US&ll=77.2090,28.6139&z=11&l=map&size=400,300&pt=77.2090,28.6139,pm2rdm"
                 alt="Delhi Map Preview"
@@ -1232,7 +1232,7 @@ const Index = () => {
               />
             </div>
             {/* Right: Contact Info */}
-            <div className={`flex-1 max-w-xs rounded-2xl border-2 shadow-lg p-6 ${isDarkMode ? 'border-blue-800 bg-slate-900 text-white' : 'border-blue-200 bg-white text-blue-900'}` }>
+            <div className={`${cardClasses} flex-1 max-w-xs rounded-2xl border shadow-lg p-6` }>
               <h4 className="text-xl font-bold mb-2">Contact</h4>
               <ul className="space-y-2 text-sm md:text-base">
                 <li><span className="font-semibold">Email:</span> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
