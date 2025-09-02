@@ -370,7 +370,7 @@ const Index = () => {
     },
   ];
 
-  const themeClasses = "bg-black text-gray-100";
+  const themeClasses = isDarkMode ? "bg-black text-gray-100" : "bg-white text-gray-900";
 
   const cardClasses = isDarkMode
     ? "bg-white/6 border-white/10 text-gray-100 backdrop-blur-2xl"
@@ -729,25 +729,23 @@ const Index = () => {
                 reducedMotion={prefersReducedMotion}
               >
               <div className={`${cardClasses} rounded-[1.25rem] border p-6 md:p-8 backdrop-blur-2xl`}>
-              {[
-                { icon: Brain, title: "AI & Machine Learning", desc: "Specialized in RAG systems, LLMs, and deep learning with published research", color: "gray" },
-                { icon: Code, title: "Full-Stack Development", desc: "Building scalable applications with React, FastAPI, and cloud technologies", color: "gray" },
-                { icon: BookOpen, title: "Research & Innovation", desc: "Published researcher with focus on practical AI applications", color: "gray" }
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ scale: 1.02, x: 10 }}
-                  className={`${cardClasses} backdrop-blur-sm rounded-xl border`}
-                >
-                  <CardContent className="p-4 md:p-6">
-                    <div className="flex items-center mb-3">
-                      <item.icon className={`w-6 h-6 md:w-8 md:h-8 mr-3 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`} />
-                      <h3 className={`text-lg md:text-xl font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-900'}`}>{item.title}</h3>
+                <h3 className="text-xl md:text-2xl font-bold mb-3">About me</h3>
+                <p className={`${isDarkMode ? 'text-gray-200' : 'text-gray-700'} text-base md:text-lg leading-relaxed mb-4`}>I'm Dhruv Mendiratta, an AI/ML and Full‑Stack developer focused on building reliable LLM/RAG systems and modern web apps.</p>
+                <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed mb-4`}>I’ve worked across LangChain, FAISS, Gemini, React, and FastAPI to ship practical AI experiences with strong retrieval and clean UIs.</p>
+                <p className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'} leading-relaxed`}>When I’m not shipping, I’m evaluating prompts, improving retrieval pipelines, and writing about things I learn.</p>
+                <div className="h-px my-6 bg-white/10" />
+                <div className="grid sm:grid-cols-3 gap-3">
+                  {[
+                    { icon: Brain, title: 'AI & RAG' },
+                    { icon: Code, title: 'Full‑Stack' },
+                    { icon: BookOpen, title: 'Research' }
+                  ].map((i, idx) => (
+                    <div key={idx} className="flex items-center justify-center gap-2 py-2 rounded-lg bg-white/5 border border-white/10">
+                      <i.icon className="w-5 h-5 text-slate-200" />
+                      <span className="text-sm text-slate-200">{i.title}</span>
                     </div>
-                    <p className={`text-sm md:text-base ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>{item.desc}</p>
-                  </CardContent>
-                </motion.div>
-              ))}
+                  ))}
+                </div>
               </div>
             </SlideIn>
           </div>
