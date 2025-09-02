@@ -601,7 +601,6 @@ const Index = () => {
           >
             <div className={`rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden backdrop-blur-2xl ${isDarkMode ? 'bg-white/10' : 'bg-white/70'}`}>
               <div className={`pointer-events-none absolute inset-0 rounded-[2.3rem] ${isDarkMode ? 'bg-gradient-to-br from-sky-400/10 via-indigo-400/10 to-purple-400/10' : 'bg-gradient-to-br from-sky-500/10 via-indigo-500/10 to-purple-500/10'}`} />
-              <div className={`pointer-events-none absolute inset-0 rounded-[2.3rem] ring-1 ${isDarkMode ? 'ring-white/15' : 'ring-slate-200/50'}`} />
               {/* Floating Profile Pic */}
               <div className="relative">
                 <div className={`relative w-28 h-28 md:w-40 md:h-40 rounded-full p-1 shadow-xl ${isDarkMode ? 'bg-gradient-to-tr from-gray-600 via-gray-500 to-gray-700' : 'bg-gradient-to-tr from-gray-200 via-gray-100 to-white'}` }>
