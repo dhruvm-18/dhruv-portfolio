@@ -910,13 +910,20 @@ const Index = () => {
                     placeholder="/placeholder.jpg"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between z-10">
                     <div className="text-white font-bold text-lg md:text-xl drop-shadow">{project.title}</div>
                     {project.link && (
                       <a href={project.link} target="_blank" rel="noopener noreferrer" className="ml-2">
                         <Github className="w-7 h-7 text-white/90 hover:text-white transition" />
                       </a>
                     )}
+                  </div>
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 flex items-center justify-center">
+                    <div className="grid grid-cols-3 gap-2 p-3">
+                      {[project.image, project.image, project.image].map((img, i) => (
+                        <LazyImage key={i} src={img} alt={`${project.title} preview ${i+1}`} className="w-20 h-14 md:w-24 md:h-16 object-cover rounded-md" placeholder="/placeholder.jpg" />
+                      ))}
+                    </div>
                   </div>
                 </div>
                 {/* Bottom: Content */}
