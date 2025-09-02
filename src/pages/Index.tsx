@@ -370,9 +370,7 @@ const Index = () => {
     },
   ];
 
-  const themeClasses = isDarkMode 
-    ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100"
-    : "bg-gradient-to-br from-gray-50 via-white to-gray-50 text-gray-900";
+  const themeClasses = "bg-black text-gray-100";
 
   const cardClasses = isDarkMode
     ? "bg-white/6 border-white/10 text-gray-100 backdrop-blur-2xl"
@@ -685,7 +683,7 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-gray-900/20' : 'bg-gray-50/50'}`}>
+      <section id="about" className="py-16 px-4 sm:px-6 md:py-20">
         <div className="max-w-6xl mx-auto">
           <FadeIn
             delay={0.2}
@@ -784,7 +782,7 @@ const Index = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
+      <section id="experience" className="py-16 px-4 sm:px-6 md:py-20">
         <div className="max-w-6xl mx-auto">
           <FadeIn
             delay={0.2}
@@ -912,7 +910,7 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
+      <section id="projects" className="py-16 px-4 sm:px-6 md:py-20">
         <div className="max-w-6xl mx-auto">
           <FadeIn
             delay={0.2}
@@ -1160,7 +1158,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className={`py-16 px-4 sm:px-6 md:py-20 ${isDarkMode ? 'bg-slate-900/20' : 'bg-blue-50/50'}`}>
+      <section id="contact" className="py-16 px-4 sm:px-6 md:py-20">
         <div className="max-w-4xl mx-auto text-center">
           <FadeIn
             delay={0.2}
@@ -1218,7 +1216,7 @@ const Index = () => {
       </section>
 
       {/* Map Section at the bottom */}
-      <section className="py-12 px-4 sm:px-6 md:py-16 bg-transparent">
+      <section className="py-12 px-4 sm:px-6 md:py-16">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
             {/* Left: About Me */}
