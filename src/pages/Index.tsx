@@ -603,13 +603,17 @@ const Index = () => {
             <div className={`backdrop-blur-xl rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden border ${isDarkMode ? 'bg-gradient-to-br from-gray-800/90 via-gray-700/90 to-gray-800/90 border-gray-600/60' : 'bg-gradient-to-br from-white via-gray-50 to-white border-gray-200/60'}`}>
               {/* Floating Profile Pic */}
               <div className="relative">
-                <div className={`w-28 h-28 md:w-40 md:h-40 rounded-full p-1 shadow-xl ${isDarkMode ? 'bg-gradient-to-tr from-gray-600 via-gray-500 to-gray-700' : 'bg-gradient-to-tr from-gray-200 via-gray-100 to-white'}` }>
-                  <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-gray-800' : 'bg-white'} flex items-center justify-center text-4xl`}>
+                <div className={`relative w-28 h-28 md:w-40 md:h-40 rounded-full p-1 shadow-xl ${isDarkMode ? 'bg-gradient-to-tr from-gray-600 via-gray-500 to-gray-700' : 'bg-gradient-to-tr from-gray-200 via-gray-100 to-white'}` }>
+                  {/* animated gradient ring */}
+                  <div className={`absolute -inset-1 rounded-full blur-lg ${isDarkMode ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 opacity-30' : 'bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 opacity-40'}`} />
+                  <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-gray-800' : 'bg-white'} flex items-center justify-center text-4xl relative`}>
                     <img 
                       src={dhruvProfilePic} 
                       alt="Dhruv Mendiratta" 
-                      className="rounded-full w-full h-full object-cover"
+                      className="rounded-full w-full h-full object-cover shadow-[0_10px_30px_-12px_rgba(59,130,246,0.55)]"
                     />
+                    {/* spinning subtle outer ring */}
+                    <motion.div className="absolute -inset-0.5 rounded-full pointer-events-none" style={{ border: isDarkMode ? '1px solid rgba(99,102,241,0.35)' : '1px solid rgba(59,130,246,0.35)' }} animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: 'linear' }} />
                   </div>
                 </div>
               </div>
@@ -621,17 +625,25 @@ const Index = () => {
                   </h1>
                   <Badge className={`bg-gradient-to-r ${isDarkMode ? 'from-gray-700 via-gray-600 to-gray-800 text-gray-200 border-gray-500/40' : 'from-gray-100 via-gray-50 to-white text-gray-700 border-gray-300'} text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow`}>AI Engineer</Badge>
                 </div>
-                {/* Replaced static subtitle with typewriter */}
-                <p className={`text-base md:text-xl mb-4 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>
+                <p className={`text-base md:text-xl mb-3 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>
                   <span className={`${isDarkMode ? 'text-blue-300' : 'text-blue-700'} font-semibold`}>{typewriterText}</span>
-                  <span className={`ml-1 inline-block w-[10px] md:w-[12px] h-[1.2em] align-[-0.1em] ${isDarkMode ? 'bg-blue-300' : 'bg-blue-700'}`} style={{
-                    maskImage: 'linear-gradient(90deg, transparent 0, #000 0)',
-                    WebkitMaskImage: 'linear-gradient(90deg, transparent 0, #000 0)'
-                  }} />
+                  <motion.span
+                    className={`ml-1 inline-block w-[10px] md:w-[12px] h-[1.2em] align-[-0.1em] ${isDarkMode ? 'bg-blue-300' : 'bg-blue-700'}`}
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 0.9, repeat: Infinity }}
+                  />
                 </p>
+                {/* Role chips */}
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  {rotatingRoles.map((r, i) => (
+                    <span key={i} className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${isDarkMode ? 'bg-blue-500/10 text-blue-200 border-blue-400/30' : 'bg-blue-50 text-blue-700 border-blue-200'}`}>
+                      {r}
+                    </span>
+                  ))}
+                </div>
                 {/* Modern, neutral buttons */}
-                <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-6">
-                  <Button asChild className={`rounded-full px-6 py-2 font-semibold ${isDarkMode ? 'bg-blue-700 hover:bg-blue-600 text-white' : 'bg-slate-200 hover:bg-slate-300 text-blue-900'} transition`}>
+                <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-2">
+                  <Button asChild className={`rounded-full px-6 py-2 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'bg-gradient-to-r from-blue-700 to-indigo-700 hover:from-blue-600 hover:to-indigo-600 text-white focus:ring-blue-400 focus:ring-offset-gray-800' : 'bg-gradient-to-r from-blue-100 to-indigo-100 hover:from-blue-200 hover:to-indigo-200 text-blue-900 focus:ring-blue-400 focus:ring-offset-white'} shadow-[0_6px_20px_-6px_rgba(59,130,246,0.5)]` }>
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
   target="_blank"
   rel="noopener noreferrer">
@@ -639,7 +651,7 @@ const Index = () => {
                       Hire Me
                     </a>
                   </Button>
-                  <Button asChild className={`rounded-full px-6 py-2 font-semibold transition border ${isDarkMode ? 'bg-cyan-900 hover:bg-cyan-800 text-cyan-100 border-cyan-800' : 'border-cyan-300 text-cyan-700 hover:bg-cyan-100 bg-white'} `}>
+                  <Button asChild className={`rounded-full px-6 py-2 font-semibold transition border focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'bg-gradient-to-r from-cyan-900 to-blue-900 hover:from-cyan-800 hover:to-blue-800 text-cyan-100 border-cyan-800 focus:ring-cyan-500 focus:ring-offset-gray-800' : 'border-cyan-300 text-cyan-700 hover:bg-cyan-50 bg-white focus:ring-cyan-400 focus:ring-offset-white'} shadow-[0_6px_20px_-6px_rgba(14,165,233,0.45)]` }>
                     <a href="/Dhruv_Mendiratta_Resume.pdf" target="_blank" rel="noopener noreferrer">
                       <FileText className="w-4 h-4 mr-2" />
                       View My Resume
