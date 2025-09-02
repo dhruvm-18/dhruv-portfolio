@@ -184,20 +184,31 @@ const Index = () => {
     )))
   ];
 
-  const filteredProjects = projectFilter === 'All'
-    ? projects
-    : projects.filter(p => {
-        if (projectFilter === 'Full-Stack Development') {
-          return p.tech.some(t => ['React', 'FastAPI', 'Node.js'].includes(t));
-        }
-        if (projectFilter === 'Data Analysis & ML') {
-          return p.tech.some(t => ['TensorFlow', 'Keras', 'Pandas', 'NLTK', 'Chart.js', 'Data Analysis'].includes(t));
-        }
-        if (projectFilter === 'AI & RAG Systems') {
-          return p.tech.some(t => ['LLMs', 'LangChain', 'RAG', 'AI', 'Gemini APIs'].includes(t));
-        }
-        return false;
-      });
+  const filteredProjects = useMemo(() => {
+    if (projectFilter === 'All') {
+      return projects;
+    }
+    
+    return projects.filter(p => {
+      if (projectFilter === 'Full-Stack Development') {
+        return p.tech.some(t => ['React', 'FastAPI', 'Node.js'].includes(t));
+      }
+      if (projectFilter === 'Data Analysis & ML') {
+        return p.tech.some(t => ['TensorFlow', 'Keras', 'Pandas', 'NLTK', 'Chart.js'].includes(t));
+      }
+      if (projectFilter === 'AI & RAG Systems') {
+        return p.tech.some(t => ['LLMs', 'LangChain', 'RAG', 'AI', 'Gemini APIs'].includes(t));
+      }
+      return false;
+    });
+  }, [projectFilter, projects]);
+
+  // Debug logging for project filtering
+  useEffect(() => {
+    console.log('Project filter changed:', projectFilter);
+    console.log('Filtered projects count:', filteredProjects.length);
+    console.log('All projects count:', projects.length);
+  }, [projectFilter, filteredProjects.length, projects.length]);
 
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -1169,6 +1180,10 @@ const Index = () => {
                 {cat}
               </button>
             ))}
+          </div>
+          {/* Debug info - remove this later */}
+          <div className="text-center mb-4 text-sm text-gray-500">
+            Showing {filteredProjects.length} of {projects.length} projects (Filter: {projectFilter})
           </div>
           <StaggerContainer
             staggerDelay={0.1}
