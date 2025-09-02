@@ -371,16 +371,16 @@ const Index = () => {
   ];
 
   const themeClasses = isDarkMode 
-    ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100"
-    : "bg-gradient-to-br from-gray-50 via-white to-gray-50 text-gray-900";
+    ? "bg-[radial-gradient(1200px_600px_at_50%_-100px,rgba(0,0,0,0.6),transparent),linear-gradient(180deg,#0b0d10,#0a0c0f)] text-gray-100"
+    : "bg-[linear-gradient(180deg,#0b0d10,#0a0c0f)] text-gray-100";
 
   const cardClasses = isDarkMode
-    ? "bg-gray-800/60 border-gray-600/50 text-gray-100"
-    : "bg-white/90 border-gray-200/50 text-gray-900";
+    ? "bg-neutral-900/60 border-neutral-800/60 text-gray-100"
+    : "bg-neutral-900/60 border-neutral-800/60 text-gray-100";
 
   const navClasses = isDarkMode
-    ? "bg-gray-800/90 border-gray-600/50"
-    : "bg-white/90 border-gray-200/50";
+    ? "bg-neutral-900/80 border-neutral-800/70"
+    : "bg-neutral-900/80 border-neutral-800/70";
 
   // Optimized scroll effects
   useEffect(() => {
@@ -408,11 +408,11 @@ const Index = () => {
         }}
       >
         <div className="w-full">
-          <div className={`mx-auto mt-3 mb-2 flex items-center justify-between gap-x-4 w-full max-w-6xl px-4 rounded-2xl backdrop-blur-2xl ${isDarkMode ? 'bg-white/6 ring-1 ring-white/10' : 'bg-white/70 ring-1 ring-slate-200/60'} shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] py-2` }>
+          <div className={`mx-auto mt-3 mb-2 flex items-center justify-between gap-x-4 w-full max-w-6xl px-4 rounded-2xl backdrop-blur-2xl bg-neutral-950/70 ring-1 ring-neutral-800/80 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.6)] py-2` }>
             {/* Logo - DHRUV */}
             <div className="mr-6 select-none">
               <span
-                className={`text-2xl md:text-3xl font-extrabold tracking-widest uppercase bg-gradient-to-r ${isDarkMode ? 'from-cyan-400 via-blue-400 to-indigo-400' : 'from-blue-700 via-indigo-500 to-cyan-600'} bg-clip-text text-transparent drop-shadow-lg`}
+                className={`text-2xl md:text-3xl font-extrabold tracking-widest uppercase bg-clip-text text-transparent drop-shadow-lg ${isDarkMode ? 'bg-gradient-to-r from-neutral-300 to-white' : 'bg-gradient-to-r from-neutral-300 to-white'}`}
                 style={{ letterSpacing: '0.18em', fontFamily: 'Fira Mono, Menlo, monospace' }}
               >
                 DHRUV
@@ -424,26 +424,25 @@ const Index = () => {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`relative text-xs md:text-sm font-semibold px-3.5 py-1.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 ${isDarkMode ? 'focus:ring-sky-400' : 'focus:ring-sky-500'}
-                    ${isDarkMode ? 'text-slate-200 hover:text-white' : 'text-gray-700 hover:text-gray-900'}`}
+                  className={`relative text-xs md:text-sm font-semibold px-3.5 py-1.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-neutral-700 text-neutral-200 hover:text-white`}
                   style={{ overflow: 'hidden' }}
                 >
                   <span className="relative z-[1]">{item}</span>
                   {/* pill background when active */}
                   <span className={`absolute inset-0 rounded-full transition-opacity duration-300 ${activeSection === item.toLowerCase() ? 'opacity-100' : 'opacity-0'}`}></span>
-                  <span className={`absolute inset-0 rounded-full ${activeSection === item.toLowerCase() ? (isDarkMode ? 'bg-gradient-to-r from-sky-600/70 to-indigo-600/70' : 'bg-gradient-to-r from-sky-300 to-indigo-300') : ''}`}></span>
+                  <span className={`absolute inset-0 rounded-full ${activeSection === item.toLowerCase() ? 'bg-neutral-800/80' : ''}`}></span>
                 </button>
               ))}
             </div>
             {/* Theme and Social Icons */}
-            <div className="flex items-center space-x-2 md:space-x-3 ml-2 pl-3 border-l border-white/10">
-              <Sun className={`w-4 h-4 ${isDarkMode ? 'text-slate-300' : 'text-yellow-500'}`} />
+            <div className="flex items-center space-x-2 md:space-x-3 ml-2 pl-3 border-l border-neutral-800/70">
+              <Sun className={`w-4 h-4 text-neutral-400`} />
               <Switch checked={isDarkMode} onCheckedChange={toggleTheme} />
-              <Moon className={`w-4 h-4 ${isDarkMode ? 'text-blue-300' : 'text-slate-400'}`} />
+              <Moon className={`w-4 h-4 text-neutral-500`} />
               {/* Social Icons */}
-              <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Linkedin className={`w-5 h-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
-              <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Github className={`w-5 h-5 ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`} /> </a>
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Mail" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Mail className={`w-5 h-5 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
+              <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`p-1.5 rounded-full ring-1 ring-neutral-800/70 hover:bg-neutral-900/70 transition`}> <Linkedin className={`w-5 h-5 text-neutral-300`} /> </a>
+              <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={`p-1.5 rounded-full ring-1 ring-neutral-800/70 hover:bg-neutral-900/70 transition`}> <Github className={`w-5 h-5 text-neutral-300`} /> </a>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Mail" className={`p-1.5 rounded-full ring-1 ring-neutral-800/70 hover:bg-neutral-900/70 transition`}> <Mail className={`w-5 h-5 text-neutral-300`} /> </a>
             </div>
           </div>
         </div>
@@ -587,8 +586,8 @@ const Index = () => {
             transition={{ duration: 0.8 }}
             className={`relative mb-4 rounded-[2.5rem]`}
           >
-            <div className={`rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden backdrop-blur-2xl ${isDarkMode ? 'bg-white/10' : 'bg-white/70'}`}>
-              <div className={`pointer-events-none absolute inset-0 rounded-[2.3rem] ${isDarkMode ? 'bg-gradient-to-br from-sky-400/10 via-indigo-400/10 to-purple-400/10' : 'bg-gradient-to-br from-sky-500/10 via-indigo-500/10 to-purple-500/10'}`} />
+            <div className={`rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden backdrop-blur-2xl bg-neutral-950/60`}>
+              <div className={`pointer-events-none absolute inset-0 rounded-[2.3rem] bg-gradient-to-br from-neutral-800/40 via-neutral-900/30 to-black/60`} />
               {/* Floating Profile Pic */}
               <div className="relative">
                 <div className={`relative w-28 h-28 md:w-40 md:h-40 rounded-full p-1 shadow-xl ${isDarkMode ? 'bg-gradient-to-tr from-gray-600 via-gray-500 to-gray-700' : 'bg-gradient-to-tr from-gray-200 via-gray-100 to-white'}` }>
@@ -613,9 +612,9 @@ const Index = () => {
                   </h1>
                 </div>
                 <p className={`text-base md:text-xl mb-3 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>
-                  <span className={`${isDarkMode ? 'text-blue-300' : 'text-blue-700'} font-semibold`}>{typewriterText}</span>
+                  <span className={`text-neutral-200 font-semibold`}>{typewriterText}</span>
                   <motion.span
-                    className={`ml-1 inline-block w-[2px] md:w-[2px] h-[1.05em] align-[-0.1em] ${isDarkMode ? 'bg-blue-300' : 'bg-blue-700'}`}
+                    className={`ml-1 inline-block w-[2px] md:w-[2px] h-[1.05em] align-[-0.1em] bg-neutral-300`}
                     animate={{ opacity: [1, 0, 1] }}
                     transition={{ duration: 0.9, repeat: Infinity }}
                   />
@@ -623,7 +622,7 @@ const Index = () => {
                 {/* Role chips */}
                 <div className="flex flex-wrap items-center gap-2 mb-5 md:mb-6 justify-center md:justify-start">
                   {rotatingRoles.map((r, i) => (
-                    <span key={i} className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${isDarkMode ? 'bg-sky-500/10 text-sky-200 border-sky-400/30' : 'bg-sky-50 text-sky-700 border-sky-200'}`}>
+                    <span key={i} className={`px-2.5 py-1 rounded-full text-xs font-semibold border bg-neutral-900/60 text-neutral-300 border-neutral-800`}>
                       {r}
                     </span>
                   ))}
@@ -631,10 +630,10 @@ const Index = () => {
                 {/* CTAs - centered within card on small screens */}
                 <div className="w-full flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-1">
                   <motion.div whileHover={{ y: -2 }} transition={{ type: 'spring', stiffness: 250, damping: 18 }}>
-                    <Button asChild className={`group relative rounded-full px-8 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'text-white focus:ring-sky-400 focus:ring-offset-transparent' : 'text-sky-900 focus:ring-sky-400 focus:ring-offset-white'}`}>
+                    <Button asChild className={`group relative rounded-full px-8 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 text-white focus:ring-neutral-700 focus:ring-offset-transparent`}>
                       <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com" target="_blank" rel="noopener noreferrer">
-                        <span className={`absolute inset-0 rounded-full ${isDarkMode ? 'bg-gradient-to-r from-sky-600 to-indigo-600' : 'bg-gradient-to-r from-sky-300 to-indigo-300'}`}></span>
-                        <span className={`absolute inset-[2px] rounded-full ${isDarkMode ? 'bg-slate-900/80' : 'bg-white/95'} shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]`}></span>
+                        <span className={`absolute inset-0 rounded-full bg-neutral-800`}></span>
+                        <span className={`absolute inset-[2px] rounded-full bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]`}></span>
                         <span className="relative flex items-center">
                           <Mail className="w-4 h-4 mr-2" />
                           Hire Me
@@ -643,10 +642,10 @@ const Index = () => {
                     </Button>
                   </motion.div>
                   <motion.div whileHover={{ y: -2 }} transition={{ type: 'spring', stiffness: 250, damping: 18 }}>
-                    <Button asChild className={`group relative rounded-full px-8 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'text-cyan-100 focus:ring-cyan-500 focus:ring-offset-transparent' : 'text-sky-700 focus:ring-sky-400 focus:ring-offset-white'}`}>
+                    <Button asChild className={`group relative rounded-full px-8 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 text-neutral-200 focus:ring-neutral-700 focus:ring-offset-transparent`}>
                       <a href="/Dhruv_Mendiratta_Resume.pdf" target="_blank" rel="noopener noreferrer">
-                        <span className={`absolute inset-0 rounded-full ${isDarkMode ? 'bg-gradient-to-r from-cyan-700 to-indigo-700' : 'bg-gradient-to-r from-sky-300 to-indigo-300'}`}></span>
-                        <span className={`absolute inset-[2px] rounded-full ${isDarkMode ? 'bg-slate-900/80' : 'bg-white/95'} shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]`}></span>
+                        <span className={`absolute inset-0 rounded-full bg-neutral-800`}></span>
+                        <span className={`absolute inset-[2px] rounded-full bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]`}></span>
                         <span className="relative flex items-center">
                           <FileText className="w-4 h-4 mr-2" />
                           View My Resume
