@@ -501,6 +501,8 @@ const Index = () => {
         </div>
       );
     }
+    const monogramSvg = encodeURIComponent(`<?xml version="1.0" encoding="UTF-8"?><svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'><rect width='100%' height='100%' rx='6' ry='6' fill='${isDarkMode ? '#111827' : '#f3f4f6'}'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial' font-size='14' fill='${isDarkMode ? '#e5e7eb' : '#111827'}'>${(name?.[0] || '?').toUpperCase()}</text></svg>`);
+    const fallbackData = `data:image/svg+xml;utf8,${monogramSvg}`;
     const img = (
       <img
         src={src}
@@ -512,11 +514,7 @@ const Index = () => {
             const slug = src.split('/').slice(-2, -1)[0];
             (e.currentTarget as HTMLImageElement).src = simple(slug);
           } else {
-            const el = document.createElement('div');
-            el.className = `w-6 h-6 md:w-7 md:h-7 rounded-lg ${isDarkMode ? 'bg-white/10' : 'bg-gray-100'} flex items-center justify-center text-[10px]`;
-            el.title = name;
-            el.innerText = name.charAt(0) || '?';
-            e.currentTarget.replaceWith(el);
+            (e.currentTarget as HTMLImageElement).src = fallbackData;
           }
         }}
       />
