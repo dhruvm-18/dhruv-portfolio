@@ -25,6 +25,7 @@ const Index = () => {
   const [typewriterIndex, setTypewriterIndex] = useState(0);
   const [typewriterText, setTypewriterText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [skillsTab, setSkillsTab] = useState<'All' | 'AI/ML' | 'Full‑Stack' | 'Analytics' | 'Cloud/DevOps'>('All');
 
   const rotatingRoles = useMemo(() => [
     'Full-Stack Developer',
@@ -264,16 +265,14 @@ const Index = () => {
   ];
 
   const skillGroups = [
-    { category: "Programming", icon: "💻", skills: ["Python", "C", "JavaScript", "SQL"] },
-    { category: "Frontend", icon: "🌐", skills: ["HTML/CSS", "React"] },
-    { category: "Backend", icon: "🟩", skills: ["Node.js", "FastAPI", "REST APIs"] },
-    { category: "Data Science", icon: "📊", skills: ["Pandas", "NumPy", "Matplotlib", "Seaborn", "Feature Engineering", "Model Evaluation"] },
-    { category: "Machine/Deep Learning", icon: "🧠", skills: ["Scikit-learn", "TensorFlow", "Keras", "CNN", "LSTM", "BiLSTM-GRU", "GANs", "XGBoost", "Grad-CAM"] },
-    { category: "Cloud/DevOps", icon: "☁️", skills: ["AWS (EC2, S3, Lambda)", "Git & GitHub", "CI/CD"] },
-    { category: "Database", icon: "🗄️", skills: ["PostgreSQL", "MySQL", "MongoDB"] },
-    { category: "Visualization", icon: "📈", skills: ["PowerBI", "Chart.js"] },
-    { category: "AI/LLM", icon: "🔗", skills: ["LLMs", "LangChain", "RAG", "Prompt Engineering", "FAISS"] },
-    { category: "Research", icon: "📝", skills: ["Academic Writing", "Paper Presentation", "Literature Review"] }
+    { category: "Programming", icon: "💻", skills: ["Python", "C", "SQL", "JavaScript"] },
+    { category: "Big Data", icon: "📊", skills: ["Hadoop", "Sqoop", "Hive", "Kafka"] },
+    { category: "AI/ML", icon: "🧠", skills: ["LangChain", "Large Language Models (LLMs)", "FAISS", "TensorFlow", "Keras", "Scikit-learn", "PyTorch", "Hugging Face", "Transformer Models", "Prompt Engineering", "Model Deployment"] },
+    { category: "Data Tools", icon: "📈", skills: ["Pandas", "NumPy", "Matplotlib", "GARCH", "Data Preprocessing", "Exploratory Data Analysis (EDA)", "Tableau", "Power BI", "Data Management", "Data Governance"] },
+    { category: "Web & APIs", icon: "🌐", skills: ["FastAPI", "React.js", "Node.js", "REST APIs", "PostgreSQL", "Flask"] },
+    { category: "Consulting & Professional Skills", icon: "💼", skills: ["Documentation", "Requirements Gathering", "Client Communication", "Business Process Analysis", "Solution Design", "Stakeholder Management"] },
+    { category: "Cloud", icon: "☁️", skills: ["AWS (EC2, S3, Lambda, IAM, CloudWatch)", "Git"] },
+    { category: "Other Tools", icon: "🛠️", skills: ["MongoDB", "JIRA", "NLTK", "Chart.js", "Framer Motion", "Leaflet.js"] }
   ];
 
   const certifications = [
@@ -385,6 +384,125 @@ const Index = () => {
     const onScroll = () => setShowScrollTop(scrollY > 200);
     setShowScrollTop(scrollY > 200);
   }, [scrollY]);
+
+  // Map skill names to simple inline SVG icons (lightweight, no external deps)
+  const SkillIcon: React.FC<{ name: string; className?: string }> = ({ name, className }) => {
+    const common = `inline-block ${className ?? ''}`.trim();
+    const stroke = isDarkMode ? '#93c5fd' : '#2563eb';
+    const fill = isDarkMode ? '#60a5fa' : '#3b82f6';
+    switch (name.toLowerCase()) {
+      case 'python':
+        return (
+          <svg viewBox="0 0 24 24" className={common} width="18" height="18" aria-hidden>
+            <path fill={fill} d="M12 2c4 0 4 3 4 3v3H8V7s0-3 4-3h0Z"/>
+            <path fill={stroke} d="M12 22c-4 0-4-3-4-3v-3h8v1s0 5-4 5Z"/>
+            <circle cx="9.5" cy="6.5" r="1" fill="#fff"/>
+            <circle cx="14.5" cy="17.5" r="1" fill="#0a0a0a"/>
+          </svg>
+        );
+      case 'c':
+      case 'c language':
+      case 'c programming':
+        return (
+          <svg viewBox="0 0 24 24" className={common} width="18" height="18" aria-hidden>
+            <path fill={fill} d="M12 2 2 7v10l10 5 10-5V7L12 2Z"/>
+            <path fill="#fff" d="M15.2 12c0-1.8-1.2-3.2-3.2-3.2-2.1 0-3.6 1.7-3.6 3.2s1.5 3.2 3.6 3.2c1.4 0 2.6-.8 3-2h-1.9c-.2.5-.7.8-1.3.8-1 0-1.7-.9-1.7-2s.8-2 1.7-2c.6 0 1.1.3 1.3.8h2.1Z"/>
+          </svg>
+        );
+      case 'javascript':
+        return (
+          <svg viewBox="0 0 24 24" className={common} width="18" height="18" aria-hidden>
+            <rect width="24" height="24" rx="4" fill="#f7df1e"/>
+            <path fill="#111827" d="M10.6 6.5v10.7c0 2.9-4.3 2.8-4.3-.1h1.9c0 1 .6 1 .6.2V6.5h1.8ZM12.9 16.4c.2 1.6 1.4 2.5 3.3 2.5 2 0 3.4-1 3.4-2.8 0-1.5-.9-2.3-2.7-2.8l-.9-.2c-.8-.2-1.2-.4-1.2-.9 0-.5.5-.8 1.1-.8.8 0 1.2.4 1.3 1.1h1.9c-.1-1.7-1.4-2.8-3.2-2.8-1.9 0-3.2 1.1-3.2 2.8 0 1.6 1 2.4 2.8 2.8l.9.2c.8.2 1.1.5 1.1 1 0 .6-.5.9-1.3.9-.9 0-1.4-.4-1.5-1.1h-2Z"/>
+          </svg>
+        );
+      case 'react':
+        return (
+          <svg viewBox="0 0 24 24" className={common} width="18" height="18" aria-hidden>
+            <circle cx="12" cy="12" r="1.6" fill={fill}/>
+            <g fill="none" stroke={stroke} strokeWidth="1.4">
+              <ellipse cx="12" cy="12" rx="9" ry="4.2"/>
+              <ellipse cx="12" cy="12" rx="9" ry="4.2" transform="rotate(60 12 12)"/>
+              <ellipse cx="12" cy="12" rx="9" ry="4.2" transform="rotate(120 12 12)"/>
+            </g>
+          </svg>
+        );
+      case 'flask':
+        return (
+          <svg viewBox="0 0 24 24" className={common} width="18" height="18" aria-hidden>
+            <path fill="none" stroke={stroke} strokeWidth="1.4" d="M7 3s3 7 9 13c2.5 2.5 1.2 5.5-1.6 5.5H9.5"/>
+            <path fill={isDarkMode ? '#e5e7eb' : '#111827'} d="M8.2 19.2c-1.1-.3-1.8-.8-2.2-1.6 1.7-.1 2.9.4 3.4 1.6-.3.1-.8.1-1.2 0Z"/>
+          </svg>
+        );
+      case 'fastapi':
+        return (
+          <svg viewBox="0 0 24 24" className={common} width="18" height="18" aria-hidden>
+            <circle cx="12" cy="12" r="10" fill="#059669"/>
+            <path d="M12 6v12M9 9l3-3 3 3" stroke="#ecfdf5" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        );
+      case 'aws (ec2, s3, lambda)':
+      case 'aws':
+        return (
+          <svg viewBox="0 0 24 24" className={common} width="18" height="18" aria-hidden>
+            <path fill="#FF9900" d="M3 17c6 3 12 3 18 0v2c-6 3-12 3-18 0V17Z"/>
+            <path fill={isDarkMode ? '#e5e7eb' : '#111827'} d="M6 7h2l.8 3L9.6 7H12l-2 6H8L6 7Zm8 0h5v2h-3v1h3v2h-3v1h3v2h-5V7Z"/>
+          </svg>
+        );
+      case 'postgresql':
+        return (
+          <svg viewBox="0 0 24 24" className={common} width="18" height="18" aria-hidden>
+            <path fill="#336791" d="M12 2c5.5 0 10 3.6 10 8s-4.5 8-10 8S2 14.4 2 10 6.5 2 12 2Z"/>
+            <path fill="#fff" d="M8 9c0-1.7 1.8-3 4-3s4 1.3 4 3-1.8 3-4 3-4-1.3-4-3Zm4 5c2.9 0 4.9 1.2 5.6 3H6.4c.7-1.8 2.7-3 5.6-3Z"/>
+          </svg>
+        );
+      case 'mongodb':
+        return (
+          <svg viewBox="0 0 24 24" className={common} width="18" height="18" aria-hidden>
+            <path fill="#10b981" d="M12 2s5 5 5 10-3 9-5 10c-2-1-5-5-5-10S12 2 12 2Z"/>
+            <path fill="#065f46" d="M12 6v13"/>
+          </svg>
+        );
+      case 'powerbi':
+      case 'powerbi/chart.js':
+      case 'chart.js':
+        return (
+          <svg viewBox="0 0 24 24" className={common} width="18" height="18" aria-hidden>
+            <rect x="3" y="10" width="3" height="9" rx="1" fill={fill}/>
+            <rect x="8.5" y="6" width="3" height="13" rx="1" fill={fill}/>
+            <rect x="14" y="3" width="3" height="16" rx="1" fill={fill}/>
+          </svg>
+        );
+      default:
+        return <span className={common}>•</span>;
+    }
+  };
+
+  // Category inference and filtering for skills
+  const inferTabForGroup = useCallback((g: { category: string; skills: string[] }) => {
+    const c = g.category.toLowerCase();
+    if (c.includes('ai') || c.includes('ml') || c.includes('big data')) return 'AI/ML' as const;
+    if (c.includes('web') || c.includes('apis')) return 'Full‑Stack' as const;
+    if (c.includes('data tools') || c.includes('data management')) return 'Analytics' as const;
+    if (c.includes('cloud')) return 'Cloud/DevOps' as const;
+    return 'All' as const;
+  }, []);
+
+  const filteredSkillGroups = useMemo(() => {
+    if (skillsTab === 'All') return skillGroups;
+    return skillGroups.filter(g => inferTabForGroup(g) === skillsTab);
+  }, [skillsTab, skillGroups, inferTabForGroup]);
+
+  const proficiencyByGroup: Record<string, number> = useMemo(() => ({
+    Programming: 90,
+    'Big Data': 75,
+    'AI/ML': 88,
+    'Data Tools': 85,
+    'Web & APIs': 82,
+    'Consulting & Professional Skills': 80,
+    Cloud: 78,
+    'Other Tools': 72,
+  }), []);
 
   return (
     <div 
@@ -957,6 +1075,22 @@ const Index = () => {
             <p className={`text-base md:text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-600'}`}>Here are key areas of my expertise, shaped by my academic & professional experience</p>
           </FadeIn>
 
+          {/* Tabs */}
+          <div className={`${cardClasses} rounded-xl border backdrop-blur-2xl px-2 py-2 mb-6 md:mb-8`}> 
+            <div className="flex flex-wrap gap-2 md:gap-3">
+              {(['All','AI/ML','Full‑Stack','Analytics','Cloud/DevOps'] as const).map(tab => (
+                <button
+                  key={tab}
+                  onClick={() => setSkillsTab(tab)}
+                  className={`relative px-3.5 py-1.5 rounded-full font-semibold transition ${skillsTab === tab ? (isDarkMode ? 'text-white' : 'text-gray-900') : (isDarkMode ? 'text-slate-300' : 'text-gray-600')}`}
+                >
+                  {tab}
+                  <span className={`block h-0.5 mt-1 rounded-full transition-all duration-300 ${skillsTab === tab ? (isDarkMode ? 'bg-blue-400 w-full' : 'bg-blue-600 w-full') : 'w-0'}`} />
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className={`${cardClasses} rounded-2xl border p-4 md:p-6 backdrop-blur-2xl`}
             style={{ backgroundImage: isDarkMode ? 'radial-gradient(1200px 300px at 10% -20%, rgba(255,255,255,0.06), transparent)' : 'none' }}>
           <StaggerContainer
@@ -964,21 +1098,34 @@ const Index = () => {
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8"
             reducedMotion={prefersReducedMotion}
           >
-            {skillGroups.map((group, index) => (
+            {filteredSkillGroups.map((group, index) => (
               <StaggerItem
                 key={index}
                 className={`${cardClasses} backdrop-blur-sm rounded-xl p-4 md:p-6 border hover:shadow-xl transition-all duration-300 flex flex-col`}
                 reducedMotion={prefersReducedMotion}
               >
                 <div className="flex items-center mb-3 md:mb-4">
-                  <span className="text-xl md:text-2xl mr-2">{group.icon}</span>
                   <span className={`text-base md:text-lg font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{group.category}</span>
                 </div>
-                <ul className="flex flex-wrap gap-1 md:gap-2">
+                <ul className="flex flex-col gap-1.5 md:gap-2">
                   {group.skills.map((skill, i) => (
-                    <li key={i} className={`px-2 py-1 md:px-3 rounded-full text-xs md:text-sm font-medium ${isDarkMode ? 'bg-blue-500/20 text-blue-300 border border-blue-400/30' : 'bg-blue-100 text-blue-700 border border-blue-300'}`}>{skill}</li>
+                    <li key={i} className={`group flex items-center gap-2 px-2 py-1.5 rounded-lg border ${isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-blue-50/60 border-blue-200/60 hover:bg-blue-100/70'} transition` }>
+                      <span className="shrink-0">
+                        <SkillIcon name={skill} className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:scale-110" />
+                      </span>
+                      <span className={`text-xs md:text-sm ${isDarkMode ? 'text-slate-200' : 'text-gray-800'}`}>{skill}</span>
+                    </li>
                   ))}
                 </ul>
+                {/* Proficiency bar */}
+                <div className="mt-4">
+                  <div className={`h-2 rounded-full overflow-hidden ${isDarkMode ? 'bg-white/10' : 'bg-gray-200'}`}>
+                    <div
+                      className={`h-full ${isDarkMode ? 'bg-gradient-to-r from-blue-500 to-indigo-500' : 'bg-gradient-to-r from-blue-400 to-indigo-500'}`}
+                      style={{ width: `${proficiencyByGroup[group.category] ?? 75}%` }}
+                    />
+                  </div>
+                </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
