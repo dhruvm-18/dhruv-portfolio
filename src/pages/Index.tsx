@@ -1182,10 +1182,12 @@ const Index = () => {
               >
                 <div 
                   className={`${cardClasses} rounded-2xl overflow-hidden border group flex flex-col transition-all duration-300 hover:scale-[1.01] w-full h-full`}
-                  onMouseEnter={() => setActiveProjectPreview(project)}
                 >
                 {/* Top: Image area - fixed height */}
-                <div className="relative h-48 md:h-56 overflow-hidden">
+                <div 
+                  className="relative h-48 md:h-56 overflow-hidden cursor-pointer"
+                  onMouseEnter={() => setActiveProjectPreview(project)}
+                >
                       <LazyImage 
                         src={project.image} 
                         alt={project.title} 
@@ -1256,9 +1258,11 @@ const Index = () => {
                 damping: 30,
                 mass: 0.8
               }}
-              onMouseLeave={() => setActiveProjectPreview(null)}
             >
-              <div className={`${isDarkMode ? 'bg-black/80 border-white/20' : 'bg-white/90 border-gray-200/60'} backdrop-blur-3xl rounded-3xl p-6 md:p-8 border shadow-2xl w-full max-w-5xl max-h-[80vh] overflow-y-auto relative`}>
+              <div 
+                className={`${isDarkMode ? 'bg-black/80 border-white/20' : 'bg-white/90 border-gray-200/60'} backdrop-blur-3xl rounded-3xl p-6 md:p-8 border shadow-2xl w-full max-w-5xl max-h-[80vh] overflow-y-auto relative`}
+                onMouseLeave={() => setActiveProjectPreview(null)}
+              >
                 
                 {/* Animated Header */}
                 <motion.div 
