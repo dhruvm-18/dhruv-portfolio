@@ -1183,41 +1183,69 @@ const Index = () => {
                       </a>
                     )}
                   </div>
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 flex items-center justify-center">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 p-4 w-full max-w-3xl">
-                      {(() => {
-                        // Use specific images for UKP and Crisis Report projects
-                        let previewImages: string[] = [];
-                        if (project.title.includes('Unified Knowledge Platform')) {
-                          previewImages = ['/public/UKP1.jpg', '/public/UKP2.jpg', '/public/UKP3.jpg'];
-                        } else if (project.title.includes('Crisis Reporting')) {
-                          previewImages = ['/public/CR1.jpg', '/public/CR2.jpg', '/public/CR3.jpg'];
-                        } else {
-                          // Fallback for other projects
-                          previewImages = [project.image, project.image, project.image];
-                        }
-                        
-                        return previewImages.map((img, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ 
-                              duration: 0.4, 
-                              delay: i * 0.1,
-                              ease: "easeOut"
-                            }}
-                            className="overflow-hidden rounded-lg ring-1 ring-white/20 shadow-2xl"
-                          >
-                            <LazyImage 
-                              src={img} 
-                              alt={`${project.title} preview ${i+1}`} 
-                              className="w-full h-24 md:h-28 object-cover transition-transform duration-500 hover:scale-110" 
-                              placeholder="/placeholder.jpg" 
-                            />
-                          </motion.div>
-                        ));
-                      })()}
+                  {/* Enhanced Hover Overlay - Appears Outside the Tile */}
+                  <div className="absolute -inset-4 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none z-20">
+                    {/* Background Blur */}
+                    <div className="absolute inset-0 bg-black/20 backdrop-blur-sm rounded-3xl" />
+                    
+                    {/* Preview Images Container */}
+                    <div className="relative p-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-4xl mx-auto">
+                        {(() => {
+                          // Use specific images for UKP and Crisis Report projects
+                          let previewImages: string[] = [];
+                          if (project.title.includes('Unified Knowledge Platform')) {
+                            previewImages = ['UKP1.jpg', 'UKP2.jpg', 'UKP3.jpg'];
+                          } else if (project.title.includes('Crisis Reporting')) {
+                            previewImages = ['CR1.jpg', 'CR2.jpg', 'CR3.jpg'];
+                          } else {
+                            // Fallback for other projects
+                            previewImages = [project.image, project.image, project.image];
+                          }
+                          
+                          return previewImages.map((img, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ scale: 0.6, opacity: 0, y: 20 }}
+                              animate={{ scale: 1, opacity: 1, y: 0 }}
+                              transition={{ 
+                                duration: 0.5, 
+                                delay: i * 0.15,
+                                ease: "easeOut"
+                              }}
+                              className="relative group/image"
+                            >
+                              {/* Image Container with Enhanced Styling */}
+                              <div className="relative overflow-hidden rounded-2xl ring-2 ring-white/30 shadow-2xl bg-white/10 backdrop-blur-sm">
+                                <LazyImage 
+                                  src={img} 
+                                  alt={`${project.title} preview ${i+1}`} 
+                                  className="w-full h-32 md:h-40 object-cover transition-all duration-500 group-hover/image:scale-105" 
+                                  placeholder="/placeholder.jpg" 
+                                />
+                                
+                                {/* Image Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
+                                
+                                {/* Image Number Badge */}
+                                <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
+                                  <span className="text-white text-sm font-bold">{i + 1}</span>
+                                </div>
+                              </div>
+                              
+                              {/* Subtle Glow Effect */}
+                              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-lg opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
+                            </motion.div>
+                          ));
+                        })()}
+                      </div>
+                      
+                      {/* Preview Label */}
+                      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+                        <div className="px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30">
+                          <span className="text-white text-sm font-medium">Project Preview</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
