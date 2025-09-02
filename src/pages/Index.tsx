@@ -493,7 +493,7 @@ const Index = () => {
 
   const Logo: React.FC<{ name: string; categoryIcon: string }> = ({ name, categoryIcon }) => {
     const src = logoMap[name];
-    const base = `w-5 h-5 md:w-6 md:h-6 object-contain`;
+    const base = `w-5 h-5 md:w-6 md:h-6 object-contain flex-none`;
     if (!src) {
       return (
         <div className={`w-6 h-6 md:w-7 md:h-7 rounded-lg ${isDarkMode ? 'bg-white/10' : 'bg-gray-100'} flex items-center justify-center text-xs`} title={name}>
@@ -1256,11 +1256,11 @@ const Index = () => {
                 </div>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-2">
                   {group.skills.map((skill, i) => (
-                    <li key={i} className={`group flex items-start gap-2 px-2 py-1.5 rounded-lg border ${isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/80 border-gray-200 hover:bg-white'} transition min-h-9` }>
-                      <span className="shrink-0">
+                    <li key={i} className={`group w-full flex items-start gap-2 px-2 py-1.5 rounded-lg border ${isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/90 border-gray-200 hover:bg-white'} transition min-h-10 overflow-hidden` }>
+                      <span className="shrink-0 mt-[1px]">
                         <Logo name={skill} categoryIcon={group.icon as string} />
                       </span>
-                      <span className={`text-xs md:text-sm leading-snug ${isDarkMode ? 'text-slate-200' : 'text-gray-800'}`}>{skill}</span>
+                      <span className={`min-w-0 break-words whitespace-normal text-xs md:text-sm leading-snug pr-1 ${isDarkMode ? 'text-slate-200' : 'text-gray-800'}`}>{skill}</span>
                     </li>
                   ))}
                 </ul>
