@@ -1171,7 +1171,7 @@ const Index = () => {
           </div>
           <StaggerContainer
             staggerDelay={0.1}
-            className="grid md:grid-cols-2 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
             reducedMotion={prefersReducedMotion}
           >
             {filteredProjects.map((project, index) => (
@@ -1183,23 +1183,27 @@ const Index = () => {
                 <div 
                   className={`${cardClasses} rounded-2xl overflow-hidden border group flex flex-col transition-all duration-300 hover:scale-[1.01] w-full h-full`}
                 >
-                {/* Top: Image area - fixed height */}
+                {/* Top: Image area - smaller height */}
                 <div 
-                  className="relative h-48 md:h-56 overflow-hidden cursor-pointer"
-                  onMouseEnter={() => setActiveProjectPreview(project)}
+                  className={`relative h-32 md:h-40 overflow-hidden ${project.title.includes('Hybrid Stock Price Prediction') ? '' : 'cursor-pointer'}`}
+                  onMouseEnter={() => {
+                    if (!project.title.includes('Hybrid Stock Price Prediction')) {
+                      setActiveProjectPreview(project);
+                    }
+                  }}
                 >
                       <LazyImage 
                         src={project.image} 
                         alt={project.title} 
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                         placeholder="/placeholder.jpg"
                       />
                 </div>
                 {/* Bottom: Content */}
-                <div className="p-5 md:p-6 flex-1 flex flex-col justify-between">
+                <div className="p-4 md:p-5 flex-1 flex flex-col justify-between">
                   {/* Project Title and GitHub Link */}
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className={`text-lg md:text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'} line-clamp-2`}>
+                    <h3 className={`text-base md:text-lg font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'} line-clamp-2`}>
                       {project.title}
                     </h3>
                     {project.link && (
@@ -1209,7 +1213,7 @@ const Index = () => {
                     )}
                   </div>
                   
-                  <div className={`text-sm md:text-base ${isDarkMode ? 'text-slate-300' : 'text-gray-700'} mb-3`}>{project.description}</div>
+                  <div className={`text-xs md:text-sm ${isDarkMode ? 'text-slate-300' : 'text-gray-700'} mb-3 line-clamp-3`}>{project.description}</div>
                   <div className="flex flex-wrap gap-2">
                     {project.tech.slice(0, 6).map((tech, i) => (
                       <span key={i} className="px-2 py-1 rounded-full text-xs font-semibold border border-white/10 bg-white/5 text-slate-200">
@@ -1286,12 +1290,14 @@ const Index = () => {
                 {/* Full Size Image Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 w-full">
                 {(() => {
-                  // Use specific images for UKP and Crisis Report projects
+                  // Use specific images for UKP, Crisis Report, and Product Sentiment Analysis projects
                   let previewImages: string[] = [];
                   if (activeProjectPreview.title.includes('Unified Knowledge Platform')) {
                     previewImages = ['UKP1.png', 'UKP2.png', 'UKP3.png'];
                   } else if (activeProjectPreview.title.includes('Crisis Reporting')) {
                     previewImages = ['CR1.png', 'CR2.png', 'CR3.png'];
+                  } else if (activeProjectPreview.title.includes('Product Sentiment Analyzer')) {
+                    previewImages = ['PS1.jpg', 'PS2.jpg', 'PS3.jpg'];
                   } else {
                     previewImages = [activeProjectPreview.image, activeProjectPreview.image, activeProjectPreview.image];
                   }
