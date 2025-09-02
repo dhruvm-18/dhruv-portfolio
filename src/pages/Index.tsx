@@ -597,11 +597,9 @@ const Index = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className={`relative p-1 mb-4 rounded-[2.5rem] shadow-2xl ${isDarkMode ? 'bg-gradient-to-br from-white/10 via-white/5 to-white/10' : 'bg-gradient-to-br from-white/70 via-white/60 to-white/70'}`}
-            style={{ boxShadow: isDarkMode ? '0 0 40px 0 rgba(99,102,241,0.25), 0 0 0 3px rgba(30,58,138,0.25)' : '0 0 40px 0 rgba(56,189,248,0.20), 0 0 0 3px rgba(29,78,216,0.15)' }}
+            className={`relative mb-4 rounded-[2.5rem]`}
           >
-            <div className={`rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden border backdrop-blur-2xl ${isDarkMode ? 'bg-white/5 border-white/15' : 'bg-white/60 border-white/40'}`}>
-              <div className={`pointer-events-none absolute -inset-px rounded-[2.3rem] ${isDarkMode ? 'bg-gradient-to-br from-sky-400/10 via-indigo-400/10 to-purple-400/10' : 'bg-gradient-to-br from-sky-500/10 via-indigo-500/10 to-purple-500/10'}`} />
+            <div className={`rounded-[2.3rem] p-8 md:p-12 flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-10 relative overflow-hidden backdrop-blur-2xl ${isDarkMode ? 'bg-white/7' : 'bg-white/70'}`}>
               <div className={`pointer-events-none absolute inset-0 rounded-[2.3rem] ring-1 ${isDarkMode ? 'ring-white/15' : 'ring-slate-200/50'}`} />
               {/* Floating Profile Pic */}
               <div className="relative">
@@ -676,10 +674,9 @@ const Index = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 1.1, type: 'spring', stiffness: 180 }}
-            className={`relative flex justify-center items-center mb-8 max-w-2xl mx-auto`}
-          >
-            <div className={`relative w-full px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl border ${isDarkMode ? 'border-white/15 bg-white/5 text-gray-100' : 'border-white/40 bg-white/60 text-gray-800'} tracking-wide backdrop-blur-xl`} style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
-              <div className={`pointer-events-none absolute -inset-px rounded-2xl ${isDarkMode ? 'bg-gradient-to-r from-sky-400/10 via-indigo-400/10 to-purple-400/10' : 'bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-purple-500/10'}`} />
+             className={`relative flex justify-center items-center mb-8 max-w-2xl mx-auto`}
+           >
+            <div className={`relative w-full px-8 py-4 rounded-2xl font-bold text-lg md:text-xl shadow-2xl ${isDarkMode ? 'bg-white/6 text-gray-100 ring-1 ring-white/15' : 'bg-white/70 text-gray-800 ring-1 ring-slate-200/50'} tracking-wide backdrop-blur-xl`} style={{ fontFamily: 'Fira Mono, Menlo, monospace' }}>
               <Code className={`w-6 h-6 inline-block mr-2 align-middle animate-spin-slow ${isDarkMode ? 'text-gray-300' : 'text-gray-500'}`} />
               Currently Debugging Life's Edge Cases
             </div>
