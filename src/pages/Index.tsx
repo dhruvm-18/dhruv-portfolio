@@ -399,7 +399,7 @@ const Index = () => {
     >
       {/* Floating Navigation - Desktop */}
       <motion.nav 
-        className={`fixed top-0 left-0 right-0 z-[100] hidden md:flex justify-center items-center`}
+        className={`fixed top-0 left-0 right-0 z-[9999] hidden md:flex justify-center items-center pointer-events-auto`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
