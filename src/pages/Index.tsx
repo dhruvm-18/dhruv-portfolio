@@ -1254,15 +1254,6 @@ const Index = () => {
               }}
             >
               <div className="bg-black/80 backdrop-blur-3xl rounded-3xl p-6 md:p-8 border border-white/20 shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-y-auto relative">
-                {/* Animated Close Button */}
-                <motion.button
-                  onClick={() => setActiveProjectPreview(null)}
-                  className="absolute top-4 right-4 w-12 h-12 rounded-full bg-red-500/80 hover:bg-red-500 text-white flex items-center justify-center transition-all duration-300 z-10"
-                  whileHover={{ scale: 1.1, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <X className="w-6 h-6" />
-                </motion.button>
                 
                 {/* Animated Header */}
                 <motion.div 
@@ -1344,7 +1335,7 @@ const Index = () => {
                         <LazyImage 
                           src={img} 
                           alt={`${activeProjectPreview.title} preview ${i+1}`} 
-                          className="w-full h-64 md:h-80 object-cover transition-all duration-500 group-hover/image:scale-105" 
+                          className="w-full h-auto object-contain transition-all duration-500 group-hover/image:scale-105" 
                           placeholder="/placeholder.jpg" 
                         />
                         
@@ -1397,15 +1388,6 @@ const Index = () => {
                       View on GitHub
                     </motion.a>
                   )}
-                  <motion.button
-                    onClick={() => setActiveProjectPreview(null)}
-                    className="flex items-center gap-2 px-6 py-3 bg-white/10 text-white font-semibold rounded-full shadow-lg border border-white/20 backdrop-blur-sm"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <X className="w-5 h-5" />
-                    Close Preview
-                  </motion.button>
                 </motion.div>
               </div>
             </motion.div>
