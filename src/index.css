@@ -120,6 +120,11 @@
 }
 
 @layer utilities {
+  /* Force black text in light theme across subtree */
+  .force-light-text * {
+    color: #000 !important;
+  }
+
   /* Performance-optimized animations */
   .animate-gradient-x {
     background-size: 200% 200%;

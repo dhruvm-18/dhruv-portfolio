@@ -389,7 +389,7 @@ const Index = () => {
   return (
     <div 
       ref={containerRef} 
-      className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden scroll-smooth scrollbar-thin`}
+      className={`min-h-screen transition-all duration-500 ${themeClasses} overflow-x-hidden scroll-smooth scrollbar-thin ${!isDarkMode ? 'force-light-text' : ''}`}
       style={{
         willChange: 'auto'
       }}
