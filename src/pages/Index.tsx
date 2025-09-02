@@ -399,7 +399,7 @@ const Index = () => {
     >
       {/* Floating Navigation - Desktop */}
       <motion.nav 
-        className={`fixed top-3 left-1/2 -translate-x-1/2 z-[100] hidden md:flex justify-center items-center w-full max-w-7xl px-4`}
+        className={`fixed top-0 left-0 right-0 z-[100] hidden md:flex justify-center items-center`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
@@ -407,45 +407,47 @@ const Index = () => {
           willChange: 'transform, opacity',
         }}
       >
-        <div className={`mx-auto flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-4 w-full px-4 rounded-2xl backdrop-blur-2xl ${isDarkMode ? 'bg-white/6 ring-1 ring-white/10' : 'bg-white/70 ring-1 ring-slate-200/60'} shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] py-2` }>
-           {/* Logo - DHRUV */}
-           <div className="mr-6 select-none">
-             <span
-               className={`text-2xl md:text-3xl font-extrabold tracking-widest uppercase bg-gradient-to-r ${isDarkMode ? 'from-cyan-400 via-blue-400 to-indigo-400' : 'from-blue-700 via-indigo-500 to-cyan-600'} bg-clip-text text-transparent drop-shadow-lg`}
-               style={{ letterSpacing: '0.18em', fontFamily: 'Fira Mono, Menlo, monospace' }}
-             >
-               DHRUV
-             </span>
-           </div>
-           {/* Navigation Buttons */}
-           <div className="flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-3 flex-1">
-             {['Home', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
-               <button
-                 key={item}
-                 onClick={() => scrollToSection(item.toLowerCase())}
-                 className={`relative text-xs md:text-sm font-semibold px-3.5 py-1.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 ${isDarkMode ? 'focus:ring-sky-400' : 'focus:ring-sky-500'}
-                   ${isDarkMode ? 'text-slate-200 hover:text-white' : 'text-gray-700 hover:text-gray-900'}`}
-                 style={{ overflow: 'hidden' }}
-               >
-                 <span className="relative z-[1]">{item}</span>
-                 {/* pill background when active */}
-                 <span className={`absolute inset-0 rounded-full transition-opacity duration-300 ${activeSection === item.toLowerCase() ? 'opacity-100' : 'opacity-0'}`}></span>
-                 <span className={`absolute inset-0 rounded-full ${activeSection === item.toLowerCase() ? (isDarkMode ? 'bg-gradient-to-r from-sky-600/70 to-indigo-600/70' : 'bg-gradient-to-r from-sky-300 to-indigo-300') : ''}`}></span>
-               </button>
-             ))}
-           </div>
-           {/* Theme and Social Icons */}
-           <div className="flex items-center space-x-2 md:space-x-3 ml-2 pl-3 border-l border-white/10">
-             <Sun className={`w-4 h-4 ${isDarkMode ? 'text-slate-300' : 'text-yellow-500'}`} />
-             <Switch checked={isDarkMode} onCheckedChange={toggleTheme} />
-             <Moon className={`w-4 h-4 ${isDarkMode ? 'text-blue-300' : 'text-slate-400'}`} />
-             {/* Social Icons */}
-             <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Linkedin className={`w-5 h-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
-             <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Github className={`w-5 h-5 ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`} /> </a>
-             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Mail" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Mail className={`w-5 h-5 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
-           </div>
-         </div>
-       </motion.nav>
+        <div className="w-full">
+          <div className={`mx-auto mt-3 mb-2 flex items-center justify-between gap-x-4 w-full max-w-6xl px-4 rounded-2xl backdrop-blur-2xl ${isDarkMode ? 'bg-white/6 ring-1 ring-white/10' : 'bg-white/70 ring-1 ring-slate-200/60'} shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] py-2` }>
+            {/* Logo - DHRUV */}
+            <div className="mr-6 select-none">
+              <span
+                className={`text-2xl md:text-3xl font-extrabold tracking-widest uppercase bg-gradient-to-r ${isDarkMode ? 'from-cyan-400 via-blue-400 to-indigo-400' : 'from-blue-700 via-indigo-500 to-cyan-600'} bg-clip-text text-transparent drop-shadow-lg`}
+                style={{ letterSpacing: '0.18em', fontFamily: 'Fira Mono, Menlo, monospace' }}
+              >
+                DHRUV
+              </span>
+            </div>
+            {/* Navigation Buttons */}
+            <div className="flex items-center justify-center gap-x-1 sm:gap-x-2 md:gap-x-3 flex-1">
+              {['Home', 'About', 'Experience', 'Education', 'Projects', 'Skills', 'Honors', 'Contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className={`relative text-xs md:text-sm font-semibold px-3.5 py-1.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 ${isDarkMode ? 'focus:ring-sky-400' : 'focus:ring-sky-500'}
+                    ${isDarkMode ? 'text-slate-200 hover:text-white' : 'text-gray-700 hover:text-gray-900'}`}
+                  style={{ overflow: 'hidden' }}
+                >
+                  <span className="relative z-[1]">{item}</span>
+                  {/* pill background when active */}
+                  <span className={`absolute inset-0 rounded-full transition-opacity duration-300 ${activeSection === item.toLowerCase() ? 'opacity-100' : 'opacity-0'}`}></span>
+                  <span className={`absolute inset-0 rounded-full ${activeSection === item.toLowerCase() ? (isDarkMode ? 'bg-gradient-to-r from-sky-600/70 to-indigo-600/70' : 'bg-gradient-to-r from-sky-300 to-indigo-300') : ''}`}></span>
+                </button>
+              ))}
+            </div>
+            {/* Theme and Social Icons */}
+            <div className="flex items-center space-x-2 md:space-x-3 ml-2 pl-3 border-l border-white/10">
+              <Sun className={`w-4 h-4 ${isDarkMode ? 'text-slate-300' : 'text-yellow-500'}`} />
+              <Switch checked={isDarkMode} onCheckedChange={toggleTheme} />
+              <Moon className={`w-4 h-4 ${isDarkMode ? 'text-blue-300' : 'text-slate-400'}`} />
+              {/* Social Icons */}
+              <a href="https://www.linkedin.com/in/dhruv-mendiratta-132a46255/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Linkedin className={`w-5 h-5 ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} /> </a>
+              <a href="https://github.com/dhruvm-18" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Github className={`w-5 h-5 ${isDarkMode ? 'text-slate-200' : 'text-slate-700'}`} /> </a>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Mail" className={`p-1.5 rounded-full ring-1 ${isDarkMode ? 'ring-white/10 hover:bg-white/10' : 'ring-slate-200/60 hover:bg-slate-100'} transition`}> <Mail className={`w-5 h-5 ${isDarkMode ? 'text-cyan-300' : 'text-cyan-600'}`} /> </a>
+            </div>
+          </div>
+        </div>
+      </motion.nav>
 
       {/* Mobile Navigation */}
       <div className="md:hidden fixed top-4 right-4 z-50">
