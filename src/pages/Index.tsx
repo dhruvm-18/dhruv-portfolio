@@ -1887,45 +1887,41 @@ const Index = () => {
               </div>
             </div>
             
-            {/* Right: Delhi State Map */}
+            {/* Right: High-Quality Delhi Map */}
             <div className={`relative rounded-2xl border shadow-2xl overflow-hidden ${isDarkMode ? 'border-blue-800 bg-slate-900' : 'border-blue-200 bg-white'}`} style={{ width: '100%', height: 300 }}>
-              <div className="w-full h-full flex items-center justify-center relative">
-                <svg 
-                  viewBox="0 0 400 300" 
-                  className="w-full h-full"
-                  style={{ filter: isDarkMode ? 'invert(0.9) hue-rotate(180deg)' : 'none' }}
-                >
-                  {/* Delhi State Boundary */}
-                  <path 
-                    d="M 50 80 Q 80 60 120 70 Q 160 80 200 75 Q 240 70 280 80 Q 320 90 350 100 L 360 150 Q 350 200 320 220 Q 280 240 200 250 Q 120 240 80 220 Q 50 200 50 150 Z" 
-                    fill="none" 
-                    stroke={isDarkMode ? '#3b82f6' : '#1d4ed8'} 
-                    strokeWidth="3"
-                    strokeDasharray="5,5"
-                  />
-                  
-                  {/* Delhi City Marker */}
-                  <circle cx="200" cy="160" r="8" fill={isDarkMode ? '#ef4444' : '#dc2626'} />
-                  <circle cx="200" cy="160" r="12" fill="none" stroke={isDarkMode ? '#ef4444' : '#dc2626'} strokeWidth="2" opacity="0.6">
-                    <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite" />
-                  </circle>
-                  
-                  {/* State Label */}
-                  <text x="200" y="280" textAnchor="middle" className={`text-lg font-bold ${isDarkMode ? 'fill-white' : 'fill-gray-800'}`}>
-                    DELHI
-                  </text>
-                  
-                  {/* Coordinates */}
-                  <text x="200" y="295" textAnchor="middle" className={`text-xs ${isDarkMode ? 'fill-slate-400' : 'fill-gray-600'}`}>
-                    28.7041° N, 77.1025° E
-                  </text>
-                </svg>
+              <div className="w-full h-full relative">
+                {/* High-Quality Map Image */}
+                <img
+                  src="https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                  alt="Delhi, India Map"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to a high-quality Delhi cityscape image
+                    (e.currentTarget as HTMLImageElement).src = "https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80";
+                  }}
+                />
                 
-                {/* Location Info Overlay */}
-                <div className={`absolute top-4 left-4 right-4 p-3 rounded-lg ${isDarkMode ? 'bg-black/60 text-white' : 'bg-white/90 text-gray-800'} backdrop-blur-sm`}>
-                  <div className="text-sm font-medium">📍 New Delhi, India</div>
-                  <div className="text-xs opacity-80">Capital Region • Tech Hub</div>
+                {/* Alternative: Use OpenStreetMap with better styling */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                
+                {/* Location Marker */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="relative">
+                    {/* Pulsing Marker */}
+                    <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white shadow-lg animate-pulse" />
+                    <div className="absolute inset-0 w-6 h-6 bg-red-500 rounded-full border-2 border-white animate-ping" />
+                    
+                    {/* Marker Label */}
+                    <div className={`absolute top-8 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded-lg ${isDarkMode ? 'bg-black/80 text-white' : 'bg-white/90 text-gray-800'} text-sm font-medium shadow-lg backdrop-blur-sm whitespace-nowrap`}>
+                      📍 New Delhi
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Map Info Overlay */}
+                <div className={`absolute bottom-4 left-4 right-4 p-3 rounded-lg ${isDarkMode ? 'bg-black/80 text-white' : 'bg-white/90 text-gray-800'} backdrop-blur-sm`}>
+                  <div className="text-sm font-medium">Delhi, India</div>
+                  <div className="text-xs opacity-80">Capital Region • Tech Hub • 28.7041°N, 77.1025°E</div>
                 </div>
               </div>
             </div>
