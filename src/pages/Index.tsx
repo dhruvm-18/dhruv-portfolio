@@ -1183,162 +1183,93 @@ const Index = () => {
                       </a>
                     )}
                   </div>
-                  {/* Project Preview - Opens in Main Tab */}
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                    <button
-                      onClick={() => {
-                        // Create full-screen preview in main tab
-                        const previewWindow = window.open('', '_blank', 'width=1920,height=1080,scrollbars=yes,resizable=yes');
-                        if (previewWindow) {
-                          const previewContent = `
-                            <!DOCTYPE html>
-                            <html lang="en">
-                            <head>
-                              <meta charset="UTF-8">
-                              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                              <title>${project.title} - Project Preview</title>
-                              <style>
-                                * { margin: 0; padding: 0; box-sizing: border-box; }
-                                body { 
-                                  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-                                  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
-                                  color: white;
-                                  min-height: 100vh;
-                                  padding: 2rem;
-                                }
-                                .header { 
-                                  text-align: center; 
-                                  margin-bottom: 3rem; 
-                                  padding: 2rem;
-                                  background: rgba(255,255,255,0.1);
-                                  border-radius: 20px;
-                                  backdrop-filter: blur(20px);
-                                  border: 1px solid rgba(255,255,255,0.2);
-                                }
-                                .title { 
-                                  font-size: 2.5rem; 
-                                  font-weight: 800; 
-                                  margin-bottom: 1rem;
-                                  background: linear-gradient(45deg, #60a5fa, #a78bfa);
-                                  -webkit-background-clip: text;
-                                  -webkit-text-fill-color: transparent;
-                                }
-                                .subtitle { 
-                                  font-size: 1.2rem; 
-                                  opacity: 0.8; 
-                                  margin-bottom: 1rem;
-                                }
-                                .underline { 
-                                  width: 100px; 
-                                  height: 4px; 
-                                  background: linear-gradient(45deg, #60a5fa, #a78bfa);
-                                  margin: 0 auto; 
-                                  border-radius: 2px;
-                                }
-                                .gallery { 
-                                  display: grid; 
-                                  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-                                  gap: 2rem; 
-                                  max-width: 1400px; 
-                                  margin: 0 auto;
-                                }
-                                .image-card { 
-                                  background: rgba(255,255,255,0.1);
-                                  border-radius: 20px;
-                                  padding: 1.5rem;
-                                  backdrop-filter: blur(20px);
-                                  border: 1px solid rgba(255,255,255,0.2);
-                                  text-align: center;
-                                  transition: transform 0.3s ease;
-                                }
-                                .image-card:hover { transform: translateY(-10px); }
-                                .image-number { 
-                                  display: inline-block;
-                                  width: 50px; 
-                                  height: 50px; 
-                                  background: linear-gradient(45deg, #8b5cf6, #ec4899);
-                                  border-radius: 50%;
-                                  color: white;
-                                  font-size: 1.5rem;
-                                  font-weight: bold;
-                                  line-height: 50px;
-                                  margin-bottom: 1rem;
-                                  border: 3px solid rgba(255,255,255,0.3);
-                                }
-                                .project-image { 
-                                  width: 100%; 
-                                  height: 300px; 
-                                  object-fit: cover; 
-                                  border-radius: 15px;
-                                  border: 2px solid rgba(255,255,255,0.2);
-                                  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-                                }
-                                .image-title { 
-                                  margin-top: 1rem; 
-                                  font-size: 1.1rem; 
-                                  font-weight: 600;
-                                  opacity: 0.9;
-                                }
-                                .close-btn {
-                                  position: fixed;
-                                  top: 2rem;
-                                  right: 2rem;
-                                  background: rgba(239, 68, 68, 0.9);
-                                  color: white;
-                                  border: none;
-                                  padding: 1rem 2rem;
-                                  border-radius: 50px;
-                                  font-size: 1rem;
-                                  font-weight: 600;
-                                  cursor: pointer;
-                                  backdrop-filter: blur(20px);
-                                  border: 1px solid rgba(255,255,255,0.2);
-                                  transition: all 0.3s ease;
-                                }
-                                .close-btn:hover {
-                                  background: rgba(239, 68, 68, 1);
-                                  transform: scale(1.05);
-                                }
-                              </style>
-                            </head>
-                            <body>
-                              <button class="close-btn" onclick="window.close()">✕ Close Preview</button>
-                              <div class="header">
-                                <h1 class="title">${project.title}</h1>
-                                <p class="subtitle">Project Preview Gallery</p>
-                                <div class="underline"></div>
-                              </div>
-                              <div class="gallery">
-                                ${(() => {
-                                  let previewImages: string[] = [];
-                                  if (project.title.includes('Unified Knowledge Platform')) {
-                                    previewImages = ['UKP1.png', 'UKP2.png', 'UKP3.png'];
-                                  } else if (project.title.includes('Crisis Reporting')) {
-                                    previewImages = ['CR1.png', 'CR2.png', 'CR3.png'];
-                                  } else {
-                                    previewImages = [project.image, project.image, project.image];
-                                  }
+                  {/* Project Preview - Full Screen Overlay */}
+                  <div className="fixed inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-auto z-50">
+                    {/* Background Overlay */}
+                    <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" />
+                    
+                    {/* Preview Container - Full Screen */}
+                    <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8">
+                      <div className="bg-black/60 backdrop-blur-2xl rounded-3xl p-6 md:p-8 border border-white/30 shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-y-auto">
+                        {/* Header */}
+                        <div className="text-center mb-8">
+                          <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">{project.title}</h3>
+                          <div className="w-32 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"></div>
+                        </div>
+                        
+                        {/* Full Size Image Grid */}
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 w-full">
+                          {(() => {
+                            // Use specific images for UKP and Crisis Report projects
+                            let previewImages: string[] = [];
+                            if (project.title.includes('Unified Knowledge Platform')) {
+                              previewImages = ['UKP1.png', 'UKP2.png', 'UKP3.png'];
+                            } else if (project.title.includes('Crisis Reporting')) {
+                              previewImages = ['CR1.png', 'CR2.png', 'CR3.png'];
+                            } else {
+                              previewImages = [project.image, project.image, project.image];
+                            }
+                            
+                            return previewImages.map((img, i) => (
+                              <motion.div
+                                key={i}
+                                initial={{ scale: 0.8, opacity: 0, y: 30 }}
+                                animate={{ scale: 1, opacity: 1, y: 0 }}
+                                transition={{ 
+                                  duration: 0.6, 
+                                  delay: i * 0.2,
+                                  ease: "easeOut"
+                                }}
+                                className="relative group/image"
+                              >
+                                {/* Image Container - Full Size */}
+                                <div className="relative overflow-hidden rounded-2xl ring-2 ring-white/40 shadow-2xl bg-white/5 backdrop-blur-sm">
+                                  <LazyImage 
+                                    src={img} 
+                                    alt={`${project.title} preview ${i+1}`} 
+                                    className="w-full h-64 md:h-80 object-cover transition-all duration-500 group-hover/image:scale-105" 
+                                    placeholder="/placeholder.jpg" 
+                                  />
                                   
-                                  return previewImages.map((img, i) => `
-                                    <div class="image-card">
-                                      <div class="image-number">${i + 1}</div>
-                                      <img src="${img}" alt="Preview ${i + 1}" class="project-image" onerror="this.src='/placeholder.jpg'">
-                                      <div class="image-title">Preview ${i + 1}</div>
+                                  {/* Enhanced Image Overlay */}
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
+                                  
+                                  {/* Image Number Badge - Large and Prominent */}
+                                  <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-3 border-white/50 flex items-center justify-center shadow-lg">
+                                    <span className="text-white text-xl font-bold">{i + 1}</span>
+                                  </div>
+                                  
+                                  {/* Hover Info */}
+                                  <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
+                                    <div className="text-white text-center">
+                                      <div className="text-lg font-semibold">Preview {i + 1}</div>
+                                      <div className="text-sm opacity-80">Full-size project showcase</div>
                                     </div>
-                                  `).join('');
-                                })()}
-                              </div>
-                            </body>
-                            </html>
-                          `;
-                          previewWindow.document.write(previewContent);
-                          previewWindow.document.close();
-                        }
-                      }}
-                      className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-bold text-lg rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white/20 backdrop-blur-sm"
-                    >
-                      🚀 View Full Preview
-                    </button>
+                                  </div>
+                                </div>
+                                
+                                {/* Enhanced Glow Effect */}
+                                <div className="absolute -inset-3 bg-gradient-to-r from-blue-500/40 via-purple-500/40 to-pink-500/40 rounded-2xl blur-2xl opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
+                              </motion.div>
+                            ));
+                          })()}
+                        </div>
+                        
+                        {/* Enhanced Preview Label */}
+                        <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
+                          <div className="px-8 py-4 rounded-full bg-gradient-to-r from-blue-500/30 to-purple-500/30 backdrop-blur-sm border border-white/40 shadow-xl">
+                            <span className="text-white text-xl font-semibold">🚀 Project Preview</span>
+                          </div>
+                        </div>
+                        
+                        {/* Close Hint */}
+                        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+                          <div className="px-6 py-3 rounded-full bg-white/15 backdrop-blur-sm border border-white/30">
+                            <span className="text-white/90 text-sm">Move mouse away to close</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 {/* Bottom: Content */}
