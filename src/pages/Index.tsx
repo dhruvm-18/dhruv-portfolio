@@ -14,6 +14,7 @@ import Somerville from '/Somerville.png';
 import Vivek from '/Vivek.jpeg';
 import Manipal from '/logo.jpeg';
 import dhruvProfilePic from '/dhruv.jpeg';
+import dhruvNormalPic from '/dhruv_large.jpeg';
 
 // Project type definition
 interface Project {
@@ -966,7 +967,7 @@ const Index = () => {
               >
               <div className={`${cardClasses} rounded-[1.25rem] border p-6 md:p-8 mb-6 backdrop-blur-2xl flex flex-col items-center text-center`}>
                 <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-xl overflow-hidden ring-1 ring-white/10 shadow-2xl">
-                  <img src={dhruvProfilePic} alt="Dhruv Mendiratta" className="w-full h-full object-cover" />
+                  <img src={dhruvNormalPic} alt="Dhruv Mendiratta" className="w-full h-full object-cover" />
                     </div>
                 <div className="mt-4">
                   <div className="text-2xl md:text-3xl font-extrabold text-white">Dhruv Mendiratta</div>
