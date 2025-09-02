@@ -15,6 +15,18 @@ import Vivek from '/Vivek.jpeg';
 import Manipal from '/logo.jpeg';
 import dhruvProfilePic from '/dhruv.jpeg';
 
+// Project type definition
+interface Project {
+  title: string;
+  period: string;
+  tech: string[];
+  description: string;
+  achievements: string[];
+  gradient: string;
+  icon: string;
+  link: string;
+  image: string;
+}
 
 const Index = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -26,6 +38,7 @@ const Index = () => {
   const [typewriterText, setTypewriterText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [skillsTab, setSkillsTab] = useState<'All' | 'AI/ML' | 'Full‑Stack' | 'Analytics' | 'Cloud/DevOps' | 'Other'>('All');
+  const [activeProjectPreview, setActiveProjectPreview] = useState<Project | null>(null);
 
   const rotatingRoles = useMemo(() => [
     'Full-Stack Developer',
@@ -1183,93 +1196,14 @@ const Index = () => {
                       </a>
                     )}
                   </div>
-                  {/* Project Preview - Full Screen Overlay */}
-                  <div className="fixed inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-auto z-50">
-                    {/* Background Overlay */}
-                    <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" />
-                    
-                    {/* Preview Container - Full Screen */}
-                    <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8">
-                      <div className="bg-black/60 backdrop-blur-2xl rounded-3xl p-6 md:p-8 border border-white/30 shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-y-auto">
-                        {/* Header */}
-                        <div className="text-center mb-8">
-                          <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">{project.title}</h3>
-                          <div className="w-32 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"></div>
-                        </div>
-                        
-                        {/* Full Size Image Grid */}
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 w-full">
-                          {(() => {
-                            // Use specific images for UKP and Crisis Report projects
-                            let previewImages: string[] = [];
-                            if (project.title.includes('Unified Knowledge Platform')) {
-                              previewImages = ['UKP1.png', 'UKP2.png', 'UKP3.png'];
-                            } else if (project.title.includes('Crisis Reporting')) {
-                              previewImages = ['CR1.png', 'CR2.png', 'CR3.png'];
-                            } else {
-                              previewImages = [project.image, project.image, project.image];
-                            }
-                            
-                            return previewImages.map((img, i) => (
-                              <motion.div
-                                key={i}
-                                initial={{ scale: 0.8, opacity: 0, y: 30 }}
-                                animate={{ scale: 1, opacity: 1, y: 0 }}
-                                transition={{ 
-                                  duration: 0.6, 
-                                  delay: i * 0.2,
-                                  ease: "easeOut"
-                                }}
-                                className="relative group/image"
-                              >
-                                {/* Image Container - Full Size */}
-                                <div className="relative overflow-hidden rounded-2xl ring-2 ring-white/40 shadow-2xl bg-white/5 backdrop-blur-sm">
-                                  <LazyImage 
-                                    src={img} 
-                                    alt={`${project.title} preview ${i+1}`} 
-                                    className="w-full h-64 md:h-80 object-cover transition-all duration-500 group-hover/image:scale-105" 
-                                    placeholder="/placeholder.jpg" 
-                                  />
-                                  
-                                  {/* Enhanced Image Overlay */}
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
-                                  
-                                  {/* Image Number Badge - Large and Prominent */}
-                                  <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-3 border-white/50 flex items-center justify-center shadow-lg">
-                                    <span className="text-white text-xl font-bold">{i + 1}</span>
-                                  </div>
-                                  
-                                  {/* Hover Info */}
-                                  <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
-                                    <div className="text-white text-center">
-                                      <div className="text-lg font-semibold">Preview {i + 1}</div>
-                                      <div className="text-sm opacity-80">Full-size project showcase</div>
-                                    </div>
-                                  </div>
-                                </div>
-                                
-                                {/* Enhanced Glow Effect */}
-                                <div className="absolute -inset-3 bg-gradient-to-r from-blue-500/40 via-purple-500/40 to-pink-500/40 rounded-2xl blur-2xl opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
-                              </motion.div>
-                            ));
-                          })()}
-                        </div>
-                        
-                        {/* Enhanced Preview Label */}
-                        <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
-                          <div className="px-8 py-4 rounded-full bg-gradient-to-r from-blue-500/30 to-purple-500/30 backdrop-blur-sm border border-white/40 shadow-xl">
-                            <span className="text-white text-xl font-semibold">🚀 Project Preview</span>
-                          </div>
-                        </div>
-                        
-                        {/* Close Hint */}
-                        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-                          <div className="px-6 py-3 rounded-full bg-white/15 backdrop-blur-sm border border-white/30">
-                            <span className="text-white/90 text-sm">Move mouse away to close</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  {/* Project Preview Button - Triggers overlay */}
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                    <button
+                      onClick={() => setActiveProjectPreview(project)}
+                      className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-bold text-lg rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white/20 backdrop-blur-sm"
+                    >
+                      🚀 View Full Preview
+                    </button>
                   </div>
                 </div>
                 {/* Bottom: Content */}
@@ -1288,6 +1222,94 @@ const Index = () => {
           </StaggerContainer>
         </div>
       </section>
+
+      {/* Project Preview Overlay - Page Level */}
+      {activeProjectPreview && (
+        <div className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-2xl">
+          <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8">
+            <div className="bg-black/70 backdrop-blur-3xl rounded-3xl p-6 md:p-8 border border-white/30 shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-y-auto relative">
+              {/* Close Button */}
+              <button
+                onClick={() => setActiveProjectPreview(null)}
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-red-500/80 hover:bg-red-500 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              {/* Header */}
+              <div className="text-center mb-8">
+                <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">{activeProjectPreview.title}</h3>
+                <div className="w-32 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"></div>
+              </div>
+              
+              {/* Full Size Image Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 w-full">
+                {(() => {
+                  // Use specific images for UKP and Crisis Report projects
+                  let previewImages: string[] = [];
+                  if (activeProjectPreview.title.includes('Unified Knowledge Platform')) {
+                    previewImages = ['UKP1.png', 'UKP2.png', 'UKP3.png'];
+                  } else if (activeProjectPreview.title.includes('Crisis Reporting')) {
+                    previewImages = ['CR1.png', 'CR2.png', 'CR3.png'];
+                  } else {
+                    previewImages = [activeProjectPreview.image, activeProjectPreview.image, activeProjectPreview.image];
+                  }
+                  
+                  return previewImages.map((img, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ scale: 0.8, opacity: 0, y: 30 }}
+                      animate={{ scale: 1, opacity: 1, y: 0 }}
+                      transition={{ 
+                        duration: 0.6, 
+                        delay: i * 0.2,
+                        ease: "easeOut"
+                      }}
+                      className="relative group/image"
+                    >
+                      {/* Image Container - Full Size */}
+                      <div className="relative overflow-hidden rounded-2xl ring-2 ring-white/40 shadow-2xl bg-white/5 backdrop-blur-sm">
+                        <LazyImage 
+                          src={img} 
+                          alt={`${activeProjectPreview.title} preview ${i+1}`} 
+                          className="w-full h-64 md:h-80 object-cover transition-all duration-500 group-hover/image:scale-105" 
+                          placeholder="/placeholder.jpg" 
+                        />
+                        
+                        {/* Enhanced Image Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
+                        
+                        {/* Image Number Badge - Large and Prominent */}
+                        <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-3 border-white/50 flex items-center justify-center shadow-lg">
+                          <span className="text-white text-xl font-bold">{i + 1}</span>
+                        </div>
+                        
+                        {/* Hover Info */}
+                        <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
+                          <div className="text-white text-center">
+                            <div className="text-lg font-semibold">Preview {i + 1}</div>
+                            <div className="text-sm opacity-80">Full-size project showcase</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Enhanced Glow Effect */}
+                      <div className="absolute -inset-3 bg-gradient-to-r from-blue-500/40 via-purple-500/40 to-pink-500/40 rounded-2xl blur-2xl opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
+                    </motion.div>
+                  ));
+                })()}
+              </div>
+              
+              {/* Enhanced Preview Label */}
+              <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
+                <div className="px-8 py-4 rounded-full bg-gradient-to-r from-blue-500/30 to-purple-500/30 backdrop-blur-sm border border-white/40 shadow-xl">
+                  <span className="text-white text-xl font-semibold">🚀 Project Preview</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Skills Section */}
       <section id="skills" className="py-16 px-4 sm:px-6 md:py-20">
@@ -1365,32 +1387,32 @@ const Index = () => {
             <p className={`${isDarkMode ? 'text-slate-300' : 'text-gray-600'} mb-6`}>Based on my experience across AI, RAG systems, data, and full-stack.</p>
             <div className={`${cardClasses} rounded-2xl border p-4 md:p-6 backdrop-blur-2xl`}
               style={{ backgroundImage: isDarkMode ? 'radial-gradient(1200px 300px at 10% -20%, rgba(255,255,255,0.06), transparent)' : 'none' }}>
-              <StaggerContainer staggerDelay={0.05} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" reducedMotion={prefersReducedMotion}>
-                {[
-                  { title: 'Full-Stack Developer', bullets: ['React, Node.js/Flask/FastAPI', 'REST APIs & Auth', 'PostgreSQL/MongoDB'], icon: '🧩' },
-                  { title: 'AI/ML Engineer', bullets: ['TensorFlow, PyTorch, Scikit-learn', 'Model training & deployment', 'MLOps basics on AWS'], icon: '🧠' },
-                  { title: 'Data Engineer', bullets: ['Hadoop, Hive, Kafka, Sqoop', 'ETL & Data Pipelines', 'Batch/Streaming'], icon: '🛠️' },
-                  { title: 'LLM/RAG Engineer', bullets: ['LangChain, FAISS, Vector DBs', 'Prompt Engineering & Evaluation', 'Context/Retrieval Pipelines'], icon: '🤖' },
-                  { title: 'Prompt Engineer', bullets: ['Prompt design & tuning', 'Guardrails & evaluation', 'Few-shot & RAG prompts'], icon: '✍️' },
-                  { title: 'Cloud Developer', bullets: ['AWS EC2/S3/Lambda', 'CI/CD & Git', 'CloudWatch monitoring'], icon: '☁️' },
-                  { title: 'Consultant', bullets: ['Requirements gathering', 'Stakeholder management', 'Solution design & docs'], icon: '🗂️' }
-                ].map((role, idx) => (
+            <StaggerContainer staggerDelay={0.05} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" reducedMotion={prefersReducedMotion}>
+              {[
+                { title: 'Full-Stack Developer', bullets: ['React, Node.js/Flask/FastAPI', 'REST APIs & Auth', 'PostgreSQL/MongoDB'], icon: '🧩' },
+                { title: 'AI/ML Engineer', bullets: ['TensorFlow, PyTorch, Scikit-learn', 'Model training & deployment', 'MLOps basics on AWS'], icon: '🧠' },
+                { title: 'Data Engineer', bullets: ['Hadoop, Hive, Kafka, Sqoop', 'ETL & Data Pipelines', 'Batch/Streaming'], icon: '🛠️' },
+                { title: 'LLM/RAG Engineer', bullets: ['LangChain, FAISS, Vector DBs', 'Prompt Engineering & Evaluation', 'Context/Retrieval Pipelines'], icon: '🤖' },
+                { title: 'Prompt Engineer', bullets: ['Prompt design & tuning', 'Guardrails & evaluation', 'Few-shot & RAG prompts'], icon: '✍️' },
+                { title: 'Cloud Developer', bullets: ['AWS EC2/S3/Lambda', 'CI/CD & Git', 'CloudWatch monitoring'], icon: '☁️' },
+                { title: 'Consultant', bullets: ['Requirements gathering', 'Stakeholder management', 'Solution design & docs'], icon: '🗂️' }
+              ].map((role, idx) => (
                   <StaggerItem key={idx} className={`${cardClasses} backdrop-blur-sm rounded-xl p-5 border hover:shadow-xl transition-all duration-300`} reducedMotion={prefersReducedMotion}>
-                    <div className="flex items-center mb-3">
-                      <span className="text-2xl mr-2">{role.icon}</span>
-                      <div className={`text-lg md:text-xl font-semibold ${isDarkMode ? 'text-slate-100' : 'text-gray-900'}`}>{role.title}</div>
-                    </div>
-                    <ul className="list-disc pl-5 space-y-1">
-                      {role.bullets.map((b, i) => (
-                        <li key={i} className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{b}</li>
-                      ))}
-                    </ul>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
+                  <div className="flex items-center mb-3">
+                    <span className="text-2xl mr-2">{role.icon}</span>
+                    <div className={`text-lg md:text-xl font-semibold ${isDarkMode ? 'text-slate-100' : 'text-gray-900'}`}>{role.title}</div>
+                  </div>
+                  <ul className="list-disc pl-5 space-y-1">
+                    {role.bullets.map((b, i) => (
+                      <li key={i} className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{b}</li>
+                    ))}
+                  </ul>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
             </div>
           </div>
-          </div>
+        </div>
       </section>
 
       {/* Honors & Awards and Certifications Section */}
@@ -1405,7 +1427,7 @@ const Index = () => {
                 <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${isDarkMode ? 'bg-gradient-to-r from-yellow-300 via-orange-300 to-red-300 bg-clip-text text-transparent' : 'text-gray-900'}`}>
                   {honorsTab === 'awards' ? 'Honors & Awards' : 'Certifications'}
                 </h2>
-              </div>
+                </div>
               <div className={`w-24 md:w-32 h-1 ${isDarkMode ? 'bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400' : 'bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500'} mx-auto mb-6`}></div>
               <p className={`text-lg md:text-xl ${isDarkMode ? 'text-slate-300' : 'text-gray-600'} max-w-3xl mx-auto`}>
                 {honorsTab === 'awards' 
@@ -1423,7 +1445,7 @@ const Index = () => {
                     { key: 'awards', label: '🏆 Awards', icon: Award },
                     { key: 'certs', label: '📜 Certifications', icon: CheckCircle }
                   ].map((tab) => (
-                    <button
+            <button
                       key={tab.key}
                       onClick={() => setHonorsTab(tab.key as 'awards' | 'certs')}
                       className={`relative px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${
@@ -1442,9 +1464,9 @@ const Index = () => {
                           transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                         />
                       )}
-                    </button>
+            </button>
                   ))}
-                </div>
+          </div>
               </div>
             </div>
           </div>
@@ -1559,7 +1581,7 @@ const Index = () => {
                         </a>
                       </div>
                     </div>
-                  </motion.div>
+                </motion.div>
                 ))}
               </>
             ) : (
@@ -1606,7 +1628,7 @@ const Index = () => {
                       </p>
                       
                       {/* Enhanced View Button */}
-                      {cert.link && (
+                    {cert.link && (
                         <div className="flex items-center justify-between">
                           <div className={`px-3 py-1.5 rounded-full text-xs font-semibold ${isDarkMode ? `bg-${cert.color}-500/20 text-${cert.color}-300 border border-${cert.color}-400/30` : `bg-${cert.color}-100 text-${cert.color}-700 border border-${cert.color}-300`}`}>
                             View Certificate
