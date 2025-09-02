@@ -405,7 +405,7 @@ const Index = () => {
         }}
       >
         <div className="w-full">
-          <div className={`mx-auto mt-3 mb-2 flex items-center justify-between gap-x-4 w-full max-w-6xl px-4 rounded-2xl backdrop-blur-2xl ${isDarkMode ? 'bg-black/70 ring-1 ring-white/10' : 'bg-black/80 ring-1 ring-black/40'} shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] py-2` }>
+          <div className={`mx-auto mt-3 mb-2 flex items-center justify-between gap-x-4 w-full max-w-6xl px-4 rounded-2xl backdrop-blur-2xl ${isDarkMode ? 'bg-black/70 ring-1 ring-white/10' : 'bg-white/80 ring-1 ring-slate-200/60'} shadow-[0_8px_24px_-8px_rgba(0,0,0,0.35)] py-2` }>
             {/* Logo - DHRUV */}
             <div className="mr-6 select-none">
               <span
@@ -714,11 +714,7 @@ const Index = () => {
                   <div className="text-2xl md:text-3xl font-extrabold text-white">Dhruv Mendiratta</div>
                   <div className="text-sm md:text-base text-slate-300 mt-1">AI Engineer • Full‑Stack Developer</div>
                 </div>
-                <div className="mt-4 flex flex-wrap justify-center gap-2">
-                  {['LLM/RAG', 'Full‑Stack', 'Cloud', 'Research'].map((chip, i) => (
-                    <span key={i} className="px-3 py-1 rounded-full text-xs font-semibold border border-white/10 bg-white/5 text-slate-200">{chip}</span>
-                  ))}
-                </div>
+
               </div>
                           </SlideIn>
 
@@ -729,23 +725,27 @@ const Index = () => {
                 reducedMotion={prefersReducedMotion}
               >
               <div className={`${cardClasses} rounded-[1.25rem] border p-6 md:p-8 backdrop-blur-2xl`}>
-                <h3 className="text-xl md:text-2xl font-bold mb-3">About me</h3>
-                <p className={`${isDarkMode ? 'text-gray-200' : 'text-gray-700'} text-base md:text-lg leading-relaxed mb-4`}>I'm Dhruv Mendiratta, an AI/ML and Full‑Stack developer focused on building reliable LLM/RAG systems and modern web apps.</p>
-                <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed mb-4`}>I’ve worked across LangChain, FAISS, Gemini, React, and FastAPI to ship practical AI experiences with strong retrieval and clean UIs.</p>
-                <p className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'} leading-relaxed`}>When I’m not shipping, I’m evaluating prompts, improving retrieval pipelines, and writing about things I learn.</p>
-                <div className="h-px my-6 bg-white/10" />
-                <div className="grid sm:grid-cols-3 gap-3">
-                  {[
-                    { icon: Brain, title: 'AI & RAG' },
-                    { icon: Code, title: 'Full‑Stack' },
-                    { icon: BookOpen, title: 'Research' }
-                  ].map((i, idx) => (
-                    <div key={idx} className="flex items-center justify-center gap-2 py-2 rounded-lg bg-white/5 border border-white/10">
-                      <i.icon className="w-5 h-5 text-slate-200" />
-                      <span className="text-sm text-slate-200">{i.title}</span>
-                    </div>
-                  ))}
-                </div>
+                                 <h3 className="text-xl md:text-2xl font-bold mb-3">About me</h3>
+                 <p className={`${isDarkMode ? 'text-gray-200' : 'text-gray-700'} text-base md:text-lg leading-relaxed mb-4`}>I'm Dhruv Mendiratta, a final‑year CSE student and practitioner across Data Visualization & Analytics, AI/ML, Full‑Stack, and Cloud.</p>
+                 <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed mb-4`}>I build data‑driven products end‑to‑end—dashboards and storytelling (PowerBI, Chart.js), analytics pipelines (Python, Pandas, SQL), and scalable web apps (React, FastAPI) deployed to cloud.</p>
+                 <p className={`${isDarkMode ? 'text-gray-300' : 'text-gray-600'} leading-relaxed mb-4`}>On the AI side, I focus on practical LLM/RAG systems (LangChain, FAISS, Gemini) with strong retrieval, evaluation, and prompt design.</p>
+                 <p className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'} leading-relaxed`}>I enjoy consulting with stakeholders, clarifying scope, and delivering clear docs and demos that align with business outcomes.</p>
+                 <div className="h-px my-6 bg-white/10" />
+                 <div className="grid sm:grid-cols-2 gap-3">
+                   {[ 
+                     'Data Visualization & Storytelling',
+                     'Analytics & Insights (Python/SQL)',
+                     'Dashboards (PowerBI/Chart.js)',
+                     'LLM/RAG Engineering',
+                     'Full‑Stack (React • FastAPI)',
+                     'Cloud & CI/CD (AWS • Git)'
+                   ].map((title, idx) => (
+                     <div key={idx} className="flex items-center gap-2 py-2 px-3 rounded-lg bg-white/5 border border-white/10">
+                       <span className="w-1.5 h-1.5 rounded-full bg-white/70" />
+                       <span className="text-sm text-slate-200">{title}</span>
+                     </div>
+                   ))}
+                 </div>
               </div>
             </SlideIn>
           </div>
