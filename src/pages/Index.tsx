@@ -852,14 +852,31 @@ const Index = () => {
                   <div className={`absolute -inset-1 rounded-full blur-lg ${isDarkMode ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 opacity-30' : 'bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 opacity-40'}`} />
                   <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-gray-800' : 'bg-white'} flex items-center justify-center text-4xl relative`}>
                     <img 
-                      src={dhruvProfilePic} 
+                      src={dhruvNormalPic} 
                       alt="Dhruv Mendiratta" 
-                      className="rounded-full w-full h-full object-cover shadow-[0_10px_30px_-12px_rgba(59,130,246,0.55)]"
+                      className="rounded-full w-full h-full object-cover object-center shadow-[0_10px_30px_-12px_rgba(59,130,246,0.55)]"
+                      style={{ objectPosition: 'center top' }}
                     />
                     {/* spinning subtle outer ring */}
                     <div className="absolute -inset-0.5 rounded-full pointer-events-none" style={{ border: isDarkMode ? '1px solid rgba(99,102,241,0.35)' : '1px solid rgba(59,130,246,0.35)' }} />
                   </div>
                 </div>
+                
+                {/* GitHub Logo in the right section */}
+                <motion.div 
+                  className="absolute -right-2 -top-2 md:-right-4 md:-top-4"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                >
+                  <a 
+                    href="https://github.com/dhruvm-18" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={`flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg transition-all duration-300 ${isDarkMode ? 'bg-gray-800 hover:bg-gray-700 border border-gray-600' : 'bg-white hover:bg-gray-50 border border-gray-200'}`}
+                  >
+                    <Github className={`w-5 h-5 md:w-6 md:h-6 ${isDarkMode ? 'text-white' : 'text-gray-800'}`} />
+                  </a>
+                </motion.div>
               </div>
               {/* Info */}
               <div className="flex-1 text-left flex flex-col justify-center items-center md:items-start">
@@ -965,7 +982,7 @@ const Index = () => {
                 duration={0.8}
                 reducedMotion={prefersReducedMotion}
               >
-              <div className={`${cardClasses} rounded-[1.25rem] border p-6 md:p-8 mb-6 backdrop-blur-2xl flex flex-col items-center text-center`}>
+              <div className={`${cardClasses} rounded-[1.25rem] border p-6 md:p-8 mb-6 backdrop-blur-2xl flex flex-col items-center text-center relative`}>
                 <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-xl overflow-hidden ring-1 ring-white/10 shadow-2xl">
                   <img src={dhruvNormalPic} alt="Dhruv Mendiratta" className="w-full h-full object-cover" />
                     </div>
