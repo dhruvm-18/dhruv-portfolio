@@ -1447,35 +1447,115 @@ const Index = () => {
           </StaggerContainer>
           </div>
 
-          {/* Roles grid derived from skills */}
-          <div className="mt-12">
-            <h3 className={`text-2xl md:text-3xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Roles I Can Excel In</h3>
-            <p className={`${isDarkMode ? 'text-slate-300' : 'text-gray-600'} mb-6`}>Based on my experience across AI, RAG systems, data, and full-stack.</p>
-            <div className={`${cardClasses} rounded-2xl border p-4 md:p-6 backdrop-blur-2xl`}
-              style={{ backgroundImage: isDarkMode ? 'radial-gradient(1200px 300px at 10% -20%, rgba(255,255,255,0.06), transparent)' : 'none' }}>
-            <StaggerContainer staggerDelay={0.05} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" reducedMotion={prefersReducedMotion}>
+          {/* Enhanced Professional Roles Section */}
+          <div className="mt-16">
+            <div className="text-center mb-12">
+              <h3 className={`text-3xl md:text-4xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                Professional Roles & Expertise
+              </h3>
+              <p className={`text-lg ${isDarkMode ? 'text-slate-300' : 'text-gray-600'} max-w-3xl mx-auto`}>
+                Strategic positions where I can deliver exceptional value through technical expertise and business acumen
+              </p>
+              <div className={`w-24 h-1 ${isDarkMode ? 'bg-gradient-to-r from-blue-400 to-indigo-400' : 'bg-gradient-to-r from-blue-500 to-indigo-500'} mx-auto mt-6`}></div>
+            </div>
+            
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {[
-                { title: 'Full-Stack Developer', bullets: ['React, Node.js/Flask/FastAPI', 'REST APIs & Auth', 'PostgreSQL/MongoDB'], icon: '🧩' },
-                { title: 'AI/ML Engineer', bullets: ['TensorFlow, PyTorch, Scikit-learn', 'Model training & deployment', 'MLOps basics on AWS'], icon: '🧠' },
-                { title: 'Data Engineer', bullets: ['Hadoop, Hive, Kafka, Sqoop', 'ETL & Data Pipelines', 'Batch/Streaming'], icon: '🛠️' },
-                { title: 'LLM/RAG Engineer', bullets: ['LangChain, FAISS, Vector DBs', 'Prompt Engineering & Evaluation', 'Context/Retrieval Pipelines'], icon: '🤖' },
-                { title: 'Prompt Engineer', bullets: ['Prompt design & tuning', 'Guardrails & evaluation', 'Few-shot & RAG prompts'], icon: '✍️' },
-                { title: 'Cloud Developer', bullets: ['AWS EC2/S3/Lambda', 'CI/CD & Git', 'CloudWatch monitoring'], icon: '☁️' },
-                { title: 'Consultant', bullets: ['Requirements gathering', 'Stakeholder management', 'Solution design & docs'], icon: '🗂️' }
+                { 
+                  title: 'Full-Stack Developer', 
+                  description: 'End-to-end web application development with modern frameworks and scalable architectures',
+                  skills: ['React & Node.js', 'FastAPI & Flask', 'REST APIs & Authentication', 'PostgreSQL & MongoDB', 'CI/CD & Deployment'],
+                  gradient: 'from-blue-500 to-cyan-500',
+                  icon: Code
+                },
+                { 
+                  title: 'AI/ML Engineer', 
+                  description: 'Machine learning model development, training, and production deployment',
+                  skills: ['TensorFlow & PyTorch', 'Scikit-learn & Pandas', 'Model Training & Optimization', 'MLOps & AWS SageMaker', 'Performance Evaluation'],
+                  gradient: 'from-purple-500 to-pink-500',
+                  icon: Brain
+                },
+                { 
+                  title: 'Data Engineer', 
+                  description: 'Building robust data pipelines and infrastructure for analytics and ML workflows',
+                  skills: ['Hadoop & Spark', 'Kafka & Hive', 'ETL & Data Pipelines', 'Batch & Streaming', 'Data Quality & Governance'],
+                  gradient: 'from-emerald-500 to-teal-500',
+                  icon: Zap
+                },
+                { 
+                  title: 'LLM/RAG Engineer', 
+                  description: 'Specialized in Large Language Models and Retrieval-Augmented Generation systems',
+                  skills: ['LangChain & FAISS', 'Vector Databases', 'Prompt Engineering', 'Context Retrieval', 'RAG Evaluation'],
+                  gradient: 'from-indigo-500 to-purple-500',
+                  icon: Users
+                },
+                { 
+                  title: 'Prompt Engineer', 
+                  description: 'Designing effective prompts and guardrails for AI model interactions',
+                  skills: ['Prompt Design', 'Few-shot Learning', 'Guardrails & Safety', 'Evaluation Metrics', 'A/B Testing'],
+                  gradient: 'from-orange-500 to-red-500',
+                  icon: BookOpen
+                },
+                { 
+                  title: 'Cloud Developer', 
+                  description: 'Cloud-native application development and infrastructure management',
+                  skills: ['AWS Services', 'EC2, S3, Lambda', 'CI/CD & Git', 'CloudWatch & Monitoring', 'Serverless Architecture'],
+                  gradient: 'from-sky-500 to-blue-500',
+                  icon: Briefcase
+                },
+                { 
+                  title: 'Technical Consultant', 
+                  description: 'Strategic technology consulting and solution architecture',
+                  skills: ['Requirements Analysis', 'Solution Design', 'Stakeholder Management', 'Technical Documentation', 'Project Delivery'],
+                  gradient: 'from-rose-500 to-pink-500',
+                  icon: User
+                }
               ].map((role, idx) => (
-                  <StaggerItem key={idx} className={`${cardClasses} backdrop-blur-sm rounded-xl p-5 border hover:shadow-xl transition-all duration-300`} reducedMotion={prefersReducedMotion}>
-                  <div className="flex items-center mb-3">
-                    <span className="text-2xl mr-2">{role.icon}</span>
-                    <div className={`text-lg md:text-xl font-semibold ${isDarkMode ? 'text-slate-100' : 'text-gray-900'}`}>{role.title}</div>
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className={`${cardClasses} backdrop-blur-2xl rounded-2xl border overflow-hidden group relative`}
+                >
+                  {/* Gradient Top Border */}
+                  <div className={`h-1 bg-gradient-to-r ${role.gradient}`} />
+                  
+                  {/* Content */}
+                  <div className="p-6 md:p-8">
+                    {/* Header with Icon */}
+                    <div className="flex items-center mb-4">
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${role.gradient} flex items-center justify-center shadow-lg mr-4`}>
+                        <role.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <h4 className={`text-xl md:text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                        {role.title}
+                      </h4>
+                    </div>
+                    
+                    {/* Description */}
+                    <p className={`text-sm md:text-base mb-6 ${isDarkMode ? 'text-slate-300' : 'text-gray-600'} leading-relaxed`}>
+                      {role.description}
+                    </p>
+                    
+                    {/* Skills List */}
+                    <div className="space-y-3">
+                      {role.skills.map((skill, i) => (
+                        <div key={i} className="flex items-center">
+                          <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${role.gradient} mr-3 flex-shrink-0`} />
+                          <span className={`text-sm ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>
+                            {skill}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* Hover Effect Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
-                  <ul className="list-disc pl-5 space-y-1">
-                    {role.bullets.map((b, i) => (
-                      <li key={i} className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{b}</li>
-                    ))}
-                  </ul>
-                </StaggerItem>
+                </motion.div>
               ))}
-            </StaggerContainer>
             </div>
           </div>
         </div>
