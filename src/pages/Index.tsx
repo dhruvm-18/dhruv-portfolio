@@ -40,6 +40,7 @@ const Index = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [skillsTab, setSkillsTab] = useState<'All' | 'AI/ML' | 'Full‑Stack' | 'Analytics' | 'Cloud/DevOps' | 'Other'>('All');
   const [activeProjectPreview, setActiveProjectPreview] = useState<Project | null>(null);
+  const [isOverlayHovered, setIsOverlayHovered] = useState(false);
 
   const rotatingRoles = useMemo(() => [
     'Full-Stack Developer',
@@ -1182,29 +1183,36 @@ const Index = () => {
               >
                 <div 
                   className={`${cardClasses} rounded-2xl overflow-hidden border group flex flex-col transition-all duration-300 hover:scale-[1.01] w-full h-full`}
-                  onMouseEnter={() => setActiveProjectPreview(project)}
-                  onMouseLeave={() => setActiveProjectPreview(null)}
+                  onMouseEnter={() => {
+                    setTimeout(() => setActiveProjectPreview(project), 100);
+                  }}
+                  onMouseLeave={() => {
+                    setTimeout(() => setActiveProjectPreview(null), 300);
+                  }}
                 >
-                {/* Top: Light area */}
-                <div className="relative h-40 md:h-48 overflow-hidden">
+                {/* Top: Image area - auto height */}
+                <div className="relative overflow-hidden">
                       <LazyImage 
                         src={project.image} 
                         alt={project.title} 
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
                         placeholder="/placeholder.jpg"
                       />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between z-10">
-                    <div className="text-white font-bold text-lg md:text-xl drop-shadow">{project.title}</div>
-                    {project.link && (
-                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="ml-2">
-                        <Github className="w-7 h-7 text-white/90 hover:text-white transition" />
-                      </a>
-                    )}
-                  </div>
                 </div>
                 {/* Bottom: Content */}
                 <div className="p-5 md:p-6 flex-1 flex flex-col justify-between">
+                  {/* Project Title and GitHub Link */}
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className={`text-lg md:text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'} line-clamp-2`}>
+                      {project.title}
+                    </h3>
+                    {project.link && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="ml-3 flex-shrink-0">
+                        <Github className="w-6 h-6 text-slate-400 hover:text-slate-200 transition-colors" />
+                      </a>
+                    )}
+                  </div>
+                  
                   <div className={`text-sm md:text-base ${isDarkMode ? 'text-slate-300' : 'text-gray-700'} mb-3`}>{project.description}</div>
                   <div className="flex flex-wrap gap-2">
                     {project.tech.slice(0, 6).map((tech, i) => (
@@ -1230,7 +1238,15 @@ const Index = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            onMouseLeave={() => setActiveProjectPreview(null)}
+            onMouseEnter={() => setIsOverlayHovered(true)}
+            onMouseLeave={() => {
+              setIsOverlayHovered(false);
+              setTimeout(() => {
+                if (!isOverlayHovered) {
+                  setActiveProjectPreview(null);
+                }
+              }, 100);
+            }}
           >
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
