@@ -413,12 +413,12 @@ const Index = () => {
     // Data Tools
     Pandas: devicon('pandas'),
     NumPy: devicon('numpy'),
-    Matplotlib: simple('matplotlib'),
+    Matplotlib: null,
     GARCH: simple('apachespark'),
     'Data Preprocessing': simple('databricks'),
-    'Exploratory Data Analysis (EDA)': simple('tableau'),
-    Tableau: simple('tableau'),
-    'Power BI': simple('powerbi'),
+    'Exploratory Data Analysis (EDA)': null,
+    Tableau: null,
+    'Power BI': null,
     'Data Management': simple('googlecloud'),
     'Data Governance': simple('hashicorp'),
 
@@ -1254,13 +1254,13 @@ const Index = () => {
                 <div className="flex items-center mb-3 md:mb-4">
                   <span className={`text-base md:text-lg font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{group.category}</span>
                 </div>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-2">
+                <ul className="flex flex-wrap gap-1.5 md:gap-2">
                   {group.skills.map((skill, i) => (
-                    <li key={i} className={`group w-full flex items-start gap-2 px-2 py-1.5 rounded-lg border ${isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/90 border-gray-200 hover:bg-white'} transition min-h-10 overflow-hidden` }>
+                    <li key={i} className={`group flex items-center gap-2 px-3 py-1.5 rounded-lg border ${isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/90 border-gray-200 hover:bg-white'} transition whitespace-nowrap` }>
                       <span className="shrink-0 mt-[1px]">
                         <Logo name={skill} categoryIcon={group.icon as string} />
                       </span>
-                      <span className={`min-w-0 break-words whitespace-normal text-xs md:text-sm leading-snug pr-1 ${isDarkMode ? 'text-slate-200' : 'text-gray-800'}`}>{skill}</span>
+                      <span className={`text-xs md:text-sm ${isDarkMode ? 'text-slate-200' : 'text-gray-800'}`}>{skill}</span>
                     </li>
                   ))}
                 </ul>
