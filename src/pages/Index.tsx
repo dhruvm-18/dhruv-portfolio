@@ -381,7 +381,8 @@ const Index = () => {
 
   // --- Icon sources (Devicon / Simple Icons) ---------------------------------
   const devicon = useCallback((slug: string) => `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${slug}/${slug}-original.svg`, []);
-  const simple = useCallback((slug: string) => `https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${slug}.svg`, []);
+  // Use colored Simple Icons CDN so logos are not monochrome/black
+  const simple = useCallback((slug: string) => `https://cdn.simpleicons.org/${slug}`, []);
 
   const logoMap: Record<string, string> = useMemo(() => ({
     // Programming
@@ -1255,9 +1256,9 @@ const Index = () => {
                 <div className="flex items-center mb-3 md:mb-4">
                   <span className={`text-base md:text-lg font-semibold ${isDarkMode ? 'text-slate-200' : 'text-gray-900'}`}>{group.category}</span>
                 </div>
-                <ul className="flex flex-col gap-1.5 md:gap-2">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-2">
                   {group.skills.map((skill, i) => (
-                    <li key={i} className={`group flex items-center gap-2 px-2 py-1.5 rounded-lg border ${isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-blue-50/60 border-blue-200/60 hover:bg-blue-100/70'} transition` }>
+                    <li key={i} className={`group flex items-center gap-2 px-2 py-1.5 rounded-lg border ${isDarkMode ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/80 border-gray-200 hover:bg-white'} transition h-9` }>
                       <span className="shrink-0">
                         <Logo name={skill} categoryIcon={group.icon as string} />
                       </span>
