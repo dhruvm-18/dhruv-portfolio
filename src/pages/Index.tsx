@@ -22,6 +22,44 @@ const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [honorsTab, setHonorsTab] = useState<'awards' | 'certs'>('awards');
   const [projectFilter, setProjectFilter] = useState('All');
+  const [typewriterIndex, setTypewriterIndex] = useState(0);
+  const [typewriterText, setTypewriterText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const rotatingRoles = useMemo(() => [
+    'LLMs & RAG Systems Engineer',
+    'Full-Stack Developer',
+    'AI/ML Engineer',
+    'Data Engineer',
+    'Prompt Engineer',
+    'MLOps Practitioner'
+  ], []);
+
+  useEffect(() => {
+    const current = rotatingRoles[typewriterIndex % rotatingRoles.length];
+    const delta = isDeleting ? 40 : 90;
+
+    const handler = setTimeout(() => {
+      if (!isDeleting) {
+        // typing
+        const next = current.slice(0, typewriterText.length + 1);
+        setTypewriterText(next);
+        if (next === current) {
+          setIsDeleting(true);
+        }
+      } else {
+        // deleting
+        const next = current.slice(0, typewriterText.length - 1);
+        setTypewriterText(next);
+        if (next.length === 0) {
+          setIsDeleting(false);
+          setTypewriterIndex((i) => (i + 1) % rotatingRoles.length);
+        }
+      }
+    }, typewriterText.length === 0 && !isDeleting ? 400 : delta);
+
+    return () => clearTimeout(handler);
+  }, [typewriterText, isDeleting, typewriterIndex, rotatingRoles]);
 
   // Performance optimizations
   const { scrollY, isScrolling } = useOptimizedScroll({ throttleMs: 16 });
@@ -583,11 +621,14 @@ const Index = () => {
                   </h1>
                   <Badge className={`bg-gradient-to-r ${isDarkMode ? 'from-gray-700 via-gray-600 to-gray-800 text-gray-200 border-gray-500/40' : 'from-gray-100 via-gray-50 to-white text-gray-700 border-gray-300'} text-base md:text-lg px-3 py-1 rounded-full shadow-md animate-bounce-slow`}>AI Engineer</Badge>
                 </div>
-                <p className={`text-base md:text-xl mb-4 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>LLMs & RAG Systems | Full-Stack Developer</p>
-                <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 text-sm md:text-base">
-                  <span className={`flex items-center font-semibold ${isDarkMode ? 'text-green-400' : 'text-green-600'}`}> <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div> Available for work </span>
-                  <span className={`${isDarkMode ? 'text-slate-400' : 'text-gray-500'} font-semibold`}>🕐 Delhi, India (IST)</span>
-                </div>
+                {/* Replaced static subtitle with typewriter */}
+                <p className={`text-base md:text-xl mb-4 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>
+                  <span className={`${isDarkMode ? 'text-blue-300' : 'text-blue-700'} font-semibold`}>{typewriterText}</span>
+                  <span className={`ml-1 inline-block w-[10px] md:w-[12px] h-[1.2em] align-[-0.1em] ${isDarkMode ? 'bg-blue-300' : 'bg-blue-700'}`} style={{
+                    maskImage: 'linear-gradient(90deg, transparent 0, #000 0)',
+                    WebkitMaskImage: 'linear-gradient(90deg, transparent 0, #000 0)'
+                  }} />
+                </p>
                 {/* Modern, neutral buttons */}
                 <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-6">
                   <Button asChild className={`rounded-full px-6 py-2 font-semibold ${isDarkMode ? 'bg-blue-700 hover:bg-blue-600 text-white' : 'bg-slate-200 hover:bg-slate-300 text-blue-900'} transition`}>
@@ -668,7 +709,7 @@ const Index = () => {
                 My technical foundation is strengthened by my <span className="font-semibold text-white dark:text-white">Cloud Computing internship at Deloitte</span>, where I gained expertise in AWS services and cloud-native architecture. I've also published <span className="font-semibold text-white dark:text-white">3 research papers</span> in applied deep learning, covering innovations in CNNs, GANs, and hybrid LSTM-GRU models for finance and medical imaging applications.
               </p>
                 <p className={`text-lg leading-relaxed mb-8 ${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>
-                Thanks for stopping by! Check out my resume and projects to learn more. Let’s connect if you're up for a collaboration or tech chat!
+                Thanks for stopping by! Check out my resume and projects to learn more. Let's connect if you're up for a collaboration or tech chat!
               </p>
               
               <div className="grid grid-cols-2 gap-6">
@@ -969,6 +1010,35 @@ const Index = () => {
               </StaggerItem>
             ))}
           </StaggerContainer>
+
+          {/* Roles grid derived from skills */}
+          <div className="mt-12">
+            <h3 className={`text-2xl md:text-3xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Roles I Can Excel In</h3>
+            <p className={`${isDarkMode ? 'text-slate-300' : 'text-gray-600'} mb-6`}>Based on my experience across AI, RAG systems, data, and full-stack.</p>
+            <StaggerContainer staggerDelay={0.05} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" reducedMotion={prefersReducedMotion}>
+              {[
+                { title: 'LLM/RAG Engineer', bullets: ['LangChain, FAISS, Vector DBs', 'Prompt Engineering & Evaluation', 'Context/Retrieval Pipelines'], icon: '🤖' },
+                { title: 'AI/ML Engineer', bullets: ['TensorFlow, PyTorch, Scikit-learn', 'Model training & deployment', 'MLOps basics on AWS'], icon: '🧠' },
+                { title: 'Full-Stack Developer', bullets: ['React, Node.js/Flask/FastAPI', 'REST APIs & Auth', 'PostgreSQL/MongoDB'], icon: '🧩' },
+                { title: 'Data Engineer', bullets: ['Hadoop, Hive, Kafka, Sqoop', 'ETL & Data Pipelines', 'Batch/Streaming'], icon: '🛠️' },
+                { title: 'Data Analyst/Scientist', bullets: ['Pandas, NumPy, Matplotlib', 'EDA & Preprocessing', 'Power BI/Tableau'], icon: '📊' },
+                { title: 'Cloud/DevOps (Foundational)', bullets: ['AWS EC2/S3/Lambda', 'CI/CD & Git', 'Monitoring with CloudWatch'], icon: '☁️' },
+                { title: 'Consultant', bullets: ['Requirements gathering', 'Stakeholder management', 'Solution design & docs'], icon: '🗂️' }
+              ].map((role, idx) => (
+                <StaggerItem key={idx} className={`${cardClasses} rounded-xl p-5 border hover:shadow-xl transition-all`} reducedMotion={prefersReducedMotion}>
+                  <div className="flex items-center mb-3">
+                    <span className="text-2xl mr-2">{role.icon}</span>
+                    <div className={`text-lg md:text-xl font-semibold ${isDarkMode ? 'text-slate-100' : 'text-gray-900'}`}>{role.title}</div>
+                  </div>
+                  <ul className="list-disc pl-5 space-y-1">
+                    {role.bullets.map((b, i) => (
+                      <li key={i} className={`${isDarkMode ? 'text-slate-300' : 'text-gray-700'}`}>{b}</li>
+                    ))}
+                  </ul>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
         </div>
       </section>
 
