@@ -1186,12 +1186,19 @@ const Index = () => {
                   {/* Project Preview Overlay - Appears on Main Page */}
                   <div className="fixed inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none z-50">
                     {/* Background Overlay */}
-                    <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
                     
-                    {/* Preview Images Container - Centered on Page */}
-                    <div className="absolute inset-0 flex items-center justify-center p-8">
-                      <div className="bg-black/40 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl max-w-6xl w-full">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full">
+                    {/* Preview Images Container - Full Width Layout */}
+                    <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8">
+                      <div className="bg-black/50 backdrop-blur-xl rounded-3xl p-6 md:p-8 border border-white/30 shadow-2xl w-full max-w-7xl">
+                        {/* Header */}
+                        <div className="text-center mb-6">
+                          <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{project.title}</h3>
+                          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"></div>
+                        </div>
+                        
+                        {/* Full Width Image Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full">
                           {(() => {
                             // Use specific images for UKP and Crisis Report projects
                             let previewImages: string[] = [];
@@ -1207,44 +1214,59 @@ const Index = () => {
                             return previewImages.map((img, i) => (
                               <motion.div
                                 key={i}
-                                initial={{ scale: 0.6, opacity: 0, y: 20 }}
+                                initial={{ scale: 0.7, opacity: 0, y: 30 }}
                                 animate={{ scale: 1, opacity: 1, y: 0 }}
                                 transition={{ 
-                                  duration: 0.5, 
-                                  delay: i * 0.15,
+                                  duration: 0.6, 
+                                  delay: i * 0.2,
                                   ease: "easeOut"
                                 }}
                                 className="relative group/image"
                               >
-                                {/* Image Container with Enhanced Styling */}
-                                <div className="relative overflow-hidden rounded-2xl ring-2 ring-white/30 shadow-2xl bg-white/10 backdrop-blur-sm">
+                                {/* Image Container - Full Width */}
+                                <div className="relative overflow-hidden rounded-2xl ring-2 ring-white/40 shadow-2xl bg-white/5 backdrop-blur-sm">
                                   <LazyImage 
                                     src={img} 
                                     alt={`${project.title} preview ${i+1}`} 
-                                    className="w-full h-40 md:h-48 object-cover transition-all duration-500 group-hover/image:scale-105" 
+                                    className="w-full h-48 md:h-64 object-cover transition-all duration-500 group-hover/image:scale-110" 
                                     placeholder="/placeholder.jpg" 
                                   />
                                   
-                                  {/* Image Overlay */}
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
+                                  {/* Enhanced Image Overlay */}
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
                                   
-                                  {/* Image Number Badge */}
-                                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
-                                    <span className="text-white text-sm font-bold">{i + 1}</span>
+                                  {/* Image Number Badge - More Prominent */}
+                                  <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-2 border-white/50 flex items-center justify-center shadow-lg">
+                                    <span className="text-white text-lg font-bold">{i + 1}</span>
+                                  </div>
+                                  
+                                  {/* Hover Info */}
+                                  <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
+                                    <div className="text-white text-center">
+                                      <div className="text-sm font-medium">Preview {i + 1}</div>
+                                      <div className="text-xs opacity-80">Click to view larger</div>
+                                    </div>
                                   </div>
                                 </div>
                                 
-                                {/* Subtle Glow Effect */}
-                                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-lg opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
+                                {/* Enhanced Glow Effect */}
+                                <div className="absolute -inset-2 bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-pink-500/30 rounded-2xl blur-xl opacity-0 group-hover/image:opacity-100 transition-opacity duration-500" />
                               </motion.div>
                             ));
                           })()}
                         </div>
                         
-                        {/* Preview Label */}
-                        <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
-                          <div className="px-6 py-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30">
-                            <span className="text-white text-lg font-medium">Project Preview</span>
+                        {/* Enhanced Preview Label */}
+                        <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
+                          <div className="px-8 py-4 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-white/30 shadow-xl">
+                            <span className="text-white text-xl font-semibold">🚀 Project Preview</span>
+                          </div>
+                        </div>
+                        
+                        {/* Close Hint */}
+                        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+                          <div className="px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+                            <span className="text-white/80 text-sm">Move mouse away to close</span>
                           </div>
                         </div>
                       </div>
