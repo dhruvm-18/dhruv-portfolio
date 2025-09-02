@@ -513,7 +513,7 @@ const Index = () => {
           className="absolute inset-0"
           initial={false}
         >
-          <div className={`absolute inset-0 ${isDarkMode ? 'bg-gradient-to-r from-blue-900/30 to-indigo-900/30' : 'bg-gradient-to-r from-blue-100/30 to-indigo-100/30'}`} />
+          <div className={`absolute inset-0 ${isDarkMode ? 'bg-black' : 'bg-gradient-to-r from-blue-100/30 to-indigo-100/30'}`} />
 
           {/* Animated code snippets background */}
           {[
