@@ -852,31 +852,14 @@ const Index = () => {
                   <div className={`absolute -inset-1 rounded-full blur-lg ${isDarkMode ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 opacity-30' : 'bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 opacity-40'}`} />
                   <div className={`w-full h-full rounded-full ${isDarkMode ? 'bg-gray-800' : 'bg-white'} flex items-center justify-center text-4xl relative`}>
                     <img 
-                      src={dhruvNormalPic} 
+                      src={dhruvProfilePic} 
                       alt="Dhruv Mendiratta" 
-                      className="rounded-full w-full h-full object-cover object-center shadow-[0_10px_30px_-12px_rgba(59,130,246,0.55)]"
-                      style={{ objectPosition: 'center top' }}
+                      className="rounded-full w-full h-full object-cover shadow-[0_10px_30px_-12px_rgba(59,130,246,0.55)]"
                     />
                     {/* spinning subtle outer ring */}
                     <div className="absolute -inset-0.5 rounded-full pointer-events-none" style={{ border: isDarkMode ? '1px solid rgba(99,102,241,0.35)' : '1px solid rgba(59,130,246,0.35)' }} />
                   </div>
                 </div>
-                
-                {/* GitHub Logo in the right section */}
-                <motion.div 
-                  className="absolute -right-2 -top-2 md:-right-4 md:-top-4"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                >
-                  <a 
-                    href="https://github.com/dhruvm-18" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className={`flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg transition-all duration-300 ${isDarkMode ? 'bg-gray-800 hover:bg-gray-700 border border-gray-600' : 'bg-white hover:bg-gray-50 border border-gray-200'}`}
-                  >
-                    <Github className={`w-5 h-5 md:w-6 md:h-6 ${isDarkMode ? 'text-white' : 'text-gray-800'}`} />
-                  </a>
-                </motion.div>
               </div>
               {/* Info */}
               <div className="flex-1 text-left flex flex-col justify-center items-center md:items-start">
@@ -982,7 +965,7 @@ const Index = () => {
                 duration={0.8}
                 reducedMotion={prefersReducedMotion}
               >
-              <div className={`${cardClasses} rounded-[1.25rem] border p-6 md:p-8 mb-6 backdrop-blur-2xl flex flex-col items-center text-center relative`}>
+              <div className={`${cardClasses} rounded-[1.25rem] border p-6 md:p-8 mb-6 backdrop-blur-2xl flex flex-col items-center text-center`}>
                 <div className="relative w-40 h-40 md:w-56 md:h-56 rounded-xl overflow-hidden ring-1 ring-white/10 shadow-2xl">
                   <img src={dhruvNormalPic} alt="Dhruv Mendiratta" className="w-full h-full object-cover" />
                     </div>
@@ -1194,15 +1177,20 @@ const Index = () => {
             {filteredProjects.map((project, index) => (
               <StaggerItem
                 key={index}
-                className={`${cardClasses} rounded-2xl overflow-hidden border group flex flex-col transition-all duration-300 hover:scale-[1.01]`}
+                className="w-full h-full"
                 reducedMotion={prefersReducedMotion}
               >
+                <div 
+                  className={`${cardClasses} rounded-2xl overflow-hidden border group flex flex-col transition-all duration-300 hover:scale-[1.01] w-full h-full`}
+                  onMouseEnter={() => setActiveProjectPreview(project)}
+                  onMouseLeave={() => setActiveProjectPreview(null)}
+                >
                 {/* Top: Light area */}
                 <div className="relative h-40 md:h-48 overflow-hidden">
                       <LazyImage 
                         src={project.image} 
                         alt={project.title} 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         placeholder="/placeholder.jpg"
                       />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -1213,15 +1201,6 @@ const Index = () => {
                         <Github className="w-7 h-7 text-white/90 hover:text-white transition" />
                       </a>
                     )}
-                  </div>
-                  {/* Project Preview Button - Triggers overlay */}
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                    <button
-                      onClick={() => setActiveProjectPreview(project)}
-                      className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-bold text-lg rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white/20 backdrop-blur-sm"
-                    >
-                      🚀 View Full Preview
-                    </button>
                   </div>
                 </div>
                 {/* Bottom: Content */}
@@ -1235,33 +1214,108 @@ const Index = () => {
                     ))}
                   </div>
                 </div>
+                </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
         </div>
       </section>
 
-      {/* Project Preview Overlay - Page Level */}
-      {activeProjectPreview && (
-        <div className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-2xl">
-          <div className="absolute inset-0 flex items-center justify-center p-4 md:p-8">
-            <div className="bg-black/70 backdrop-blur-3xl rounded-3xl p-6 md:p-8 border border-white/30 shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-y-auto relative">
-              {/* Close Button */}
-              <button
-                onClick={() => setActiveProjectPreview(null)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-red-500/80 hover:bg-red-500 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 z-10"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              
-              {/* Header */}
-              <div className="text-center mb-8">
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">{activeProjectPreview.title}</h3>
-                <div className="w-32 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"></div>
-              </div>
-              
-              {/* Full Size Image Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 w-full">
+      {/* Full-Screen Project Preview Overlay - Anime Style */}
+      <AnimatePresence>
+        {activeProjectPreview && (
+          <motion.div 
+            className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-3xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onMouseLeave={() => setActiveProjectPreview(null)}
+          >
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20" />
+              <div className="absolute inset-0" style={{
+                backgroundImage: `radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), 
+                                 radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.1) 0%, transparent 50%)`
+              }} />
+            </div>
+
+            <motion.div 
+              className="absolute inset-0 flex items-center justify-center p-4 md:p-8"
+              initial={{ scale: 0.8, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.8, y: 50 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 30,
+                mass: 0.8
+              }}
+            >
+              <div className="bg-black/80 backdrop-blur-3xl rounded-3xl p-6 md:p-8 border border-white/20 shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-y-auto relative">
+                {/* Animated Close Button */}
+                <motion.button
+                  onClick={() => setActiveProjectPreview(null)}
+                  className="absolute top-4 right-4 w-12 h-12 rounded-full bg-red-500/80 hover:bg-red-500 text-white flex items-center justify-center transition-all duration-300 z-10"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X className="w-6 h-6" />
+                </motion.button>
+                
+                {/* Animated Header */}
+                <motion.div 
+                  className="text-center mb-8"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                >
+                  <h3 className="text-3xl md:text-5xl font-bold text-white mb-4">{activeProjectPreview.title}</h3>
+                  <motion.div 
+                    className="w-32 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: 128 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                  />
+                  <motion.p 
+                    className="text-gray-300 mt-4 text-lg max-w-3xl mx-auto"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6, duration: 0.5 }}
+                  >
+                    {activeProjectPreview.description}
+                  </motion.p>
+                </motion.div>
+                
+                {/* Tech Stack Pills */}
+                <motion.div 
+                  className="flex flex-wrap gap-3 justify-center mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                >
+                  {activeProjectPreview.tech.map((tech, i) => (
+                    <motion.span 
+                      key={i} 
+                      className="px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white border border-white/30 backdrop-blur-sm"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.9 + i * 0.1, duration: 0.3 }}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </motion.div>
+                
+                {/* Full Size Image Grid */}
+                <motion.div 
+                  className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 w-full"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1, duration: 0.6 }}
+                >
                 {(() => {
                   // Use specific images for UKP and Crisis Report projects
                   let previewImages: string[] = [];
@@ -1297,10 +1351,15 @@ const Index = () => {
                         {/* Enhanced Image Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300" />
                         
-                        {/* Image Number Badge - Large and Prominent */}
-                        <div className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-3 border-white/50 flex items-center justify-center shadow-lg">
+                        {/* Animated Image Number Badge */}
+                        <motion.div 
+                          className="absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 border-2 border-white/50 flex items-center justify-center shadow-lg"
+                          initial={{ scale: 0, rotate: -180 }}
+                          animate={{ scale: 1, rotate: 0 }}
+                          transition={{ delay: 1.2 + i * 0.1, duration: 0.5, type: "spring" }}
+                        >
                           <span className="text-white text-xl font-bold">{i + 1}</span>
-                        </div>
+                        </motion.div>
                         
                         {/* Hover Info */}
                         <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover/image:opacity-100 transition-opacity duration-300">
@@ -1316,18 +1375,43 @@ const Index = () => {
                     </motion.div>
                   ));
                 })()}
+                </motion.div>
+                
+                {/* Project Actions */}
+                <motion.div 
+                  className="flex justify-center gap-4 mt-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.4, duration: 0.5 }}
+                >
+                  {activeProjectPreview.link && (
+                    <motion.a
+                      href={activeProjectPreview.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-full shadow-lg border border-white/20 backdrop-blur-sm"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Github className="w-5 h-5" />
+                      View on GitHub
+                    </motion.a>
+                  )}
+                  <motion.button
+                    onClick={() => setActiveProjectPreview(null)}
+                    className="flex items-center gap-2 px-6 py-3 bg-white/10 text-white font-semibold rounded-full shadow-lg border border-white/20 backdrop-blur-sm"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <X className="w-5 h-5" />
+                    Close Preview
+                  </motion.button>
+                </motion.div>
               </div>
-              
-              {/* Enhanced Preview Label */}
-              <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
-                <div className="px-8 py-4 rounded-full bg-gradient-to-r from-blue-500/30 to-purple-500/30 backdrop-blur-sm border border-white/40 shadow-xl">
-                  <span className="text-white text-xl font-semibold">🚀 Project Preview</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Skills Section */}
       <section id="skills" className="py-16 px-4 sm:px-6 md:py-20">
