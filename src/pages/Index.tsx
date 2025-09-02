@@ -862,7 +862,7 @@ const Index = () => {
                 </div>
               </div>
               {/* Info */}
-              <div className="flex-1 text-left flex flex-col justify-center items-center md:items-start">
+              <div className="flex-1 text-left flex flex-col justify-center items-center">
                 <div className="flex items-center space-x-4 mb-2">
                   <h1 className={`text-3xl md:text-5xl font-extrabold bg-gradient-to-r ${isDarkMode ? 'from-gray-300 via-gray-200 to-gray-100' : 'from-gray-700 via-gray-600 to-gray-500'} bg-clip-text text-transparent animate-gradient-x drop-shadow-lg`}>
                     Dhruv Mendiratta
@@ -877,7 +877,7 @@ const Index = () => {
                   />
                 </p>
                 {/* Role chips */}
-                <div className="flex flex-wrap items-center gap-2 mb-5 md:mb-6 justify-center md:justify-start">
+                <div className="flex flex-wrap items-center gap-2 mb-5 md:mb-6 justify-center">
                   {rotatingRoles.map((r, i) => (
                     <span key={i} className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${isDarkMode ? 'bg-sky-500/10 text-sky-200 border-sky-400/30' : 'bg-sky-50 text-sky-700 border-sky-200'}`}>
                       {r}
@@ -885,7 +885,7 @@ const Index = () => {
                   ))}
                 </div>
                 {/* CTAs - centered */}
-                <div className="w-full flex flex-col sm:flex-row justify-center items-center gap-3 md:gap-4 mt-1 mx-auto">
+                <div className="w-full flex flex-col sm:flex-row justify-center items-center gap-3 md:gap-4 mt-1">
                   <motion.div whileHover={{ y: -2 }} transition={{ type: 'spring', stiffness: 250, damping: 18 }}>
                     <Button asChild className={`group relative rounded-full px-8 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'text-white focus:ring-sky-400 focus:ring-offset-transparent' : 'text-sky-900 focus:ring-sky-400 focus:ring-offset-white'}`}>
                       <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com" target="_blank" rel="noopener noreferrer">
