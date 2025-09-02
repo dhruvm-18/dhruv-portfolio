@@ -1189,9 +1189,9 @@ const Index = () => {
                         // Use specific images for UKP and Crisis Report projects
                         let previewImages: string[] = [];
                         if (project.title.includes('Unified Knowledge Platform')) {
-                          previewImages = ['/UKP1.jpg', '/UKP2.jpg', '/UKP3.jpg'];
+                          previewImages = ['/public/UKP1.jpg', '/public/UKP2.jpg', '/public/UKP3.jpg'];
                         } else if (project.title.includes('Crisis Reporting')) {
-                          previewImages = ['/CR1.jpg', '/CR2.jpg', '/CR3.jpg'];
+                          previewImages = ['/public/CR1.jpg', '/public/CR2.jpg', '/public/CR3.jpg'];
                         } else {
                           // Fallback for other projects
                           previewImages = [project.image, project.image, project.image];
