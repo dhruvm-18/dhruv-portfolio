@@ -630,7 +630,7 @@ const Index = () => {
                 <p className={`text-base md:text-xl mb-3 font-medium ${isDarkMode ? 'text-slate-200' : 'text-gray-700'}`}>
                   <span className={`${isDarkMode ? 'text-blue-300' : 'text-blue-700'} font-semibold`}>{typewriterText}</span>
                   <motion.span
-                    className={`ml-1 inline-block w-[10px] md:w-[12px] h-[1.2em] align-[-0.1em] ${isDarkMode ? 'bg-blue-300' : 'bg-blue-700'}`}
+                    className={`ml-1 inline-block w-[2px] md:w-[2px] h-[1.05em] align-[-0.1em] ${isDarkMode ? 'bg-blue-300' : 'bg-blue-700'}`}
                     animate={{ opacity: [1, 0, 1] }}
                     transition={{ duration: 0.9, repeat: Infinity }}
                   />
@@ -645,18 +645,26 @@ const Index = () => {
                 </div>
                 {/* Modern, neutral buttons */}
                 <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 md:gap-4 mt-2">
-                  <Button asChild className={`rounded-full px-7 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white focus:ring-sky-400 focus:ring-offset-gray-800' : 'bg-gradient-to-r from-sky-100 to-indigo-100 hover:from-sky-200 hover:to-indigo-200 text-sky-900 focus:ring-sky-400 focus:ring-offset-white'} shadow-[0_8px_24px_-8px_rgba(56,189,248,0.55)]` }>
+                  <Button asChild className={`group relative rounded-full px-8 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'text-white focus:ring-sky-400 focus:ring-offset-gray-800' : 'text-sky-900 focus:ring-sky-400 focus:ring-offset-white'}`}>
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dhruv.mendiratta4@gmail.com"
-  target="_blank"
-  rel="noopener noreferrer">
-                      <Mail className="w-4 h-4 mr-2" />
-                      Hire Me
+   target="_blank"
+   rel="noopener noreferrer">
+                      <span className={`absolute inset-0 rounded-full ${isDarkMode ? 'bg-gradient-to-r from-sky-600 to-indigo-600' : 'bg-gradient-to-r from-sky-300 to-indigo-300'}`}></span>
+                      <span className={`absolute inset-[2px] rounded-full ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}></span>
+                      <span className="relative flex items-center">
+                        <Mail className="w-4 h-4 mr-2" />
+                        Hire Me
+                      </span>
                     </a>
                   </Button>
-                  <Button asChild className={`rounded-full px-7 py-2.5 font-semibold transition border focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'bg-gradient-to-r from-cyan-900 to-indigo-900 hover:from-cyan-800 hover:to-indigo-800 text-cyan-100 border-cyan-800 focus:ring-cyan-500 focus:ring-offset-gray-800' : 'border-sky-300 text-sky-700 hover:bg-sky-50 bg-white focus:ring-sky-400 focus:ring-offset-white'} shadow-[0_8px_24px_-8px_rgba(14,165,233,0.45)]` }>
+                  <Button asChild className={`group relative rounded-full px-8 py-2.5 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 ${isDarkMode ? 'text-cyan-100 focus:ring-cyan-500 focus:ring-offset-gray-800' : 'text-sky-700 focus:ring-sky-400 focus:ring-offset-white'}`}>
                     <a href="/Dhruv_Mendiratta_Resume.pdf" target="_blank" rel="noopener noreferrer">
-                      <FileText className="w-4 h-4 mr-2" />
-                      View My Resume
+                      <span className={`absolute inset-0 rounded-full ${isDarkMode ? 'bg-gradient-to-r from-cyan-700 to-indigo-700' : 'bg-gradient-to-r from-sky-300 to-indigo-300'}`}></span>
+                      <span className={`absolute inset-[2px] rounded-full ${isDarkMode ? 'bg-slate-900' : 'bg-white'}`}></span>
+                      <span className="relative flex items-center">
+                        <FileText className="w-4 h-4 mr-2" />
+                        View My Resume
+                      </span>
                     </a>
                   </Button>
                 </div>
