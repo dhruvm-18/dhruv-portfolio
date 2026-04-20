@@ -228,7 +228,7 @@ const Index = () => {
       company: "Deloitte Touche Tohmatsu India LLP",
       position: "ADMM Intern",
       location: "Delhi, India",
-      period: "May 2025 - July 2025",
+      period: "Jan 2026 – Present",
       logo: <img src={Deloitte} alt="Dhruv Mendiratta"className="w-16 h-16 object-cover rounded-md"/>,
       "achievements": [
   "Built AI-driven automation workflows using ChatGPT and CrewAI to enable multi-agent task orchestration and intelligent analysis",
