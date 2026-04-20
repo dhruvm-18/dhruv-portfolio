@@ -222,7 +222,22 @@ const Index = () => {
     setIsDarkMode(!isDarkMode);
   }, [isDarkMode]);
 
+
   const experiences = [
+{
+      company: "Deloitte Touche Tohmatsu India LLP",
+      position: "ADMM Intern",
+      location: "Delhi, India",
+      period: "May 2025 - July 2025",
+      logo: <img src={Deloitte} alt="Dhruv Mendiratta"className="w-16 h-16 object-cover rounded-md"/>,
+      "achievements": [
+  "Built AI-driven automation workflows using ChatGPT and CrewAI to enable multi-agent task orchestration and intelligent analysis",
+  "Developed scalable data pipelines using Hadoop, Sqoop, and Kafka for efficient data ingestion and real-time processing",
+  "Designed and implemented end-to-end ETL pipelines with robust data cleaning and transformation using Python",
+  "Created interactive dashboards and business intelligence reports using Tableau and Power BI for actionable insights",
+  "Applied data warehousing concepts including schema design and data modeling to support scalable analytics systems"
+]
+    },
     {
       company: "Ernst & Young (EY)",
       position: "AI Intern – Generative AI & RAG Systems",
